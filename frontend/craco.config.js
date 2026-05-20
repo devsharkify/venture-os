@@ -32,16 +32,24 @@ if (config.enableHealthCheck) {
   healthPluginInstance = new WebpackHealthPlugin();
 }
 
+const eslintDisabled = process.env.DISABLE_ESLINT_PLUGIN === "true";
+
 const webpackConfig = {
-  eslint: {
-    configure: {
-      extends: ["plugin:react-hooks/recommended"],
-      rules: {
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-      },
-    },
-  },
+  // Only configure ESLint when the plugin is enabled — when DISABLE_ESLINT_PLUGIN=true
+  // craco can't find ESLintWebpackPlugin and crashes on `eslint.configure`.
+  ...(eslintDisabled
+    ? {}
+    : {
+        eslint: {
+          configure: {
+            extends: ["plugin:react-hooks/recommended"],
+            rules: {
+              "react-hooks/rules-of-hooks": "error",
+              "react-hooks/exhaustive-deps": "warn",
+            },
+          },
+        },
+      }),
   webpack: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

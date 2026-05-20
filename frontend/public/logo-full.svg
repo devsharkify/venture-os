@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-label="Mint Street">
+  <title>Mint Street</title>
+  <!-- mark -->
+  <rect x="10" y="10" width="180" height="180" rx="32" fill="#F26B1F"/>
+  <rect x="46" y="124" width="20" height="44" rx="3" fill="#FAF7F1" opacity="0.95"/>
+  <rect x="74" y="100" width="20" height="68" rx="3" fill="#FAF7F1" opacity="0.95"/>
+  <rect x="102" y="72" width="20" height="96" rx="3" fill="#FAF7F1"/>
+  <path d="M134 72 L164 72 L164 102 L152 90 L122 120 L114 112 L144 82 L134 90 Z" fill="#FAF7F1"/>
+  <!-- wordmark -->
+  <text x="220" y="110" font-family="Fraunces, Georgia, serif" font-size="78" font-weight="900" fill="#1F1612" letter-spacing="-2">Mint Street</text>
+  <text x="222" y="148" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="500" fill="#5A4A40" letter-spacing="2">WHERE NEW MONEY MEETS NEW IDEAS</text>
+</svg>
