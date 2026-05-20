@@ -2,7 +2,13 @@
 import asyncio
 import os
 import sys
+from pathlib import Path
+
 sys.path.insert(0, os.path.dirname(__file__))
+
+BACKEND_DIR = Path(__file__).resolve().parent
+RUN_AGENTS_SCRIPT = str(BACKEND_DIR / "run_agents.py")
+BACKEND_CWD = str(BACKEND_DIR)
 
 from celery_app import app
 from database import db, logger
@@ -60,8 +66,8 @@ def run_all_agents(self):
     AGENT_PYTHON = "/root/.venv/bin/python3"
     try:
         result = subprocess.run(
-            [AGENT_PYTHON, "/app/backend/run_agents.py", "all"],
-            cwd="/app/backend",
+            [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "all"],
+            cwd=BACKEND_CWD,
             capture_output=True, text=True, timeout=180
         )
         logger.info(f"Agents completed: {result.stdout[-200:] if result.stdout else 'no output'}")
@@ -76,8 +82,8 @@ def run_editor_agent():
     """Run editor agent only."""
     import subprocess
     subprocess.run(
-        ["/root/.venv/bin/python3", "/app/backend/run_agents.py", "editor"],
-        cwd="/app/backend", capture_output=True, timeout=120
+        ["/root/.venv/bin/python3", RUN_AGENTS_SCRIPT, "editor"],
+        cwd=BACKEND_CWD, capture_output=True, timeout=120
     )
 
 
@@ -85,10 +91,10 @@ def run_editor_agent():
 def run_investigator_agent(topic_id=None):
     """Run investigator agent."""
     import subprocess
-    cmd = ["/root/.venv/bin/python3", "/app/backend/run_agents.py", "investigator"]
+    cmd = ["/root/.venv/bin/python3", RUN_AGENTS_SCRIPT, "investigator"]
     if topic_id:
         cmd.append(topic_id)
-    subprocess.run(cmd, cwd="/app/backend", capture_output=True, timeout=120)
+    subprocess.run(cmd, cwd=BACKEND_CWD, capture_output=True, timeout=120)
 
 
 @app.task(name="tasks.run_seo_agent")
@@ -96,8 +102,8 @@ def run_seo_agent():
     """Run SEO analysis agent."""
     import subprocess
     subprocess.run(
-        ["/root/.venv/bin/python3", "/app/backend/run_agents.py", "seo"],
-        cwd="/app/backend", capture_output=True, timeout=120
+        ["/root/.venv/bin/python3", RUN_AGENTS_SCRIPT, "seo"],
+        cwd=BACKEND_CWD, capture_output=True, timeout=120
     )
 
 

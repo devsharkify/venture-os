@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
@@ -28,6 +29,8 @@ from routes.startup import router as startup_router
 from routes.sitemap import router as sitemap_router
 
 ROOT_DIR = Path(__file__).parent
+REPO_ROOT = Path(__file__).resolve().parent.parent
+FRONTEND_BUILD = REPO_ROOT / "frontend" / "build"
 
 # Create the main app
 app = FastAPI()
@@ -72,6 +75,31 @@ app.add_middleware(
 uploads_dir = ROOT_DIR / "uploads"
 uploads_dir.mkdir(exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=str(uploads_dir)), name="uploads")
+
+# Serve the production frontend bundle (backend-serves-frontend pattern).
+# Mounted AFTER all /api/* routers so API routes still match first.
+if FRONTEND_BUILD.exists() and (FRONTEND_BUILD / "index.html").exists():
+    # /static/* -> compiled JS/CSS from CRA
+    app.mount(
+        "/static",
+        StaticFiles(directory=str(FRONTEND_BUILD / "static")),
+        name="frontend-static",
+    )
+
+    @app.get("/{full_path:path}")
+    async def spa_fallback(full_path: str, request: Request):
+        # Don't intercept API or uploads (defensive — routers already matched first).
+        if full_path.startswith("api/") or full_path.startswith("uploads/"):
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404)
+        # Serve any top-level static asset (favicon, logo.svg, robots.txt, sitemap.xml, sw.js, …)
+        candidate = FRONTEND_BUILD / full_path
+        if full_path and candidate.is_file():
+            return FileResponse(str(candidate))
+        # SPA fallback: let React Router handle the route on the client.
+        return FileResponse(str(FRONTEND_BUILD / "index.html"))
+else:
+    print(f"[mint-street] frontend build not found at {FRONTEND_BUILD}; skipping SPA mount")
 
 # Startup: launch scraper background task + generate SEO files + create indexes
 @app.on_event("startup")

@@ -2,8 +2,13 @@ from fastapi import APIRouter
 from datetime import datetime, timezone, timedelta
 from database import db, logger, EMERGENT_LLM_KEY
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from pathlib import Path
 import uuid
 import asyncio
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+RUN_AGENTS_SCRIPT = str(BACKEND_DIR / "run_agents.py")
+BACKEND_CWD = str(BACKEND_DIR)
 
 router = APIRouter(prefix="/api/agents")
 
@@ -140,8 +145,8 @@ async def run_editor_agent():
     """Run the News Editor Agent as a subprocess (non-blocking)."""
     import subprocess
     subprocess.Popen(
-        [AGENT_PYTHON, "/app/backend/run_agents.py", "editor"],
-        cwd="/app/backend",
+        [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "editor"],
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/agent_editor.log", "w"),
         stderr=subprocess.STDOUT
     )
@@ -345,8 +350,8 @@ async def run_investigation(topic_id: str):
     """Run investigation on a topic as a subprocess (non-blocking)."""
     import subprocess
     subprocess.Popen(
-        [AGENT_PYTHON, "/app/backend/run_agents.py", "investigator", topic_id],
-        cwd="/app/backend",
+        [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "investigator", topic_id],
+        cwd=BACKEND_CWD,
         stdout=open(f"/tmp/agent_invest_{topic_id}.log", "w"),
         stderr=subprocess.STDOUT
     )
@@ -358,8 +363,8 @@ async def run_all_investigations():
     """Run all investigations as a subprocess (non-blocking)."""
     import subprocess
     subprocess.Popen(
-        [AGENT_PYTHON, "/app/backend/run_agents.py", "investigator"],
-        cwd="/app/backend",
+        [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "investigator"],
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/agent_invest_all.log", "w"),
         stderr=subprocess.STDOUT
     )
@@ -398,8 +403,8 @@ async def run_agents_after_scrape():
     import subprocess
     try:
         subprocess.Popen(
-            [AGENT_PYTHON, "/app/backend/run_agents.py", "all"],
-            cwd="/app/backend",
+            [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "all"],
+            cwd=BACKEND_CWD,
             stdout=open("/tmp/agent_auto.log", "w"),
             stderr=subprocess.STDOUT
         )

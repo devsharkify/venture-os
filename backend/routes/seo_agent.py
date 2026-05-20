@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from datetime import datetime, timezone, timedelta
 from database import db, logger, EMERGENT_LLM_KEY
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from pathlib import Path
 import uuid
 import asyncio
 import json
@@ -10,6 +11,10 @@ import json
 router = APIRouter(prefix="/api/agents/seo")
 
 AGENT_PYTHON = "/root/.venv/bin/python3"
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+RUN_AGENTS_SCRIPT = str(BACKEND_DIR / "run_agents.py")
+BACKEND_CWD = str(BACKEND_DIR)
 
 
 async def _llm_call(system_msg, user_msg):
@@ -169,8 +174,8 @@ async def api_run_seo():
     """Run SEO agent as subprocess (non-blocking)."""
     import subprocess
     subprocess.Popen(
-        [AGENT_PYTHON, "/app/backend/run_agents.py", "seo"],
-        cwd="/app/backend",
+        [AGENT_PYTHON, RUN_AGENTS_SCRIPT, "seo"],
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/agent_seo.log", "w"),
         stderr=subprocess.STDOUT
     )

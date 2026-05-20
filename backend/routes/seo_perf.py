@@ -3,10 +3,16 @@ from fastapi import APIRouter, Request
 from database import db, logger, EMERGENT_LLM_KEY
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 from datetime import datetime, timezone, timedelta
+from pathlib import Path
 import uuid
 import asyncio
 import time
 import os
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+RUN_SEO_AGENT_SCRIPT = str(BACKEND_DIR / "run_seo_agent.py")
+RUN_PERF_CHECK_SCRIPT = str(BACKEND_DIR / "run_perf_check.py")
+BACKEND_CWD = str(BACKEND_DIR)
 
 router = APIRouter(prefix="/api/seo")
 
@@ -151,8 +157,8 @@ async def run_seo_generation():
     """Run SEO generation for recent articles."""
     import subprocess
     subprocess.Popen(
-        ["/root/.venv/bin/python3", "/app/backend/run_seo_agent.py"],
-        cwd="/app/backend",
+        ["/root/.venv/bin/python3", RUN_SEO_AGENT_SCRIPT],
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/seo_agent.log", "w"),
         stderr=subprocess.STDOUT
     )
@@ -277,8 +283,8 @@ async def run_performance_check():
     """Run a full performance check and store results."""
     import subprocess
     subprocess.Popen(
-        ["/root/.venv/bin/python3", "/app/backend/run_perf_check.py"],
-        cwd="/app/backend",
+        ["/root/.venv/bin/python3", RUN_PERF_CHECK_SCRIPT],
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/perf_check.log", "w"),
         stderr=subprocess.STDOUT
     )

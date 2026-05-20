@@ -86,9 +86,26 @@ frontend/
   public/                # index.html, logo.svg, logo-full.svg, rss.xml, robots
 ```
 
+## Production preview
+
+One command to build the frontend and serve everything from a single FastAPI process on port 8000:
+
+```bash
+./scripts/serve-prod.sh
+```
+
+The script:
+
+1. Rebuilds `frontend/build/` if it's missing or source files are newer.
+2. Activates `backend/.venv` if present.
+3. Starts `uvicorn server:app` on `0.0.0.0:8000` (no `--reload`).
+
+Once running, the React app is served at <http://localhost:8000> and the same origin hosts the `/api/*` routes — `frontend/.env.production` sets `REACT_APP_BACKEND_URL=` (empty) so the bundle uses relative URLs.
+
 ## Scripts
 
 - `cd frontend && npm run build` - production bundle into `frontend/build/`
+- `./scripts/serve-prod.sh` - build (if needed) and serve the prod bundle + API on :8000
 - `cd backend && python seed_articles.py` - print article count + sample
 - `cd backend && python -m compileall .` - syntax-check all modules
 

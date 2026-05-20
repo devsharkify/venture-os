@@ -5,11 +5,17 @@ from typing import Optional
 from datetime import datetime, timezone, timedelta
 from database import db, logger, CATEGORIES, EMERGENT_LLM_KEY
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from pathlib import Path
 import httpx
 import uuid
 import asyncio
 import os
 import re
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+REPO_ROOT = BACKEND_DIR.parent
+FRONTEND_DIR = REPO_ROOT / "frontend"
+BACKEND_CWD = str(BACKEND_DIR)
 
 router = APIRouter(prefix="/api/seo-engine")
 
@@ -539,10 +545,10 @@ async def api_generate_seo_meta():
     import subprocess
     subprocess.Popen(
         ["/root/.venv/bin/python3", "-c",
-         "import asyncio; import sys; sys.path.insert(0, '/app/backend'); "
+         f"import asyncio; import sys; sys.path.insert(0, {BACKEND_CWD!r}); "
          "from routes.seo_engine import batch_generate_seo_meta; "
          "asyncio.run(batch_generate_seo_meta(20))"],
-        cwd="/app/backend",
+        cwd=BACKEND_CWD,
         stdout=open("/tmp/seo_meta.log", "w"),
         stderr=subprocess.STDOUT
     )
@@ -645,7 +651,7 @@ async def get_related_articles(article_id: str, limit: int = Query(5, ge=1, le=1
 # STATIC FILE GENERATOR - writes sitemap.xml, robots.txt, rss.xml to frontend/public
 # ============================================================
 
-FRONTEND_PUBLIC = "/app/frontend/public"
+FRONTEND_PUBLIC = str(FRONTEND_DIR / "public")
 
 
 async def generate_static_seo_files():

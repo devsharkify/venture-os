@@ -1,6 +1,6 @@
 """
 Bulk Telugu Translation + Summary Backfill Script
-Run: cd /app/backend && python3 bulk_process.py
+Run: cd <repo-root>/backend && python3 bulk_process.py
 Processes articles in batches:
 1. Translates titles and summaries to Telugu
 2. Generates AI summaries for articles missing them
