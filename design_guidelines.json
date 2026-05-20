@@ -1,0 +1,119 @@
+{
+  "design_guidelines": {
+    "identity": {
+      "name": "Kaizer News ePaper",
+      "tone": "Authoritative, Classic, Warm, Digital-First Print",
+      "target_audience": "Telugu & English news readers in Telangana/Hyderabad"
+    },
+    "typography": {
+      "font_families": {
+        "english_heading": "Playfair Display, serif",
+        "english_body": "Merriweather, serif",
+        "telugu_heading": "Sree Krushnadevaraya, serif",
+        "telugu_body": "Noto Serif Telugu, serif",
+        "ui_elements": "IBM Plex Sans, sans-serif"
+      },
+      "weights": {
+        "light": 300,
+        "regular": 400,
+        "medium": 500,
+        "bold": 700,
+        "black": 900
+      },
+      "styles": {
+        "masthead": "font-english_heading font-black text-4xl md:text-6xl tracking-tight uppercase",
+        "headline_hero": "font-telugu_heading font-bold text-2xl md:text-4xl leading-tight text-ink",
+        "headline_standard": "font-telugu_heading font-bold text-lg md:text-xl leading-snug text-ink",
+        "body_text": "font-telugu_body text-base leading-relaxed text-ink/90 text-justify",
+        "caption": "font-ui_elements text-xs text-ink/60 uppercase tracking-wider"
+      }
+    },
+    "colors": {
+      "palette": {
+        "paper_bg": "#fcfbf9",
+        "paper_dark_bg": "#1c1917",
+        "ink": "#1c1917",
+        "ink_light": "#e5e5e5",
+        "kaizer_orange": "#ea580c",
+        "kaizer_orange_hover": "#c2410c",
+        "stone_border": "#d6d3d1",
+        "newsprint_gray": "#f5f5f4"
+      },
+      "theme_strategy": {
+        "light_mode": {
+          "bg": "bg-[#fcfbf9]",
+          "text": "text-[#1c1917]",
+          "border": "border-[#d6d3d1]"
+        },
+        "dark_mode": {
+          "bg": "bg-[#1c1917]",
+          "text": "text-[#e5e5e5]",
+          "border": "border-[#44403c]"
+        }
+      }
+    },
+    "layout": {
+      "grid_system": "grid grid-cols-12 gap-0 divide-x divide-stone-300/50",
+      "spacing": {
+        "page_margin": "max-w-screen-2xl mx-auto px-4 md:px-8",
+        "article_gap": "gap-6",
+        "internal_padding": "p-4 md:p-6"
+      },
+      "sections": {
+        "masthead": "w-full border-b-2 border-black py-4 flex flex-col items-center justify-between sticky top-0 z-50 bg-[#fcfbf9]/95 backdrop-blur-sm",
+        "page_strip": "hidden md:flex flex-col w-24 border-r border-stone-300 h-[calc(100vh-100px)] overflow-y-auto sticky top-[100px]",
+        "main_content": "flex-1 min-h-screen p-4 md:p-8"
+      }
+    },
+    "components": {
+      "ArticleCard": {
+        "path": "/app/frontend/src/components/epaper/ArticleCard.js",
+        "style": "group relative flex flex-col gap-3 p-4 hover:bg-stone-100/50 transition-colors border-b border-stone-200 last:border-0",
+        "elements": {
+          "image": "aspect-video w-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500",
+          "category_tag": "text-[10px] font-bold uppercase tracking-widest text-kaizer_orange mb-1"
+        }
+      },
+      "Masthead": {
+        "path": "/app/frontend/src/components/epaper/Masthead.js",
+        "instructions": "Must include Kaizer News logo in Blackletter style. Date on left, Edition on right. Bottom border must be double line (border-double border-b-4)."
+      },
+      "PageThumbnail": {
+        "path": "/app/frontend/src/components/epaper/PageThumbnail.js",
+        "style": "w-full aspect-[3/4] bg-stone-200 mb-4 cursor-pointer hover:ring-2 ring-kaizer_orange transition-all opacity-70 hover:opacity-100 aria-selected:opacity-100 aria-selected:ring-2"
+      }
+    },
+    "visual_enhancers": {
+      "texture": "before:content-[''] before:fixed before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] before:opacity-30 before:pointer-events-none before:z-[-1]",
+      "shadows": "shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow",
+      "borders": "border border-stone-800"
+    },
+    "image_urls": {
+      "politics": [
+        "https://images.unsplash.com/photo-1554941829-1a16e65a02b9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxwb2xpdGljcyUyMG5ld3MlMjBjb25mZXJlbmNlJTIwbWljcm9waG9uZXxlbnwwfHx8fDE3NzI4Mjc5MjZ8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1702351002798-6ccc7598494a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxwb2xpdGljcyUyMG5ld3MlMjBjb25mZXJlbmNlJTIwbWljcm9waG9uZXxlbnwwfHx8fDE3NzI4Mjc5MjZ8MA&ixlib=rb-4.1.0&q=85"
+      ],
+      "sports": [
+        "https://images.unsplash.com/photo-1750716413341-fd5d93296a76?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHw0fHxjcmlja2V0JTIwc3RhZGl1bSUyMG1hdGNoJTIwY3Jvd2R8ZW58MHx8fHwxNzcyODI3OTI2fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1763718627682-4dbc728064d9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxjcmlja2V0JTIwc3RhZGl1bSUyMG1hdGNoJTIwY3Jvd2R8ZW58MHx8fHwxNzcyODI3OTI2fDA&ixlib=rb-4.1.0&q=85"
+      ],
+      "default_placeholder": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80"
+    },
+    "instructions_to_main_agent": [
+      "Use 'Playfair Display' for English headings and 'Noto Serif Telugu' for Telugu content.",
+      "The background MUST NOT be pure white (#FFFFFF). Use #fcfbf9 to mimic paper.",
+      "Implement a 'Masonry' or 'Bento' style grid for the main news content. It should NOT look like a standard blog list.",
+      "The sidebar strip (Page 1, Page 2...) is critical for the 'ePaper' feel.",
+      "Use Shadcn 'Calendar' for the date picker but style it to look like a vintage calendar.",
+      "Use 'lucide-react' for icons (Download, ChevronLeft, ChevronRight, Calendar, Moon, Sun).",
+      "Ensure text-justify is used for body content to mimic newspaper columns.",
+      "Add a 'PDF Download' button in the Masthead.",
+      "Create the file in /app/frontend/src/pages/EPaperReader.js and update App.js to route it."
+    ],
+    "universal_guidelines": {
+      "dark_mode_strategy": "In dark mode, do NOT use pure black. Use #1c1917 (Stone 950) for background and #e5e5e5 (Stone 200) for text. Invert borders to #44403c.",
+      "interaction": "Add hover effects to article cards: slight background darkening (in light mode) and title color change to Orange.",
+      "accessibility": "Ensure contrast ratio between text and paper background is > 4.5:1."
+    }
+  }
+}

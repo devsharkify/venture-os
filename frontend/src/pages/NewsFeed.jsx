@@ -1,0 +1,456 @@
+import { useState, useEffect, useContext, useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API, AppContext } from "../App";
+import { CategoryChips } from "../components/CategoryChips";
+import { NewsCard } from "../components/NewsCard";
+import { Loader2, Newspaper, X, Search, Clock } from "lucide-react";
+import { Button } from "../components/ui/button";
+
+const SORT_OPTIONS = [
+  { value: "newest", label: "New to Old", label_te: "కొత్త నుండి పాతది" },
+  { value: "oldest", label: "Old to New", label_te: "పాత నుండి కొత్తది" },
+];
+
+const TIME_FILTERS = [
+  { value: "all", label: "All Time", label_te: "అన్ని" },
+  { value: "1d", label: "Last 1 Day", label_te: "1 రోజు" },
+  { value: "1w", label: "Last 1 Week", label_te: "1 వారం" },
+  { value: "1m", label: "Last 1 Month", label_te: "1 నెల" },
+  { value: "1y", label: "Last 1 Year", label_te: "1 సంవత్సరం" },
+];
+
+const DEFAULT_IMAGE = "https://images.pexels.com/photos/17706648/pexels-photo-17706648.jpeg?auto=compress&cs=tinysrgb&w=800";
+
+const DEFAULT_IMAGES = {
+  local: "https://images.pexels.com/photos/17706648/pexels-photo-17706648.jpeg?auto=compress&cs=tinysrgb&w=600",
+  city: "https://images.pexels.com/photos/3573351/pexels-photo-3573351.jpeg?auto=compress&cs=tinysrgb&w=600",
+  state: "https://images.pexels.com/photos/17706648/pexels-photo-17706648.jpeg?auto=compress&cs=tinysrgb&w=600",
+  national: "https://images.pexels.com/photos/17706648/pexels-photo-17706648.jpeg?auto=compress&cs=tinysrgb&w=600",
+  sports: "https://images.pexels.com/photos/31131696/pexels-photo-31131696.jpeg?auto=compress&cs=tinysrgb&w=600",
+  entertainment: "https://images.pexels.com/photos/34818731/pexels-photo-34818731.jpeg?auto=compress&cs=tinysrgb&w=600",
+  tech: "https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=600",
+  health: "https://images.pexels.com/photos/3822688/pexels-photo-3822688.jpeg?auto=compress&cs=tinysrgb&w=600",
+  business: "https://images.pexels.com/photos/6950229/pexels-photo-6950229.jpeg?auto=compress&cs=tinysrgb&w=600",
+  international: "https://images.pexels.com/photos/1098460/pexels-photo-1098460.jpeg?auto=compress&cs=tinysrgb&w=600",
+};
+
+function getArticleImage(article) {
+  return article.image || DEFAULT_IMAGES[article.category] || DEFAULT_IMAGE;
+}
+
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString("en-IN", {
+      day: "numeric", month: "short", year: "numeric"
+    });
+  } catch {
+    return "";
+  }
+}
+
+function readTimeMin(text) {
+  return Math.max(1, Math.ceil((text || "").split(/\s+/).filter(Boolean).length / 200));
+}
+
+// ─── LeadTile (Tile A) ────────────────────────────────────────────────────────
+function LeadTile({ article, language }) {
+  const { openArticle } = useContext(AppContext);
+  if (!article) return null;
+
+  const title = language === "en" ? article.title : (article.title_te || article.title);
+  const summary = language === "en" ? article.summary : (article.summary_te || article.summary);
+  const imageUrl = getArticleImage(article);
+  const readTime = readTimeMin(article.summary);
+
+  return (
+    <article
+      className="lg:col-span-2 lg:row-span-3 cursor-pointer group flex flex-col"
+      onClick={() => openArticle(article)}
+    >
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="eager"
+          onError={(e) => { e.target.src = DEFAULT_IMAGE; }}
+        />
+        {article.is_pinned && (
+          <span className="absolute top-3 left-3 bg-saffron text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">
+            {language === "en" ? "Breaking" : "బ్రేకింగ్"}
+          </span>
+        )}
+      </div>
+
+      <div className="pt-4">
+        <h2 className={`font-display text-[28px] md:text-[36px] font-bold leading-tight text-ink line-clamp-3 mb-3 ${language === "te" ? "font-telugu" : ""}`}>
+          {title}
+        </h2>
+        <p className={`text-[15px] text-ink-muted line-clamp-3 mb-3 ${language === "te" ? "font-telugu" : ""}`}>
+          {summary}
+        </p>
+        <div className="flex items-center gap-2 text-[12px] text-ink-muted">
+          <span className="font-semibold">By Mint Street</span>
+          <span className="opacity-50">·</span>
+          <span>{formatDate(article.published_at || article.created_at)}</span>
+          <span className="opacity-50">·</span>
+          <span>{readTime} min read</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+// ─── MediumTile (Tiles B/C) ───────────────────────────────────────────────────
+function MediumTile({ article, language }) {
+  const { openArticle } = useContext(AppContext);
+  if (!article) return null;
+
+  const title = language === "en" ? article.title : (article.title_te || article.title);
+  const imageUrl = getArticleImage(article);
+
+  return (
+    <article
+      className="lg:col-span-1 lg:row-span-1 cursor-pointer group flex gap-3"
+      onClick={() => openArticle(article)}
+    >
+      <div className="flex-shrink-0 w-[40%] aspect-[4/3] overflow-hidden rounded-md">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          onError={(e) => { e.target.src = DEFAULT_IMAGE; }}
+        />
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col justify-between">
+        <h3 className={`font-display text-[15px] font-bold line-clamp-3 text-ink leading-snug ${language === "te" ? "font-telugu" : ""}`}>
+          {title}
+        </h3>
+        <div className="flex items-center gap-1.5 text-[11px] text-ink-muted">
+          <Clock size={10} />
+          <span>{formatDate(article.published_at || article.created_at)}</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+// ─── MarketsTile (Tile D) ─────────────────────────────────────────────────────
+function MarketsTile({ articles, language }) {
+  const { openArticle } = useContext(AppContext);
+  const items = (articles || []).slice(0, 3);
+  if (items.length === 0) return null;
+
+  return (
+    <div className="lg:col-span-1 lg:row-span-1 bg-mint text-white rounded-md p-5 flex flex-col">
+      <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">
+        {language === "en" ? "FUNDING WIRE" : "ఫండింగ్ వైర్"}
+      </div>
+      <div className="flex flex-col">
+        {items.map((article, idx) => {
+          const title = language === "en" ? article.title : (article.title_te || article.title);
+          return (
+            <button
+              key={article.id}
+              onClick={() => openArticle(article)}
+              className={`text-left text-[13px] font-medium leading-snug py-2.5 cursor-pointer hover:opacity-90 transition ${idx !== items.length - 1 ? "border-b border-white/15" : ""} ${language === "te" ? "font-telugu" : ""}`}
+            >
+              <span className="line-clamp-2">{title}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── NewsFeed ─────────────────────────────────────────────────────────────────
+export default function NewsFeed() {
+  const { language, darkMode } = useContext(AppContext);
+  const navigate = useNavigate();
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+  const [sortBy, setSortBy] = useState("newest");
+  const [timeFilter, setTimeFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [searchTotal, setSearchTotal] = useState(0);
+  const [isSearching, setIsSearching] = useState(false);
+  const searchTimerRef = useRef(null);
+  const LIMIT = 10;
+
+  const fetchNews = useCallback(async (category, skip = 0, append = false, sort = "newest", time = "all") => {
+    try {
+      if (skip === 0) setLoading(true);
+      else setLoadingMore(true);
+
+      let url = `${API}/news/feed?limit=${LIMIT}&skip=${skip}&sort=${sort}&time_filter=${time}`;
+      if (category !== "all") {
+        url = `${API}/news/category/${category}?limit=${LIMIT}&skip=${skip}&sort=${sort}&time_filter=${time}`;
+      }
+
+      const response = await axios.get(url);
+      const newArticles = response.data;
+
+      if (append) setArticles(prev => [...prev, ...newArticles]);
+      else setArticles(newArticles);
+      setHasMore(newArticles.length === LIMIT);
+      setLoading(false);
+      setLoadingMore(false);
+
+      // Translate in background if Telugu
+      if (language === "te") {
+        const untranslated = newArticles.filter(a => !a.title_te || a.title_te.length < 3);
+        if (untranslated.length > 0) {
+          try {
+            const ids = untranslated.map(a => a.id);
+            const tr = await axios.post(`${API}/news/translate-batch`, ids);
+            const translationMap = {};
+            tr.data.forEach(t => { translationMap[t.id] = t; });
+            setArticles(prev => prev.map(a => {
+              if (translationMap[a.id]) {
+                return { ...a, title_te: translationMap[a.id].title_te, summary_te: translationMap[a.id].summary_te };
+              }
+              return a;
+            }));
+          } catch (e) {
+            console.error("Translation failed:", e);
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  }, [language]);
+
+  const searchNews = useCallback(async (query, skip = 0, append = false) => {
+    if (!query || query.length < 2) return;
+    try {
+      if (skip === 0) setLoading(true);
+      else setLoadingMore(true);
+      const response = await axios.get(`${API}/news/search?q=${encodeURIComponent(query)}&limit=${LIMIT}&skip=${skip}`);
+      const data = response.data;
+      if (append) setArticles(prev => [...prev, ...data.articles]);
+      else setArticles(data.articles);
+      setSearchTotal(data.total);
+      setHasMore(data.articles.length === LIMIT);
+    } catch (e) {
+      console.error("Search failed:", e);
+    }
+    setLoading(false);
+    setLoadingMore(false);
+  }, []);
+
+  useEffect(() => {
+    if (isSearching && searchQuery.length >= 2) {
+      searchNews(searchQuery, 0);
+      setPage(0);
+    } else if (!isSearching) {
+      fetchNews(activeCategory, 0, false, sortBy, timeFilter);
+      setPage(0);
+    }
+  }, [activeCategory, sortBy, timeFilter, language, fetchNews, isSearching, searchQuery, searchNews]);
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+    setPage(0);
+  };
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    if (isSearching) {
+      searchNews(searchQuery, nextPage * LIMIT, true);
+    } else {
+      fetchNews(activeCategory, nextPage * LIMIT, true, sortBy, timeFilter);
+    }
+  };
+
+  const handleSearchInput = (value) => {
+    setSearchInput(value);
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    if (value.length >= 2) {
+      searchTimerRef.current = setTimeout(() => {
+        setSearchQuery(value);
+        setIsSearching(true);
+      }, 400);
+    } else if (value.length === 0) {
+      setSearchQuery("");
+      setIsSearching(false);
+    }
+  };
+
+  const clearSearch = () => {
+    setSearchInput("");
+    setSearchQuery("");
+    setIsSearching(false);
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+  };
+
+  const sectionTitle = activeCategory === "all"
+    ? (language === "en" ? "More from the floor" : "మరిన్ని వార్తలు")
+    : (language === "en"
+        ? activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)
+        : activeCategory);
+
+  return (
+    <div data-testid="news-feed-page" className="min-h-screen pb-20 bg-paper">
+      {/* ── Section A: Combined Search + Filter pill bar ── */}
+      <div className="flex items-center gap-2 py-3 px-4 bg-paper sticky top-[100px] z-30 border-b border-[#E5E0D6]">
+        <div className="relative flex-1 flex items-center">
+          <Search size={15} className="absolute left-4 text-ink-muted pointer-events-none" />
+          <input
+            data-testid="search-input"
+            type="text"
+            value={searchInput}
+            onChange={(e) => handleSearchInput(e.target.value)}
+            placeholder={language === "en" ? "Search articles..." : "వార్తలు శోధించండి..."}
+            className="w-full pl-10 pr-28 py-2 text-sm rounded-full border border-[#E5E0D6] bg-white text-ink placeholder:text-ink-muted outline-none transition-all focus:border-mint focus:ring-2 focus:ring-mint/20"
+          />
+          {isSearching && !loading && (
+            <span className="absolute right-10 text-[11px] text-mint font-medium pointer-events-none">
+              {language === "en"
+                ? `${searchTotal} result${searchTotal !== 1 ? "s" : ""}`
+                : `${searchTotal} ఫలితాలు`}
+            </span>
+          )}
+          {searchInput && (
+            <button
+              data-testid="search-clear-btn"
+              onClick={clearSearch}
+              className="absolute right-3 p-0.5 rounded-full text-ink-muted hover:text-ink hover:bg-[#E5E0D6]/60"
+            >
+              <X size={14} />
+            </button>
+          )}
+        </div>
+
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="text-[12px] font-semibold rounded-full border border-mint/40 bg-white text-ink px-3 py-2 outline-none cursor-pointer hover:border-mint transition"
+        >
+          {SORT_OPTIONS.map(opt => (
+            <option key={opt.value} value={opt.value}>
+              {language === "en" ? opt.label : opt.label_te}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={timeFilter}
+          onChange={(e) => setTimeFilter(e.target.value)}
+          className="text-[12px] font-semibold rounded-full border border-mint/40 bg-white text-ink px-3 py-2 outline-none cursor-pointer hover:border-mint transition"
+        >
+          {TIME_FILTERS.map(opt => (
+            <option key={opt.value} value={opt.value}>
+              {language === "en" ? opt.label : opt.label_te}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Category nav */}
+      <CategoryChips
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+
+      {/* Loading */}
+      {loading && (
+        <div className="flex flex-col items-center justify-center py-24">
+          <Loader2 size={36} className="animate-spin text-mint mb-4" />
+          <p className={`text-sm text-ink-muted ${language === "te" ? "font-telugu" : ""}`}>
+            {language === "en" ? "Loading news..." : "వార్తలు లోడ్ అవుతున్నాయి..."}
+          </p>
+        </div>
+      )}
+
+      {/* Empty */}
+      {!loading && articles.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-24">
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 bg-mint/10">
+            <Newspaper size={28} className="text-mint" />
+          </div>
+          <h3 className="text-base font-bold mb-1 tracking-tight text-ink">
+            {language === "en" ? "No articles found" : "వార్తలు కనుగొనబడలేదు"}
+          </h3>
+          <p className="text-xs text-center max-w-[240px] text-ink-muted">
+            {language === "en" ? "Try adjusting your filters or category" : "మీ ఫిల్టర్లు లేదా వర్గాన్ని సర్దుబాటు చేయండి"}
+          </p>
+        </div>
+      )}
+
+      {/* Main content */}
+      {!loading && articles.length > 0 && (
+        <>
+          {/* ── Section B: Bento hero ── */}
+          {articles.length >= 1 && (
+            <section className="max-w-screen-xl mx-auto px-4 py-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:grid-rows-[auto_auto_auto]">
+                <LeadTile article={articles[0]} language={language} />
+                <MediumTile article={articles[1]} language={language} />
+                <MediumTile article={articles[2]} language={language} />
+                <MarketsTile articles={articles.slice(3, 6)} language={language} />
+              </div>
+            </section>
+          )}
+
+          <div className="max-w-screen-xl mx-auto px-4">
+            {/* ── Section C: Divider + title ── */}
+            <div className="border-t-2 border-mint mb-1" />
+            <div className="flex justify-between items-baseline mb-5 pt-3">
+              <h2 className={`font-display text-[20px] font-bold text-ink ${language === "te" ? "font-telugu" : ""}`}>
+                {sectionTitle}
+              </h2>
+            </div>
+
+            {/* ── Section D: Masonry-ish CSS columns grid ── */}
+            {articles.length > 6 && (
+              <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5">
+                {articles.slice(6).map((article, index) => (
+                  <div key={article.id} className="break-inside-avoid">
+                    <NewsCard article={article} index={index + 6} articlesList={articles} />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* ── Section E: Load More ── */}
+            {hasMore && (
+              <div className="flex justify-center mt-10 mb-6">
+                <Button
+                  data-testid="load-more-btn"
+                  onClick={handleLoadMore}
+                  disabled={loadingMore}
+                  className="bg-mint hover:bg-mint-dark text-white rounded-full px-8 py-3 text-[13px] font-bold uppercase tracking-wider transition-all active:scale-95"
+                >
+                  {loadingMore ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin mr-2" />
+                      {language === "en" ? "Loading..." : "లోడ్ అవుతోంది..."}
+                    </>
+                  ) : (
+                    <span className={language === "te" ? "font-telugu" : ""}>
+                      {language === "en" ? "Load More" : "మరిన్ని లోడ్ చేయండి"}
+                    </span>
+                  )}
+                </Button>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export { NewsFeed };
