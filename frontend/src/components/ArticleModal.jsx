@@ -221,7 +221,7 @@ export const ArticleModal = () => {
             <img src={imageUrl} alt={title} className="w-full aspect-[2.2/1] object-cover select-none pointer-events-none"
               onError={(e) => { e.target.src = defaultImages["national"]; }} />
 
-            {/* Mint Street Logo Watermark — bottom-right */}
+            {/* Mint Street Logo Watermark - bottom-right */}
             <div className="absolute bottom-2 right-2 pointer-events-none select-none">
               <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-black/45 backdrop-blur-sm">
                 <img src="/tvr-logo.png" alt="Mint Street" className="h-4 w-auto" />

@@ -88,11 +88,11 @@ export default function WriteForUs() {
         {/* What we accept */}
         <Section title="What we accept">
           <BulletList items={[
-            "Funding & deal analysis — what a round actually signals about the company, the sector and the fund writing the cheque. Bonus points for cap table or term sheet detail.",
-            "M&A breakdowns — strategic reads of why a deal happened, what the multiples imply and which integration risks matter.",
-            "Policy and regulation — DPDP, SEBI circulars, RBI fintech regs, state-level industrial policy. We want signal, not summary.",
-            "Sector deep dives — climate hardware, deep tech, vertical SaaS, embedded finance, AI infra. Make us understand a sub-sector in 1,200 words.",
-            "First-person operator essays — founders, CFOs, GPs writing on the record about something they actually built or backed.",
+            "Funding & deal analysis - what a round actually signals about the company, the sector and the fund writing the cheque. Bonus points for cap table or term sheet detail.",
+            "M&A breakdowns - strategic reads of why a deal happened, what the multiples imply and which integration risks matter.",
+            "Policy and regulation - DPDP, SEBI circulars, RBI fintech regs, state-level industrial policy. We want signal, not summary.",
+            "Sector deep dives - climate hardware, deep tech, vertical SaaS, embedded finance, AI infra. Make us understand a sub-sector in 1,200 words.",
+            "First-person operator essays - founders, CFOs, GPs writing on the record about something they actually built or backed.",
           ]} />
         </Section>
 
@@ -100,7 +100,7 @@ export default function WriteForUs() {
         <Section title="What we don't accept">
           <BulletList items={[
             "Thinly-veiled marketing for a portfolio company or the author's own startup.",
-            "Pieces previously published anywhere — including LinkedIn long-form, Substack or personal blogs.",
+            "Pieces previously published anywhere - including LinkedIn long-form, Substack or personal blogs.",
             "AI-generated drafts submitted without disclosure. If you used an LLM, tell us how.",
             "Investment recommendations, price targets or anything resembling stock tips.",
           ]} />

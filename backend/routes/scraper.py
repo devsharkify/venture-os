@@ -1,22 +1,22 @@
 """
-TVR Backend Scraper — Startup/Funding focused RSS + Entrackr sitemap
+TVR Backend Scraper - Startup/Funding focused RSS + Entrackr sitemap
 
 ══════════════════════════════════════════════════════════════════════
-SCRAPING RULES (enforced in code — do NOT bypass):
+SCRAPING RULES (enforced in code - do NOT bypass):
 ══════════════════════════════════════════════════════════════════════
-RULE 1 — REPHRASE ALWAYS:
+RULE 1 - REPHRASE ALWAYS:
   Every article's title AND summary MUST be rephrased by Gemini before
   saving. The original source text must never appear verbatim in the DB.
   The save function will NOT proceed without calling gemini_rephrase().
 
-RULE 2 — WATERMARK / LOGO REJECTION:
+RULE 2 - WATERMARK / LOGO REJECTION:
   Every image is checked via Gemini Vision before saving. If the image
   contains ANY visible watermark, logo, or branding from another website
   or publication (YourStory, Economic Times, Entrackr, Mint, Getty,
   Shutterstock, Dreamstime, Moneycontrol, Reuters, etc.), the article is
   SILENTLY DROPPED and NOT saved to the database.
 
-RULE 3 — STARTUP RELEVANCE:
+RULE 3 - STARTUP RELEVANCE:
   Only articles passing the India + startup/funding signal filters are
   accepted.
 ══════════════════════════════════════════════════════════════════════
@@ -207,7 +207,7 @@ async def image_has_watermark(client: httpx.AsyncClient, image_url: str) -> bool
     RULE 2: Check image for third-party watermarks via Gemini Vision.
     Returns True if watermark detected (article should be DROPPED).
     Returns False if clean (article may be saved).
-    On any error, returns False (benefit of doubt — don't block on API issues).
+    On any error, returns False (benefit of doubt - don't block on API issues).
     """
     if not image_url or not GEMINI_KEY:
         return False
@@ -246,7 +246,7 @@ async def image_has_watermark(client: httpx.AsyncClient, image_url: str) -> bool
         import json as _json
         result = _json.loads(text)
         if result.get("has_watermark"):
-            logger.info(f"[WATERMARK DROP] {image_url[:60]} — {result.get('reason','')}")
+            logger.info(f"[WATERMARK DROP] {image_url[:60]} - {result.get('reason','')}")
             return True
         return False
     except Exception as e:

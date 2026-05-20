@@ -20,7 +20,7 @@ const principles = [
   },
   {
     title: "Original reporting",
-    body: "We do not retype press releases. Every story leans on primary sources — operators, term sheets, filings, and the people closest to the deal.",
+    body: "We do not retype press releases. Every story leans on primary sources - operators, term sheets, filings, and the people closest to the deal.",
   },
   {
     title: "Source attribution",

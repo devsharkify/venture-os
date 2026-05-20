@@ -5,7 +5,7 @@ authenticated user's phone in localStorage. To gate sensitive admin endpoints
 (PII-bearing exports, status updates), we verify an admin phone number passed
 either via the `X-Admin-Phone` header or the `admin_phone` query string.
 
-This is intentionally lightweight (no crypto) — it matches the existing
+This is intentionally lightweight (no crypto) - it matches the existing
 client-side admin gate (`phone === ADMIN_PHONE`) and is sufficient to prevent
 casual scraping of /api/admin/* endpoints from public crawlers.
 """

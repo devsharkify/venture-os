@@ -1,4 +1,4 @@
-"""Public Content API — API key authenticated endpoints for content syndication."""
+"""Public Content API - API key authenticated endpoints for content syndication."""
 from fastapi import APIRouter, HTTPException, Header, Query, Request, Depends
 from auth_dep import require_admin
 from datetime import datetime, timezone, timedelta
@@ -15,7 +15,7 @@ admin_router = APIRouter(prefix="/api/apikeys", dependencies=[Depends(require_ad
 _rate_limits = {}
 DAILY_LIMIT = 1000
 
-# Feed projection — clean, lightweight response
+# Feed projection - clean, lightweight response
 PUBLIC_FIELDS = {
     "_id": 0, "id": 1, "title": 1, "summary": 1,
     "category": 1, "category_label": 1, "image": 1, "source": 1,

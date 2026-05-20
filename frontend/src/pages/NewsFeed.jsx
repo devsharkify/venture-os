@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { API, AppContext } from "../App";
 import { CategoryChips } from "../components/CategoryChips";
@@ -170,10 +170,18 @@ function MarketsTile({ articles }) {
 export default function NewsFeed() {
   const { darkMode } = useContext(AppContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const urlCat = new URLSearchParams(location.search).get("cat") || "all";
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState(urlCat);
+
+  // Keep activeCategory in sync with the URL - header nav navigates to
+  // /?cat=funding etc., which should refilter the feed without reload.
+  useEffect(() => {
+    setActiveCategory(urlCat);
+  }, [urlCat]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [sortBy, setSortBy] = useState("newest");
@@ -241,6 +249,9 @@ export default function NewsFeed() {
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
     setPage(0);
+    // Sync the URL so deep links + back/forward work.
+    if (category === "all") navigate("/");
+    else navigate(`/?cat=${category}`);
   };
 
   const handleLoadMore = () => {

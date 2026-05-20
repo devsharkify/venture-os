@@ -198,7 +198,7 @@ async def get_epaper_edition(
     if not all_articles:
         return {
             "date": date, "slot": effective_slot, "lang": "en",
-            "edition_title": f"Mint Street — {get_edition_label(effective_slot)}",
+            "edition_title": f"Mint Street - {get_edition_label(effective_slot)}",
             "pages": [], "total_articles": 0,
         }
 
@@ -263,7 +263,7 @@ async def get_epaper_edition(
 
     return {
         "date": date, "slot": effective_slot, "lang": "en",
-        "edition_title": f"Mint Street — {get_edition_label(effective_slot)}",
+        "edition_title": f"Mint Street - {get_edition_label(effective_slot)}",
         "pages": pages, "total_articles": len(selected),
     }
 
@@ -413,7 +413,7 @@ img {{ border: 0; }}
             <style>body {{ font-family: Arial, sans-serif; margin: 20px; }}
             h1 {{ color: #F26B1F; text-align: center; }} h2 {{ font-size: 14pt; margin-top: 15px; }}
             p {{ font-size: 10pt; color: #333; line-height: 1.5; }}</style></head><body>
-            <h1>MINT STREET</h1><p style="text-align:center">{date} — {edition_label}</p><hr>'''
+            <h1>MINT STREET</h1><p style="text-align:center">{date} - {edition_label}</p><hr>'''
             for a in all_articles[:20]:
                 simple_html += f'<h2>{a.get("title", "")}</h2><p>{a.get("summary", "")[:400]}</p><hr>'
             simple_html += '</body></html>'

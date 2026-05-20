@@ -152,7 +152,7 @@ export function ShortsPlayer() {
             className="absolute inset-0 flex items-center justify-center"
             style={{ top: `${i * 100}%`, height: "100%" }}
           >
-            {/* YouTube Shorts embed — autoplay only current */}
+            {/* YouTube Shorts embed - autoplay only current */}
             {Math.abs(i - currentIndex) <= 1 ? (
               <iframe
                 src={`https://www.youtube.com/embed/${short.id}?autoplay=${i === currentIndex ? 1 : 0}&mute=0&loop=1&playlist=${short.id}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0`}

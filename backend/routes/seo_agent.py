@@ -1,4 +1,4 @@
-"""Social Media Expert Agent — SEO optimization, trending content, social media posts."""
+"""Social Media Expert Agent - SEO optimization, trending content, social media posts."""
 from fastapi import APIRouter
 from datetime import datetime, timezone, timedelta
 from database import db, logger, EMERGENT_LLM_KEY

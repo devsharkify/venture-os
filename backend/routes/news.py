@@ -9,7 +9,7 @@ from auth_dep import require_admin
 
 router = APIRouter(prefix="/api")
 
-# Projection for feed — only fields the frontend actually needs
+# Projection for feed - only fields the frontend actually needs
 FEED_PROJECTION = {
     "_id": 0, "id": 1, "title": 1, "summary": 1,
     "category": 1, "category_label": 1, "image": 1,

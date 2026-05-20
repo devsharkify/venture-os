@@ -1,4 +1,4 @@
-"""Mint Street — Indian startup funding seed batch A (15 articles)."""
+"""Mint Street - Indian startup funding seed batch A (15 articles)."""
 
 ARTICLES = [
     # ---------- 1. Consumer fintech / neobank ----------
@@ -159,7 +159,7 @@ ARTICLES = [
     {
         "id": "slice-merger-bridge-2024",
         "title": "Slice's post-merger bridge round is less about cash and more about a regulated balance sheet",
-        "summary": "Following its merger with North East Small Finance Bank, Slice raised a bridge round whose value is symbolic rather than financial — anchoring its standing as a bank-led fintech under RBI oversight. The capital is going into compliance, treasury and a slimmed-down lending set. The NBFC-era valuation no longer maps cleanly onto the merged entity.",
+        "summary": "Following its merger with North East Small Finance Bank, Slice raised a bridge round whose value is symbolic rather than financial - anchoring its standing as a bank-led fintech under RBI oversight. The capital is going into compliance, treasury and a slimmed-down lending set. The NBFC-era valuation no longer maps cleanly onto the merged entity.",
         "category": "funding",
         "category_label": "Funding",
         "image": "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=800",

@@ -178,7 +178,7 @@ export default function StartupApply() {
                 </span>
               </div>
 
-              {/* Headline — compact */}
+              {/* Headline - compact */}
               <h1 className={`font-black tracking-tight leading-[1.05] ${darkMode ? "text-white" : "text-slate-900"}`}>
                 <span className={`block text-base sm:text-lg font-medium mb-0.5 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                   Hyderabad's Next
@@ -197,7 +197,7 @@ export default function StartupApply() {
                 Selecting 100 young Hyderabad founders. Up to <strong className={darkMode ? "text-white" : "text-slate-900"}>₹10 lakh</strong> of product development support per founder.
               </p>
 
-              {/* Inline stat row — compact pills */}
+              {/* Inline stat row - compact pills */}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 <Pill darkMode={darkMode} label="₹100Cr Vision" />
                 <Pill darkMode={darkMode} label="₹10L per founder" />

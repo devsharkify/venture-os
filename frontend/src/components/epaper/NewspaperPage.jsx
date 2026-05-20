@@ -66,7 +66,7 @@ export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot
       <div style={{ position: "relative", zIndex: 2, padding: "14px 20px 10px", display: "flex", flexDirection: "column", flex: 1 }}>
         {pageNum === 1 ? <Masthead date={date} fD={fD} slot={slot} /> : <InnerHeader title={title} date={date} pageNum={pageNum} fD={fD} slot={slot} />}
 
-        {/* ROW 1: HERO + SUB — full width */}
+        {/* ROW 1: HERO + SUB - full width */}
         <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "0", borderBottom: "2px solid #1a1a1a", marginBottom: "8px" }}>
           <div style={{ padding: "0 14px 10px 0", borderRight: "1px solid #ccc" }}>
             {hero.image && <img src={hero.image} alt="" style={{ width: "100%", height: "220px", objectFit: "cover", display: "block" }} onError={e => e.target.style.display = "none"} />}
@@ -84,7 +84,7 @@ export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot
           </div>
         </div>
 
-        {/* ROW 2: 3 MID ARTICLES — equal columns, stretch to fill */}
+        {/* ROW 2: 3 MID ARTICLES - equal columns, stretch to fill */}
         {mid.length > 0 && (
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${mid.length}, 1fr)`, gap: "0", borderBottom: "2px solid #1a1a1a", marginBottom: "8px", alignItems: "stretch" }}>
             {mid.map((a, i) => (
@@ -97,7 +97,7 @@ export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot
           </div>
         )}
 
-        {/* ROW 3: 3 BOTTOM ARTICLES — compact, stretch */}
+        {/* ROW 3: 3 BOTTOM ARTICLES - compact, stretch */}
         {bottom.length > 0 && (
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${bottom.length}, 1fr)`, gap: "0", borderBottom: "1px solid #ccc", marginBottom: "8px", alignItems: "stretch" }}>
             {bottom.map((a, i) => (
@@ -111,7 +111,7 @@ export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot
           </div>
         )}
 
-        {/* ROW 4: TAIL — dense multi-column */}
+        {/* ROW 4: TAIL - dense multi-column */}
         {tail.length > 0 && (
           <div style={{ columnCount: Math.min(4, Math.max(2, tail.length)), columnGap: "14px", columnRule: "1px solid #ddd", flex: 1 }}>
             {tail.map((a) => (

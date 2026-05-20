@@ -80,9 +80,9 @@ export default function PrivacyPolicy() {
             is what we end up with:
           </Para>
           <BulletList items={[
-            "Things you give us directly — your name and email when you subscribe to a newsletter, the contents of any message you send us, and a profile if you create an account to save articles.",
-            "Things your browser sends automatically — IP address (coarsened to a city), browser and device type, the pages you visited and the site that referred you. We use this to understand readership, not to identify individuals.",
-            "Small files we store on your device — cookies and localStorage entries that remember whether you prefer dark mode, which articles you have saved, and whether you are signed in.",
+            "Things you give us directly - your name and email when you subscribe to a newsletter, the contents of any message you send us, and a profile if you create an account to save articles.",
+            "Things your browser sends automatically - IP address (coarsened to a city), browser and device type, the pages you visited and the site that referred you. We use this to understand readership, not to identify individuals.",
+            "Small files we store on your device - cookies and localStorage entries that remember whether you prefer dark mode, which articles you have saved, and whether you are signed in.",
           ]} />
         </Section>
 
@@ -143,7 +143,7 @@ export default function PrivacyPolicy() {
             "Ask us what we hold about you and get a copy of it.",
             "Ask us to correct anything that is wrong.",
             "Ask us to delete your account and the personal data attached to it.",
-            "Withdraw consent for marketing emails — every newsletter has a one-click unsubscribe.",
+            "Withdraw consent for marketing emails - every newsletter has a one-click unsubscribe.",
           ]} />
           <Para>
             Send any of these requests to{" "}

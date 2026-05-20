@@ -60,8 +60,8 @@ export default function CookiePolicy() {
   const cookieTableRows = [
     { name: "tvr_dark_mode", purpose: "Stores your UI dark/light mode preference", duration: "1 year" },
     { name: "tvr_saved", purpose: "Keeps track of articles you have saved for later reading", duration: "1 year" },
-    { name: "_ga", purpose: "Google Analytics — distinguishes unique users and sessions", duration: "2 years" },
-    { name: "_gid", purpose: "Google Analytics — identifies a session within a 24-hour window", duration: "24 hours" },
+    { name: "_ga", purpose: "Google Analytics - distinguishes unique users and sessions", duration: "2 years" },
+    { name: "_gid", purpose: "Google Analytics - identifies a session within a 24-hour window", duration: "24 hours" },
   ];
 
   return (

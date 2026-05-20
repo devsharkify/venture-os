@@ -62,7 +62,7 @@ async def send_otp(request: SendOTPRequest):
             logger.error(f"AuthKey error for {mobile}: {e}")
             raise HTTPException(status_code=500, detail="SMS service error. Please try again.")
     else:
-        logger.warning("AUTHKEY_API_KEY not set — OTP not sent via SMS")
+        logger.warning("AUTHKEY_API_KEY not set - OTP not sent via SMS")
 
     return {"message": "OTP sent successfully", "expires_in": OTP_EXPIRY_MINUTES * 60}
 
@@ -135,7 +135,7 @@ async def verify_otp(request: VerifyOTPRequest):
         remaining = 3 - stored["attempts"]
         raise HTTPException(status_code=400, detail=f"Invalid OTP. {remaining} attempt(s) remaining.")
 
-    # Success — clear OTP
+    # Success - clear OTP
     del otp_storage[mobile]
 
     is_admin = mobile == ADMIN_PHONE

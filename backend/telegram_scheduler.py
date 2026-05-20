@@ -1,4 +1,4 @@
-"""Scheduler for Telegram bot — sends morning (6 AM IST) and evening (6 PM IST) reports."""
+"""Scheduler for Telegram bot - sends morning (6 AM IST) and evening (6 PM IST) reports."""
 import asyncio
 import sys
 import os
@@ -20,7 +20,7 @@ async def main():
         now = ist_now()
         hour, minute = now.hour, now.minute
 
-        # 6:00 AM IST — Morning report
+        # 6:00 AM IST - Morning report
         if hour == 6 and minute == 0:
             logger.info("Sending morning report...")
             try:
@@ -29,7 +29,7 @@ async def main():
                 logger.error(f"Morning report failed: {e}")
                 await send_error_alert(f"Morning report failed: {e}")
 
-        # 18:00 (6 PM) IST — Evening report + SEO + Perf reports
+        # 18:00 (6 PM) IST - Evening report + SEO + Perf reports
         if hour == 18 and minute == 0:
             logger.info("Sending evening report...")
             try:

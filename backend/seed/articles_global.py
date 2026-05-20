@@ -1,9 +1,9 @@
-"""Mint Street — global + cross-border seed batch D (15 articles)."""
+"""Mint Street - global + cross-border seed batch D (15 articles)."""
 
 ARTICLES = [
     {
         "id": "stripe-secondary-tender-2025",
-        "title": "Stripe's tender offer lifts the payments giant past its 2021 peak — and India watches the rails",
+        "title": "Stripe's tender offer lifts the payments giant past its 2021 peak - and India watches the rails",
         "summary": "A fresh employee tender at Stripe valued the company in the high single-digit-trillion-rupee territory, recovering most of the markdown it took during the rate-hike cycle. For Indian fintechs eyeing global expansion, the print is a useful comparable on how public-market patience returns first to category leaders. Stripe's India ambitions, dormant for years, remain a watch-list item for domestic merchants and acquirers.",
         "category": "funding",
         "category_label": "Funding",
@@ -17,7 +17,7 @@ ARTICLES = [
     {
         "id": "klarna-listing-aftermath-2025",
         "title": "Klarna's New York debut gives Indian BNPL a fresh, complicated mirror to study",
-        "summary": "The Swedish buy-now-pay-later firm's US listing closed its first sessions above the IPO range, validating a slimmed-down cost base and an AI-driven support stack that cut headcount sharply. The Indian BNPL cohort, which has spent the last two years digesting RBI's digital-lending guardrails, will read Klarna's numbers carefully — particularly the cost-to-serve metric that has long been the category's Achilles heel.",
+        "summary": "The Swedish buy-now-pay-later firm's US listing closed its first sessions above the IPO range, validating a slimmed-down cost base and an AI-driven support stack that cut headcount sharply. The Indian BNPL cohort, which has spent the last two years digesting RBI's digital-lending guardrails, will read Klarna's numbers carefully - particularly the cost-to-serve metric that has long been the category's Achilles heel.",
         "category": "ipo",
         "category_label": "IPO",
         "image": "https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -30,7 +30,7 @@ ARTICLES = [
     {
         "id": "shein-ipo-pivot-2025",
         "title": "Shein's listing venue churn ends in London, and India's fast-fashion brands take notes",
-        "summary": "After regulatory friction in both New York and Hong Kong, the fast-fashion exporter steered toward a London float, agreeing to disclosures around supply-chain provenance that are unusually stringent for the sector. For Indian D2C apparel brands that have long bristled at Shein-style price points, the deal sets a new bar for ESG storytelling — and possibly for the kind of audits domestic exchanges may eventually demand.",
+        "summary": "After regulatory friction in both New York and Hong Kong, the fast-fashion exporter steered toward a London float, agreeing to disclosures around supply-chain provenance that are unusually stringent for the sector. For Indian D2C apparel brands that have long bristled at Shein-style price points, the deal sets a new bar for ESG storytelling - and possibly for the kind of audits domestic exchanges may eventually demand.",
         "category": "ipo",
         "category_label": "IPO",
         "image": "https://images.pexels.com/photos/5868722/pexels-photo-5868722.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -56,7 +56,7 @@ ARTICLES = [
     {
         "id": "grab-gojek-sea-consolidation-2025",
         "title": "Grab and GoTo's on-and-off merger talks resume, with India's own duopoly watching closely",
-        "summary": "Reports of revived merger discussions between Southeast Asia's two largest ride-hail and digital-payments groups suggest the region's investors have given up on a competitive equilibrium. For Indian observers, the parallel with Ola and Uber India is unmistakable — and so is the regulatory question of whether such a tie-up could ever clear CCI-equivalent scrutiny in Jakarta and Singapore.",
+        "summary": "Reports of revived merger discussions between Southeast Asia's two largest ride-hail and digital-payments groups suggest the region's investors have given up on a competitive equilibrium. For Indian observers, the parallel with Ola and Uber India is unmistakable - and so is the regulatory question of whether such a tie-up could ever clear CCI-equivalent scrutiny in Jakarta and Singapore.",
         "category": "tech",
         "category_label": "Tech",
         "image": "https://images.pexels.com/photos/13861/IMG_3496bfree.jpg?auto=compress&cs=tinysrgb&w=800",
@@ -95,7 +95,7 @@ ARTICLES = [
     {
         "id": "cerebras-ipo-filing-2024",
         "title": "Cerebras files for a US listing, and India's AI-compute crowd gets a new comparable",
-        "summary": "The wafer-scale AI chip startup's S-1 disclosed heavy revenue concentration with a single Gulf customer, immediately raising both eyebrows and addressable-market questions. For Indian players building inference infrastructure — from Yotta to Tata's GPU cloud — the filing is a useful read on how public investors weigh customer concentration against the breakneck pace of model training demand.",
+        "summary": "The wafer-scale AI chip startup's S-1 disclosed heavy revenue concentration with a single Gulf customer, immediately raising both eyebrows and addressable-market questions. For Indian players building inference infrastructure - from Yotta to Tata's GPU cloud - the filing is a useful read on how public investors weigh customer concentration against the breakneck pace of model training demand.",
         "category": "ipo",
         "category_label": "IPO",
         "image": "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800",

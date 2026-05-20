@@ -112,7 +112,7 @@ async def get_seen(col):
     return seen
 
 async def main():
-    print(f"=== Mint Street — All Sources Scraper ===")
+    print(f"=== Mint Street - All Sources Scraper ===")
     print(f"Target: {TARGET} | Cutoff: {CUTOFF.date()}\n")
     client = AsyncIOMotorClient(MONGO_URL)
     db = client[DB_NAME]
@@ -190,7 +190,7 @@ async def main():
 
     total = await col.count_documents({})
     print(f"\n{'='*55}")
-    print(f"✅ DONE — {saved} new articles | {total} total in DB\n")
+    print(f"✅ DONE - {saved} new articles | {total} total in DB\n")
     print("Category breakdown:")
     async for row in col.aggregate([{"$group":{"_id":"$category","count":{"$sum":1}}},{"$sort":{"count":-1}}]):
         print(f"   {row['_id']:14s}: {row['count']}")

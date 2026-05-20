@@ -1,4 +1,4 @@
-"""Mint Street — trendy/deeptech seed batch B (15 articles).
+"""Mint Street - trendy/deeptech seed batch B (15 articles).
 
 Original editorial summaries of publicly-known startup news.
 All prose written for Mint Street; not paraphrased from source publications.
@@ -36,7 +36,7 @@ ARTICLES = [
     {
         "id": "pixxel-firefly-constellation-2025",
         "title": "Pixxel's first commercial hyperspectral satellites change what climate buyers can ask for",
-        "summary": "The Bengaluru-and-Los Angeles startup has begun moving from prototype demos to its Firefly commercial constellation, with paying customers in mining, agriculture and emissions monitoring. Pixxel's bet is that hyperspectral data — far richer than conventional optical imagery — finally has a price point and resolution that enterprise buyers will pay for.",
+        "summary": "The Bengaluru-and-Los Angeles startup has begun moving from prototype demos to its Firefly commercial constellation, with paying customers in mining, agriculture and emissions monitoring. Pixxel's bet is that hyperspectral data - far richer than conventional optical imagery - finally has a price point and resolution that enterprise buyers will pay for.",
         "category": "deeptech",
         "category_label": "Deep Tech",
         "image": "https://images.pexels.com/photos/586063/pexels-photo-586063.jpeg?auto=compress&cs=tinysrgb&w=800",

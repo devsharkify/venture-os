@@ -11,11 +11,11 @@ import {
 } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Markets", slug: "markets" },
+  { label: "Markets", slug: "ipo" },
   { label: "Funding", slug: "funding" },
   { label: "Startups", slug: "startups" },
   { label: "Policy", slug: "policy" },
-  { label: "Deep Tech", slug: "deep-tech" },
+  { label: "Deep Tech", slug: "deeptech" },
 ];
 
 const TICKER_ITEMS = [
@@ -111,9 +111,10 @@ export const Header = () => {
             data-testid="nav-pill"
           >
             {NAV_LINKS.map((link) => (
-              <a
+              <button
                 key={link.slug}
-                href={`/?cat=${link.slug}`}
+                type="button"
+                onClick={() => navigate(`/?cat=${link.slug}`)}
                 className={`group relative px-3 py-1.5 text-[13px] font-medium transition-colors ${
                   darkMode
                     ? "text-slate-300 hover:text-mint"
@@ -122,7 +123,7 @@ export const Header = () => {
               >
                 {link.label}
                 <span className="pointer-events-none absolute left-1/2 -bottom-0.5 h-[2px] w-0 -translate-x-1/2 bg-mint transition-all duration-200 group-hover:w-[70%]" />
-              </a>
+              </button>
             ))}
           </nav>
 

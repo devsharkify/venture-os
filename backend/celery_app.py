@@ -1,4 +1,4 @@
-"""Celery application configuration — unified task queue for all background jobs."""
+"""Celery application configuration - unified task queue for all background jobs."""
 import os
 import sys
 sys.path.insert(0, os.path.dirname(__file__))
@@ -27,7 +27,7 @@ app.conf.update(
     worker_max_tasks_per_child=50,
 )
 
-# Beat schedule — replaces telegram_scheduler.py and scraper_loop
+# Beat schedule - replaces telegram_scheduler.py and scraper_loop
 app.conf.beat_schedule = {
     "scrape-all-sources": {
         "task": "tasks.scrape_all_sources",

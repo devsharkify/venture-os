@@ -119,7 +119,7 @@ export const Footer = () => {
 
         {/* Main 3-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Column 1 — Mint Street brand */}
+          {/* Column 1 - Mint Street brand */}
           <div>
             <span
               className={`font-display text-[20px] font-black tracking-tight leading-none ${
@@ -133,7 +133,7 @@ export const Footer = () => {
                 darkMode ? "text-[#A8B3AE]" : "text-ink-muted"
               }`}
             >
-              Where new money meets new ideas. Daily startup, VC, and policy intelligence — written by people who've shipped, raised, and exited.
+              Where new money meets new ideas. Daily startup, VC, and policy intelligence - written by people who've shipped, raised, and exited.
             </p>
             <p
               className={`text-[12px] mt-3 ${
@@ -160,7 +160,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2 — Coverage */}
+          {/* Column 2 - Coverage */}
           <div>
             <h3
               className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-3 ${
@@ -184,7 +184,7 @@ export const Footer = () => {
             </nav>
           </div>
 
-          {/* Column 3 — Inside Mint Street */}
+          {/* Column 3 - Inside Mint Street */}
           <div>
             <h3
               className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-3 ${

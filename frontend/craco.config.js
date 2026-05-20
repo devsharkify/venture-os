@@ -35,7 +35,7 @@ if (config.enableHealthCheck) {
 const eslintDisabled = process.env.DISABLE_ESLINT_PLUGIN === "true";
 
 const webpackConfig = {
-  // Only configure ESLint when the plugin is enabled — when DISABLE_ESLINT_PLUGIN=true
+  // Only configure ESLint when the plugin is enabled - when DISABLE_ESLINT_PLUGIN=true
   // craco can't find ESLintWebpackPlugin and crashes on `eslint.configure`.
   ...(eslintDisabled
     ? {}
@@ -56,7 +56,7 @@ const webpackConfig = {
     },
     configure: (webpackConfig) => {
 
-      // Remove ForkTsCheckerWebpackPlugin — incompatible with Node.js 24's ajv resolution
+      // Remove ForkTsCheckerWebpackPlugin - incompatible with Node.js 24's ajv resolution
       webpackConfig.plugins = webpackConfig.plugins.filter(
         (plugin) => plugin && plugin.constructor && plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin'
       );

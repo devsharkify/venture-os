@@ -32,7 +32,7 @@ async def _llm_call(system_msg, user_msg):
 
 
 async def editor_analyze_articles(articles, lang="en"):
-    """Editor Agent: Analyze a batch of articles — score, detect duplicates, rank."""
+    """Editor Agent: Analyze a batch of articles - score, detect duplicates, rank."""
     if not articles:
         return {"ranked": [], "duplicates": [], "editorial": ""}
 
@@ -232,7 +232,7 @@ async def _match_articles_to_topic(topic, articles):
 
 
 async def investigate_topic(topic_id):
-    """Run investigation on a specific topic — find new articles, build timeline, generate report."""
+    """Run investigation on a specific topic - find new articles, build timeline, generate report."""
     topic = await db.investigation_topics.find_one({"id": topic_id}, {"_id": 0})
     if not topic:
         return None
@@ -394,7 +394,7 @@ async def get_topic_timeline(topic_id: str):
 # ============================================================
 
 async def run_agents_after_scrape():
-    """Run both agents after scraper completes — as subprocess to avoid blocking server."""
+    """Run both agents after scraper completes - as subprocess to avoid blocking server."""
     import subprocess
     try:
         subprocess.Popen(

@@ -1,4 +1,4 @@
-"""Autonomous SEO Engine — sitemap, robots.txt, RSS, IndexNow, server-rendered article pages, related articles."""
+"""Autonomous SEO Engine - sitemap, robots.txt, RSS, IndexNow, server-rendered article pages, related articles."""
 from fastapi import APIRouter, Request, Query
 from fastapi.responses import Response, HTMLResponse
 from typing import Optional
@@ -20,7 +20,7 @@ LANGUAGES = ["en"]
 
 
 # ============================================================
-# SITEMAP.XML — Auto-generated from all active articles
+# SITEMAP.XML - Auto-generated from all active articles
 # ============================================================
 
 @router.get("/sitemap.xml")
@@ -137,7 +137,7 @@ Sitemap: {SITE_URL}/rss.xml
 
 
 # ============================================================
-# RSS FEED — Google News compatible
+# RSS FEED - Google News compatible
 # ============================================================
 
 @router.get("/rss.xml")
@@ -194,7 +194,7 @@ async def rss_feed():
 
 
 # ============================================================
-# SERVER-RENDERED ARTICLE PAGE — Full meta tags for crawlers
+# SERVER-RENDERED ARTICLE PAGE - Full meta tags for crawlers
 # ============================================================
 
 @router.get("/article/{article_id}")
@@ -408,7 +408,7 @@ async def article_page(article_id: str, request: Request):
 
 
 # ============================================================
-# INDEXNOW — Auto-ping Bing/Yandex when new articles are published
+# INDEXNOW - Auto-ping Bing/Yandex when new articles are published
 # ============================================================
 
 async def ping_indexnow(urls: list):
@@ -437,7 +437,7 @@ async def indexnow_key():
 
 
 # ============================================================
-# AUTO-SEO META GENERATION — AI-optimized titles & descriptions
+# AUTO-SEO META GENERATION - AI-optimized titles & descriptions
 # ============================================================
 
 async def generate_seo_meta(article_id: str):
@@ -597,12 +597,12 @@ async def seo_stats():
 
 
 # ============================================================
-# RELATED ARTICLES — For internal linking
+# RELATED ARTICLES - For internal linking
 # ============================================================
 
 @router.get("/related/{article_id}")
 async def get_related_articles(article_id: str, limit: int = Query(5, ge=1, le=10)):
-    """Get related articles for internal linking — same category, recent, with SEO keywords matching."""
+    """Get related articles for internal linking - same category, recent, with SEO keywords matching."""
     article = await db.news.find_one(
         {"id": article_id},
         {"_id": 0, "category": 1, "seo_keywords": 1, "published_at": 1}
@@ -642,7 +642,7 @@ async def get_related_articles(article_id: str, limit: int = Query(5, ge=1, le=1
 
 
 # ============================================================
-# STATIC FILE GENERATOR — writes sitemap.xml, robots.txt, rss.xml to frontend/public
+# STATIC FILE GENERATOR - writes sitemap.xml, robots.txt, rss.xml to frontend/public
 # ============================================================
 
 FRONTEND_PUBLIC = "/app/frontend/public"

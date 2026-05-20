@@ -1,5 +1,5 @@
 """
-Mint Street — seed article corpus.
+Mint Street - seed article corpus.
 Original editorial summaries of publicly-known startup news.
 All prose written for Mint Street; not copied from source publications.
 External source links provided for reader attribution.

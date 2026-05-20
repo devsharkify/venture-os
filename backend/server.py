@@ -53,7 +53,7 @@ app.include_router(youtube_agents_router)
 app.include_router(startup_router)
 app.include_router(sitemap_router)
 
-# GZip compression — compress responses > 500 bytes
+# GZip compression - compress responses > 500 bytes
 app.add_middleware(GZipMiddleware, minimum_size=500)
 
 # Performance tracking middleware

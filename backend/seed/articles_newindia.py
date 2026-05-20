@@ -1,4 +1,4 @@
-"""Mint Street — new India + policy seed batch C (15 articles)."""
+"""Mint Street - new India + policy seed batch C (15 articles)."""
 
 ARTICLES = [
     # ------------------------ Emerging startups (D2C / consumer) ------------------------
@@ -58,7 +58,7 @@ ARTICLES = [
     {
         "id": "sridhar-vembu-zoho-tenkasi-profile-2024",
         "title": "Sridhar Vembu and the Tenkasi experiment: building global SaaS from a Tamil Nadu village",
-        "summary": "Zoho's founder has spent years moving engineering teams from Chennai and Bengaluru into smaller towns across Tamil Nadu, with Tenkasi as the most visible outpost. The model — bootstrapped, employee-funded, allergic to venture capital — has produced a SaaS company with annual revenues that few Indian internet firms can match. Vembu's recent move into rural manufacturing extends the same thesis into hardware.",
+        "summary": "Zoho's founder has spent years moving engineering teams from Chennai and Bengaluru into smaller towns across Tamil Nadu, with Tenkasi as the most visible outpost. The model - bootstrapped, employee-funded, allergic to venture capital - has produced a SaaS company with annual revenues that few Indian internet firms can match. Vembu's recent move into rural manufacturing extends the same thesis into hardware.",
         "category": "saas",
         "category_label": "SaaS",
         "image": "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -151,7 +151,7 @@ ARTICLES = [
     {
         "id": "account-aggregator-consent-flows-2025",
         "title": "Account Aggregator hits scale, but consent-flow drop-offs are now the bottleneck",
-        "summary": "The AA framework has crossed material thresholds in linked accounts and successful data fetches, with lenders, wealth-tech apps and personal-finance platforms among the heaviest users. Industry data suggests that user friction at the consent step — especially among first-time AA users — is the next design challenge for the RBI-supervised network.",
+        "summary": "The AA framework has crossed material thresholds in linked accounts and successful data fetches, with lenders, wealth-tech apps and personal-finance platforms among the heaviest users. Industry data suggests that user friction at the consent step - especially among first-time AA users - is the next design challenge for the RBI-supervised network.",
         "category": "fintech",
         "category_label": "Fintech",
         "image": "https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -192,7 +192,7 @@ ARTICLES = [
     {
         "id": "indore-tier2-d2c-cluster-2024",
         "title": "Indore's D2C cluster: a tier-2 city quietly punching above its weight in consumer brands",
-        "summary": "A small but growing set of consumer startups headquartered in Indore — spanning food, snacks and personal care — is making the case that brand-building in India no longer requires a Bengaluru or Mumbai postcode. Lower fulfilment costs, proximity to manufacturing belts in Madhya Pradesh and a returning diaspora of founders are reshaping the city's commercial identity.",
+        "summary": "A small but growing set of consumer startups headquartered in Indore - spanning food, snacks and personal care - is making the case that brand-building in India no longer requires a Bengaluru or Mumbai postcode. Lower fulfilment costs, proximity to manufacturing belts in Madhya Pradesh and a returning diaspora of founders are reshaping the city's commercial identity.",
         "category": "d2c",
         "category_label": "D2C",
         "image": "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800",

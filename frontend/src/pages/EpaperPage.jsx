@@ -162,7 +162,7 @@ const EpaperPage = () => {
         </button>
       </div>
 
-      {/* VIEWER — scroll-based pages */}
+      {/* VIEWER - scroll-based pages */}
       <div className="flex-1 overflow-auto" ref={viewerRef} style={{ background: "#a0a0a0" }}>
         {loading ? (
           <div className="flex items-center justify-center h-full"><Loader2 size={28} className="animate-spin text-red-600" /></div>
@@ -182,7 +182,7 @@ const EpaperPage = () => {
         )}
       </div>
 
-      {/* COMPACT ARCHIVE — single line of small buttons */}
+      {/* COMPACT ARCHIVE - single line of small buttons */}
       <div className="flex-shrink-0 border-t" style={{ background: "#1a1a1a", borderColor: "#c41e1e" }}>
         <div className="flex items-center gap-1.5 px-3 py-1.5 overflow-x-auto" data-testid="epaper-archive">
           <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wide whitespace-nowrap flex-shrink-0">Editions:</span>

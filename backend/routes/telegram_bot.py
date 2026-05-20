@@ -204,13 +204,13 @@ async def send_epaper_pdf(date, slot):
         .header h1 {{ font-size: 28pt; font-weight: 900; color: #F26B1F; }}
         .content {{ column-count: 2; column-gap: 20px; column-rule: 1px solid #ddd; }}
         </style></head><body>
-        <div class="header"><h1>MINT STREET</h1><p>{date} — {edition}</p></div>
+        <div class="header"><h1>MINT STREET</h1><p>{date} - {edition}</p></div>
         <div class="content">{articles_html}</div>
         </body></html>'''
 
         pdf_bytes = HTML(string=html).write_pdf()
         filename = f"mint_street_{date}_{slot}.pdf"
-        caption = f"Mint Street ePaper — {date} {edition}"
+        caption = f"Mint Street ePaper - {date} {edition}"
 
         return await tg_send_document(chat_id, pdf_bytes, filename, caption)
     except Exception as e:
@@ -229,11 +229,11 @@ async def send_error_alert(error_msg):
 
 
 # ============================================================
-# Scheduled Tasks — run via subprocess scheduler
+# Scheduled Tasks - run via subprocess scheduler
 # ============================================================
 
 async def scheduled_morning():
-    """6 AM IST — Morning report + morning ePaper PDF."""
+    """6 AM IST - Morning report + morning ePaper PDF."""
     today = _ist_now().strftime("%Y-%m-%d")
     await send_daily_report("morning")
     await asyncio.sleep(2)
@@ -241,7 +241,7 @@ async def scheduled_morning():
 
 
 async def scheduled_evening():
-    """6 PM IST — Evening report + evening ePaper PDF."""
+    """6 PM IST - Evening report + evening ePaper PDF."""
     today = _ist_now().strftime("%Y-%m-%d")
     await send_daily_report("evening")
     await asyncio.sleep(2)

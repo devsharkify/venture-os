@@ -8,10 +8,32 @@ import logging
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection. If MONGO_URL is unset OR contains .env.example
+# placeholder values, fall back to mongomock-motor so the server boots
+# locally without Atlas. The fallback is process-local and resets on every
+# restart - set MONGO_URL for real persistence.
+mongo_url = os.environ.get('MONGO_URL', '').strip()
+db_name = os.environ.get('DB_NAME', 'mint_street').strip() or 'mint_street'
+
+_PLACEHOLDER_HINTS = ('your-cluster', 'USER:PASSWORD', 'YOUR_PASSWORD', 'your-mongo-uri')
+_is_placeholder = any(hint in mongo_url for hint in _PLACEHOLDER_HINTS)
+
+if mongo_url and not _is_placeholder:
+    client = AsyncIOMotorClient(mongo_url)
+else:
+    try:
+        from mongomock_motor import AsyncMongoMockClient
+        client = AsyncMongoMockClient()
+        reason = "MONGO_URL contains placeholder values" if _is_placeholder else "MONGO_URL unset"
+        print(f"[database] {reason} - using in-memory mongomock (db_name={db_name})")
+    except ImportError:
+        raise RuntimeError(
+            "MONGO_URL is not set / is placeholder and mongomock-motor is "
+            "not installed. Either set a real MONGO_URL in backend/.env or "
+            "`pip install mongomock-motor`."
+        )
+
+db = client[db_name]
 
 # API Keys
 EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
@@ -28,7 +50,6 @@ logger = logging.getLogger(__name__)
 # Categories \u2014 Startup & Funding focused
 CATEGORIES = {
     "funding": {"en": "Funding"},
-    "startup": {"en": "Startups"},
     "startups": {"en": "Startups"},
     "vc": {"en": "Venture Capital"},
     "ipo": {"en": "IPO & Markets"},

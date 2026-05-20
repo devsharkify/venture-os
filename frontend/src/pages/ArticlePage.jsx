@@ -26,7 +26,7 @@ function formatShortDate(dateStr) {
   } catch { return ""; }
 }
 
-// Sidebar card — compact horizontal layout
+// Sidebar card - compact horizontal layout
 function SidebarArticleCard({ article, darkMode, onClick }) {
   const title = article.title || "";
   const img = getImage(article);
@@ -179,7 +179,7 @@ export default function ArticlePage() {
     {
       label: "Instagram",
       color: "#E1306C",
-      href: null, // no web URL — use native share or copy
+      href: null, // no web URL - use native share or copy
       onClick: () => {
         if (navigator.share) {
           navigator.share({ title, text: shareText, url: shareUrl }).catch(() => {});

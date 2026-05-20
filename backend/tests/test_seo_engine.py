@@ -1,4 +1,4 @@
-"""Test suite for Autonomous SEO Engine — sitemap, RSS, server-rendered pages, IndexNow, Celery/Redis integration."""
+"""Test suite for Autonomous SEO Engine - sitemap, RSS, server-rendered pages, IndexNow, Celery/Redis integration."""
 import pytest
 import requests
 import os

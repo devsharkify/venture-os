@@ -92,7 +92,7 @@ export const NewsCard = ({ article, articlesList = [] }) => {
           : "bg-white border-[#E5E0D6]"}
       `}
     >
-      {/* Top stripe — category (left) + source (right) */}
+      {/* Top stripe - category (left) + source (right) */}
       <div
         className={`flex items-center justify-between px-3 py-2 border-b ${
           darkMode ? "border-[#3A2A1F]" : "border-[#EFEAE0]"
@@ -133,7 +133,7 @@ export const NewsCard = ({ article, articlesList = [] }) => {
         )}
       </div>
 
-      {/* Image — 4:3 */}
+      {/* Image - 4:3 */}
       <div
         className="relative aspect-[4/3] cursor-pointer overflow-hidden"
         onClick={() => openArticle(article, articlesList)}

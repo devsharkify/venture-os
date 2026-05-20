@@ -1,4 +1,4 @@
-"""YouTube API integration — multi-channel hub with proper Shorts/Videos/Live separation via playlist prefixes + Redis caching."""
+"""YouTube API integration - multi-channel hub with proper Shorts/Videos/Live separation via playlist prefixes + Redis caching."""
 from fastapi import APIRouter, Query
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -19,7 +19,7 @@ CACHE_TTL = 900  # 15 minutes
 # UC -> UULP (popular videos)
 
 # The pre-populated channel list from the source repo was Telangana/Andhra political
-# Telugu news channels — irrelevant to a startup intelligence platform. Empty by default;
+# Telugu news channels - irrelevant to a startup intelligence platform. Empty by default;
 # admins can populate via the admin UI or an env-loaded list.
 CHANNELS = []
 
@@ -174,7 +174,7 @@ async def get_shorts(
     channel_id: str = Query(default="all"),
     max_results: int = Query(default=20, ge=1, le=50),
 ):
-    """Fetch YouTube Shorts using UUSH playlist prefix. YouTube's own categorization — includes shorts up to 3 min."""
+    """Fetch YouTube Shorts using UUSH playlist prefix. YouTube's own categorization - includes shorts up to 3 min."""
     cache_key = f"yt:shorts_uush:{channel_id}:{max_results}"
     cached = cache_get(cache_key)
     if cached:
@@ -268,7 +268,7 @@ async def get_live_streams(
 
 @router.get("/channel")
 async def get_channel_info(
-    channel_id: str = Query(default=CHANNELS[0]["id"]),
+    channel_id: str = Query(default=CHANNELS[0]["id"] if CHANNELS else ""),
 ):
     """Get single channel statistics (cached)."""
     cache_key = f"yt:channel:{channel_id}"

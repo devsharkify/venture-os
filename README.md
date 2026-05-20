@@ -61,13 +61,13 @@ Never commit `.env`. `.gitignore` already excludes `.env`, `.env.*`, and `fronte
 - **Paper background:** `#FAF7F1`
 - **Dark mode background:** `#1C1410`
 - **Accent (urgent/breaking):** `#F5C13D` (saffron)
-- **Display font:** Fraunces — **Body:** Inter
+- **Display font:** Fraunces - **Body:** Inter
 
 Brand assets in `frontend/public/`: `logo.svg` (square mark), `logo-full.svg` (wordmark + tagline).
 
 ## Editorial standards
 
-Every article summary on Mint Street is original — written by our editorial team or rephrased in-house from our own reporting notes. We attribute every external story with a link back to the original publisher. We do **not** republish copy verbatim, paraphrase to launder copyright, or strip watermarks/credits from third-party imagery. Stock photography is sourced exclusively from royalty-free providers (Pexels).
+Every article summary on Mint Street is original - written by our editorial team or rephrased in-house from our own reporting notes. We attribute every external story with a link back to the original publisher. We do **not** republish copy verbatim, paraphrase to launder copyright, or strip watermarks/credits from third-party imagery. Stock photography is sourced exclusively from royalty-free providers (Pexels).
 
 ## Repo layout
 
@@ -88,9 +88,9 @@ frontend/
 
 ## Scripts
 
-- `cd frontend && npm run build` — production bundle into `frontend/build/`
-- `cd backend && python seed_articles.py` — print article count + sample
-- `cd backend && python -m compileall .` — syntax-check all modules
+- `cd frontend && npm run build` - production bundle into `frontend/build/`
+- `cd backend && python seed_articles.py` - print article count + sample
+- `cd backend && python -m compileall .` - syntax-check all modules
 
 ## Deploy
 

@@ -1,4 +1,4 @@
-"""YouTube AI Agents — Content Curator & Performance Analyzer."""
+"""YouTube AI Agents - Content Curator & Performance Analyzer."""
 from fastapi import APIRouter
 from database import db, logger, EMERGENT_LLM_KEY
 from emergentintegrations.llm.chat import LlmChat, UserMessage
@@ -34,7 +34,7 @@ async def _ai_analyze(system_prompt, user_prompt):
 
 @router.get("/content-curator")
 async def content_curator_report():
-    """AI Content Curator Agent — analyzes video content across channels, identifies trends, suggests content strategy."""
+    """AI Content Curator Agent - analyzes video content across channels, identifies trends, suggests content strategy."""
     cached = await db.youtube_agent_reports.find_one(
         {"agent": "content_curator"},
         {"_id": 0},
@@ -65,7 +65,7 @@ async def run_content_curator():
         "Mint Street Telangana (8.6K subs, 2877 videos)",
     ]
 
-    system_prompt = """You are a YouTube Content Curator AI Agent for the Mint Street Network — a Telugu news media group with 13 YouTube channels totaling 12M+ subscribers.
+    system_prompt = """You are a YouTube Content Curator AI Agent for the Mint Street Network - a Telugu news media group with 13 YouTube channels totaling 12M+ subscribers.
 
 Your job is to analyze the network's channel portfolio and provide actionable content strategy. Return your analysis as a JSON object with this structure:
 {
@@ -138,7 +138,7 @@ Provide a comprehensive content strategy with focus on:
 
 @router.get("/performance")
 async def performance_report():
-    """YouTube Performance Analyzer — latest report."""
+    """YouTube Performance Analyzer - latest report."""
     cached = await db.youtube_agent_reports.find_one(
         {"agent": "performance_analyzer"},
         {"_id": 0},

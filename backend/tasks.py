@@ -1,4 +1,4 @@
-"""Celery tasks — unified background jobs for scrapers, agents, SEO, Telegram, performance."""
+"""Celery tasks - unified background jobs for scrapers, agents, SEO, Telegram, performance."""
 import asyncio
 import os
 import sys

@@ -1,4 +1,4 @@
-"""Tech Performance Agent — monitors API speed, DB performance, detects anomalies."""
+"""Tech Performance Agent - monitors API speed, DB performance, detects anomalies."""
 from fastapi import APIRouter, Request
 from datetime import datetime, timezone, timedelta
 from database import db, logger
@@ -83,7 +83,7 @@ async def generate_performance_report():
     # Detect slow endpoints (>500ms avg)
     slow_endpoints = [e for e in endpoint_stats if e.get("avg_ms", 0) > 500]
 
-    # Detect anomalies — endpoints with error rate >10%
+    # Detect anomalies - endpoints with error rate >10%
     anomalies = []
     for e in endpoint_stats:
         if e["count"] > 5 and e.get("errors", 0) / e["count"] > 0.1:
@@ -195,7 +195,7 @@ async def performance_middleware(request: Request, call_next):
     response = await call_next(request)
     elapsed_ms = (time.time() - start) * 1000
 
-    # Record async — don't block the response
+    # Record async - don't block the response
     asyncio.create_task(record_metric(
         endpoint=path,
         method=request.method,

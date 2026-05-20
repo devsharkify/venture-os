@@ -16,7 +16,7 @@ export default function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: wire up to backend / mail relay. For now, stubbed.
-    setToast("Thanks — we'll get back within 48 hours.");
+    setToast("Thanks - we'll get back within 48 hours.");
     setForm({ name: "", email: "", subject: "", message: "" });
     setTimeout(() => setToast(""), 4000);
   };
