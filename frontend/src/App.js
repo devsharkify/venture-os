@@ -35,7 +35,7 @@ import Disclaimer from "./pages/Disclaimer";
 import AdvertisePage from "./pages/AdvertisePage";
 import WriteForUs from "./pages/WriteForUs";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://mint-street-production.up.railway.app";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://venture-os-production.up.railway.app";
 export const API = `${BACKEND_URL}/api`;
 
 // Attach admin phone header automatically on every request made by the logged-in admin.

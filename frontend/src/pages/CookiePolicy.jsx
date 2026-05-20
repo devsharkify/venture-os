@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
 
-const BRAND = "#F26B1F";
+const BRAND = "#2D7AFF";
 
 function Section({ title, children, darkMode }) {
   return (
     <section className="mb-8">
       <h2
         className="text-[18px] font-bold mt-8 mb-3"
-        style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+        style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
       >
         {title}
       </h2>
@@ -65,12 +65,12 @@ export default function CookiePolicy() {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? "bg-[#1C1410] text-slate-100" : "bg-white text-slate-800"}`}>
+    <div className={`min-h-screen ${darkMode ? "bg-[#070B12] text-slate-100" : "bg-[#070B12] text-[#E2EAF6]"}`}>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-[13px] mb-8" aria-label="Breadcrumb">
-          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#F26B1F]"}`}>
+          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#2D7AFF]"}`}>
             Home
           </Link>
           <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
@@ -81,7 +81,7 @@ export default function CookiePolicy() {
         <header className="mb-10">
           <h1
             className="font-bold text-[36px] sm:text-[44px] leading-tight mb-4"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif" }}
           >
             Cookie Policy
           </h1>
@@ -92,9 +92,9 @@ export default function CookiePolicy() {
         </header>
 
         <Para>
-          This Cookie Policy explains how Mint Street (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+          This Cookie Policy explains how Venture OS (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
           &ldquo;our&rdquo;) uses cookies and similar tracking technologies when you visit
-          themintstreet.in. We want to be transparent about the data we collect, why we collect
+          theventureos.in. We want to be transparent about the data we collect, why we collect
           it, and the choices available to you. By continuing to use our website, you consent to the
           use of cookies as described in this policy.
         </Para>
@@ -125,7 +125,7 @@ export default function CookiePolicy() {
 
           <SubHeading darkMode={darkMode}>First-Party vs. Third-Party Cookies</SubHeading>
           <Para>
-            First-party cookies are set directly by Mint Street and are used solely to
+            First-party cookies are set directly by Venture OS and are used solely to
             improve your experience on our site. Third-party cookies are placed by external services
             that we use, such as Google Analytics, to help us understand how our content is consumed.
             Third-party cookies are governed by the privacy policies of those respective providers.
@@ -203,7 +203,7 @@ export default function CookiePolicy() {
 
           <SubHeading darkMode={darkMode}>Embedded Content</SubHeading>
           <Para>
-            Articles on Mint Street may include embedded content from third-party platforms
+            Articles on Venture OS may include embedded content from third-party platforms
             such as YouTube, Twitter/X, or LinkedIn. These embedded resources may set their own
             cookies when you interact with them. We recommend reviewing the cookie policies of these
             platforms separately if you have concerns about the data they collect.
@@ -259,7 +259,7 @@ export default function CookiePolicy() {
         {/* 5. Cookie Table */}
         <Section title="5. Cookie Reference Table" darkMode={darkMode}>
           <Para>
-            The following table lists the primary cookies used on themintstreet.in, their
+            The following table lists the primary cookies used on theventureos.in, their
             purpose, and how long they are retained on your device.
           </Para>
           <div className="overflow-x-auto mt-4 mb-4 rounded-lg border border-slate-200 dark:border-slate-700">
@@ -283,7 +283,7 @@ export default function CookiePolicy() {
                     key={i}
                     className={`border-b last:border-0 border-slate-200 dark:border-slate-700 ${
                       i % 2 === 0
-                        ? darkMode ? "bg-[#1C1410]" : "bg-white"
+                        ? darkMode ? "bg-[#070B12]" : "bg-[#070B12]"
                         : darkMode ? "bg-slate-800/50" : "bg-slate-50"
                     }`}
                   >
@@ -312,12 +312,12 @@ export default function CookiePolicy() {
         {/* Contact */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2
             className="text-[16px] font-bold mb-3"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
           >
             Questions About Cookies?
           </h2>
@@ -326,14 +326,14 @@ export default function CookiePolicy() {
             contact our privacy team:
           </p>
           <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
-            Mint Street, Hyderabad, Telangana, India
+            Venture OS, Hyderabad, Telangana, India
           </p>
           <a
-            href="mailto:privacy@themintstreet.in"
+            href="mailto:privacy@theventureos.in"
             className="text-[14px] font-medium hover:underline"
             style={{ color: BRAND }}
           >
-            privacy@themintstreet.in
+            privacy@theventureos.in
           </a>
         </section>
 

@@ -21,7 +21,7 @@ export function startBreakingNewsPolling(onBreaking) {
         if (onBreaking) onBreaking(article);
         // Browser notification
         if ("Notification" in window && Notification.permission === "granted") {
-          new Notification("Mint Street - Breaking", {
+          new Notification("Venture OS - Breaking", {
             body: article.title,
             icon: "/tvr-logo.png",
             tag: "tvr-breaking"

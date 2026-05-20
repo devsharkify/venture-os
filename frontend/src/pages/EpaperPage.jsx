@@ -54,7 +54,7 @@ const EpaperPage = () => {
   };
 
   const shareEpaper = async () => {
-    const t = `Mint Street - ${selectedSlot === "morning" ? "Morning" : "Evening"} - ${fmtDate(selectedDate)}`;
+    const t = `Venture OS - ${selectedSlot === "morning" ? "Morning" : "Evening"} - ${fmtDate(selectedDate)}`;
     if (navigator.share) { try { await navigator.share({ title: t, text: t, url: window.location.href }); } catch {} }
     else { window.open(`https://wa.me/?text=${encodeURIComponent(t + " " + window.location.href)}`, "_blank"); }
   };

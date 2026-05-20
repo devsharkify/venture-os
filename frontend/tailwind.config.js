@@ -8,8 +8,8 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			'serif-display': ['"Fraunces"', '"Spectral"', 'Georgia', 'serif'],
-  			'display': ['"Fraunces"', 'serif'],
+  			'serif-display': ['"Syne"', '"Inter"', 'system-ui', 'sans-serif'],
+  			'display': ['"Syne"', 'system-ui', 'sans-serif'],
   			'sans': ['"Inter"', 'system-ui', 'sans-serif'],
   		},
   		borderRadius: {
@@ -59,19 +59,23 @@ module.exports = {
   				'5': 'hsl(var(--chart-5))'
   			},
   			mint: {
-  				DEFAULT: '#F26B1F',
-  				dark: '#C2410B',
-  				light: '#FFF1E6'
+  				DEFAULT: '#2D7AFF',
+  				dark: '#1A5FCC',
+  				light: '#E8F1FF'
   			},
   			saffron: {
-  				DEFAULT: '#F5C13D',
-  				dark: '#D4A017'
+  				DEFAULT: '#00D9C8',
+  				dark: '#00A89A'
   			},
-  			paper: '#FFFFFF',
+  			paper: '#070B12',
   			ink: {
-  				DEFAULT: '#1A2421',
-  				muted: '#6B7872'
-  			}
+  				DEFAULT: '#E2EAF6',
+  				muted: '#7A90A8'
+  			},
+  			'vos-surface': '#0D1321',
+  			'vos-surface-2': '#131B2A',
+  			'vos-border': '#1C2840',
+  			'vos-amber': '#F59E0B'
   		},
   		keyframes: {
   			'accordion-down': {

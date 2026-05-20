@@ -22,7 +22,7 @@ export default function LiveTV() {
       <div className="bg-gradient-to-r from-red-600 to-orange-600 py-3 px-4 sticky top-14 z-20">
         <div className="max-w-7xl mx-auto flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
+            <div className="w-3 h-3 bg-[#070B12] rounded-full animate-pulse" />
             <Tv size={20} className="text-white" />
           </div>
           <h1 className="text-white font-bold text-lg">Live TV</h1>
@@ -43,7 +43,7 @@ export default function LiveTV() {
               allowFullScreen
             />
           </div>
-          <div className={`px-4 py-3 border-b ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`px-4 py-3 border-b ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 px-2 py-1 bg-red-600 rounded text-white text-xs font-bold">
                 <Radio size={12} /> LIVE
@@ -76,7 +76,7 @@ export default function LiveTV() {
                 data-testid={`channel-${ch.id}`}
                 onClick={() => setActiveChannel(ch)}
                 className={`rounded-xl overflow-hidden border transition-all hover:scale-[1.02] ${
-                  darkMode ? "bg-slate-800 border-slate-700 hover:border-orange-500" : "bg-white border-slate-200 hover:border-orange-400"
+                  darkMode ? "bg-slate-800 border-slate-700 hover:border-orange-500" : "bg-[#070B12] border-slate-200 hover:border-orange-400"
                 }`}
               >
                 <div className="relative aspect-video">
@@ -86,7 +86,7 @@ export default function LiveTV() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-2 left-2 flex items-center gap-1 px-1.5 py-0.5 bg-red-600 rounded text-white text-[10px] font-bold">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" /> LIVE
+                    <div className="w-1.5 h-1.5 bg-[#070B12] rounded-full animate-pulse" /> LIVE
                   </div>
                 </div>
                 <div className="p-2">

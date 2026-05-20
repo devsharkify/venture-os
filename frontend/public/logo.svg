@@ -1,25 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Mint Street">
-  <title>Mint Street</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Venture OS">
+  <title>Venture OS</title>
   <!-- Background -->
-  <rect width="200" height="200" rx="36" fill="#1A2421"/>
-  <!-- Bold geometric M letterform -->
-  <!-- Outer shape: left leg → left diagonal → right diagonal → right leg -->
-  <!-- Inner V cutout makes the M valleys -->
-  <path d="
-    M 30 160
-    L 30 44
-    L 58 44
-    L 100 108
-    L 142 44
-    L 170 44
-    L 170 160
-    L 142 160
-    L 142 88
-    L 100 130
-    L 58 88
-    L 58 160
-    Z
-  " fill="white"/>
-  <!-- Orange street baseline -->
-  <rect x="30" y="168" width="140" height="8" rx="4" fill="#F26B1F"/>
+  <rect width="200" height="200" rx="36" fill="#2D7AFF"/>
+  <!-- Terminal chevron: > -->
+  <path d="M 40 60 L 100 100 L 40 140" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Underscore: _ -->
+  <rect x="110" y="138" width="60" height="14" rx="7" fill="white"/>
 </svg>

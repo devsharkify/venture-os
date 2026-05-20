@@ -12,7 +12,7 @@ export default function SavedArticles() {
   return (
     <div data-testid="saved-articles-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
       {/* Header Section */}
-      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-100"}`}>
+      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-100"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-2">
             <Button

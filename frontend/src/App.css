@@ -1,16 +1,15 @@
-/* Mint Street App Styles */
+/* Venture OS App Styles */
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #F26B1F;
-  --primary-hover: #C2410B;
-  --primary-light: #FFF1E6;
-  --bg-light: #FFFFFF;
-  --bg-dark: #1C1410;
-  --paper-light: #FFFFFF;
-  --paper-dark: #241A14;
+  --primary: #2D7AFF;
+  --primary-hover: #1A5FCC;
+  --primary-light: #E8F1FF;
+  --bg-light: #070B12;
+  --bg-dark: #040609;
+  --paper-light: #0D1321;
+  --paper-dark: #040609;
 }
 
 * {
@@ -43,8 +42,8 @@
   z-index: 50;
   border-top: 1px solid;
   padding-bottom: env(safe-area-inset-bottom, 0);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Card animations */
@@ -63,28 +62,28 @@
 
 /* News card hover */
 .news-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .news-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(26,36,33,0.08);
+  box-shadow: 0 8px 32px rgba(45, 122, 255, 0.12);
 }
 
 /* Glassmorphism header */
 .glass-header {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
 
 /* Premium scrollbar for desktop */
 @media (min-width: 768px) {
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #070B12; }
   ::-webkit-scrollbar-thumb {
-    background: #F26B1F;
+    background: #2D7AFF;
     border-radius: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: #C2410B; }
+  ::-webkit-scrollbar-thumb:hover { background: #1A5FCC; }
 }
 
 /* Active indicator dot pulse */
@@ -100,4 +99,23 @@
 .chip-scroll-container {
   mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent);
+}
+
+/* Blue glow effect for interactive elements */
+.vos-glow {
+  box-shadow: 0 0 0 1px rgba(45, 122, 255, 0.3), 0 4px 16px rgba(45, 122, 255, 0.15);
+}
+
+/* Gradient text */
+.vos-gradient-text {
+  background: linear-gradient(135deg, #2D7AFF 0%, #00D9C8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Ticker animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }

@@ -81,7 +81,7 @@ export default function LoginPage({ onLoginSuccess }) {
     <div
       data-testid="reporter-login-page"
       className={`min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden ${
-        darkMode ? "bg-slate-950" : "bg-white"
+        darkMode ? "bg-slate-950" : "bg-[#070B12]"
       }`}
     >
       <div className="absolute top-0 left-0 w-72 h-72 bg-orange-400/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
@@ -89,7 +89,7 @@ export default function LoginPage({ onLoginSuccess }) {
 
       {/* Logo */}
       <div className="mb-10 text-center relative z-10">
-        <img src="/tvr-logo.png" alt="Mint Street" className="h-24 w-auto mx-auto mb-3 drop-shadow-sm" data-testid="login-logo" />
+        <img src="/tvr-logo.png" alt="Venture OS" className="h-24 w-auto mx-auto mb-3 drop-shadow-sm" data-testid="login-logo" />
         <p className={`text-sm tracking-wide ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
           Reporter & Admin Login
         </p>
@@ -100,7 +100,7 @@ export default function LoginPage({ onLoginSuccess }) {
         <div
           data-testid="phone-step"
           className={`w-full max-w-sm p-8 rounded-3xl shadow-lg relative z-10 border ${
-            darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-orange-100"
+            darkMode ? "bg-slate-900 border-slate-700" : "bg-[#070B12] border-orange-100"
           }`}
         >
           <button
@@ -160,7 +160,7 @@ export default function LoginPage({ onLoginSuccess }) {
         <div
           data-testid="otp-step"
           className={`w-full max-w-sm p-8 rounded-3xl shadow-lg relative z-10 border ${
-            darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-orange-100"
+            darkMode ? "bg-slate-900 border-slate-700" : "bg-[#070B12] border-orange-100"
           }`}
         >
           <button

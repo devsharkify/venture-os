@@ -60,7 +60,7 @@ export default function ApiKeysManager({ darkMode }) {
   const sub = darkMode ? "text-slate-400" : "text-slate-500";
 
   const baseUrl = window.location.origin;
-  const exampleCode = `// Fetch latest news from Mint Street API
+  const exampleCode = `// Fetch latest news from Venture OS API
 fetch("${baseUrl}/api/public/v1/feed?lang=en&limit=10", {
   headers: { "X-API-Key": "YOUR_API_KEY" }
 })

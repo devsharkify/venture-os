@@ -31,7 +31,7 @@ function ChannelPill({ ch, active, onClick }) {
       className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap border transition-all shrink-0 ${
         active
           ? "bg-red-600 text-white border-red-600 shadow-sm"
-          : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-red-300"
+          : "bg-[#070B12] dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-red-300"
       }`}
     >
       {ch.thumbnail && <img src={ch.thumbnail} alt="" className="w-5 h-5 rounded-full" />}
@@ -85,12 +85,12 @@ export default function VideoNews() {
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <div className="w-10 h-10 bg-[#070B12]/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                 <Youtube size={22} className="text-white" />
               </div>
               <div className="text-white">
                 <h1 className="text-lg font-bold">
-                  Mint Street Network
+                  Venture OS Network
                 </h1>
                 <div className="flex items-center gap-3 text-xs text-white/70">
                   <span>{channels.length} channels</span>
@@ -116,7 +116,7 @@ export default function VideoNews() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-14 z-20">
+      <div className="bg-[#070B12] dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-14 z-20">
         <div className="max-w-5xl mx-auto flex items-center px-4">
           {[
             { id: "videos", label: "Long Videos", icon: Play },
@@ -154,7 +154,7 @@ export default function VideoNews() {
             {tab === "videos" && (
               <div data-testid="videos-section">
                 {activeChannel && selectedChannel !== "all" && (
-                  <div className="flex items-center gap-3 mb-4 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <div className="flex items-center gap-3 mb-4 p-3 bg-[#070B12] dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
                     {activeChannel.thumbnail && <img src={activeChannel.thumbnail} alt="" className="w-10 h-10 rounded-full" />}
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-sm text-slate-900 dark:text-white truncate">
@@ -175,7 +175,7 @@ export default function VideoNews() {
                     <div
                       key={video.id}
                       data-testid={`video-card-${video.id}`}
-                      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer group hover:shadow-md transition-all"
+                      className="bg-[#070B12] dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer group hover:shadow-md transition-all"
                       onClick={() => setSelectedVideo(video)}
                     >
                       <div className="relative aspect-video">
@@ -216,7 +216,7 @@ export default function VideoNews() {
                   <div
                     key={ch.id}
                     data-testid={`channel-row-${ch.id}`}
-                    className="flex items-center gap-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-sm transition-shadow cursor-pointer"
+                    className="flex items-center gap-3 p-3 bg-[#070B12] dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-sm transition-shadow cursor-pointer"
                     onClick={() => { setSelectedChannel(ch.id); setTab("videos"); }}
                   >
                     <span className="text-xs font-bold text-slate-400 w-5 text-right">{i + 1}</span>

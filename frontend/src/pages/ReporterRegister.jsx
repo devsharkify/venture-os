@@ -99,7 +99,7 @@ export default function ReporterRegister() {
             Become a Reporter
           </h1>
           <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-            Join Mint Street as a citizen reporter and share local news
+            Join Venture OS as a citizen reporter and share local news
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export default function ReporterRegister() {
 
         {/* Registration Form */}
         {!existingReporter && (
-          <form onSubmit={handleSubmit} className={`p-6 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <form onSubmit={handleSubmit} className={`p-6 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="space-y-4">
               {/* Name */}
               <div className="space-y-2">

@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
 
-const BRAND = "#F26B1F";
+const BRAND = "#2D7AFF";
 
 function Section({ title, children, darkMode }) {
   return (
     <section className="mb-8">
       <h2
         className="text-[18px] font-bold mt-8 mb-3"
-        style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+        style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
       >
         {title}
       </h2>
@@ -47,12 +47,12 @@ export default function TermsOfService() {
   const navigate = useNavigate();
 
   return (
-    <div className={`min-h-screen ${darkMode ? "bg-[#1C1410] text-slate-100" : "bg-white text-slate-800"}`}>
+    <div className={`min-h-screen ${darkMode ? "bg-[#070B12] text-slate-100" : "bg-[#070B12] text-[#E2EAF6]"}`}>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-[13px] mb-8" aria-label="Breadcrumb">
-          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#F26B1F]"}`}>
+          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#2D7AFF]"}`}>
             Home
           </Link>
           <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
@@ -63,7 +63,7 @@ export default function TermsOfService() {
         <header className="mb-10">
           <h1
             className="font-bold text-[36px] sm:text-[44px] leading-tight mb-4"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif" }}
           >
             Terms of Service
           </h1>
@@ -74,9 +74,9 @@ export default function TermsOfService() {
         </header>
 
         <Para>
-          Welcome to Mint Street. These Terms of Service (&ldquo;Terms&rdquo;) govern your
-          access to and use of themintstreet.in and any related services, mobile applications, or
-          publications operated by Mint Street (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+          Welcome to Venture OS. These Terms of Service (&ldquo;Terms&rdquo;) govern your
+          access to and use of theventureos.in and any related services, mobile applications, or
+          publications operated by Venture OS (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
           &ldquo;our&rdquo;). Please read these Terms carefully before using our platform. By accessing
           or using our services in any way, you agree to be bound by these Terms.
         </Para>
@@ -84,7 +84,7 @@ export default function TermsOfService() {
         {/* 1. Acceptance of Terms */}
         <Section title="1. Acceptance of Terms" darkMode={darkMode}>
           <Para>
-            By visiting, reading, or otherwise using Mint Street&rsquo;s website, applications,
+            By visiting, reading, or otherwise using Venture OS&rsquo;s website, applications,
             newsletters, or any other content we publish, you acknowledge that you have read, understood,
             and agree to be bound by these Terms and our Privacy Policy, which is incorporated herein by
             reference.
@@ -104,9 +104,9 @@ export default function TermsOfService() {
         {/* 2. Use of Content */}
         <Section title="2. Use of Content" darkMode={darkMode}>
           <Para>
-            All content published on Mint Street &mdash; including but not limited to articles,
+            All content published on Venture OS &mdash; including but not limited to articles,
             analysis, data visualisations, infographics, photographs, video, audio, and design elements
-            &mdash; is the exclusive intellectual property of Mint Street or its licensors, and
+            &mdash; is the exclusive intellectual property of Venture OS or its licensors, and
             is protected under applicable Indian and international copyright law.
           </Para>
           <Para>
@@ -114,7 +114,7 @@ export default function TermsOfService() {
           </Para>
           <BulletList items={[
             "Read and access content for personal, non-commercial use",
-            "Share article links on social media with proper attribution to Mint Street",
+            "Share article links on social media with proper attribution to Venture OS",
             "Quote brief excerpts (not to exceed 150 words) in commentary or reporting, provided you credit the source and include a link to the original article",
           ]} />
           <Para>
@@ -129,7 +129,7 @@ export default function TermsOfService() {
           ]} />
           <Para>
             For licensing, syndication, or reproduction enquiries, contact us at
-            legal@themintstreet.in.
+            legal@theventureos.in.
           </Para>
         </Section>
 
@@ -159,14 +159,14 @@ export default function TermsOfService() {
         {/* 4. Intellectual Property */}
         <Section title="4. Intellectual Property" darkMode={darkMode}>
           <Para>
-            All intellectual property rights in and to Mint Street &mdash; including our brand
+            All intellectual property rights in and to Venture OS &mdash; including our brand
             name, logo, taglines, design system, editorial content, databases, and software &mdash; are
-            owned by or licensed to Mint Street. Nothing in these Terms grants you any right,
+            owned by or licensed to Venture OS. Nothing in these Terms grants you any right,
             title, or interest in our intellectual property beyond the limited licence to access and use
             our content as expressly set out herein.
           </Para>
           <Para>
-            Mint Street name and logo are registered trademarks. You may not use our trademarks
+            Venture OS name and logo are registered trademarks. You may not use our trademarks
             in any manner that is likely to cause confusion, disparage us, or suggest endorsement without
             our prior written consent.
           </Para>
@@ -180,7 +180,7 @@ export default function TermsOfService() {
         {/* 5. Disclaimer of Warranties */}
         <Section title="5. Disclaimer of Warranties" darkMode={darkMode}>
           <Para>
-            Mint Street provides its services on an &ldquo;as is&rdquo; and &ldquo;as
+            Venture OS provides its services on an &ldquo;as is&rdquo; and &ldquo;as
             available&rdquo; basis. We make no warranties, express or implied, including but not limited
             to warranties of merchantability, fitness for a particular purpose, accuracy, completeness,
             or non-infringement.
@@ -201,7 +201,7 @@ export default function TermsOfService() {
         {/* 6. Limitation of Liability */}
         <Section title="6. Limitation of Liability" darkMode={darkMode}>
           <Para>
-            To the maximum extent permitted by applicable law, Mint Street, its directors,
+            To the maximum extent permitted by applicable law, Venture OS, its directors,
             employees, journalists, contributors, and affiliates shall not be liable for any indirect,
             incidental, special, consequential, or punitive damages, including but not limited to:
           </Para>
@@ -227,7 +227,7 @@ export default function TermsOfService() {
         <Section title="7. Third-Party Links &amp; References" darkMode={darkMode}>
           <Para>
             Our content may contain links to third-party websites, sources, or services. These links are
-            provided for reference and convenience only. Mint Street does not endorse, control,
+            provided for reference and convenience only. Venture OS does not endorse, control,
             or take responsibility for the content, privacy practices, or conduct of any third-party
             websites. Accessing third-party sites is entirely at your own risk.
           </Para>
@@ -239,11 +239,11 @@ export default function TermsOfService() {
             These Terms shall be governed by and construed in accordance with the laws of India, without
             regard to its conflict of law provisions. The courts of Hyderabad, Telangana, India, shall
             have exclusive jurisdiction over any disputes arising out of or in connection with these Terms
-            or your use of Mint Street&rsquo;s services.
+            or your use of Venture OS&rsquo;s services.
           </Para>
           <Para>
             Before initiating any legal proceeding, both parties agree to attempt to resolve the dispute
-            informally by contacting us at legal@themintstreet.in. We will make good-faith efforts
+            informally by contacting us at legal@theventureos.in. We will make good-faith efforts
             to resolve the issue within 30 days of receiving notice.
           </Para>
         </Section>
@@ -251,7 +251,7 @@ export default function TermsOfService() {
         {/* 9. Indemnification */}
         <Section title="9. Indemnification" darkMode={darkMode}>
           <Para>
-            You agree to indemnify, defend, and hold harmless Mint Street and its officers,
+            You agree to indemnify, defend, and hold harmless Venture OS and its officers,
             directors, employees, and agents from and against any claims, liabilities, damages, losses,
             and expenses (including reasonable legal fees) arising out of or in connection with your use
             of our services, your breach of these Terms, or your violation of any third-party rights.
@@ -272,12 +272,12 @@ export default function TermsOfService() {
         {/* Contact */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2
             className="text-[16px] font-bold mb-3"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
           >
             Contact Our Legal Team
           </h2>
@@ -285,14 +285,14 @@ export default function TermsOfService() {
             For questions about these Terms, licensing, or legal matters:
           </p>
           <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
-            Mint Street, Hyderabad, Telangana, India
+            Venture OS, Hyderabad, Telangana, India
           </p>
           <a
-            href="mailto:legal@themintstreet.in"
+            href="mailto:legal@theventureos.in"
             className="text-[14px] font-medium hover:underline"
             style={{ color: BRAND }}
           >
-            legal@themintstreet.in
+            legal@theventureos.in
           </a>
         </section>
 

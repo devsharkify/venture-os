@@ -67,16 +67,16 @@ export default function PrivacyPolicy() {
 
         <Para>
           This is the plain-English version of how (&ldquo;Mint
-          Street,&rdquo; &ldquo;we&rdquo;) handles your data when you read us at mintstreet.in,
+          Street,&rdquo; &ldquo;we&rdquo;) handles your data when you read us at ventureos.in,
           subscribe to our newsletters, or contact the newsroom. We try to collect as little as
           possible and explain the rest honestly. If anything below is unclear, write to
-          legal@mintstreet.in.
+          legal@ventureos.in.
         </Para>
 
         {/* 1. Information We Collect */}
         <Section title="1. Information we collect">
           <Para>
-            Most of Mint Street can be read without an account. When you do interact with us, here
+            Most of Venture OS can be read without an account. When you do interact with us, here
             is what we end up with:
           </Para>
           <BulletList items={[
@@ -147,8 +147,8 @@ export default function PrivacyPolicy() {
           ]} />
           <Para>
             Send any of these requests to{" "}
-            <a href="mailto:legal@mintstreet.in" className="underline text-mint">
-              legal@mintstreet.in
+            <a href="mailto:legal@ventureos.in" className="underline text-mint">
+              legal@ventureos.in
             </a>
             . We respond within 30 days, faster where we can.
           </Para>
@@ -157,9 +157,9 @@ export default function PrivacyPolicy() {
         {/* 6. Children */}
         <Section title="6. Children">
           <Para>
-            Mint Street is written for adults working in or near the startup economy. We do not
+            Venture OS is written for adults working in or near the startup economy. We do not
             knowingly collect data from anyone under 18. If you believe a child has signed up,
-            email legal@mintstreet.in and we will remove the account.
+            email legal@ventureos.in and we will remove the account.
           </Para>
         </Section>
 
@@ -177,8 +177,8 @@ export default function PrivacyPolicy() {
         <Section title="8. Contact">
           <Para>
             Privacy questions, data requests, complaints &mdash; send them all to{" "}
-            <a href="mailto:legal@mintstreet.in" className="underline text-mint">
-              legal@mintstreet.in
+            <a href="mailto:legal@ventureos.in" className="underline text-mint">
+              legal@ventureos.in
             </a>
             . Our registered office is below.
           </Para>
@@ -187,7 +187,7 @@ export default function PrivacyPolicy() {
         {/* Contact card */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2 className="font-display text-[16px] font-bold mb-3 text-ink dark:text-cream">
@@ -201,10 +201,10 @@ export default function PrivacyPolicy() {
             Hyderabad &ndash; 500081, India
           </p>
           <a
-            href="mailto:legal@mintstreet.in"
+            href="mailto:legal@ventureos.in"
             className="text-[14px] font-medium hover:underline text-mint"
           >
-            legal@mintstreet.in
+            legal@ventureos.in
           </a>
         </section>
 

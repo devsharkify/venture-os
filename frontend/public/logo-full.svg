@@ -1,24 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" role="img" aria-label="Mint Street">
-  <title>Mint Street</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" role="img" aria-label="Venture OS">
+  <title>Venture OS</title>
   <!-- Icon mark -->
-  <rect x="0" y="0" width="200" height="200" rx="36" fill="#1A2421"/>
-  <path d="
-    M 30 160
-    L 30 44
-    L 58 44
-    L 100 108
-    L 142 44
-    L 170 44
-    L 170 160
-    L 142 160
-    L 142 88
-    L 100 130
-    L 58 88
-    L 58 160
-    Z
-  " fill="white"/>
-  <rect x="30" y="168" width="140" height="8" rx="4" fill="#F26B1F"/>
+  <rect x="0" y="0" width="200" height="200" rx="36" fill="#2D7AFF"/>
+  <path d="M 40 60 L 100 100 L 40 140" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="110" y="138" width="60" height="14" rx="7" fill="white"/>
   <!-- Wordmark -->
-  <text x="228" y="118" font-family="Fraunces, Georgia, serif" font-size="80" font-weight="900" fill="#1A2421" letter-spacing="-3">Mint Street</text>
-  <text x="230" y="152" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" fill="#F26B1F" letter-spacing="4">STARTUP INTELLIGENCE</text>
+  <text x="228" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="72" font-weight="800" fill="#E2EAF6" letter-spacing="-2">VENTURE</text>
+  <text x="230" y="158" font-family="system-ui,-apple-system,sans-serif" font-size="38" font-weight="400" fill="#7A90A8" letter-spacing="18">OS</text>
 </svg>

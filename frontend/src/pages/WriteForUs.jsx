@@ -57,7 +57,7 @@ export default function WriteForUs() {
         {/* Hero */}
         <header className="mb-10">
           <h1 className="font-display font-bold text-[36px] sm:text-[44px] leading-tight mb-4">
-            Write for Mint Street
+            Write for Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-5 bg-mint" />
           <Para>
@@ -75,10 +75,10 @@ export default function WriteForUs() {
           <Para>
             Pitch a 150-word outline to{" "}
             <a
-              href="mailto:editor@mintstreet.in"
+              href="mailto:editor@ventureos.in"
               className="hover:underline font-semibold text-mint"
             >
-              editor@mintstreet.in
+              editor@ventureos.in
             </a>{" "}
             with the subject line &ldquo;Pitch &mdash; [your topic].&rdquo; We try to reply within
             a week.
@@ -119,7 +119,7 @@ export default function WriteForUs() {
         {/* CTA */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2 className="font-display text-[18px] font-bold mb-3 text-ink dark:text-cream">
@@ -133,10 +133,10 @@ export default function WriteForUs() {
           <p className="text-[14px] text-slate-500 dark:text-slate-400">
             <span className="font-semibold text-slate-700 dark:text-slate-200">Email:</span>{" "}
             <a
-              href="mailto:editor@mintstreet.in"
+              href="mailto:editor@ventureos.in"
               className="hover:underline font-medium text-mint"
             >
-              editor@mintstreet.in
+              editor@ventureos.in
             </a>
           </p>
         </section>

@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
 
-const BRAND = "#F26B1F";
+const BRAND = "#2D7AFF";
 
 function Section({ title, children, darkMode }) {
   return (
     <section className="mb-8">
       <h2
         className="text-[18px] font-bold mt-8 mb-3"
-        style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+        style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
       >
         {title}
       </h2>
@@ -47,12 +47,12 @@ export default function Disclaimer() {
   const navigate = useNavigate();
 
   return (
-    <div className={`min-h-screen ${darkMode ? "bg-[#1C1410] text-slate-100" : "bg-white text-slate-800"}`}>
+    <div className={`min-h-screen ${darkMode ? "bg-[#070B12] text-slate-100" : "bg-[#070B12] text-[#E2EAF6]"}`}>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-[13px] mb-8" aria-label="Breadcrumb">
-          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#F26B1F]"}`}>
+          <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#2D7AFF]"}`}>
             Home
           </Link>
           <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
@@ -63,7 +63,7 @@ export default function Disclaimer() {
         <header className="mb-10">
           <h1
             className="font-bold text-[36px] sm:text-[44px] leading-tight mb-4"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif" }}
           >
             Disclaimer
           </h1>
@@ -75,8 +75,8 @@ export default function Disclaimer() {
 
         <Para>
           Please read this Disclaimer carefully before accessing or relying on any content
-          published by Mint Street (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
-          &ldquo;our&rdquo;) on themintstreet.in or across any of our associated
+          published by Venture OS (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+          &ldquo;our&rdquo;) on theventureos.in or across any of our associated
           channels, newsletters, or social media properties.
         </Para>
 
@@ -84,12 +84,12 @@ export default function Disclaimer() {
         <Section title="1. Editorial Disclaimer" darkMode={darkMode}>
           <Para>
             All articles, features, analyses, opinion pieces, and reports published on The
-            Mint Street are intended solely for general informational and educational
+            Venture OS are intended solely for general informational and educational
             purposes. Our editorial content reflects the views, observations, and independent
             research of our journalists and contributors at the time of publication.
           </Para>
           <Para>
-            Nothing published on Mint Street should be construed as financial advice,
+            Nothing published on Venture OS should be construed as financial advice,
             investment advice, legal advice, tax advice, or any other form of professional
             guidance. If you require advice specific to your circumstances, we strongly encourage
             you to consult a qualified professional in the relevant field.
@@ -97,7 +97,7 @@ export default function Disclaimer() {
           <Para>
             The views expressed in opinion pieces, guest contributions, and columns are those of
             the individual authors and do not necessarily represent the editorial position of The
-            Mint Street as a publication.
+            Venture OS as a publication.
           </Para>
         </Section>
 
@@ -118,7 +118,7 @@ export default function Disclaimer() {
           </Para>
           <Para>
             If you believe any information on our site is factually incorrect, please contact us
-            at hello@themintstreet.in so we can investigate and issue a correction where
+            at hello@theventureos.in so we can investigate and issue a correction where
             warranted.
           </Para>
         </Section>
@@ -126,7 +126,7 @@ export default function Disclaimer() {
         {/* 3. Investment Disclaimer */}
         <Section title="3. Investment Disclaimer" darkMode={darkMode}>
           <Para>
-            Mint Street is a media company, not a registered investment advisor, broker,
+            Venture OS is a media company, not a registered investment advisor, broker,
             or financial planner. Nothing on this website &mdash; including articles covering
             startup funding rounds, valuations, market trends, sector analyses, or investor
             commentary &mdash; constitutes investment advice or a solicitation to buy, sell, or
@@ -136,7 +136,7 @@ export default function Disclaimer() {
             Any coverage of funding rounds, venture capital activity, or public market developments
             is journalistic in nature and is provided for informational purposes only. Readers
             should not make investment decisions based solely or primarily on information published
-            by Mint Street.
+            by Venture OS.
           </Para>
           <Para>
             Investing in startups and early-stage ventures involves significant risk, including the
@@ -150,7 +150,7 @@ export default function Disclaimer() {
             "Assess your personal risk tolerance and financial situation",
           ]} />
           <Para>
-            Mint Street does not hold any SEBI registration and is not regulated as a
+            Venture OS does not hold any SEBI registration and is not regulated as a
             financial services entity. Readers in other jurisdictions should consult the relevant
             regulatory authority in their region.
           </Para>
@@ -164,7 +164,7 @@ export default function Disclaimer() {
             provided as a convenience and for reference purposes only.
           </Para>
           <Para>
-            Mint Street does not endorse, control, or take responsibility for the accuracy,
+            Venture OS does not endorse, control, or take responsibility for the accuracy,
             legality, or content of any third-party website. We are not liable for any loss or damage
             that may result from your use of, or reliance on, content found at external links. Accessing
             third-party websites is entirely at your own risk, and we recommend reviewing the privacy
@@ -175,7 +175,7 @@ export default function Disclaimer() {
         {/* 5. Forward-Looking Statements */}
         <Section title="5. Forward-Looking Statements" darkMode={darkMode}>
           <Para>
-            Certain content on Mint Street, including coverage of startup projections,
+            Certain content on Venture OS, including coverage of startup projections,
             anticipated funding rounds, expansion plans, market forecasts, and industry outlooks,
             may contain forward-looking statements. These statements are based on information
             available to our journalists at the time of writing and reflect expectations or
@@ -198,7 +198,7 @@ export default function Disclaimer() {
         {/* 6. Affiliate Disclosure */}
         <Section title="6. Affiliate Disclosure" darkMode={darkMode}>
           <Para>
-            Mint Street may from time to time feature content that includes affiliate
+            Venture OS may from time to time feature content that includes affiliate
             links &mdash; these are links to products, services, or platforms through which we may
             earn a referral commission if a reader clicks through and makes a purchase or signs up.
           </Para>
@@ -211,15 +211,15 @@ export default function Disclaimer() {
           </Para>
           <Para>
             If you have questions about a specific affiliate partnership or sponsored placement,
-            please contact us at hello@themintstreet.in.
+            please contact us at hello@theventureos.in.
           </Para>
         </Section>
 
         {/* 7. No Professional Relationship */}
         <Section title="7. No Professional Relationship" darkMode={darkMode}>
           <Para>
-            Your use of Mint Street does not create any professional, advisory, or
-            fiduciary relationship between you and Mint Street, its journalists, or its
+            Your use of Venture OS does not create any professional, advisory, or
+            fiduciary relationship between you and Venture OS, its journalists, or its
             contributors. The information we publish should be treated as a starting point for your
             own research &mdash; not as definitive guidance on which you should act without
             independent verification.
@@ -229,7 +229,7 @@ export default function Disclaimer() {
         {/* 8. Limitation of Liability */}
         <Section title="8. Limitation of Liability" darkMode={darkMode}>
           <Para>
-            To the fullest extent permitted by applicable law, Mint Street and its
+            To the fullest extent permitted by applicable law, Venture OS and its
             officers, directors, employees, journalists, and contributors shall not be liable for
             any direct, indirect, incidental, consequential, or special damages arising out of
             or in connection with your use of, or reliance upon, any content published on this
@@ -241,12 +241,12 @@ export default function Disclaimer() {
         {/* Contact */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2
             className="text-[16px] font-bold mb-3"
-            style={{ fontFamily: "'Fraunces', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
+            style={{ fontFamily: "'Syne', 'Georgia', serif", color: darkMode ? "#e2e8f0" : "#1e293b" }}
           >
             Contact Us
           </h2>
@@ -254,14 +254,14 @@ export default function Disclaimer() {
             For editorial corrections, factual disputes, or general inquiries:
           </p>
           <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
-            Mint Street, Hyderabad, Telangana, India
+            Venture OS, Hyderabad, Telangana, India
           </p>
           <a
-            href="mailto:hello@themintstreet.in"
+            href="mailto:hello@theventureos.in"
             className="text-[14px] font-medium hover:underline"
             style={{ color: BRAND }}
           >
-            hello@themintstreet.in
+            hello@theventureos.in
           </a>
         </section>
 

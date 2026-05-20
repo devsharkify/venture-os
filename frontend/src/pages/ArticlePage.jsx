@@ -49,7 +49,7 @@ function SidebarArticleCard({ article, darkMode, onClick }) {
       </div>
       <div className="flex-1 min-w-0">
         {catLabel && (
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#F26B1F] block mb-0.5">{catLabel}</span>
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#2D7AFF] block mb-0.5">{catLabel}</span>
         )}
         <p className={`text-[12px] font-semibold leading-snug line-clamp-2 ${
           darkMode ? "text-slate-200" : "text-slate-800"
@@ -98,11 +98,11 @@ export default function ArticlePage() {
   const title = article ? article.title : "";
   const summary = article ? article.summary : "";
   const category = article ? article.category_label : "";
-  const shareUrl = `https://www.mintstreet.in/news/${id}`;
+  const shareUrl = `https://www.ventureos.in/news/${id}`;
 
   useEffect(() => {
-    if (title) document.title = `${title} - Mint Street`;
-    return () => { document.title = "Mint Street"; };
+    if (title) document.title = `${title} - Venture OS`;
+    return () => { document.title = "Venture OS"; };
   }, [title]);
 
   const getPublishedTime = (article) => {
@@ -198,28 +198,28 @@ export default function ArticlePage() {
   ];
 
   if (loading) return (
-    <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-slate-900" : "bg-white"}`}>
-      <div className="animate-spin w-8 h-8 border-2 border-[#F26B1F] border-t-transparent rounded-full" />
+    <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-slate-900" : "bg-[#070B12]"}`}>
+      <div className="animate-spin w-8 h-8 border-2 border-[#2D7AFF] border-t-transparent rounded-full" />
     </div>
   );
 
   if (!article) return (
-    <div className={`min-h-screen flex flex-col items-center justify-center gap-4 ${darkMode ? "bg-slate-900 text-white" : "bg-white"}`}>
+    <div className={`min-h-screen flex flex-col items-center justify-center gap-4 ${darkMode ? "bg-slate-900 text-white" : "bg-[#070B12]"}`}>
       <p>Article not found</p>
-      <button onClick={() => navigate("/")} className="text-[#F26B1F]">Go Home</button>
+      <button onClick={() => navigate("/")} className="text-[#2D7AFF]">Go Home</button>
     </div>
   );
 
   const publishedTime = getPublishedTime(article);
 
   return (
-    <div data-testid="article-page" className={`min-h-screen pb-10 ${darkMode ? "bg-slate-900" : "bg-white"}`}>
+    <div data-testid="article-page" className={`min-h-screen pb-10 ${darkMode ? "bg-slate-900" : "bg-[#070B12]"}`}>
       {/* Sticky top bar */}
-      <div className={`sticky top-0 z-10 px-4 py-3 flex items-center gap-3 border-b ${darkMode ? "bg-slate-900/95 border-slate-800" : "bg-white/95 border-slate-100"} backdrop-blur`}>
+      <div className={`sticky top-0 z-10 px-4 py-3 flex items-center gap-3 border-b ${darkMode ? "bg-slate-900/95 border-slate-800" : "bg-[#070B12]/95 border-slate-100"} backdrop-blur`}>
         <button data-testid="article-back-btn" onClick={() => navigate(-1)} className={`p-1.5 rounded-lg ${darkMode ? "hover:bg-slate-800" : "hover:bg-slate-100"}`}>
           <ArrowLeft size={20} />
         </button>
-        <span className={`text-sm font-semibold flex-1 truncate ${darkMode ? "text-white" : "text-slate-800"}`}>Mint Street</span>
+        <span className={`text-sm font-semibold flex-1 truncate ${darkMode ? "text-white" : "text-slate-800"}`}>Venture OS</span>
         <button data-testid="article-share-btn" onClick={handleShare} className={`p-1.5 rounded-lg ${darkMode ? "hover:bg-slate-800" : "hover:bg-slate-100"}`}>
           <Share2 size={18} />
         </button>
@@ -230,8 +230,8 @@ export default function ArticlePage() {
 
         {/* ── LEFT SIDEBAR: Related Articles ── */}
         <aside className="hidden lg:block">
-          <div className={`sticky top-20 rounded-xl p-4 ${darkMode ? "bg-[#111827] border border-slate-800" : "bg-white border border-slate-200"}`}>
-            <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#F26B1F] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+          <div className={`sticky top-20 rounded-xl p-4 ${darkMode ? "bg-[#111827] border border-slate-800" : "bg-[#070B12] border border-slate-200"}`}>
+            <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#2D7AFF] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
               Related Stories
             </h3>
             <div className="flex flex-col gap-3">
@@ -253,7 +253,7 @@ export default function ArticlePage() {
         <article className="min-w-0">
           {/* Category + date */}
           <div className="flex items-center gap-2 mb-3">
-            <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-[#F26B1F] text-white rounded">
+            <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-[#2D7AFF] text-white rounded">
               {category}
             </span>
             {publishedTime && (
@@ -341,7 +341,7 @@ export default function ArticlePage() {
           {/* Mobile: show related articles below body */}
           {relatedArticles.length > 0 && (
             <div className="lg:hidden mt-8">
-              <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#F26B1F] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+              <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#2D7AFF] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
                 Related Stories
               </h3>
               <div className="flex flex-col gap-3">
@@ -355,8 +355,8 @@ export default function ArticlePage() {
 
         {/* ── RIGHT SIDEBAR: Latest News ── */}
         <aside className="hidden lg:block">
-          <div className={`sticky top-20 rounded-xl p-4 ${darkMode ? "bg-[#111827] border border-slate-800" : "bg-white border border-slate-200"}`}>
-            <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#F26B1F] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+          <div className={`sticky top-20 rounded-xl p-4 ${darkMode ? "bg-[#111827] border border-slate-800" : "bg-[#070B12] border border-slate-200"}`}>
+            <h3 className={`text-[10px] font-black uppercase tracking-[0.18em] pb-2 mb-3 border-b-2 border-[#2D7AFF] ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
               Latest News
             </h3>
             <div className="flex flex-col gap-3">

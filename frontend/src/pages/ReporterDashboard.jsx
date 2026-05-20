@@ -175,7 +175,7 @@ export default function ReporterDashboard() {
   return (
     <div data-testid="reporter-dashboard-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
       {/* Header */}
-      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
@@ -250,19 +250,19 @@ export default function ReporterDashboard() {
         {/* Stats */}
         {reporter.status === "approved" && (
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
               <p className="text-2xl font-bold text-orange-500">{reporter.news_submitted}</p>
               <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
                 Submitted
               </p>
             </div>
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
               <p className="text-2xl font-bold text-green-600">{reporter.news_approved}</p>
               <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
                 Approved
               </p>
             </div>
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
               <p className="text-2xl font-bold text-purple-600">
                 {reporter.news_submitted > 0 ? Math.round((reporter.news_approved / reporter.news_submitted) * 100) : 0}%
               </p>
@@ -297,7 +297,7 @@ export default function ReporterDashboard() {
         )}
 
         {/* News List */}
-        <div className={`rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
           <div className="p-4 border-b border-slate-200 dark:border-slate-700">
             <h2 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
               Your Submissions
@@ -525,11 +525,11 @@ export default function ReporterDashboard() {
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-lg font-bold">Mint Street</h3>
+                  <h3 className="text-lg font-bold">Venture OS</h3>
                   <p className="text-xs text-orange-200">Citizen Reporter</p>
                 </div>
-                <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                  <img src="/tvr-logo.png" alt="Mint Street" className="w-8 h-8 object-contain" />
+                <div className="w-10 h-10 bg-[#070B12]/20 rounded-lg flex items-center justify-center">
+                  <img src="/tvr-logo.png" alt="Venture OS" className="w-8 h-8 object-contain" />
                 </div>
               </div>
 
@@ -541,7 +541,7 @@ export default function ReporterDashboard() {
                     className="w-20 h-20 rounded-lg object-cover border-2 border-white/30"
                   />
                 ) : (
-                  <div className="w-20 h-20 rounded-lg bg-white/20 flex items-center justify-center border-2 border-white/30">
+                  <div className="w-20 h-20 rounded-lg bg-[#070B12]/20 flex items-center justify-center border-2 border-white/30">
                     <User size={32} />
                   </div>
                 )}
@@ -559,7 +559,7 @@ export default function ReporterDashboard() {
               </div>
 
               <div className="mt-4 pt-4 border-t border-white/20 text-center">
-                <p className="text-xs text-orange-200">This is a digital ID for Mint Street citizen reporters</p>
+                <p className="text-xs text-orange-200">This is a digital ID for Venture OS citizen reporters</p>
               </div>
             </div>
           )}

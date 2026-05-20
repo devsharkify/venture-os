@@ -86,7 +86,7 @@ export default function AnalyticsDashboard() {
   return (
     <div data-testid="analytics-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
       {/* Header */}
-      <div className={`border-b py-4 px-4 sticky top-0 z-20 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+      <div className={`border-b py-4 px-4 sticky top-0 z-20 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
@@ -134,7 +134,7 @@ export default function AnalyticsDashboard() {
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Summary Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-2">
               <Eye size={18} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -146,7 +146,7 @@ export default function AnalyticsDashboard() {
             </p>
           </div>
 
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp size={18} className="text-green-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -158,7 +158,7 @@ export default function AnalyticsDashboard() {
             </p>
           </div>
 
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-2">
               <Calendar size={18} className="text-purple-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -170,7 +170,7 @@ export default function AnalyticsDashboard() {
             </p>
           </div>
 
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-2">
               <Users size={18} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -185,7 +185,7 @@ export default function AnalyticsDashboard() {
 
         {/* Second Row Stats */}
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-1">
               <FileText size={16} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -197,7 +197,7 @@ export default function AnalyticsDashboard() {
             </p>
           </div>
 
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-1">
               <Users size={16} className="text-green-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -209,7 +209,7 @@ export default function AnalyticsDashboard() {
             </p>
           </div>
 
-          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <div className="flex items-center gap-2 mb-1">
               <BarChart3 size={16} className="text-purple-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
@@ -224,7 +224,7 @@ export default function AnalyticsDashboard() {
 
         {/* Daily Trend Chart (Simple bar representation) */}
         {overview?.daily_trend?.length > 0 && (
-          <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <h3 className={`font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
               Views Trend (Last 7 Days)
             </h3>
@@ -253,7 +253,7 @@ export default function AnalyticsDashboard() {
 
         {/* Views by Category */}
         {overview?.views_by_category?.length > 0 && (
-          <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <h3 className={`font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
               Views by Category
             </h3>
@@ -272,7 +272,7 @@ export default function AnalyticsDashboard() {
         )}
 
         {/* Top Articles Table */}
-        <div className={`rounded-xl border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`rounded-xl border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
           <div className="p-4 border-b border-slate-200 dark:border-slate-700">
             <h3 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
               Top Performing Articles

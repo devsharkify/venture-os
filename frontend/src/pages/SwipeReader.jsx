@@ -181,7 +181,7 @@ export function ShortsPlayer() {
                 onClick={() => handleShare(short)}
                 className="flex flex-col items-center gap-1"
               >
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                <div className="w-10 h-10 bg-[#070B12]/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                   <Share2 size={18} className="text-white" />
                 </div>
                 <span className="text-white text-[10px]">Share</span>
@@ -208,7 +208,7 @@ export function ShortsPlayer() {
           data-testid="shorts-up"
           onClick={() => goTo(currentIndex - 1)}
           disabled={currentIndex === 0}
-          className="w-9 h-9 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center disabled:opacity-30"
+          className="w-9 h-9 bg-[#070B12]/15 backdrop-blur-sm rounded-full flex items-center justify-center disabled:opacity-30"
         >
           <ChevronUp size={20} className="text-white" />
         </button>
@@ -216,7 +216,7 @@ export function ShortsPlayer() {
           data-testid="shorts-down"
           onClick={() => goTo(currentIndex + 1)}
           disabled={currentIndex === shorts.length - 1}
-          className="w-9 h-9 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center disabled:opacity-30"
+          className="w-9 h-9 bg-[#070B12]/15 backdrop-blur-sm rounded-full flex items-center justify-center disabled:opacity-30"
         >
           <ChevronDown size={20} className="text-white" />
         </button>
@@ -230,7 +230,7 @@ export function ShortsPlayer() {
             <div
               key={actualIndex}
               className={`rounded-full transition-all ${
-                actualIndex === currentIndex ? "w-1.5 h-4 bg-red-500" : "w-1.5 h-1.5 bg-white/30"
+                actualIndex === currentIndex ? "w-1.5 h-4 bg-red-500" : "w-1.5 h-1.5 bg-[#070B12]/30"
               }`}
             />
           );

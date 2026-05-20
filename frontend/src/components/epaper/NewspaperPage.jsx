@@ -2,16 +2,16 @@ const Masthead = ({ date, fD, slot }) => {
   const edLabel = slot === "morning" ? "Morning Edition" : "Evening Edition";
   return (
     <div style={{ marginBottom: "6px" }}>
-      <div style={{ textAlign: "center", padding: "8px 0 4px", borderBottom: "5px double #F26B1F" }}>
-        <div style={{ fontSize: "48px", fontWeight: 900, letterSpacing: "6px", fontFamily: "'Fraunces', Georgia, serif", color: "#F26B1F", lineHeight: 1, textTransform: "uppercase" }}>MINT STREET</div>
+      <div style={{ textAlign: "center", padding: "8px 0 4px", borderBottom: "5px double #2D7AFF" }}>
+        <div style={{ fontSize: "48px", fontWeight: 900, letterSpacing: "6px", fontFamily: "'Syne', Georgia, serif", color: "#2D7AFF", lineHeight: 1, textTransform: "uppercase" }}>VENTURE OS</div>
         <div style={{ fontSize: "8px", color: "#888", fontFamily: "system-ui", letterSpacing: "3px", textTransform: "uppercase", marginTop: "3px" }}>
           Where new money meets new ideas
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", color: "#555", fontFamily: "system-ui", padding: "4px 0", borderBottom: "2px solid #1a1a1a" }}>
         <span style={{ fontWeight: 600 }}>{fD(date)}</span>
-        <span style={{ letterSpacing: "2px", textTransform: "uppercase", fontSize: "8px", color: "#F26B1F", fontWeight: 700 }}>{edLabel}</span>
-        <span>mintstreet.in</span>
+        <span style={{ letterSpacing: "2px", textTransform: "uppercase", fontSize: "8px", color: "#2D7AFF", fontWeight: 700 }}>{edLabel}</span>
+        <span>ventureos.in</span>
       </div>
     </div>
   );
@@ -21,8 +21,8 @@ const InnerHeader = ({ title, date, pageNum, fD, slot }) => {
   const edTag = slot === "morning" ? "Morning" : "Evening";
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "3px solid #1a1a1a", paddingBottom: "4px", marginBottom: "8px" }}>
-      <span style={{ fontSize: "13px", fontWeight: 900, letterSpacing: "3px", textTransform: "uppercase", color: "#F26B1F" }}>MINT STREET</span>
-      <span style={{ fontSize: "22px", fontWeight: 900, fontFamily: "'Fraunces', Georgia, serif", color: "#111" }}>{title}</span>
+      <span style={{ fontSize: "13px", fontWeight: 900, letterSpacing: "3px", textTransform: "uppercase", color: "#2D7AFF" }}>VENTURE OS</span>
+      <span style={{ fontSize: "22px", fontWeight: 900, fontFamily: "'Syne', Georgia, serif", color: "#111" }}>{title}</span>
       <span style={{ fontSize: "8px", color: "#888", fontFamily: "system-ui" }}>{fD(date)} | {edTag} | Pg {pageNum}</span>
     </div>
   );
@@ -35,7 +35,7 @@ const CmykFooter = ({ pageNum, totalPages, date, fD }) => (
         <div key={i} style={{ width: "6px", height: "6px", borderRadius: "50%", background: c }} />
       ))}
     </div>
-    <div style={{ fontSize: "7px", color: "#999", fontFamily: "system-ui" }}>mintstreet.in &bull; Page {pageNum}/{totalPages} &bull; {fD(date)}</div>
+    <div style={{ fontSize: "7px", color: "#999", fontFamily: "system-ui" }}>ventureos.in &bull; Page {pageNum}/{totalPages} &bull; {fD(date)}</div>
     <div style={{ display: "flex", gap: "3px" }}>
       {["#212121", "#ffeb3b", "#e91e63", "#00bcd4"].map((c, i) => (
         <div key={i} style={{ width: "6px", height: "6px", borderRadius: "50%", background: c }} />
@@ -45,7 +45,7 @@ const CmykFooter = ({ pageNum, totalPages, date, fD }) => (
 );
 
 export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot }) => {
-  const hF = "'Fraunces', Georgia, serif";
+  const hF = "'Syne', Georgia, serif";
   const bF = "'PT Serif', Georgia, serif";
   const fD = (d) => { try { return new Date(d + "T12:00:00").toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); } catch { return d; } };
 

@@ -55,21 +55,21 @@ export default function AboutPage() {
         {/* Hero */}
         <header className="mb-12">
           <h1 className="font-display text-[36px] sm:text-[44px] font-bold leading-tight mb-4">
-            About Mint Street
+            About Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-6 bg-mint" />
           <p className="text-[17px] leading-relaxed font-medium text-slate-600 dark:text-slate-300 max-w-2xl italic">
             Where new money meets new ideas.
           </p>
           <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mt-5">
-            We started Mint Street because Indian startup journalism deserves better than recycled
+            We started Venture OS because Indian startup journalism deserves better than recycled
             press releases and breathless valuation theatre. A generation of founders, operators and
             allocators are quietly remaking the country&rsquo;s balance sheet &mdash; from climate
             hardware in Bengaluru to fintech rails out of Hyderabad &mdash; and they need a publication
             that takes the work seriously without losing its sense of humour about it.
           </p>
           <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mt-3">
-            Mint Street is independent, India-first and obsessively interested in primary sources.
+            Venture OS is independent, India-first and obsessively interested in primary sources.
             We cover the deals, the policy and the people, but we try hardest on the stories you
             cannot find anywhere else.
           </p>
@@ -138,24 +138,24 @@ export default function AboutPage() {
           className={`rounded-xl p-6 mb-10 border ${
             darkMode
               ? "bg-slate-800 border-slate-700"
-              : "bg-white border-slate-200 shadow-sm"
+              : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2 className="font-display text-[16px] font-bold mb-3 text-ink dark:text-cream">
             Get in touch
           </h2>
           <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
-            <span className="font-medium text-slate-700 dark:text-slate-200">Mint Street</span>
+            <span className="font-medium text-slate-700 dark:text-slate-200">Venture OS</span>
             <br />
             Hyderabad &middot; Bengaluru &middot; India
           </p>
           <p className="text-[14px] text-slate-500 dark:text-slate-400 mt-2">
             <span className="font-medium text-slate-700 dark:text-slate-200">Email:</span>{" "}
             <a
-              href="mailto:editor@mintstreet.in"
+              href="mailto:editor@ventureos.in"
               className="hover:underline text-mint"
             >
-              editor@mintstreet.in
+              editor@ventureos.in
             </a>
           </p>
         </section>

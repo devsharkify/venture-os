@@ -384,7 +384,7 @@ export default function AdminPanel() {
   return (
     <div data-testid="admin-panel-page" className="min-h-screen bg-slate-50 pb-8">
       {/* Header */}
-      <div className="bg-white border-b border-slate-200 py-4 px-4 sticky top-14 z-20">
+      <div className="bg-[#070B12] border-b border-slate-200 py-4 px-4 sticky top-14 z-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
@@ -484,7 +484,7 @@ export default function AdminPanel() {
 
           {/* Live TV Management */}
           <TabsContent value="livetv">
-            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
               <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
                 <Tv size={20} className="inline mr-2" /> Live TV Channels
               </h2>
@@ -530,7 +530,7 @@ export default function AdminPanel() {
               ) : (
                 <div className="space-y-3">
                   {liveChannels.map((ch) => (
-                    <div key={ch.id} className={`flex items-center gap-4 p-3 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-white border-slate-200"}`}>
+                    <div key={ch.id} className={`flex items-center gap-4 p-3 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-[#070B12] border-slate-200"}`}>
                       <img
                         src={ch.youtube_id ? `https://img.youtube.com/vi/${ch.youtube_id}/default.jpg` : ""}
                         alt=""
@@ -541,7 +541,7 @@ export default function AdminPanel() {
                         <p className={`text-xs truncate ${darkMode ? "text-slate-400" : "text-slate-500"}`}>{ch.youtube_url}</p>
                       </div>
                       <div className="flex items-center gap-1 px-2 py-0.5 bg-red-600 rounded text-white text-xs font-bold">
-                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" /> LIVE
+                        <div className="w-1.5 h-1.5 bg-[#070B12] rounded-full animate-pulse" /> LIVE
                       </div>
                       <Button
                         variant="ghost"
@@ -561,14 +561,14 @@ export default function AdminPanel() {
 
           {/* Shorts Management */}
           <TabsContent value="shorts">
-            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
               <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
                 <Video size={20} className="inline mr-2" /> YouTube Shorts ({shortsList.length})
               </h2>
 
               <div className={`mb-6 p-4 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-orange-50 border-orange-200"}`}>
                 <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
-                  Add Mint Street Short
+                  Add Venture OS Short
                 </h3>
                 <div className="flex gap-2 flex-wrap">
                   <Input
@@ -600,7 +600,7 @@ export default function AdminPanel() {
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                   {shortsList.map((s) => (
-                    <div key={s.id} className={`rounded-xl overflow-hidden border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-white border-slate-200"}`}>
+                    <div key={s.id} className={`rounded-xl overflow-hidden border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-[#070B12] border-slate-200"}`}>
                       <div className="relative aspect-[9/16]">
                         <img
                           src={`https://img.youtube.com/vi/${s.youtube_id}/hqdefault.jpg`}
@@ -631,7 +631,7 @@ export default function AdminPanel() {
               value={adminSearch}
               onChange={(e) => { setAdminSearch(e.target.value); setPage(0); }}
               placeholder="Search articles by title, summary, source..."
-              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500" : "bg-white border-slate-300 placeholder-slate-400"}`}
+              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500" : "bg-[#070B12] border-slate-300 placeholder-slate-400"}`}
             />
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -651,13 +651,13 @@ export default function AdminPanel() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <p className="text-2xl font-bold text-orange-500">{totalArticles}</p>
             <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
               Total Articles
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <p className="text-2xl font-bold text-green-600">
               {articles.filter(a => a.is_active).length}
             </p>
@@ -665,7 +665,7 @@ export default function AdminPanel() {
               Active
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <p className="text-2xl font-bold text-amber-600">
               {articles.filter(a => a.is_pinned).length}
             </p>
@@ -673,7 +673,7 @@ export default function AdminPanel() {
               Pinned
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
             <p className="text-2xl font-bold text-violet-600">
               {articles.filter(a => a.content_type === "video").length}
             </p>
@@ -709,7 +709,7 @@ export default function AdminPanel() {
         </div>
 
         {/* Articles Table */}
-        <div className="bg-white rounded-lg border border-slate-200 overflow-hidden">
+        <div className="bg-[#070B12] rounded-lg border border-slate-200 overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="bg-slate-50">

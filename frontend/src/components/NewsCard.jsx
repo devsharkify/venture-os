@@ -5,7 +5,7 @@ import { Bookmark, BookmarkCheck, Share2, Pencil } from "lucide-react";
 
 // Source portal URLs for attribution
 const SOURCE_URLS = {
-  "Mint Street": "https://mintstreet.in",
+  "Venture OS": "https://ventureos.in",
   "ET Startups": "https://economictimes.indiatimes.com/small-biz/startups",
   "ET Tech": "https://economictimes.indiatimes.com/tech",
   "ET Markets": "https://economictimes.indiatimes.com/markets",
@@ -60,12 +60,12 @@ export const NewsCard = ({ article, articlesList = [] }) => {
   };
 
   const imageUrl = article.image || DEFAULT_IMAGES[article.category] || DEFAULT_IMAGES["startup"];
-  const sourceName = article.source || "Mint Street";
+  const sourceName = article.source || "Venture OS";
   const sourcePortalUrl = SOURCE_URLS[sourceName] || null;
 
   const handleShare = (e) => {
     e.stopPropagation();
-    const shareUrl = `https://mintstreet.in/news/${article.id}`;
+    const shareUrl = `https://ventureos.in/news/${article.id}`;
     const shareText = `${title}\n\n${(summary || "").slice(0, 180)}...\n\n${shareUrl}`;
     if (navigator.share) {
       navigator.share({ title, text: (summary || "").slice(0, 200), url: shareUrl }).catch(() => {});
@@ -84,29 +84,33 @@ export const NewsCard = ({ article, articlesList = [] }) => {
   return (
     <article
       data-testid={`news-card-${article.id}`}
-      className={`
-        group news-card rounded-sm overflow-hidden border transition-all duration-200
-        hover:border-mint hover:shadow-[0_6px_24px_rgba(15,174,127,0.10)]
-        ${darkMode
-          ? "bg-[#241A14] border-[#3A2A1F]"
-          : "bg-white border-[#E5E0D6]"}
-      `}
+      className="group news-card rounded-xl overflow-hidden border transition-all duration-200"
+      style={{
+        background: "#0D1321",
+        borderColor: "#1C2840",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#2D7AFF";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "#1C2840";
+      }}
     >
       {/* Top stripe - category (left) + source (right) */}
       <div
-        className={`flex items-center justify-between px-3 py-2 border-b ${
-          darkMode ? "border-[#3A2A1F]" : "border-[#EFEAE0]"
-        }`}
+        className="flex items-center justify-between px-3 py-2 border-b"
+        style={{ borderColor: "#131B2A" }}
       >
         <div className="min-w-0 flex-1">
           {article.is_pinned ? (
-            <span className="bg-saffron text-ink text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider">
+            <span
+              className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"
+              style={{ background: "rgba(245,158,11,0.15)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.3)" }}
+            >
               Breaking
             </span>
           ) : categoryLabel ? (
-            <span
-              className="text-[10px] font-bold uppercase tracking-[0.14em] text-mint truncate"
-            >
+            <span className="text-[10px] font-bold uppercase tracking-[0.14em] truncate" style={{ color: "#2D7AFF" }}>
               {categoryLabel}
             </span>
           ) : null}
@@ -115,19 +119,16 @@ export const NewsCard = ({ article, articlesList = [] }) => {
         {sourcePortalUrl ? (
           <button
             onClick={handleSourceClick}
-            className={`text-[10px] font-medium uppercase tracking-wider truncate ml-2 hover:text-mint transition-colors ${
-              darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-            }`}
+            className="text-[10px] font-medium uppercase tracking-wider truncate ml-2 transition-colors"
+            style={{ color: "#4A6280" }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = "#2D7AFF"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6280"; }}
             title={`Visit ${sourceName}`}
           >
             {sourceName}
           </button>
         ) : (
-          <span
-            className={`text-[10px] font-medium uppercase tracking-wider truncate ml-2 ${
-              darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-            }`}
-          >
+          <span className="text-[10px] font-medium uppercase tracking-wider truncate ml-2" style={{ color: "#4A6280" }}>
             {sourceName}
           </span>
         )}
@@ -151,30 +152,23 @@ export const NewsCard = ({ article, articlesList = [] }) => {
       <div className="p-4">
         <h3
           onClick={() => openArticle(article, articlesList)}
-          className={`
-            font-display text-[16px] md:text-[17px] font-bold leading-snug line-clamp-3 mb-2 cursor-pointer
-            ${darkMode ? "text-[#F2EDE2]" : "text-ink"}
-          `}
+          className="font-display text-[16px] md:text-[17px] font-bold leading-snug line-clamp-3 mb-2 cursor-pointer transition-colors group-hover:text-white"
+          style={{ color: "#D0DDF0" }}
         >
           {title}
         </h3>
 
         {summary && (
           <p
-            className={`text-[13px] line-clamp-2 mb-3 leading-relaxed ${
-              darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-            }`}
+            className="text-[13px] line-clamp-2 mb-3 leading-relaxed"
+            style={{ color: "#5A7090" }}
           >
             {summary}
           </p>
         )}
 
         {/* Footer meta */}
-        <div
-          className={`flex items-center justify-between text-[11px] ${
-            darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-          }`}
-        >
+        <div className="flex items-center justify-between text-[11px]" style={{ color: "#4A6280" }}>
           <div className="flex items-center gap-1 min-w-0">
             <span className="truncate">{getShortDate(article)}</span>
             <span className="opacity-50"> · </span>
@@ -185,25 +179,23 @@ export const NewsCard = ({ article, articlesList = [] }) => {
             <button
               onClick={handleShare}
               aria-label="Share"
-              className={`hover:text-mint transition-colors ${
-                darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-              }`}
+              className="transition-colors"
+              style={{ color: "#4A6280" }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "#2D7AFF"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6280"; }}
             >
               <Share2 size={14} />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); saveArticle(article); }}
               aria-label={isSaved ? "Saved" : "Save"}
-              className={`transition-colors ${
-                isSaved
-                  ? "text-mint fill-mint"
-                  : darkMode
-                    ? "text-[#9AA8A2] hover:text-mint"
-                    : "text-ink-muted hover:text-mint"
-              }`}
+              className="transition-colors"
+              style={{ color: isSaved ? "#2D7AFF" : "#4A6280" }}
+              onMouseEnter={(e) => { if (!isSaved) e.currentTarget.style.color = "#2D7AFF"; }}
+              onMouseLeave={(e) => { if (!isSaved) e.currentTarget.style.color = "#4A6280"; }}
             >
               {isSaved ? (
-                <BookmarkCheck size={14} className="text-mint" fill="currentColor" />
+                <BookmarkCheck size={14} fill="currentColor" />
               ) : (
                 <Bookmark size={14} />
               )}
@@ -212,9 +204,10 @@ export const NewsCard = ({ article, articlesList = [] }) => {
               <button
                 onClick={(e) => { e.stopPropagation(); navigate(`/admin?edit=${article.id}`); }}
                 aria-label="Edit"
-                className={`hover:text-mint transition-colors ${
-                  darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-                }`}
+                className="transition-colors"
+                style={{ color: "#4A6280" }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "#2D7AFF"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "#4A6280"; }}
               >
                 <Pencil size={14} />
               </button>

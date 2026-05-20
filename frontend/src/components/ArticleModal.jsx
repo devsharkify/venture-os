@@ -85,8 +85,8 @@ export const ArticleModal = () => {
     } catch { return ""; }
   };
   const handleShare = () => {
-    // Share the branded mintstreet.in URL so the unfurl card shows the Mint Street domain.
-    const shareUrl = `https://www.mintstreet.in/news/${article.id}`;
+    // Share the branded ventureos.in URL so the unfurl card shows the Venture OS domain.
+    const shareUrl = `https://www.ventureos.in/news/${article.id}`;
     const shareText = `${title}\n\n${summary?.slice(0, 180)}...\n\n${shareUrl}`;
     if (navigator.share) {
       navigator.share({ title, text: summary?.slice(0, 200), url: shareUrl }).catch(() => {});
@@ -221,11 +221,11 @@ export const ArticleModal = () => {
             <img src={imageUrl} alt={title} className="w-full aspect-[2.2/1] object-cover select-none pointer-events-none"
               onError={(e) => { e.target.src = defaultImages["national"]; }} />
 
-            {/* Mint Street Logo Watermark - bottom-right */}
+            {/* Venture OS Logo Watermark - bottom-right */}
             <div className="absolute bottom-2 right-2 pointer-events-none select-none">
               <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-black/45 backdrop-blur-sm">
-                <img src="/tvr-logo.png" alt="Mint Street" className="h-4 w-auto" />
-                <span className="text-[10px] font-bold text-white uppercase tracking-wider">Mint Street</span>
+                <img src="/tvr-logo.png" alt="Venture OS" className="h-4 w-auto" />
+                <span className="text-[10px] font-bold text-white uppercase tracking-wider">Venture OS</span>
               </div>
             </div>
 

@@ -91,7 +91,7 @@ function LeadTile({ article }) {
           {summary}
         </p>
         <div className="flex items-center gap-2 text-[12px] text-ink-muted">
-          <span className="font-semibold">By Mint Street</span>
+          <span className="font-semibold">By Venture OS</span>
           <span className="opacity-50">·</span>
           <span>{formatDate(article.published_at || article.created_at)}</span>
           <span className="opacity-50">·</span>
@@ -150,14 +150,14 @@ function MarketsTile({ articles }) {
       <div className="px-4 pt-4 pb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#070B12] opacity-60" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#070B12]" />
           </span>
           <span className="text-[10px] font-black uppercase tracking-[0.18em]">Funding Wire</span>
         </div>
         <button
           onClick={() => navigate("/?cat=funding")}
-          className="text-[10px] font-bold bg-white/15 hover:bg-white/25 transition-colors px-2.5 py-1 rounded-full"
+          className="text-[10px] font-bold bg-[#070B12]/15 hover:bg-[#070B12]/25 transition-colors px-2.5 py-1 rounded-full"
         >
           See all →
         </button>
@@ -171,7 +171,7 @@ function MarketsTile({ articles }) {
           <div key={article.id}>
             <button
               onClick={() => openArticle(article)}
-              className="w-full text-left py-3.5 hover:bg-white/10 -mx-4 px-4 transition-colors group"
+              className="w-full text-left py-3.5 hover:bg-[#070B12]/10 -mx-4 px-4 transition-colors group"
             >
               <div className="flex items-start gap-2.5">
                 <span className="text-[11px] font-black opacity-25 mt-px tabular-nums w-3.5 shrink-0 text-right">{i + 1}</span>
@@ -180,7 +180,7 @@ function MarketsTile({ articles }) {
                     {article.title}
                   </p>
                   <div className="flex items-center gap-1.5 mt-1.5">
-                    <span className="text-[10px] opacity-50 font-medium">{article.source || "Mint Street"}</span>
+                    <span className="text-[10px] opacity-50 font-medium">{article.source || "Venture OS"}</span>
                     {article.category && (
                       <>
                         <span className="text-[9px] opacity-30">·</span>
@@ -326,19 +326,29 @@ export default function NewsFeed() {
   return (
     <div data-testid="news-feed-page" className="min-h-screen pb-20 bg-paper">
       {/* ── Section A: Combined Search + Filter pill bar ── */}
-      <div className="flex items-center gap-2 py-3 px-4 bg-paper sticky top-[100px] z-30 border-b border-[#E5E0D6]">
+      <div
+        className="flex items-center gap-2 py-3 px-4 sticky z-30"
+        style={{ top: "100px", background: "rgba(7,11,18,0.95)", borderBottom: "1px solid #1C2840", backdropFilter: "blur(12px)" }}
+      >
         <div className="relative flex-1 flex items-center">
-          <Search size={15} className="absolute left-4 text-ink-muted pointer-events-none" />
+          <Search size={15} className="absolute left-4 pointer-events-none" style={{ color: "#3A4E66" }} />
           <input
             data-testid="search-input"
             type="text"
             value={searchInput}
             onChange={(e) => handleSearchInput(e.target.value)}
             placeholder="Search articles..."
-            className="w-full pl-10 pr-28 py-2 text-sm rounded-full border border-[#E5E0D6] bg-white text-ink placeholder:text-ink-muted outline-none transition-all focus:border-mint focus:ring-2 focus:ring-mint/20"
+            className="w-full pl-10 pr-28 py-2 text-sm rounded-lg outline-none transition-all"
+            style={{
+              background: "#0D1321",
+              border: "1px solid #1C2840",
+              color: "#E2EAF6",
+            }}
+            onFocus={(e) => { e.target.style.borderColor = "#2D7AFF"; }}
+            onBlur={(e) => { e.target.style.borderColor = "#1C2840"; }}
           />
           {isSearching && !loading && (
-            <span className="absolute right-10 text-[11px] text-mint font-medium pointer-events-none">
+            <span className="absolute right-10 text-[11px] font-medium pointer-events-none" style={{ color: "#2D7AFF" }}>
               {`${searchTotal} result${searchTotal !== 1 ? "s" : ""}`}
             </span>
           )}
@@ -346,7 +356,8 @@ export default function NewsFeed() {
             <button
               data-testid="search-clear-btn"
               onClick={clearSearch}
-              className="absolute right-3 p-0.5 rounded-full text-ink-muted hover:text-ink hover:bg-[#E5E0D6]/60"
+              className="absolute right-3 p-0.5 rounded-full transition-colors"
+              style={{ color: "#3A4E66" }}
             >
               <X size={14} />
             </button>
@@ -356,24 +367,22 @@ export default function NewsFeed() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="text-[12px] font-semibold rounded-full border border-mint/40 bg-white text-ink px-3 py-2 outline-none cursor-pointer hover:border-mint transition"
+          className="text-[12px] font-semibold rounded-lg px-3 py-2 outline-none cursor-pointer transition"
+          style={{ background: "#0D1321", border: "1px solid #1C2840", color: "#7A90A8" }}
         >
           {SORT_OPTIONS.map(opt => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
 
         <select
           value={timeFilter}
           onChange={(e) => setTimeFilter(e.target.value)}
-          className="text-[12px] font-semibold rounded-full border border-mint/40 bg-white text-ink px-3 py-2 outline-none cursor-pointer hover:border-mint transition"
+          className="text-[12px] font-semibold rounded-lg px-3 py-2 outline-none cursor-pointer transition"
+          style={{ background: "#0D1321", border: "1px solid #1C2840", color: "#7A90A8" }}
         >
           {TIME_FILTERS.map(opt => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
       </div>

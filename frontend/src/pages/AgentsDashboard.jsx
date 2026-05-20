@@ -125,15 +125,15 @@ function EditorSection({ lang }) {
       ) : (
         <div className="space-y-3">
           <div className="grid grid-cols-3 gap-2">
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+            <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
               <p className="text-xl font-bold text-orange-500">{report.total_articles}</p>
               <p className="text-[10px] text-slate-500 uppercase tracking-wide">{t.articles}</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+            <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
               <p className="text-xl font-bold text-blue-500">{report.hero_picks?.length || 0}</p>
               <p className="text-[10px] text-slate-500 uppercase tracking-wide">{t.heroStories}</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+            <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
               <p className="text-xl font-bold text-red-500">{report.duplicate_groups?.length || 0}</p>
               <p className="text-[10px] text-slate-500 uppercase tracking-wide">{t.duplicates}</p>
             </div>
@@ -155,7 +155,7 @@ function EditorSection({ lang }) {
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">{t.heroStories}</h3>
               <div className="space-y-1.5">
                 {report.hero_articles.map((a, i) => (
-                  <div key={i} className="flex items-start gap-2 bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+                  <div key={i} className="flex items-start gap-2 bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                     <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center">{i + 1}</span>
                     <div className="min-w-0">
                       <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 line-clamp-2">{a.title}</p>
@@ -207,7 +207,7 @@ function TopicCard({ topic, lang, onViewReport }) {
   };
 
   return (
-    <div data-testid={`topic-${topic.id}`} className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm">
+    <div data-testid={`topic-${topic.id}`} className="bg-[#070B12] dark:bg-slate-800 rounded-xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm">
       <div className="flex items-start justify-between mb-3">
         <div>
           <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">
@@ -297,7 +297,7 @@ function ReportView({ topicId, lang, onBack }) {
         {events.map((e, i) => (
           <div key={e.id || i} className="relative">
             <div className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-indigo-400 border-2 border-white dark:border-slate-900" />
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700 shadow-sm">
+            <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700 shadow-sm">
               <div className="flex items-start gap-2">
                 {e.image && <img src={e.image} alt="" className="w-12 h-12 rounded-md object-cover flex-shrink-0" />}
                 <div className="min-w-0">
@@ -441,19 +441,19 @@ function SeoSection({ lang }) {
               <ScoreRing score={report.seo_score || 0} color="#10b981" label={t.seoScore} />
             </div>
             <div className="flex-1 grid grid-cols-2 gap-2">
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-emerald-500">{report.trending_keywords?.length || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.trendingKeywords}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-amber-500">{report.content_gaps?.length || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.contentGaps}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-blue-500">{report.tweets?.length || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.tweets}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-purple-500">{report.total_articles_analyzed || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.articles}</p>
               </div>
@@ -465,7 +465,7 @@ function SeoSection({ lang }) {
             {tabs.map(tb => (
               <button key={tb.id} onClick={() => setTab(tb.id)}
                 className={`flex-1 text-[11px] font-semibold py-1.5 rounded-md transition-all ${
-                  tab === tb.id ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700"
+                  tab === tb.id ? "bg-[#070B12] dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700"
                 }`}>{tb.label}</button>
             ))}
           </div>
@@ -512,7 +512,7 @@ function SeoSection({ lang }) {
                   <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">SEO Optimization</h3>
                   <div className="space-y-2">
                     {report.meta_suggestions.map((m, i) => (
-                      <div key={i} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+                      <div key={i} className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
                         <p className="text-[10px] text-slate-400 line-through">{m.original_title}</p>
                         <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1">{m.optimized_title}</p>
                         <p className="text-[10px] text-slate-500 mt-1">{m.meta_description}</p>
@@ -535,7 +535,7 @@ function SeoSection({ lang }) {
                   </h3>
                   <div className="space-y-2">
                     {report.tweets.map((tweet, i) => (
-                      <div key={i} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+                      <div key={i} className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
                         <div className="flex items-start justify-between gap-2">
                           <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed flex-1">{tweet}</p>
                           <CopyBtn text={tweet} />
@@ -555,7 +555,7 @@ function SeoSection({ lang }) {
                   </h3>
                   <div className="space-y-2">
                     {report.instagram_captions.map((caption, i) => (
-                      <div key={i} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+                      <div key={i} className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
                         <div className="flex items-start justify-between gap-2">
                           <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed flex-1">{caption}</p>
                           <CopyBtn text={caption} />
@@ -573,7 +573,7 @@ function SeoSection({ lang }) {
                     <Hash className="w-3.5 h-3.5 text-purple-500" /> {t.hashtags}
                   </h3>
                   {report.hashtag_sets.map((set, i) => (
-                    <div key={i} className="mb-2 bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
+                    <div key={i} className="mb-2 bg-[#070B12] dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
                       <div className="flex items-start justify-between">
                         <div className="flex flex-wrap gap-1">
                           {(Array.isArray(set) ? set : [set]).map((tag, ti) => (
@@ -621,7 +621,7 @@ function SeoSection({ lang }) {
             <div className="space-y-3">
               {/* SEO Health Score */}
               {seoStats && (
-                <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+                <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">SEO Health Score</h3>
                     <div className="relative flex items-center justify-center">
@@ -643,7 +643,7 @@ function SeoSection({ lang }) {
 
               {/* SEO Coverage Breakdown */}
               {seoStats && (
-                <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+                <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                   <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Coverage Breakdown</h3>
                   {[
                     { label: "SEO Meta (Title + Desc)", value: seoStats.seo_coverage_percent, count: seoStats.with_seo_meta, color: "#10b981" },
@@ -668,7 +668,7 @@ function SeoSection({ lang }) {
               )}
 
               {/* SEO Infrastructure Status */}
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                 <h3 className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide mb-3">Active SEO Infrastructure</h3>
                 <div className="space-y-2">
                   {[
@@ -786,19 +786,19 @@ function TechSection({ lang }) {
               <ScoreRing score={report.health_score || 0} color={healthColor} label={t.healthScore} />
             </div>
             <div className="flex-1 grid grid-cols-2 gap-2">
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-cyan-500">{lh.avg_response_ms || 0}<span className="text-[10px] font-normal text-slate-400">ms</span></p>
                 <p className="text-[10px] text-slate-500">{t.avgResponse}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-amber-500">{lh.p95_response_ms || 0}<span className="text-[10px] font-normal text-slate-400">ms</span></p>
                 <p className="text-[10px] text-slate-500">{t.p95}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-blue-500">{lh.total_requests || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.requests}</p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+              <div className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                 <p className="text-lg font-bold text-red-500">{lh.error_count || 0}</p>
                 <p className="text-[10px] text-slate-500">{t.errors}</p>
               </div>
@@ -816,7 +816,7 @@ function TechSection({ lang }) {
                   const barWidth = Math.min(100, (ep.avg_ms / (report.top_endpoints[0]?.avg_ms || 1)) * 100);
                   const barColor = ep.avg_ms > 500 ? "bg-red-500" : ep.avg_ms > 200 ? "bg-amber-500" : "bg-emerald-500";
                   return (
-                    <div key={i} className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
+                    <div key={i} className="bg-[#070B12] dark:bg-slate-800 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700">
                       <div className="flex items-center justify-between mb-1">
                         <p className="text-[11px] font-mono text-slate-700 dark:text-slate-300 truncate flex-1">{ep.endpoint}</p>
                         <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400 ml-2">{ep.avg_ms}ms</span>

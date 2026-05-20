@@ -38,9 +38,9 @@ export default function StartupApply() {
   });
 
   const handleShareProgram = () => {
-    // Share the branded mintstreet.in URL so the unfurl card shows the Mint Street domain.
-    const shareUrl = "https://www.mintstreet.in/startup-apply";
-    const shareTitle = "Hyderabad's Next 100 Startups · Mint Street × B The Change";
+    // Share the branded ventureos.in URL so the unfurl card shows the Venture OS domain.
+    const shareUrl = "https://www.ventureos.in/startup-apply";
+    const shareTitle = "Hyderabad's Next 100 Startups · Venture OS × B The Change";
     const shareText = `${shareTitle}\n\nApply for up to ₹10L startup tech support. 100 founders selected. 50% reserved for women.\n\n${shareUrl}`;
     if (navigator.share) {
       navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {});
@@ -129,7 +129,7 @@ export default function StartupApply() {
   if (submitted) {
     return (
       <div data-testid="startup-success-page" className={`min-h-screen flex items-center justify-center px-4 ${darkMode ? "bg-slate-900" : "bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50"}`}>
-        <div className={`max-w-md w-full rounded-3xl p-8 text-center border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-orange-200 shadow-xl"}`}>
+        <div className={`max-w-md w-full rounded-3xl p-8 text-center border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-orange-200 shadow-xl"}`}>
           <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-emerald-500/30">
             <CheckCircle size={40} className="text-white" />
           </div>
@@ -150,9 +150,9 @@ export default function StartupApply() {
   }
 
   return (
-    <div data-testid="startup-apply-page" className={`min-h-screen pb-24 ${darkMode ? "bg-slate-950" : "bg-white"}`}>
+    <div data-testid="startup-apply-page" className={`min-h-screen pb-24 ${darkMode ? "bg-slate-950" : "bg-[#070B12]"}`}>
       {/* ===== Compact Hero Card ===== */}
-      <section className={`px-4 pt-5 pb-2 ${darkMode ? "bg-slate-950" : "bg-white"}`}>
+      <section className={`px-4 pt-5 pb-2 ${darkMode ? "bg-slate-950" : "bg-[#070B12]"}`}>
         <div className="max-w-2xl mx-auto">
           <div className={`relative overflow-hidden rounded-2xl border ${darkMode ? "bg-slate-900 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
             {/* Top orange accent line */}
@@ -172,7 +172,7 @@ export default function StartupApply() {
               {/* Partners badge */}
               <div className="flex items-center gap-2 mb-3">
                 <span className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                  Mint Street
+                  Venture OS
                   <span className="text-orange-500 font-black">×</span>
                   B The Change
                 </span>
@@ -225,7 +225,7 @@ export default function StartupApply() {
                   className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-colors ${
                     darkMode
                       ? "bg-slate-800 text-orange-400 hover:bg-slate-700 border border-slate-700"
-                      : "bg-white text-orange-600 hover:bg-orange-50 border border-orange-200"
+                      : "bg-[#070B12] text-orange-600 hover:bg-orange-50 border border-orange-200"
                   }`}
                 >
                   <Share2 size={11} />
@@ -239,7 +239,7 @@ export default function StartupApply() {
 
       <div className="max-w-2xl mx-auto px-4 pt-6">
         {/* Pitch Card */}
-        <div className={`rounded-2xl p-5 mb-5 border shadow-sm ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`rounded-2xl p-5 mb-5 border shadow-sm ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
           <p className={`text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-slate-900"}`}>
             Have a startup idea but don't know how to build it?
           </p>
@@ -300,7 +300,7 @@ export default function StartupApply() {
         </SectionCard>
 
         {/* Application Form */}
-        <div id="apply-form" className={`rounded-2xl p-5 mb-6 border-2 ${darkMode ? "bg-slate-800 border-orange-500/40" : "bg-white border-orange-300 shadow-lg"}`}>
+        <div id="apply-form" className={`rounded-2xl p-5 mb-6 border-2 ${darkMode ? "bg-slate-800 border-orange-500/40" : "bg-[#070B12] border-orange-300 shadow-lg"}`}>
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white">
               <Rocket size={18} />
@@ -422,7 +422,7 @@ export default function StartupApply() {
             </Button>
 
             <p className={`text-[11px] text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-              By applying, you consent to be contacted by Mint Street &amp; B The Change regarding your application.
+              By applying, you consent to be contacted by Venture OS &amp; B The Change regarding your application.
             </p>
           </form>
         </div>
@@ -442,14 +442,14 @@ const Pill = ({ darkMode, label }) => (
   <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold border ${
     darkMode
       ? "bg-slate-800 border-slate-700 text-orange-300"
-      : "bg-white border-orange-200 text-orange-700"
+      : "bg-[#070B12] border-orange-200 text-orange-700"
   }`}>
     {label}
   </span>
 );
 
 const SectionCard = ({ darkMode, icon, title, iconBg, children }) => (
-  <div className={`rounded-2xl p-5 mb-4 border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"}`}>
+  <div className={`rounded-2xl p-5 mb-4 border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"}`}>
     <div className="flex items-center gap-2.5 mb-3">
       <div className={`w-8 h-8 rounded-lg ${iconBg} text-white flex items-center justify-center flex-shrink-0`}>{icon}</div>
       <h3 className={`font-bold text-base ${darkMode ? "text-white" : "text-slate-900"}`}>{title}</h3>

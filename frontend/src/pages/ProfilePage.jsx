@@ -14,7 +14,7 @@ export default function ProfilePage() {
       {/* Profile Header */}
       <div className="bg-gradient-to-br from-orange-500 to-orange-600 px-6 pt-8 pb-12">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40">
+          <div className="w-16 h-16 rounded-full bg-[#070B12]/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40">
             <User size={28} className="text-white" />
           </div>
           <div>
@@ -29,7 +29,7 @@ export default function ProfilePage() {
               <p className="text-white/70 text-sm">Browsing as guest</p>
             )}
             {isAdmin && (
-              <span className="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 bg-white/20 rounded-full text-white text-xs font-medium">
+              <span className="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 bg-[#070B12]/20 rounded-full text-white text-xs font-medium">
                 <Shield size={12} /> Admin
               </span>
             )}
@@ -40,7 +40,7 @@ export default function ProfilePage() {
       {/* Content */}
       <div className="px-4 -mt-6">
         {/* Settings Card */}
-        <div className={`rounded-2xl shadow-sm border overflow-hidden mb-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`rounded-2xl shadow-sm border overflow-hidden mb-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
           <h2 className={`px-4 pt-4 pb-2 text-xs font-semibold uppercase tracking-wider ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
             Settings
           </h2>
@@ -58,14 +58,14 @@ export default function ProfilePage() {
               </span>
             </div>
             <div className={`w-10 h-6 rounded-full flex items-center px-0.5 transition-colors ${darkMode ? "bg-orange-500" : "bg-slate-300"}`}>
-              <div className={`w-5 h-5 rounded-full bg-white shadow transition-transform ${darkMode ? "translate-x-4" : ""}`} />
+              <div className={`w-5 h-5 rounded-full bg-[#070B12] shadow transition-transform ${darkMode ? "translate-x-4" : ""}`} />
             </div>
           </button>
 
         </div>
 
         {/* Actions Card */}
-        <div className={`rounded-2xl shadow-sm border overflow-hidden mb-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`rounded-2xl shadow-sm border overflow-hidden mb-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
           <h2 className={`px-4 pt-4 pb-2 text-xs font-semibold uppercase tracking-wider ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
             Quick Actions
           </h2>
@@ -144,9 +144,9 @@ export default function ProfilePage() {
 
         {/* App Info */}
         <div className="text-center py-4">
-          <img src="/tvr-logo.png" alt="Mint Street" className="h-8 w-auto mx-auto mb-2 opacity-50" />
+          <img src="/tvr-logo.png" alt="Venture OS" className="h-8 w-auto mx-auto mb-2 opacity-50" />
           <p className={`text-xs ${darkMode ? "text-slate-600" : "text-slate-400"}`}>
-            Mint Street v1.0
+            Venture OS v1.0
           </p>
         </div>
       </div>

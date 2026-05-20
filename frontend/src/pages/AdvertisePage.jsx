@@ -25,7 +25,7 @@ function AdCard({ title, description, icon, darkMode }) {
   return (
     <div
       className={`rounded-xl p-5 border ${
-        darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+        darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
       }`}
     >
       <div className="text-[24px] mb-3">{icon}</div>
@@ -64,7 +64,7 @@ export default function AdvertisePage() {
       icon: "@",
       title: "Newsletter Sponsorship",
       description:
-        "A clearly-marked slot at the top or middle of the Mint Street daily, delivered each morning to founders, investors and operators who actually open their inbox before scrolling X.",
+        "A clearly-marked slot at the top or middle of the Venture OS daily, delivered each morning to founders, investors and operators who actually open their inbox before scrolling X.",
     },
     {
       icon: "#",
@@ -96,22 +96,22 @@ export default function AdvertisePage() {
         {/* Hero */}
         <header className="mb-10">
           <h1 className="font-display font-bold text-[36px] sm:text-[44px] leading-tight mb-4">
-            Advertise on Mint Street
+            Advertise on Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-5 bg-mint" />
           <Para>
-            Mint Street is where new money meets new ideas &mdash; a daily read for the people
+            Venture OS is where new money meets new ideas &mdash; a daily read for the people
             actually making capital allocation, hiring and product decisions inside India&rsquo;s
             startup economy, plus the global investors and operators paying close attention to it.
           </Para>
         </header>
 
-        {/* Why Mint Street */}
-        <Section title="Why Mint Street">
+        {/* Why Venture OS */}
+        <Section title="Why Venture OS">
           <Para>
             Our readership is small on purpose. We are read by founders, partners at venture funds,
             CXOs at growth-stage companies, policy staffers and the journalists who cover them
-            elsewhere. They open the Mint Street daily newsletter for sharp, original analysis on
+            elsewhere. They open the Venture OS daily newsletter for sharp, original analysis on
             funding, M&amp;A and policy &mdash; not for SEO chum.
           </Para>
           <BulletList items={[
@@ -138,7 +138,7 @@ export default function AdvertisePage() {
         {/* CTA */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
           }`}
         >
           <h2 className="font-display text-[18px] font-bold mb-3 text-ink dark:text-cream">
@@ -152,10 +152,10 @@ export default function AdvertisePage() {
           <p className="text-[14px] text-slate-500 dark:text-slate-400">
             <span className="font-semibold text-slate-700 dark:text-slate-200">Email:</span>{" "}
             <a
-              href="mailto:advertise@mintstreet.in"
+              href="mailto:advertise@ventureos.in"
               className="hover:underline font-medium text-mint"
             >
-              advertise@mintstreet.in
+              advertise@ventureos.in
             </a>
           </p>
         </section>

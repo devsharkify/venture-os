@@ -24,7 +24,7 @@ export default function ContactPage() {
   const inputBase = `w-full rounded-lg px-3 py-2 text-[14px] border focus:outline-none focus:ring-2 focus:ring-mint/40 ${
     darkMode
       ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-500"
-      : "bg-white border-slate-200 text-slate-800 placeholder-slate-400"
+      : "bg-[#070B12] border-slate-200 text-slate-800 placeholder-slate-400"
   }`;
 
   return (
@@ -43,7 +43,7 @@ export default function ContactPage() {
         {/* Heading */}
         <header className="mb-10">
           <h1 className="font-display font-bold text-[36px] sm:text-[44px] leading-tight mb-4">
-            Contact Mint Street
+            Contact Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-5 bg-mint" />
           <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
@@ -56,7 +56,7 @@ export default function ContactPage() {
           {/* Left: contact details */}
           <section
             className={`rounded-xl p-6 border ${
-              darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+              darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
             }`}
           >
             <h2 className="font-display text-[16px] font-bold mb-4 text-ink dark:text-cream">
@@ -68,32 +68,32 @@ export default function ContactPage() {
                 <span className="font-semibold text-slate-700 dark:text-slate-200 block">
                   Newsroom
                 </span>
-                <a href="mailto:editor@mintstreet.in" className="hover:underline text-mint">
-                  editor@mintstreet.in
+                <a href="mailto:editor@ventureos.in" className="hover:underline text-mint">
+                  editor@ventureos.in
                 </a>
               </p>
               <p>
                 <span className="font-semibold text-slate-700 dark:text-slate-200 block">
                   Advertising
                 </span>
-                <a href="mailto:advertise@mintstreet.in" className="hover:underline text-mint">
-                  advertise@mintstreet.in
+                <a href="mailto:advertise@ventureos.in" className="hover:underline text-mint">
+                  advertise@ventureos.in
                 </a>
               </p>
               <p>
                 <span className="font-semibold text-slate-700 dark:text-slate-200 block">
                   Careers
                 </span>
-                <a href="mailto:careers@mintstreet.in" className="hover:underline text-mint">
-                  careers@mintstreet.in
+                <a href="mailto:careers@ventureos.in" className="hover:underline text-mint">
+                  careers@ventureos.in
                 </a>
               </p>
               <p>
                 <span className="font-semibold text-slate-700 dark:text-slate-200 block">
                   Legal
                 </span>
-                <a href="mailto:legal@mintstreet.in" className="hover:underline text-mint">
-                  legal@mintstreet.in
+                <a href="mailto:legal@ventureos.in" className="hover:underline text-mint">
+                  legal@ventureos.in
                 </a>
               </p>
               <p>
@@ -122,28 +122,28 @@ export default function ContactPage() {
               </h3>
               <div className="flex flex-wrap gap-3 text-[13px]">
                 <a
-                  href="https://twitter.com/mintstreet_in"
+                  href="https://twitter.com/ventureos_in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline text-mint"
                 >
-                  @mintstreet_in
+                  @ventureos_in
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/mintstreet"
+                  href="https://www.linkedin.com/company/ventureos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline text-mint"
                 >
-                  /company/mintstreet
+                  /company/ventureos
                 </a>
                 <a
-                  href="https://instagram.com/mintstreet.in"
+                  href="https://instagram.com/ventureos.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline text-mint"
                 >
-                  @mintstreet.in
+                  @ventureos.in
                 </a>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function ContactPage() {
           {/* Right: form */}
           <section
             className={`rounded-xl p-6 border ${
-              darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-sm"
+              darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
             }`}
           >
             <h2 className="font-display text-[16px] font-bold mb-4 text-ink dark:text-cream">

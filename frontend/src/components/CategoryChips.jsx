@@ -2,11 +2,11 @@ import { useContext, useRef, useEffect } from "react";
 import { AppContext } from "../App";
 
 export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
-  const { categories, darkMode } = useContext(AppContext);
+  const { categories } = useContext(AppContext);
   const scrollRef = useRef(null);
 
   const categoryList = [
-    { key: "all", en: "All News" },
+    { key: "all", en: "All" },
     ...Object.entries(categories).map(([key, value]) => ({
       key,
       en: value.en
@@ -30,27 +30,21 @@ export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
 
   return (
     <div
-      className={`sticky top-[88px] z-40 ${
-        darkMode ? "bg-[#1C1410]" : "bg-white"
-      }`}
+      className="sticky z-40"
+      style={{
+        top: "88px",
+        background: "rgba(7, 11, 18, 0.95)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #1C2840",
+      }}
       data-testid="category-chips"
     >
-      {/* Mint hairline across the top of the nav strip */}
-      <div className="h-[2px] bg-[#F26B1F]" />
-
-      {/* Scrollable chip row */}
       <div
         ref={scrollRef}
-        className={`
-          flex gap-2 overflow-x-auto hide-scrollbar
-          px-4 md:px-6 py-2.5
-          max-w-screen-xl md:mx-auto
-          chip-scroll-container
-        `}
+        className="flex gap-2 overflow-x-auto hide-scrollbar px-4 md:px-6 py-2.5 max-w-screen-xl md:mx-auto chip-scroll-container"
       >
         {categoryList.map((cat) => {
           const isActive = activeCategory === cat.key;
-          const label = cat.en;
 
           return (
             <button
@@ -58,31 +52,39 @@ export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
               data-category={cat.key}
               data-testid={`category-${cat.key}`}
               onClick={() => onCategoryChange(cat.key)}
-              className={`
-                flex-shrink-0
-                rounded-full px-4 py-1.5
-                transition-colors duration-150
-                whitespace-nowrap
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F26B1F] focus-visible:ring-offset-1
-                text-[12px] font-semibold uppercase tracking-wider
-                ${isActive
-                  ? "bg-[#F26B1F] text-white border border-[#F26B1F]"
-                  : darkMode
-                    ? "bg-[#241A14] border border-[#3A2A1F] text-[#FAF7F1] hover:border-[#F26B1F] hover:text-[#F26B1F]"
-                    : "bg-white border border-[#E5E0D6] text-[#1C1410] hover:border-[#F26B1F] hover:text-[#F26B1F]"
+              className="flex-shrink-0 rounded-lg px-4 py-1.5 transition-all duration-150 whitespace-nowrap focus:outline-none text-[12px] font-semibold uppercase tracking-wider"
+              style={
+                isActive
+                  ? {
+                      background: "linear-gradient(135deg, #2D7AFF 0%, #1A5FCC 100%)",
+                      color: "white",
+                      border: "1px solid #2D7AFF",
+                      boxShadow: "0 2px 8px rgba(45,122,255,0.3)",
+                    }
+                  : {
+                      background: "#0D1321",
+                      border: "1px solid #1C2840",
+                      color: "#7A90A8",
+                    }
+              }
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.borderColor = "#2D7AFF";
+                  e.currentTarget.style.color = "#2D7AFF";
                 }
-              `}
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.borderColor = "#1C2840";
+                  e.currentTarget.style.color = "#7A90A8";
+                }
+              }}
             >
-              {label}
+              {cat.en}
             </button>
           );
         })}
       </div>
-
-      {/* Bottom divider */}
-      <div
-        className={`h-px ${darkMode ? "bg-[#3A2A1F]" : "bg-[#E5E0D6]"}`}
-      />
     </div>
   );
 };
