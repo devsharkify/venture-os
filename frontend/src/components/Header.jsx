@@ -90,11 +90,7 @@ export const Header = () => {
               className="flex items-center gap-2 select-none"
               aria-label="Mint Street home"
             >
-              <span className="w-8 h-8 rounded-md bg-mint flex items-center justify-center shadow-sm">
-                <span className="font-display font-black text-white text-[14px] leading-none">
-                  M$
-                </span>
-              </span>
+              <img src="/logo.svg" alt="Mint Street" className="w-8 h-8 rounded-md shadow-sm" />
               <span
                 className={`font-display font-black text-[22px] leading-none tracking-tight ${
                   darkMode ? "text-paper" : "text-ink"
