@@ -43,7 +43,7 @@ import { AdminStartupApplications } from "../components/AdminStartupApplications
 import { FileUpload } from "../components/FileUpload";
 
 export default function AdminPanel() {
-  const { language, darkMode, categories } = useContext(AppContext);
+  const { darkMode, categories } = useContext(AppContext);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState("news");
@@ -75,9 +75,7 @@ export default function AdminPanel() {
   // Form state
   const [formData, setFormData] = useState({
     title: "",
-    title_te: "",
     summary: "",
-    summary_te: "",
     category: "local",
     image: "",
     video_url: "",
@@ -88,12 +86,11 @@ export default function AdminPanel() {
     source: "",
     published_at: ""
   });
-  
+
   // Scrape URL state
   const [scrapeUrl, setScrapeUrl] = useState("");
   const [scrapeCategory, setScrapeCategory] = useState("local");
   const [doRephrase, setDoRephrase] = useState(true);
-  const [doTranslate, setDoTranslate] = useState(true);
 
   const fetchArticles = useCallback(async () => {
     try {
@@ -212,9 +209,7 @@ export default function AdminPanel() {
   const resetForm = () => {
     setFormData({
       title: "",
-      title_te: "",
       summary: "",
-      summary_te: "",
       category: "local",
       image: "",
       video_url: "",
@@ -237,16 +232,13 @@ export default function AdminPanel() {
       const response = await axios.post(`${API}/news/scrape`, {
         url: scrapeUrl,
         category: scrapeCategory,
-        rephrase: doRephrase,
-        translate_to_telugu: doTranslate
+        rephrase: doRephrase
       });
 
       setFormData(prev => ({
         ...prev,
         title: response.data.title,
-        title_te: response.data.title_te,
         summary: response.data.summary,
-        summary_te: response.data.summary_te,
         image: response.data.image,
         source: response.data.source,
         link: scrapeUrl,
@@ -318,7 +310,7 @@ export default function AdminPanel() {
   };
 
   const handleDeleteArticle = async (articleId) => {
-    if (!window.confirm(language === "en" ? "Are you sure you want to delete this article?" : "మీరు ఈ వార్తను తొలగించాలనుకుంటున్నారా?")) {
+    if (!window.confirm("Are you sure you want to delete this article?")) {
       return;
     }
 
@@ -362,9 +354,7 @@ export default function AdminPanel() {
     setEditingArticle(article);
     setFormData({
       title: article.title || "",
-      title_te: article.title_te || "",
       summary: article.summary || "",
-      summary_te: article.summary_te || "",
       category: article.category || "local",
       image: article.image || "",
       video_url: article.video_url || "",
@@ -407,7 +397,7 @@ export default function AdminPanel() {
               <ArrowLeft size={20} />
             </Button>
             <h1 className="text-xl font-bold text-slate-900">
-              {language === "en" ? "Admin Panel" : "అడ్మిన్ ప్యానెల్"}
+              Admin Panel
             </h1>
           </div>
           <div className="flex items-center gap-2">
@@ -419,7 +409,7 @@ export default function AdminPanel() {
               className="gap-1"
             >
               <BarChart3 size={16} />
-              {language === "en" ? "Analytics" : "అనలిటిక్స్"}
+              Analytics
             </Button>
             <Button
               variant="outline"
@@ -429,7 +419,7 @@ export default function AdminPanel() {
               className="gap-1"
             >
               <Bot size={16} />
-              {language === "en" ? "AI Agents" : "AI ఏజెంట్స్"}
+              AI Agents
             </Button>
             <Button
               variant="ghost"
@@ -449,7 +439,7 @@ export default function AdminPanel() {
               className="bg-orange-500 hover:bg-orange-600"
             >
               <Plus size={16} className="mr-1" />
-              {language === "en" ? "Push News" : "వార్త పుష్ చేయండి"}
+              Push News
             </Button>
           </div>
         </div>
@@ -460,7 +450,7 @@ export default function AdminPanel() {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-6 mb-6">
             <TabsTrigger value="news" data-testid="admin-news-tab">
-              {language === "en" ? "News" : "వార్తలు"}
+              News
             </TabsTrigger>
             <TabsTrigger value="reporters" data-testid="admin-reporters-tab" className="relative">
               <Users size={16} className="mr-1" />
@@ -509,7 +499,7 @@ export default function AdminPanel() {
                     data-testid="channel-name-input"
                     value={newChannel.name}
                     onChange={(e) => setNewChannel(p => ({ ...p, name: e.target.value }))}
-                    placeholder="Channel Name (e.g. TV9 Telugu)"
+                    placeholder="Channel Name (e.g. CNBC TV18)"
                     className={`flex-1 min-w-[200px] ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
                   />
                   <Input
@@ -664,7 +654,7 @@ export default function AdminPanel() {
           <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
             <p className="text-2xl font-bold text-orange-500">{totalArticles}</p>
             <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-              {language === "en" ? "Total Articles" : "మొత్తం వార్తలు"}
+              Total Articles
             </p>
           </div>
           <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
@@ -672,7 +662,7 @@ export default function AdminPanel() {
               {articles.filter(a => a.is_active).length}
             </p>
             <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-              {language === "en" ? "Active" : "యాక్టివ్"}
+              Active
             </p>
           </div>
           <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
@@ -680,7 +670,7 @@ export default function AdminPanel() {
               {articles.filter(a => a.is_pinned).length}
             </p>
             <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-              {language === "en" ? "Pinned" : "పిన్ చేయబడింది"}
+              Pinned
             </p>
           </div>
           <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
@@ -688,7 +678,7 @@ export default function AdminPanel() {
               {articles.filter(a => a.content_type === "video").length}
             </p>
             <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-              {language === "en" ? "Videos" : "వీడియోలు"}
+              Videos
             </p>
           </div>
         </div>
@@ -723,11 +713,11 @@ export default function AdminPanel() {
           <Table>
             <TableHeader>
               <TableRow className="bg-slate-50">
-                <TableHead className="w-[40%]">{language === "en" ? "Title" : "శీర్షిక"}</TableHead>
-                <TableHead>{language === "en" ? "Category" : "వర్గం"}</TableHead>
-                <TableHead>{language === "en" ? "Status" : "స్థితి"}</TableHead>
-                <TableHead>{language === "en" ? "Created" : "సృష్టించబడింది"}</TableHead>
-                <TableHead className="text-right">{language === "en" ? "Actions" : "చర్యలు"}</TableHead>
+                <TableHead className="w-[40%]">Title</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Created</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -846,18 +836,18 @@ export default function AdminPanel() {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid="create-article-modal">
           <DialogHeader>
             <DialogTitle>
-              {language === "en" ? "Push New Article" : "కొత్త వార్త పుష్ చేయండి"}
+              Push New Article
             </DialogTitle>
           </DialogHeader>
 
           <Tabs defaultValue="manual" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="manual" data-testid="tab-manual">
-                {language === "en" ? "Manual Entry" : "మాన్యువల్"}
+                Manual Entry
               </TabsTrigger>
               <TabsTrigger value="scrape" data-testid="tab-scrape">
                 <Globe size={14} className="mr-1" />
-                {language === "en" ? "Scrape URL" : "URL స్క్రాప్"}
+                Scrape URL
               </TabsTrigger>
             </TabsList>
 
@@ -887,23 +877,13 @@ export default function AdminPanel() {
                   </Select>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Switch
-                      id="rephrase"
-                      checked={doRephrase}
-                      onCheckedChange={setDoRephrase}
-                    />
-                    <Label htmlFor="rephrase" className="text-sm">AI Rephrase</Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Switch
-                      id="translate"
-                      checked={doTranslate}
-                      onCheckedChange={setDoTranslate}
-                    />
-                    <Label htmlFor="translate" className="text-sm">Translate to Telugu</Label>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <Switch
+                    id="rephrase"
+                    checked={doRephrase}
+                    onCheckedChange={setDoRephrase}
+                  />
+                  <Label htmlFor="rephrase" className="text-sm">AI Rephrase</Label>
                 </div>
 
                 <Button
@@ -934,50 +914,25 @@ export default function AdminPanel() {
 
           {/* Article Form */}
           <div className="space-y-4 mt-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Title (English) *</Label>
-                <Input
-                  data-testid="title-input"
-                  value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                  placeholder="Enter title"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Title (Telugu)</Label>
-                <Input
-                  data-testid="title-te-input"
-                  value={formData.title_te}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title_te: e.target.value }))}
-                  placeholder="తెలుగులో శీర్షిక"
-                  className="font-telugu"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label>Title *</Label>
+              <Input
+                data-testid="title-input"
+                value={formData.title}
+                onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                placeholder="Enter title"
+              />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Summary (English) *</Label>
-                <Textarea
-                  data-testid="summary-input"
-                  value={formData.summary}
-                  onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
-                  placeholder="Enter summary"
-                  rows={4}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Summary (Telugu)</Label>
-                <Textarea
-                  data-testid="summary-te-input"
-                  value={formData.summary_te}
-                  onChange={(e) => setFormData(prev => ({ ...prev, summary_te: e.target.value }))}
-                  placeholder="తెలుగులో సారాంశం"
-                  rows={4}
-                  className="font-telugu"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label>Summary *</Label>
+              <Textarea
+                data-testid="summary-input"
+                value={formData.summary}
+                onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
+                placeholder="Enter summary"
+                rows={4}
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -1016,15 +971,15 @@ export default function AdminPanel() {
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label>{language === "en" ? "News Image" : "వార్త ఇమేజ్"}</Label>
-                <FileUpload 
+                <Label>News Image</Label>
+                <FileUpload
                   type="image"
                   currentUrl={formData.image}
                   onUpload={(url) => setFormData(prev => ({ ...prev, image: url }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label>{language === "en" ? "News Video (Upload or YouTube URL)" : "వార్త వీడియో"}</Label>
+                <Label>News Video (Upload or YouTube URL)</Label>
                 {formData.content_type === "video" && (
                   <FileUpload 
                     type="video"
@@ -1065,7 +1020,7 @@ export default function AdminPanel() {
             </div>
 
             <div className="space-y-2">
-              <Label>{language === "en" ? "Publish Date & Time (leave empty for now)" : "ప్రచురణ తేదీ & సమయం"}</Label>
+              <Label>Publish Date & Time (leave empty for now)</Label>
               <Input
                 data-testid="published-at-input"
                 type="datetime-local"
@@ -1116,52 +1071,29 @@ export default function AdminPanel() {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid="edit-article-modal">
           <DialogHeader>
             <DialogTitle>
-              {language === "en" ? "Edit Article" : "వార్తను సవరించండి"}
+              Edit Article
             </DialogTitle>
           </DialogHeader>
 
           {/* Same form as create */}
           <div className="space-y-4 mt-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Title (English) *</Label>
-                <Input
-                  data-testid="edit-title-input"
-                  value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Title (Telugu)</Label>
-                <Input
-                  data-testid="edit-title-te-input"
-                  value={formData.title_te}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title_te: e.target.value }))}
-                  className="font-telugu"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label>Title *</Label>
+              <Input
+                data-testid="edit-title-input"
+                value={formData.title}
+                onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+              />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Summary (English) *</Label>
-                <Textarea
-                  data-testid="edit-summary-input"
-                  value={formData.summary}
-                  onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
-                  rows={4}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Summary (Telugu)</Label>
-                <Textarea
-                  data-testid="edit-summary-te-input"
-                  value={formData.summary_te}
-                  onChange={(e) => setFormData(prev => ({ ...prev, summary_te: e.target.value }))}
-                  rows={4}
-                  className="font-telugu"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label>Summary *</Label>
+              <Textarea
+                data-testid="edit-summary-input"
+                value={formData.summary}
+                onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
+                rows={4}
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">

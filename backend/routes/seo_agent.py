@@ -34,7 +34,7 @@ async def run_seo_analysis():
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
     articles = await db.news.find(
         {"is_active": True, "created_at": {"$gte": cutoff}},
-        {"_id": 0, "title": 1, "summary": 1, "category": 1, "source": 1, "id": 1, "title_te": 1}
+        {"_id": 0, "title": 1, "summary": 1, "category": 1, "source": 1, "id": 1}
     ).sort("created_at", -1).to_list(30)
 
     if not articles:

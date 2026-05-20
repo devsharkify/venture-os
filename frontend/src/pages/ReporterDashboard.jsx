@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API, AppContext } from "../App";
 import { toast } from "sonner";
-import { 
-  User, Clock, CheckCircle, XCircle, AlertCircle, 
+import {
+  User, Clock, CheckCircle, XCircle, AlertCircle,
   Plus, FileText, Video, Mic, Download, Loader2,
   ArrowLeft, RefreshCw
 } from "lucide-react";
@@ -34,9 +34,9 @@ import { FileUpload } from "../components/FileUpload";
 
 export default function ReporterDashboard() {
   const { reporterId } = useParams();
-  const { language, darkMode, categories } = useContext(AppContext);
+  const { darkMode, categories } = useContext(AppContext);
   const navigate = useNavigate();
-  
+
   const [reporter, setReporter] = useState(null);
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,12 +44,10 @@ export default function ReporterDashboard() {
   const [showIdCard, setShowIdCard] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [idCardData, setIdCardData] = useState(null);
-  
+
   const [newsForm, setNewsForm] = useState({
     title: "",
-    title_te: "",
     summary: "",
-    summary_te: "",
     category: "local",
     news_type: "text",
     image: "",
@@ -98,7 +96,7 @@ export default function ReporterDashboard() {
 
   const handleSubmitNews = async () => {
     if (!newsForm.title || !newsForm.summary) {
-      toast.error(language === "en" ? "Title and summary are required" : "శీర్షిక మరియు సారాంశం అవసరం");
+      toast.error("Title and summary are required");
       return;
     }
 
@@ -110,7 +108,7 @@ export default function ReporterDashboard() {
         submitData.news_type = "reporter_video";
       }
       await axios.post(`${API}/reporter/${reporterId}/submit-news`, submitData);
-      toast.success(language === "en" ? "News submitted for review!" : "వార్త సమీక్ష కోసం సమర్పించబడింది!");
+      toast.success("News submitted for review!");
       setShowSubmitModal(false);
       resetNewsForm();
       fetchNews();
@@ -124,9 +122,7 @@ export default function ReporterDashboard() {
   const resetNewsForm = () => {
     setNewsForm({
       title: "",
-      title_te: "",
       summary: "",
-      summary_te: "",
       category: "local",
       news_type: "text",
       image: "",
@@ -227,14 +223,12 @@ export default function ReporterDashboard() {
           <div className="mb-6 p-4 rounded-lg bg-yellow-100 border border-yellow-300">
             <div className="flex items-center gap-2">
               <AlertCircle size={20} className="text-yellow-600" />
-              <p className={`font-medium text-yellow-800 ${language === "te" ? "font-telugu" : ""}`}>
-                {language === "en" ? "Your registration is pending approval" : "మీ రిజిస్ట్రేషన్ ఆమోదం కోసం పెండింగ్‌లో ఉంది"}
+              <p className="font-medium text-yellow-800">
+                Your registration is pending approval
               </p>
             </div>
-            <p className={`text-sm text-yellow-700 mt-1 ${language === "te" ? "font-telugu" : ""}`}>
-              {language === "en" 
-                ? "You'll be able to submit news once approved by admin."
-                : "అడ్మిన్ ఆమోదించిన తర్వాత మీరు వార్తలను సమర్పించగలరు."}
+            <p className="text-sm text-yellow-700 mt-1">
+              You'll be able to submit news once approved by admin.
             </p>
           </div>
         )}
@@ -244,7 +238,7 @@ export default function ReporterDashboard() {
             <div className="flex items-center gap-2">
               <XCircle size={20} className="text-red-600" />
               <p className="font-medium text-red-800">
-                {language === "en" ? "Your registration was rejected" : "మీ రిజిస్ట్రేషన్ తిరస్కరించబడింది"}
+                Your registration was rejected
               </p>
             </div>
             {reporter.rejection_reason && (
@@ -259,13 +253,13 @@ export default function ReporterDashboard() {
             <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
               <p className="text-2xl font-bold text-orange-500">{reporter.news_submitted}</p>
               <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-                {language === "en" ? "Submitted" : "సమర్పించిన"}
+                Submitted
               </p>
             </div>
             <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
               <p className="text-2xl font-bold text-green-600">{reporter.news_approved}</p>
               <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-                {language === "en" ? "Approved" : "ఆమోదించిన"}
+                Approved
               </p>
             </div>
             <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
@@ -273,7 +267,7 @@ export default function ReporterDashboard() {
                 {reporter.news_submitted > 0 ? Math.round((reporter.news_approved / reporter.news_submitted) * 100) : 0}%
               </p>
               <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-                {language === "en" ? "Success Rate" : "విజయ రేటు"}
+                Success Rate
               </p>
             </div>
           </div>
@@ -288,7 +282,7 @@ export default function ReporterDashboard() {
               className="bg-orange-500 hover:bg-orange-600 flex-1"
             >
               <Plus size={18} className="mr-2" />
-              {language === "en" ? "Submit News" : "వార్త సమర్పించండి"}
+              Submit News
             </Button>
             <Button
               data-testid="download-id-btn"
@@ -297,7 +291,7 @@ export default function ReporterDashboard() {
               className={darkMode ? "border-slate-600 text-slate-200" : ""}
             >
               <Download size={18} className="mr-2" />
-              {language === "en" ? "ID Card" : "ID కార్డ్"}
+              ID Card
             </Button>
           </div>
         )}
@@ -306,15 +300,15 @@ export default function ReporterDashboard() {
         <div className={`rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
           <div className="p-4 border-b border-slate-200 dark:border-slate-700">
             <h2 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
-              {language === "en" ? "Your Submissions" : "మీ సమర్పణలు"}
+              Your Submissions
             </h2>
           </div>
-          
+
           {news.length === 0 ? (
             <div className="p-8 text-center">
               <FileText size={40} className={`mx-auto mb-3 ${darkMode ? "text-slate-600" : "text-slate-400"}`} />
               <p className={darkMode ? "text-slate-400" : "text-slate-500"}>
-                {language === "en" ? "No news submitted yet" : "ఇంకా వార్తలు సమర్పించలేదు"}
+                No news submitted yet
               </p>
             </div>
           ) : (
@@ -329,14 +323,14 @@ export default function ReporterDashboard() {
                           {item.news_type === "text" ? "Text" : item.news_type === "video_url" ? "Video URL" : "Reporter Video"}
                         </span>
                         <span className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-                          • {getTimeAgo(item.created_at)}
+                          &bull; {getTimeAgo(item.created_at)}
                         </span>
                       </div>
                       <h3 className={`font-medium line-clamp-1 ${darkMode ? "text-white" : "text-slate-900"}`}>
-                        {language === "en" ? item.title : (item.title_te || item.title)}
+                        {item.title}
                       </h3>
                       <p className={`text-sm line-clamp-2 mt-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-                        {language === "en" ? item.summary : (item.summary_te || item.summary)}
+                        {item.summary}
                       </p>
                     </div>
                     {getStatusBadge(item.status)}
@@ -356,7 +350,7 @@ export default function ReporterDashboard() {
         <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto ${darkMode ? "bg-slate-800 border-slate-700" : ""}`}>
           <DialogHeader>
             <DialogTitle className={darkMode ? "text-white" : ""}>
-              {language === "en" ? "Submit News" : "వార్త సమర్పించండి"}
+              Submit News
             </DialogTitle>
           </DialogHeader>
 
@@ -364,79 +358,54 @@ export default function ReporterDashboard() {
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="text" data-testid="news-type-text">
                 <FileText size={14} className="mr-1" />
-                {language === "en" ? "Text" : "టెక్స్ట్"}
+                Text
               </TabsTrigger>
               <TabsTrigger value="video_url" data-testid="news-type-video">
                 <Video size={14} className="mr-1" />
-                {language === "en" ? "Video" : "వీడియో"}
+                Video
               </TabsTrigger>
               <TabsTrigger value="reporter_video" data-testid="news-type-reporter">
                 <Mic size={14} className="mr-1" />
-                {language === "en" ? "Upload" : "అప్‌లోడ్"}
+                Upload
               </TabsTrigger>
               <TabsTrigger value="record_video" data-testid="news-type-record">
                 <Video size={14} className="mr-1" />
-                {language === "en" ? "Record" : "రికార్డ్"}
+                Record
               </TabsTrigger>
             </TabsList>
 
             <div className="mt-4 space-y-4">
               {/* Title */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Title (English) *</Label>
-                  <Input
-                    data-testid="news-title-input"
-                    value={newsForm.title}
-                    onChange={(e) => setNewsForm(prev => ({ ...prev, title: e.target.value }))}
-                    placeholder="News headline"
-                    className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Title (Telugu)</Label>
-                  <Input
-                    data-testid="news-title-te-input"
-                    value={newsForm.title_te}
-                    onChange={(e) => setNewsForm(prev => ({ ...prev, title_te: e.target.value }))}
-                    placeholder="తెలుగులో శీర్షిక"
-                    className={`font-telugu ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label className={darkMode ? "text-slate-200" : ""}>Title *</Label>
+                <Input
+                  data-testid="news-title-input"
+                  value={newsForm.title}
+                  onChange={(e) => setNewsForm(prev => ({ ...prev, title: e.target.value }))}
+                  placeholder="News headline"
+                  className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                />
               </div>
 
               {/* Summary */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Summary (English) *</Label>
-                  <Textarea
-                    data-testid="news-summary-input"
-                    value={newsForm.summary}
-                    onChange={(e) => setNewsForm(prev => ({ ...prev, summary: e.target.value }))}
-                    placeholder="News details"
-                    rows={4}
-                    className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Summary (Telugu)</Label>
-                  <Textarea
-                    data-testid="news-summary-te-input"
-                    value={newsForm.summary_te}
-                    onChange={(e) => setNewsForm(prev => ({ ...prev, summary_te: e.target.value }))}
-                    placeholder="తెలుగులో వివరాలు"
-                    rows={4}
-                    className={`font-telugu ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label className={darkMode ? "text-slate-200" : ""}>Summary *</Label>
+                <Textarea
+                  data-testid="news-summary-input"
+                  value={newsForm.summary}
+                  onChange={(e) => setNewsForm(prev => ({ ...prev, summary: e.target.value }))}
+                  placeholder="News details"
+                  rows={4}
+                  className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                />
               </div>
 
               {/* Category & Location */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className={darkMode ? "text-slate-200" : ""}>Category</Label>
-                  <Select 
-                    value={newsForm.category} 
+                  <Select
+                    value={newsForm.category}
                     onValueChange={(v) => setNewsForm(prev => ({ ...prev, category: v }))}
                   >
                     <SelectTrigger className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}>
@@ -464,9 +433,9 @@ export default function ReporterDashboard() {
               {/* Image Upload */}
               <div className="space-y-2">
                 <Label className={darkMode ? "text-slate-200" : ""}>
-                  {language === "en" ? "News Image" : "వార్త ఇమేజ్"}
+                  News Image
                 </Label>
-                <FileUpload 
+                <FileUpload
                   type="image"
                   currentUrl={newsForm.image}
                   onUpload={(url) => setNewsForm(prev => ({ ...prev, image: url }))}
@@ -491,17 +460,15 @@ export default function ReporterDashboard() {
               <TabsContent value="reporter_video" className="mt-0">
                 <div className="space-y-2">
                   <Label className={darkMode ? "text-slate-200" : ""}>
-                    {language === "en" ? "Upload Your Video *" : "మీ వీడియో అప్‌లోడ్ చేయండి *"}
+                    Upload Your Video *
                   </Label>
-                  <FileUpload 
+                  <FileUpload
                     type="video"
                     currentUrl={newsForm.reporter_video_url}
                     onUpload={(url) => setNewsForm(prev => ({ ...prev, reporter_video_url: url }))}
                   />
                   <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                    {language === "en" 
-                      ? "Record yourself reporting the news (like a news anchor)"
-                      : "వార్తలను రిపోర్ట్ చేస్తూ మిమ్మల్ని రికార్డ్ చేయండి (న్యూస్ యాంకర్ లాగా)"}
+                    Record yourself reporting the news (like a news anchor)
                   </p>
                 </div>
               </TabsContent>
@@ -510,7 +477,7 @@ export default function ReporterDashboard() {
               <TabsContent value="record_video" className="mt-0">
                 <div className="space-y-2">
                   <Label className={darkMode ? "text-slate-200" : ""}>
-                    {language === "en" ? "Record Video from Camera" : "కెమెరా నుండి వీడియో రికార్డ్ చేయండి"}
+                    Record Video from Camera
                   </Label>
                   <VideoRecorder onUpload={(url) => setNewsForm(prev => ({ ...prev, reporter_video_url: url }))} />
                 </div>
@@ -550,9 +517,9 @@ export default function ReporterDashboard() {
           <DialogHeader>
             <DialogTitle>Digital ID Card</DialogTitle>
           </DialogHeader>
-          
+
           {idCardData && (
-            <div 
+            <div
               data-testid="reporter-id-card"
               className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl p-6 text-white"
             >
@@ -568,8 +535,8 @@ export default function ReporterDashboard() {
 
               <div className="flex gap-4 mb-4">
                 {idCardData.photo ? (
-                  <img 
-                    src={idCardData.photo} 
+                  <img
+                    src={idCardData.photo}
                     alt={idCardData.name}
                     className="w-20 h-20 rounded-lg object-cover border-2 border-white/30"
                   />
@@ -598,7 +565,7 @@ export default function ReporterDashboard() {
           )}
 
           <DialogFooter>
-            <Button 
+            <Button
               onClick={() => {
                 // Create downloadable image (in production would use canvas/html2canvas)
                 toast.success("ID Card saved! Take a screenshot to download.");

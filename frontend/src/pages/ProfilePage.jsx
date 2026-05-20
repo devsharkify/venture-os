@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
-import { User, Phone, Moon, Sun, Globe, LogOut, Shield, UserPlus, ChevronRight } from "lucide-react";
+import { User, Phone, Moon, Sun, LogOut, Shield, UserPlus, ChevronRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 
 export default function ProfilePage() {
-  const { darkMode, toggleDarkMode, language, toggleLanguage, user, isLoggedIn, isAdmin, handleLogout } = useContext(AppContext);
+  const { darkMode, toggleDarkMode, user, isLoggedIn, isAdmin, handleLogout } = useContext(AppContext);
   const navigate = useNavigate();
   const phone = localStorage.getItem("userPhone");
 
@@ -62,20 +62,6 @@ export default function ProfilePage() {
             </div>
           </button>
 
-          {/* Language */}
-          <button
-            data-testid="toggle-language-profile"
-            onClick={toggleLanguage}
-            className={`w-full px-4 py-3.5 flex items-center justify-between ${darkMode ? "hover:bg-slate-700" : "hover:bg-slate-50"} transition-colors`}
-          >
-            <div className="flex items-center gap-3">
-              <Globe size={20} className="text-orange-500" />
-              <span className={`font-medium ${darkMode ? "text-white" : "text-slate-800"}`}>Language</span>
-            </div>
-            <span className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-              {language === "en" ? "English" : "తెలుగు"}
-            </span>
-          </button>
         </div>
 
         {/* Actions Card */}

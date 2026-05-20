@@ -1,11 +1,9 @@
-import { useState, useEffect, useContext, useCallback, useRef } from "react";
-import { AppContext } from "../App";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronUp, ChevronDown, Share2, Youtube, RefreshCw } from "lucide-react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
 export function ShortsPlayer() {
-  const { language } = useContext(AppContext);
   const [shorts, setShorts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -109,7 +107,7 @@ export function ShortsPlayer() {
       <div className="fixed inset-0 bg-black flex items-center justify-center z-40" style={{ top: "56px", bottom: "64px" }}>
         <div className="text-center">
           <div className="w-10 h-10 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-white/50 text-sm mt-4">{language === "en" ? "Loading Shorts..." : "షార్ట్స్ లోడ్ అవుతోంది..."}</p>
+          <p className="text-white/50 text-sm mt-4">Loading Shorts...</p>
         </div>
       </div>
     );
@@ -120,7 +118,7 @@ export function ShortsPlayer() {
       <div className="fixed inset-0 bg-black flex items-center justify-center z-40" style={{ top: "56px", bottom: "64px" }}>
         <div className="text-center">
           <Youtube size={48} className="text-white/30 mx-auto mb-3" />
-          <p className="text-white/60">{language === "en" ? "No shorts available" : "షార్ట్స్ అందుబాటులో లేవు"}</p>
+          <p className="text-white/60">No shorts available</p>
           <button onClick={fetchShorts} className="mt-4 flex items-center gap-2 text-red-500 text-sm mx-auto">
             <RefreshCw size={14} /> Retry
           </button>

@@ -39,12 +39,12 @@ async def editor_analyze_articles(articles, lang="en"):
     # Build concise article list (limit to 30 articles for speed)
     article_list = ""
     for i, a in enumerate(articles[:30]):
-        title = a.get("title", "") if lang == "en" else (a.get("title_te", "") or a.get("title", ""))
+        title = a.get("title", "")
         source = a.get("source", "unknown")
         cat = a.get("category", "")
         article_list += f"[{i}] {source} | {cat} | {title[:100]}\n"
 
-    lang_name = "Telugu" if lang == "te" else "English"
+    lang_name = "English"
 
     # Step 1: Score and rank articles + detect duplicates
     system = """You are an expert newspaper editor for an Indian news platform.
@@ -72,8 +72,8 @@ Return ONLY valid JSON, no markdown."""
     for idx in top_indices:
         if idx < len(articles):
             a = articles[idx]
-            title = a.get("title", "") if lang == "en" else (a.get("title_te", "") or a.get("title", ""))
-            summary = a.get("summary", "") if lang == "en" else (a.get("summary_te", "") or a.get("summary", ""))
+            title = a.get("title", "")
+            summary = a.get("summary", "")
             top_articles += f"- {title}: {summary[:300]}\n"
 
     editorial_system = f"""You are a senior newspaper editor. Write a brief editorial summary (150-200 words) 
@@ -87,23 +87,11 @@ Output ONLY the editorial text."""
         logger.warning(f"Editorial generation failed: {e}")
         editorial = ""
 
-    # Generate Telugu editorial too if English
-    editorial_te = ""
-    if lang == "en":
-        try:
-            editorial_te = await _llm_call(
-                editorial_system.replace("English", "Telugu"),
-                f"Today's top stories:\n{top_articles}\n\nWrite in Telugu only."
-            )
-        except Exception:
-            pass
-
     return {
         "ranked": analysis.get("ranked", []),
         "duplicates": analysis.get("duplicates", []),
         "hero_picks": analysis.get("hero_picks", []),
-        "editorial_en": editorial if lang == "en" else "",
-        "editorial_te": editorial_te or (editorial if lang == "te" else ""),
+        "editorial_en": editorial,
     }
 
 
@@ -188,30 +176,33 @@ async def get_editor_reports():
 
 DEFAULT_TOPICS = [
     {
-        "id": "telangana-politics",
-        "name_en": "Telangana Politics",
-        "name_te": "తెలంగాణ రాజకీయాలు",
-        "keywords": ["telangana", "kcr", "ktr", "brs", "trs", "revanth reddy", "congress telangana",
-                      "hyderabad politics", "cm revanth", "kavitha", "harish rao", "etela rajender",
-                      "తెలంగాణ", "కేసీఆర్", "రేవంత్ రెడ్డి", "కాంగ్రెస్"],
+        "id": "funding-watch",
+        "name_en": "Funding Watch",
+        "keywords": ["series a", "series b", "series c", "series d", "series e", "series f", "seed round",
+                     "pre-seed", "raises", "raised", "funding round", "valuation", "led by", "backed by",
+                     "venture capital", "crore in funding", "million in funding"],
         "active": True
     },
     {
-        "id": "india-politics",
-        "name_en": "India Politics",
-        "name_te": "భారత రాజకీయాలు",
-        "keywords": ["modi", "rahul gandhi", "parliament", "lok sabha", "rajya sabha", "bjp congress",
-                      "election", "amit shah", "nda", "india alliance", "opposition",
-                      "మోదీ", "రాహుల్", "పార్లమెంట్", "ఎన్నిక"],
+        "id": "ipo-tracker",
+        "name_en": "IPO & Markets Tracker",
+        "keywords": ["ipo", "drhp", "rhp", "sebi", "listing", "anchor investors", "issue price",
+                     "public issue", "stock listing", "ipo filing", "mainboard listing"],
         "active": True
     },
     {
-        "id": "corruption",
-        "name_en": "Corruption & Scams",
-        "name_te": "అవినీతి & కుంభకోణాలు",
-        "keywords": ["corruption", "scam", "fraud", "bribe", "cbi", "ed", "enforcement directorate",
-                      "money laundering", "hawala", "benami", "disproportionate assets", "arrest",
-                      "అవినీతి", "కుంభకోణం", "మోసం", "లంచం"],
+        "id": "policy-tracker",
+        "name_en": "Startup Policy Tracker",
+        "keywords": ["rbi", "sebi", "dpiit", "startup india", "angel tax", "dpdp", "data protection",
+                     "esop", "ifsca", "gift city", "pli", "make in india", "ondc", "account aggregator"],
+        "active": True
+    },
+    {
+        "id": "deeptech-watch",
+        "name_en": "Deep Tech & AI",
+        "keywords": ["artificial intelligence", "machine learning", "deep tech", "semiconductors",
+                     "chips", "robotics", "spacetech", "biotech", "quantum", "drones", "satellites",
+                     "ai model", "llm", "gpu", "foundry"],
         "active": True
     }
 ]
@@ -234,7 +225,7 @@ async def _match_articles_to_topic(topic, articles):
     keywords = [k.lower() for k in topic.get("keywords", [])]
     matched = []
     for a in articles:
-        text = f"{a.get('title', '')} {a.get('summary', '')} {a.get('title_te', '')} {a.get('summary_te', '')}".lower()
+        text = f"{a.get('title', '')} {a.get('summary', '')}".lower()
         if any(kw in text for kw in keywords):
             matched.append(a)
     return matched
@@ -274,8 +265,8 @@ async def investigate_topic(topic_id):
             "topic_id": topic_id,
             "article_id": a.get("id", ""),
             "article_link": a.get("link", ""),
-            "title": a.get("title", "") or a.get("title_te", ""),
-            "summary": (a.get("summary", "") or a.get("summary_te", ""))[:300],
+            "title": a.get("title", ""),
+            "summary": a.get("summary", "")[:300],
             "source": a.get("source", ""),
             "category": a.get("category", ""),
             "image": a.get("image", ""),
@@ -300,35 +291,22 @@ async def investigate_topic(topic_id):
     ])
 
     report_en = ""
-    report_te = ""
     try:
         report_en = await _llm_call(
-            f"""You are an investigative journalist. Analyze these news events about "{topic.get('name_en', '')}" and write a comprehensive investigation report (300-500 words).
+            f"""You are an investigative journalist covering Indian + global startups. Analyze these news events about "{topic.get('name_en', '')}" and write a comprehensive investigation report (300-500 words).
 Include: key developments, patterns, key players, implications, and what to watch next.
 Write in English. Be analytical and factual.""",
             f"Topic: {topic.get('name_en', '')}\nRecent events ({len(all_events)} total):\n{event_summaries}"
         )
     except Exception as e:
-        logger.warning(f"Investigation report EN failed: {e}")
-
-    try:
-        report_te = await _llm_call(
-            f"""You are an investigative journalist. Analyze these news events about "{topic.get('name_te', '')}" and write a comprehensive investigation report (300-500 words).
-Include: key developments, patterns, key players, implications, and what to watch next.
-Write in Telugu only. Be analytical and factual.""",
-            f"Topic: {topic.get('name_te', '')}\nRecent events ({len(all_events)} total):\n{event_summaries}"
-        )
-    except Exception as e:
-        logger.warning(f"Investigation report TE failed: {e}")
+        logger.warning(f"Investigation report failed: {e}")
 
     # Save report
     report_doc = {
         "id": str(uuid.uuid4()),
         "topic_id": topic_id,
         "topic_name_en": topic.get("name_en", ""),
-        "topic_name_te": topic.get("name_te", ""),
         "report_en": report_en,
-        "report_te": report_te,
         "total_events": len(all_events),
         "new_events": len(events),
         "matched_articles": len(matched),

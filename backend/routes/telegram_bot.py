@@ -116,7 +116,6 @@ async def generate_evening_report():
 
     new_today = await db.news.count_documents({"created_at": {"$gte": f"{today}T00:00:00"}})
     visits_today = await db.visitor_log.count_documents({"date": today})
-    total_te = await db.news.count_documents({"title_te": {"$exists": True, "$ne": ""}})
     total = await db.news.count_documents({"is_active": True})
 
     # Investigation highlights
@@ -143,7 +142,6 @@ async def generate_evening_report():
   New articles: {new_today}
   User visits: {visits_today}
   Total articles: {total}
-  Telugu translations: {total_te}
 
 <b>Categories Today:</b>
 {cat_text}
@@ -165,15 +163,15 @@ async def send_daily_report(report_type="morning"):
     return await tg_send(chat_id, text)
 
 
-async def send_epaper_pdf(date, slot, lang):
-    """Generate and send ePaper PDF to admin via Telegram."""
+async def send_epaper_pdf(date, slot):
+    """Generate and send ePaper PDF to admin via Telegram (English only)."""
     chat_id = await _get_admin_chat_id()
     if not chat_id:
         return False
 
     try:
         from weasyprint import HTML
-        from routes.epaper import get_slot_utc_range, EPAPER_PAGES, get_edition_label, _has_telugu
+        from routes.epaper import get_slot_utc_range, get_edition_label
 
         if slot:
             start, end = get_slot_utc_range(date, slot)
@@ -182,52 +180,37 @@ async def send_epaper_pdf(date, slot, lang):
             query = {"is_active": True, "published_at": {"$gte": f"{date}T00:00:00", "$lte": f"{date}T23:59:59"}}
 
         all_articles = await db.news.find(query, {"_id": 0}).sort("published_at", -1).to_list(50)
-
-        if lang == "te":
-            all_articles = [a for a in all_articles if _has_telugu(a.get("title_te", ""))]
-        else:
-            all_articles = [a for a in all_articles if a.get("title", "")]
+        all_articles = [a for a in all_articles if a.get("title", "")]
 
         if not all_articles:
-            await tg_send(chat_id, f"No articles found for ePaper {date} {slot} ({lang})")
+            await tg_send(chat_id, f"No articles found for ePaper {date} {slot}")
             return False
 
         # Build simple PDF HTML (no images for speed)
         articles_html = ""
         for i, a in enumerate(all_articles[:24]):
-            title = (a.get("title_te") or a.get("title")) if lang == "te" else a.get("title", "")
-            summary = (a.get("summary_te") or a.get("summary")) if lang == "te" else a.get("summary", "")
+            title = a.get("title", "")
+            summary = a.get("summary", "")
             if i == 0:
-                articles_html += f'<div style="border-bottom:2px solid #c41e1e;padding-bottom:12px;margin-bottom:12px"><h2 style="font-size:18pt;font-weight:800">{title}</h2><p style="font-size:10pt;color:#444;line-height:1.5">{summary[:600]}</p></div>'
+                articles_html += f'<div style="border-bottom:2px solid #F26B1F;padding-bottom:12px;margin-bottom:12px"><h2 style="font-size:18pt;font-weight:800">{title}</h2><p style="font-size:10pt;color:#444;line-height:1.5">{summary[:600]}</p></div>'
             else:
                 articles_html += f'<div style="break-inside:avoid;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:8px"><h3 style="font-size:11pt;font-weight:700">{title}</h3><p style="font-size:9pt;color:#555;line-height:1.4">{summary[:300]}</p></div>'
 
-        edition = get_edition_label(slot or "evening", lang)
+        edition = get_edition_label(slot or "evening")
         html = f'''<!DOCTYPE html><html><head><meta charset="utf-8"><style>
         @page {{ size: A3; margin: 15mm; }}
-        body {{ font-family: 'Noto Sans', Arial, sans-serif; color: #1a1a1a; }}
-        .header {{ text-align: center; border-bottom: 4px double #c41e1e; padding-bottom: 10px; margin-bottom: 15px; }}
-        .header h1 {{ font-size: 28pt; font-weight: 900; color: #c41e1e; }}
+        body {{ font-family: 'Inter', Arial, sans-serif; color: #1a1a1a; }}
+        .header {{ text-align: center; border-bottom: 4px double #F26B1F; padding-bottom: 10px; margin-bottom: 15px; }}
+        .header h1 {{ font-size: 28pt; font-weight: 900; color: #F26B1F; }}
         .content {{ column-count: 2; column-gap: 20px; column-rule: 1px solid #ddd; }}
         </style></head><body>
-        <div class="header"><h1>KAIZER NEWS</h1><p>{date} - {edition}</p></div>
+        <div class="header"><h1>MINT STREET</h1><p>{date} — {edition}</p></div>
         <div class="content">{articles_html}</div>
         </body></html>'''
 
-        # Monkey-patch fonttools for Telugu font subsetting bug
-        try:
-            from fontTools.ttLib.tables.O_S_2f_2 import table_O_S_2f_2
-            _orig_set = table_O_S_2f_2.setUnicodeRanges
-            def _safe_set(self, bits):
-                safe_bits = {b for b in bits if 0 <= b <= 122}
-                return _orig_set(self, safe_bits)
-            table_O_S_2f_2.setUnicodeRanges = _safe_set
-        except Exception:
-            pass
-
         pdf_bytes = HTML(string=html).write_pdf()
-        filename = f"kaizer_news_{date}_{slot}_{lang}.pdf"
-        caption = f"Mint Street ePaper - {date} {edition} ({lang.upper()})"
+        filename = f"mint_street_{date}_{slot}.pdf"
+        caption = f"Mint Street ePaper — {date} {edition}"
 
         return await tg_send_document(chat_id, pdf_bytes, filename, caption)
     except Exception as e:
@@ -254,9 +237,7 @@ async def scheduled_morning():
     today = _ist_now().strftime("%Y-%m-%d")
     await send_daily_report("morning")
     await asyncio.sleep(2)
-    await send_epaper_pdf(today, "morning", "en")
-    await asyncio.sleep(2)
-    await send_epaper_pdf(today, "morning", "te")
+    await send_epaper_pdf(today, "morning")
 
 
 async def scheduled_evening():
@@ -264,9 +245,7 @@ async def scheduled_evening():
     today = _ist_now().strftime("%Y-%m-%d")
     await send_daily_report("evening")
     await asyncio.sleep(2)
-    await send_epaper_pdf(today, "evening", "en")
-    await asyncio.sleep(2)
-    await send_epaper_pdf(today, "evening", "te")
+    await send_epaper_pdf(today, "evening")
 
 
 # ============================================================
@@ -300,9 +279,8 @@ async def telegram_webhook(request: Request):
         await tg_send(chat_id, f"<b>Status:</b>\nTotal articles: {total}\nNew today: {new_today}\nVisitors today: {visits}")
     elif text == "/pdf":
         today = _ist_now().strftime("%Y-%m-%d")
-        await tg_send(chat_id, "Generating ePaper PDFs...")
-        await send_epaper_pdf(today, "morning", "en")
-        await send_epaper_pdf(today, "morning", "te")
+        await tg_send(chat_id, "Generating ePaper PDF...")
+        await send_epaper_pdf(today, "morning")
     elif text == "/help":
         await tg_send(chat_id, "<b>Commands:</b>\n/start - Register as admin\n/report - Get latest report\n/status - Quick status\n/pdf - Get today's ePaper PDFs\n/seo - SEO & Social Media report\n/perf - Tech Performance report\n/help - This message")
     elif text == "/seo":
@@ -330,11 +308,11 @@ async def api_send_report(report_type: str):
 
 
 @router.post("/send-pdf")
-async def api_send_pdf(date: str = "", slot: str = "morning", lang: str = "en"):
+async def api_send_pdf(date: str = "", slot: str = "morning"):
     """Manually send ePaper PDF."""
     if not date:
         date = _ist_now().strftime("%Y-%m-%d")
-    success = await send_epaper_pdf(date, slot, lang)
+    success = await send_epaper_pdf(date, slot)
     return {"status": "sent" if success else "failed"}
 
 

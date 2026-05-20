@@ -60,10 +60,6 @@ function ScrollToTop() {
 }
 
 function AppContent() {
-  const [language, setLanguage] = useState(() => {
-    const saved = localStorage.getItem("preferredLanguage");
-    return saved || "en";
-  });
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
@@ -95,10 +91,6 @@ function AppContent() {
   }, [darkMode]);
 
   useEffect(() => {
-    localStorage.setItem("preferredLanguage", language);
-  }, [language]);
-
-  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${API}/news/categories`);
@@ -117,10 +109,6 @@ function AppContent() {
   // Service worker only (no breaking news popup)
   useEffect(() => {
     registerServiceWorker();
-  }, []);
-
-  const toggleLanguage = useCallback(() => {
-    setLanguage(prev => prev === "en" ? "te" : "en");
   }, []);
 
   const toggleDarkMode = useCallback(() => {
@@ -159,14 +147,14 @@ function AppContent() {
     setSavedArticles(prev => {
       const exists = prev.some(a => a.id === article.id);
       if (exists) {
-        toast.success(language === "en" ? "Article removed from saved" : "ఆర్టికల్ తొలగించబడింది");
+        toast.success("Article removed from saved");
         return prev.filter(a => a.id !== article.id);
       } else {
-        toast.success(language === "en" ? "Article saved!" : "ఆర్టికల్ సేవ్ అయింది!");
+        toast.success("Article saved!");
         return [...prev, article];
       }
     });
-  }, [language]);
+  }, []);
 
   const isArticleSaved = useCallback((articleId) => {
     return savedArticles.some(a => a.id === articleId);
@@ -203,7 +191,6 @@ function AppContent() {
   }, [articlesList, articleIndex]);
 
   const contextValue = {
-    language, setLanguage, toggleLanguage,
     darkMode, toggleDarkMode,
     categories, savedArticles, saveArticle,
     isArticleSaved, openArticle, closeArticle,

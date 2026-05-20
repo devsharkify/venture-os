@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Archive, ChevronDown, Sun, Moon } from "lucide-react";
 
-export const PreviousEditions = ({ recentDates, editions, olderByMonth, selectedDate, selectedSlot, selectEdition, fmtDate, te }) => {
+export const PreviousEditions = ({ recentDates, editions, olderByMonth, selectedDate, selectedSlot, selectEdition, fmtDate }) => {
   const [showOlder, setShowOlder] = useState(false);
   const months = Object.keys(olderByMonth);
 
@@ -18,12 +18,12 @@ export const PreviousEditions = ({ recentDates, editions, olderByMonth, selected
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div style={{ background: "#1a1a1a", borderTop: "4px solid #c41e1e" }} data-testid="epaper-archive">
+    <div style={{ background: "#1a1a1a", borderTop: "4px solid #F26B1F" }} data-testid="epaper-archive">
       <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "28px 20px 0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
-          <Archive size={20} style={{ color: "#c41e1e" }} />
-          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#fff", fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.5px" }}>
-            {te ? "Previous Editions" : "Previous Editions"}
+          <Archive size={20} style={{ color: "#F26B1F" }} />
+          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#fff", fontFamily: "'Fraunces', Georgia, serif", letterSpacing: "0.5px" }}>
+            Previous Editions
           </h2>
         </div>
         <p style={{ fontSize: "13px", color: "#888", marginBottom: "20px" }}>
@@ -37,13 +37,13 @@ export const PreviousEditions = ({ recentDates, editions, olderByMonth, selected
             const totalCount = slots.reduce((s, e) => s + e.article_count, 0);
             return (
               <div key={date} data-testid={`archive-card-${date}`}
-                style={{ background: "#2a2a2a", border: selectedDate === date ? "2px solid #c41e1e" : "1px solid #3a3a3a", borderRadius: "8px", padding: "14px 10px", textAlign: "center" }}>
+                style={{ background: "#2a2a2a", border: selectedDate === date ? "2px solid #F26B1F" : "1px solid #3a3a3a", borderRadius: "8px", padding: "14px 10px", textAlign: "center" }}>
                 <div style={{
                   width: "44px", height: "44px", borderRadius: "50%",
                   background: selectedDate === date ? "rgba(196,30,30,0.2)" : "#333",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   margin: "0 auto 8px", fontSize: "20px", fontWeight: 900,
-                  color: selectedDate === date ? "#c41e1e" : "#ccc", fontFamily: "'Playfair Display', serif",
+                  color: selectedDate === date ? "#F26B1F" : "#ccc", fontFamily: "'Fraunces', serif",
                 }}>{getDayNum(date)}</div>
                 <div style={{ fontSize: "11px", fontWeight: 700, color: "#ddd", textTransform: "uppercase", letterSpacing: "0.5px" }}>
                   {getDayName(date)}, {getMonthShort(date)}
@@ -59,7 +59,7 @@ export const PreviousEditions = ({ recentDates, editions, olderByMonth, selected
                         disabled={!ed}
                         style={{
                           flex: 1, padding: "5px 4px", borderRadius: "4px", cursor: ed ? "pointer" : "default",
-                          background: isActive ? "#c41e1e" : ed ? "#3a3a3a" : "#2a2a2a",
+                          background: isActive ? "#F26B1F" : ed ? "#3a3a3a" : "#2a2a2a",
                           border: isActive ? "1px solid #ff6b6b" : "1px solid #444",
                           opacity: ed ? 1 : 0.3, fontSize: "10px", fontWeight: 700,
                           color: isActive ? "#fff" : "#aaa",
@@ -81,7 +81,7 @@ export const PreviousEditions = ({ recentDates, editions, olderByMonth, selected
         {months.length > 0 && (
           <div style={{ borderTop: "1px solid #333", paddingTop: "16px", paddingBottom: "24px" }}>
             <button data-testid="archive-show-older" onClick={() => setShowOlder(!showOlder)}
-              style={{ display: "flex", alignItems: "center", gap: "8px", background: "none", border: "none", cursor: "pointer", color: "#c41e1e", fontSize: "14px", fontWeight: 700, padding: "0", marginBottom: showOlder ? "16px" : "0" }}>
+              style={{ display: "flex", alignItems: "center", gap: "8px", background: "none", border: "none", cursor: "pointer", color: "#F26B1F", fontSize: "14px", fontWeight: 700, padding: "0", marginBottom: showOlder ? "16px" : "0" }}>
               <Archive size={16} />Older Editions
               <ChevronDown size={16} style={{ transform: showOlder ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s" }} />
             </button>
@@ -97,8 +97,8 @@ export const PreviousEditions = ({ recentDates, editions, olderByMonth, selected
                           <button key={`${e.date}_${e.slot}`} data-testid={`archive-link-${e.date}-${e.slot}`}
                             onClick={() => { selectEdition(e.date, e.slot); scrollToTop(); }}
                             style={{
-                              background: isActive ? "#c41e1e" : "transparent",
-                              border: `1px solid ${isActive ? "#c41e1e" : "#444"}`,
+                              background: isActive ? "#F26B1F" : "transparent",
+                              border: `1px solid ${isActive ? "#F26B1F" : "#444"}`,
                               borderRadius: "4px", padding: "5px 10px", cursor: "pointer", fontSize: "12px",
                               color: isActive ? "#fff" : "#aaa", fontWeight: isActive ? 700 : 400,
                               display: "flex", alignItems: "center", gap: "4px",

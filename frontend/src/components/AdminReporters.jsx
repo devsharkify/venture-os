@@ -33,7 +33,7 @@ import {
 import { formatDistanceToNow } from "date-fns";
 
 export const AdminReporters = () => {
-  const { language, darkMode } = useContext(AppContext);
+  const { darkMode } = useContext(AppContext);
   
   const [reporters, setReporters] = useState([]);
   const [reporterNews, setReporterNews] = useState([]);
@@ -501,16 +501,10 @@ export const AdminReporters = () => {
               
               <div>
                 <h3 className={`text-lg font-semibold ${darkMode ? "text-white" : ""}`}>{selectedNews.title}</h3>
-                {selectedNews.title_te && (
-                  <p className={`font-telugu ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{selectedNews.title_te}</p>
-                )}
               </div>
-              
+
               <div>
                 <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{selectedNews.summary}</p>
-                {selectedNews.summary_te && (
-                  <p className={`text-sm font-telugu mt-2 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>{selectedNews.summary_te}</p>
-                )}
               </div>
 
               {selectedNews.image && (

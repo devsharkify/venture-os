@@ -5,7 +5,7 @@ import { Upload, Image, Video, Loader2, X, Check } from "lucide-react";
 import { Button } from "./ui/button";
 
 export const FileUpload = ({ type = "image", onUpload, currentUrl = "" }) => {
-  const { language, darkMode } = useContext(AppContext);
+  const { darkMode } = useContext(AppContext);
   const [uploading, setUploading] = useState(false);
   const [uploadedUrl, setUploadedUrl] = useState(currentUrl);
   const [error, setError] = useState("");
@@ -92,11 +92,9 @@ export const FileUpload = ({ type = "image", onUpload, currentUrl = "" }) => {
             <Icon size={32} className={darkMode ? "text-slate-400 mb-2" : "text-slate-500 mb-2"} />
           )}
           <span className={`text-sm font-medium ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-            {uploading 
-              ? (language === "en" ? "Uploading..." : "అప్‌లోడ్ అవుతోంది...")
-              : (language === "en" 
-                  ? `Click to upload ${isImage ? "image" : "video"}` 
-                  : `${isImage ? "ఇమేజ్" : "వీడియో"} అప్‌లోడ్ చేయడానికి క్లిక్ చేయండి`)
+            {uploading
+              ? "Uploading..."
+              : `Click to upload ${isImage ? "image" : "video"}`
             }
           </span>
           <span className={`text-xs mt-1 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>

@@ -8,16 +8,16 @@ import { Loader2, Newspaper, X, Search, Clock } from "lucide-react";
 import { Button } from "../components/ui/button";
 
 const SORT_OPTIONS = [
-  { value: "newest", label: "New to Old", label_te: "కొత్త నుండి పాతది" },
-  { value: "oldest", label: "Old to New", label_te: "పాత నుండి కొత్తది" },
+  { value: "newest", label: "New to Old" },
+  { value: "oldest", label: "Old to New" },
 ];
 
 const TIME_FILTERS = [
-  { value: "all", label: "All Time", label_te: "అన్ని" },
-  { value: "1d", label: "Last 1 Day", label_te: "1 రోజు" },
-  { value: "1w", label: "Last 1 Week", label_te: "1 వారం" },
-  { value: "1m", label: "Last 1 Month", label_te: "1 నెల" },
-  { value: "1y", label: "Last 1 Year", label_te: "1 సంవత్సరం" },
+  { value: "all", label: "All Time" },
+  { value: "1d", label: "Last 1 Day" },
+  { value: "1w", label: "Last 1 Week" },
+  { value: "1m", label: "Last 1 Month" },
+  { value: "1y", label: "Last 1 Year" },
 ];
 
 const DEFAULT_IMAGE = "https://images.pexels.com/photos/17706648/pexels-photo-17706648.jpeg?auto=compress&cs=tinysrgb&w=800";
@@ -54,12 +54,12 @@ function readTimeMin(text) {
 }
 
 // ─── LeadTile (Tile A) ────────────────────────────────────────────────────────
-function LeadTile({ article, language }) {
+function LeadTile({ article }) {
   const { openArticle } = useContext(AppContext);
   if (!article) return null;
 
-  const title = language === "en" ? article.title : (article.title_te || article.title);
-  const summary = language === "en" ? article.summary : (article.summary_te || article.summary);
+  const title = article.title;
+  const summary = article.summary;
   const imageUrl = getArticleImage(article);
   const readTime = readTimeMin(article.summary);
 
@@ -78,16 +78,16 @@ function LeadTile({ article, language }) {
         />
         {article.is_pinned && (
           <span className="absolute top-3 left-3 bg-saffron text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">
-            {language === "en" ? "Breaking" : "బ్రేకింగ్"}
+            Breaking
           </span>
         )}
       </div>
 
       <div className="pt-4">
-        <h2 className={`font-display text-[28px] md:text-[36px] font-bold leading-tight text-ink line-clamp-3 mb-3 ${language === "te" ? "font-telugu" : ""}`}>
+        <h2 className="font-display text-[28px] md:text-[36px] font-bold leading-tight text-ink line-clamp-3 mb-3">
           {title}
         </h2>
-        <p className={`text-[15px] text-ink-muted line-clamp-3 mb-3 ${language === "te" ? "font-telugu" : ""}`}>
+        <p className="text-[15px] text-ink-muted line-clamp-3 mb-3">
           {summary}
         </p>
         <div className="flex items-center gap-2 text-[12px] text-ink-muted">
@@ -103,11 +103,11 @@ function LeadTile({ article, language }) {
 }
 
 // ─── MediumTile (Tiles B/C) ───────────────────────────────────────────────────
-function MediumTile({ article, language }) {
+function MediumTile({ article }) {
   const { openArticle } = useContext(AppContext);
   if (!article) return null;
 
-  const title = language === "en" ? article.title : (article.title_te || article.title);
+  const title = article.title;
   const imageUrl = getArticleImage(article);
 
   return (
@@ -125,7 +125,7 @@ function MediumTile({ article, language }) {
         />
       </div>
       <div className="flex-1 min-w-0 flex flex-col justify-between">
-        <h3 className={`font-display text-[15px] font-bold line-clamp-3 text-ink leading-snug ${language === "te" ? "font-telugu" : ""}`}>
+        <h3 className="font-display text-[15px] font-bold line-clamp-3 text-ink leading-snug">
           {title}
         </h3>
         <div className="flex items-center gap-1.5 text-[11px] text-ink-muted">
@@ -138,7 +138,7 @@ function MediumTile({ article, language }) {
 }
 
 // ─── MarketsTile (Tile D) ─────────────────────────────────────────────────────
-function MarketsTile({ articles, language }) {
+function MarketsTile({ articles }) {
   const { openArticle } = useContext(AppContext);
   const items = (articles || []).slice(0, 3);
   if (items.length === 0) return null;
@@ -146,16 +146,16 @@ function MarketsTile({ articles, language }) {
   return (
     <div className="lg:col-span-1 lg:row-span-1 bg-mint text-white rounded-md p-5 flex flex-col">
       <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">
-        {language === "en" ? "FUNDING WIRE" : "ఫండింగ్ వైర్"}
+        FUNDING WIRE
       </div>
       <div className="flex flex-col">
         {items.map((article, idx) => {
-          const title = language === "en" ? article.title : (article.title_te || article.title);
+          const title = article.title;
           return (
             <button
               key={article.id}
               onClick={() => openArticle(article)}
-              className={`text-left text-[13px] font-medium leading-snug py-2.5 cursor-pointer hover:opacity-90 transition ${idx !== items.length - 1 ? "border-b border-white/15" : ""} ${language === "te" ? "font-telugu" : ""}`}
+              className={`text-left text-[13px] font-medium leading-snug py-2.5 cursor-pointer hover:opacity-90 transition ${idx !== items.length - 1 ? "border-b border-white/15" : ""}`}
             >
               <span className="line-clamp-2">{title}</span>
             </button>
@@ -168,7 +168,7 @@ function MarketsTile({ articles, language }) {
 
 // ─── NewsFeed ─────────────────────────────────────────────────────────────────
 export default function NewsFeed() {
-  const { language, darkMode } = useContext(AppContext);
+  const { darkMode } = useContext(AppContext);
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -203,33 +203,12 @@ export default function NewsFeed() {
       setHasMore(newArticles.length === LIMIT);
       setLoading(false);
       setLoadingMore(false);
-
-      // Translate in background if Telugu
-      if (language === "te") {
-        const untranslated = newArticles.filter(a => !a.title_te || a.title_te.length < 3);
-        if (untranslated.length > 0) {
-          try {
-            const ids = untranslated.map(a => a.id);
-            const tr = await axios.post(`${API}/news/translate-batch`, ids);
-            const translationMap = {};
-            tr.data.forEach(t => { translationMap[t.id] = t; });
-            setArticles(prev => prev.map(a => {
-              if (translationMap[a.id]) {
-                return { ...a, title_te: translationMap[a.id].title_te, summary_te: translationMap[a.id].summary_te };
-              }
-              return a;
-            }));
-          } catch (e) {
-            console.error("Translation failed:", e);
-          }
-        }
-      }
     } catch (error) {
       console.error("Failed to fetch news:", error);
       setLoading(false);
       setLoadingMore(false);
     }
-  }, [language]);
+  }, []);
 
   const searchNews = useCallback(async (query, skip = 0, append = false) => {
     if (!query || query.length < 2) return;
@@ -257,7 +236,7 @@ export default function NewsFeed() {
       fetchNews(activeCategory, 0, false, sortBy, timeFilter);
       setPage(0);
     }
-  }, [activeCategory, sortBy, timeFilter, language, fetchNews, isSearching, searchQuery, searchNews]);
+  }, [activeCategory, sortBy, timeFilter, fetchNews, isSearching, searchQuery, searchNews]);
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
@@ -296,10 +275,8 @@ export default function NewsFeed() {
   };
 
   const sectionTitle = activeCategory === "all"
-    ? (language === "en" ? "More from the floor" : "మరిన్ని వార్తలు")
-    : (language === "en"
-        ? activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)
-        : activeCategory);
+    ? "More from the floor"
+    : activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1);
 
   return (
     <div data-testid="news-feed-page" className="min-h-screen pb-20 bg-paper">
@@ -312,14 +289,12 @@ export default function NewsFeed() {
             type="text"
             value={searchInput}
             onChange={(e) => handleSearchInput(e.target.value)}
-            placeholder={language === "en" ? "Search articles..." : "వార్తలు శోధించండి..."}
+            placeholder="Search articles..."
             className="w-full pl-10 pr-28 py-2 text-sm rounded-full border border-[#E5E0D6] bg-white text-ink placeholder:text-ink-muted outline-none transition-all focus:border-mint focus:ring-2 focus:ring-mint/20"
           />
           {isSearching && !loading && (
             <span className="absolute right-10 text-[11px] text-mint font-medium pointer-events-none">
-              {language === "en"
-                ? `${searchTotal} result${searchTotal !== 1 ? "s" : ""}`
-                : `${searchTotal} ఫలితాలు`}
+              {`${searchTotal} result${searchTotal !== 1 ? "s" : ""}`}
             </span>
           )}
           {searchInput && (
@@ -340,7 +315,7 @@ export default function NewsFeed() {
         >
           {SORT_OPTIONS.map(opt => (
             <option key={opt.value} value={opt.value}>
-              {language === "en" ? opt.label : opt.label_te}
+              {opt.label}
             </option>
           ))}
         </select>
@@ -352,7 +327,7 @@ export default function NewsFeed() {
         >
           {TIME_FILTERS.map(opt => (
             <option key={opt.value} value={opt.value}>
-              {language === "en" ? opt.label : opt.label_te}
+              {opt.label}
             </option>
           ))}
         </select>
@@ -368,8 +343,8 @@ export default function NewsFeed() {
       {loading && (
         <div className="flex flex-col items-center justify-center py-24">
           <Loader2 size={36} className="animate-spin text-mint mb-4" />
-          <p className={`text-sm text-ink-muted ${language === "te" ? "font-telugu" : ""}`}>
-            {language === "en" ? "Loading news..." : "వార్తలు లోడ్ అవుతున్నాయి..."}
+          <p className="text-sm text-ink-muted">
+            Loading news...
           </p>
         </div>
       )}
@@ -381,10 +356,10 @@ export default function NewsFeed() {
             <Newspaper size={28} className="text-mint" />
           </div>
           <h3 className="text-base font-bold mb-1 tracking-tight text-ink">
-            {language === "en" ? "No articles found" : "వార్తలు కనుగొనబడలేదు"}
+            No articles found
           </h3>
           <p className="text-xs text-center max-w-[240px] text-ink-muted">
-            {language === "en" ? "Try adjusting your filters or category" : "మీ ఫిల్టర్లు లేదా వర్గాన్ని సర్దుబాటు చేయండి"}
+            Try adjusting your filters or category
           </p>
         </div>
       )}
@@ -396,10 +371,10 @@ export default function NewsFeed() {
           {articles.length >= 1 && (
             <section className="max-w-screen-xl mx-auto px-4 py-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:grid-rows-[auto_auto_auto]">
-                <LeadTile article={articles[0]} language={language} />
-                <MediumTile article={articles[1]} language={language} />
-                <MediumTile article={articles[2]} language={language} />
-                <MarketsTile articles={articles.slice(3, 6)} language={language} />
+                <LeadTile article={articles[0]} />
+                <MediumTile article={articles[1]} />
+                <MediumTile article={articles[2]} />
+                <MarketsTile articles={articles.slice(3, 6)} />
               </div>
             </section>
           )}
@@ -408,7 +383,7 @@ export default function NewsFeed() {
             {/* ── Section C: Divider + title ── */}
             <div className="border-t-2 border-mint mb-1" />
             <div className="flex justify-between items-baseline mb-5 pt-3">
-              <h2 className={`font-display text-[20px] font-bold text-ink ${language === "te" ? "font-telugu" : ""}`}>
+              <h2 className="font-display text-[20px] font-bold text-ink">
                 {sectionTitle}
               </h2>
             </div>
@@ -436,11 +411,11 @@ export default function NewsFeed() {
                   {loadingMore ? (
                     <>
                       <Loader2 size={14} className="animate-spin mr-2" />
-                      {language === "en" ? "Loading..." : "లోడ్ అవుతోంది..."}
+                      Loading...
                     </>
                   ) : (
-                    <span className={language === "te" ? "font-telugu" : ""}>
-                      {language === "en" ? "Load More" : "మరిన్ని లోడ్ చేయండి"}
+                    <span>
+                      Load More
                     </span>
                   )}
                 </Button>

@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
-import { AppContext } from "../App";
+import { useState, useEffect, useCallback } from "react";
 import { Play, RefreshCw, Youtube, Clock, ChevronRight, Users } from "lucide-react";
 import { Button } from "../components/ui/button";
 
@@ -24,7 +23,7 @@ const timeAgo = (dateStr) => {
   return `${Math.floor(days / 7)}w ago`;
 };
 
-function ChannelPill({ ch, active, onClick, language }) {
+function ChannelPill({ ch, active, onClick }) {
   return (
     <button
       data-testid={`channel-pill-${ch.id}`}
@@ -36,7 +35,7 @@ function ChannelPill({ ch, active, onClick, language }) {
       }`}
     >
       {ch.thumbnail && <img src={ch.thumbnail} alt="" className="w-5 h-5 rounded-full" />}
-      <span>{language === "te" ? ch.name_te : ch.name}</span>
+      <span>{ch.name}</span>
       {ch.subscriber_count > 0 && (
         <span className={`text-[10px] ${active ? "text-white/70" : "text-slate-400"}`}>{formatCount(ch.subscriber_count)}</span>
       )}
@@ -45,7 +44,6 @@ function ChannelPill({ ch, active, onClick, language }) {
 }
 
 export default function VideoNews() {
-  const { language } = useContext(AppContext);
   const [channels, setChannels] = useState([]);
   const [videos, setVideos] = useState([]);
   const [selectedChannel, setSelectedChannel] = useState("all");
@@ -91,8 +89,8 @@ export default function VideoNews() {
                 <Youtube size={22} className="text-white" />
               </div>
               <div className="text-white">
-                <h1 className={`text-lg font-bold ${language === "te" ? "font-telugu" : ""}`}>
-                  {language === "en" ? "Mint Street Network" : "కైజర్ న్యూస్ నెట్‌వర్క్"}
+                <h1 className="text-lg font-bold">
+                  Mint Street Network
                 </h1>
                 <div className="flex items-center gap-3 text-xs text-white/70">
                   <span>{channels.length} channels</span>
@@ -106,13 +104,12 @@ export default function VideoNews() {
           {/* Channel pills */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
             <ChannelPill
-              ch={{ id: "all", name: "All Channels", name_te: "అన్ని ఛానెల్స్", thumbnail: "", subscriber_count: 0 }}
+              ch={{ id: "all", name: "All Channels", thumbnail: "", subscriber_count: 0 }}
               active={selectedChannel === "all"}
               onClick={() => setSelectedChannel("all")}
-              language={language}
             />
             {channels.map(ch => (
-              <ChannelPill key={ch.id} ch={ch} active={selectedChannel === ch.id} onClick={() => setSelectedChannel(ch.id)} language={language} />
+              <ChannelPill key={ch.id} ch={ch} active={selectedChannel === ch.id} onClick={() => setSelectedChannel(ch.id)} />
             ))}
           </div>
         </div>
@@ -122,8 +119,8 @@ export default function VideoNews() {
       <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-14 z-20">
         <div className="max-w-5xl mx-auto flex items-center px-4">
           {[
-            { id: "videos", label: language === "en" ? "Long Videos" : "పొడవు వీడియోలు", icon: Play },
-            { id: "channels", label: language === "en" ? "Channels" : "ఛానెల్స్", icon: Users },
+            { id: "videos", label: "Long Videos", icon: Play },
+            { id: "channels", label: "Channels", icon: Users },
           ].map(t => (
             <button
               key={t.id}
@@ -149,7 +146,7 @@ export default function VideoNews() {
         {loading && tab !== "channels" ? (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <div className="w-10 h-10 border-3 border-red-600 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-slate-500">{language === "en" ? "Loading..." : "లోడ్ అవుతోంది..."}</p>
+            <p className="text-sm text-slate-500">Loading...</p>
           </div>
         ) : (
           <>
@@ -161,7 +158,7 @@ export default function VideoNews() {
                     {activeChannel.thumbnail && <img src={activeChannel.thumbnail} alt="" className="w-10 h-10 rounded-full" />}
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-sm text-slate-900 dark:text-white truncate">
-                        {language === "te" ? activeChannel.name_te : activeChannel.name}
+                        {activeChannel.name}
                       </h3>
                       <p className="text-[11px] text-slate-500">{formatCount(activeChannel.subscriber_count)} subscribers</p>
                     </div>
@@ -203,7 +200,7 @@ export default function VideoNews() {
                 {videos.length === 0 && !loading && (
                   <div className="text-center py-16">
                     <Youtube size={40} className="text-slate-300 mx-auto mb-3" />
-                    <p className="text-slate-500">{language === "en" ? "No videos found" : "వీడియోలు కనుగొనబడలేదు"}</p>
+                    <p className="text-slate-500">No videos found</p>
                   </div>
                 )}
               </div>
@@ -225,8 +222,8 @@ export default function VideoNews() {
                     <span className="text-xs font-bold text-slate-400 w-5 text-right">{i + 1}</span>
                     <img src={ch.thumbnail} alt={ch.name} className="w-11 h-11 rounded-full border border-slate-200 dark:border-slate-600" onError={(e) => { e.target.src = "https://via.placeholder.com/44?text=CH"; }} />
                     <div className="flex-1 min-w-0">
-                      <h3 className={`font-semibold text-sm text-slate-900 dark:text-white truncate ${language === "te" ? "font-telugu" : ""}`}>
-                        {language === "te" ? ch.name_te : ch.name}
+                      <h3 className="font-semibold text-sm text-slate-900 dark:text-white truncate">
+                        {ch.name}
                       </h3>
                       <div className="flex items-center gap-3 text-[11px] text-slate-500 mt-0.5">
                         <span>{formatCount(ch.subscriber_count)} subs</span>

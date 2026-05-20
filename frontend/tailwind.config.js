@@ -11,7 +11,6 @@ module.exports = {
   			'serif-display': ['"Fraunces"', '"Spectral"', 'Georgia', 'serif'],
   			'display': ['"Fraunces"', 'serif'],
   			'sans': ['"Inter"', 'system-ui', 'sans-serif'],
-  			'telugu': ['"Noto Serif Telugu"', 'serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

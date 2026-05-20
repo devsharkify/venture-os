@@ -11,12 +11,9 @@ class NewsArticle(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
-    title_te: Optional[str] = ""
     summary: str
-    summary_te: Optional[str] = ""
     category: str
     category_label: Optional[str] = ""
-    category_label_te: Optional[str] = ""
     image: Optional[str] = ""
     video_url: Optional[str] = ""
     content_type: str = "text"
@@ -38,9 +35,7 @@ class NewsArticle(BaseModel):
 
 class NewsCreate(BaseModel):
     title: str
-    title_te: Optional[str] = ""
     summary: str
-    summary_te: Optional[str] = ""
     category: str
     image: Optional[str] = ""
     video_url: Optional[str] = ""
@@ -53,9 +48,7 @@ class NewsCreate(BaseModel):
 
 class NewsUpdate(BaseModel):
     title: Optional[str] = None
-    title_te: Optional[str] = None
     summary: Optional[str] = None
-    summary_te: Optional[str] = None
     category: Optional[str] = None
     image: Optional[str] = None
     video_url: Optional[str] = None
@@ -71,13 +64,10 @@ class ScrapeRequest(BaseModel):
     url: str
     category: str
     rephrase: bool = True
-    translate_to_telugu: bool = True
 
 class ScrapeResponse(BaseModel):
     title: str
-    title_te: str
     summary: str
-    summary_te: str
     image: str
     source: str
 
@@ -174,9 +164,7 @@ class ReporterNews(BaseModel):
     reporter_id: str
     reporter_name: str = ""
     title: str
-    title_te: Optional[str] = ""
     summary: str
-    summary_te: Optional[str] = ""
     category: str
     image: Optional[str] = ""
     video_url: Optional[str] = ""
@@ -191,9 +179,7 @@ class ReporterNews(BaseModel):
 
 class ReporterNewsSubmit(BaseModel):
     title: str
-    title_te: Optional[str] = ""
     summary: str
-    summary_te: Optional[str] = ""
     category: str
     image: Optional[str] = ""
     video_url: Optional[str] = ""
@@ -283,7 +269,6 @@ class UserProfile(BaseModel):
     phone: str
     name: Optional[str] = ""
     email: Optional[str] = ""
-    preferred_language: str = "en"
     is_admin: bool = False
     is_reporter: bool = False
     reporter_id: Optional[str] = ""

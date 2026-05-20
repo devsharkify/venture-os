@@ -65,7 +65,7 @@ function SidebarArticleCard({ article, darkMode, onClick }) {
 export default function ArticlePage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { language, darkMode, openArticle } = useContext(AppContext);
+  const { darkMode, openArticle } = useContext(AppContext);
   const [article, setArticle] = useState(null);
   const [relatedArticles, setRelatedArticles] = useState([]);
   const [latestArticles, setLatestArticles] = useState([]);
@@ -95,9 +95,9 @@ export default function ArticlePage() {
     }).catch(() => {});
   }, [article, id]);
 
-  const title = article ? (language === "en" ? article.title : (article.title_te || article.title)) : "";
-  const summary = article ? (language === "en" ? article.summary : (article.summary_te || article.summary)) : "";
-  const category = article ? (language === "en" ? article.category_label : (article.category_label_te || article.category_label)) : "";
+  const title = article ? article.title : "";
+  const summary = article ? article.summary : "";
+  const category = article ? article.category_label : "";
   const shareUrl = `https://www.mintstreet.in/news/${id}`;
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const SWIPE_THRESHOLD = 80;
 
 export const ArticleModal = () => {
   const {
-    selectedArticle, closeArticle, language, darkMode,
+    selectedArticle, closeArticle, darkMode,
     saveArticle, isArticleSaved, user,
     articlesList, articleIndex, goNextArticle, goPrevArticle
   } = useContext(AppContext);
@@ -65,9 +65,9 @@ export const ArticleModal = () => {
   const isSaved = isArticleSaved(article.id);
   const hasNext = articlesList.length > 0 && articleIndex < articlesList.length - 1;
   const hasPrev = articlesList.length > 0 && articleIndex > 0;
-  const title = language === "en" ? article.title : (article.title_te || article.title);
-  const summary = language === "en" ? article.summary : (article.summary_te || article.summary);
-  const categoryLabel = language === "en" ? article.category_label : (article.category_label_te || article.category_label);
+  const title = article.title;
+  const summary = article.summary;
+  const categoryLabel = article.category_label;
 
   const seoTitle = article.seo_title || title;
   const seoDesc = (article.seo_description || summary || "").slice(0, 155);
@@ -249,22 +249,22 @@ export const ArticleModal = () => {
           {/* Content */}
           <div className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <span className={`px-2 py-1 rounded text-xs font-semibold text-white bg-orange-500 ${language === "te" ? "font-telugu" : ""}`}>
+              <span className="px-2 py-1 rounded text-xs font-semibold text-white bg-orange-500">
                 {categoryLabel}
               </span>
               {article.is_pinned && (
                 <span className="px-2 py-1 rounded text-xs font-semibold text-white bg-red-600 animate-pulse">
-                  {language === "en" ? "BREAKING" : "\u0C2C\u0C4D\u0C30\u0C47\u0C15\u0C3F\u0C02\u0C17\u0C4D"}
+                  BREAKING
                 </span>
               )}
               <span className={`flex items-center gap-1 text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                 <Clock size={12} />{getExactTime(article.published_at)} · {getTimeAgo(article.published_at)}
               </span>
             </div>
-            <h1 className={`text-xl md:text-2xl font-bold mb-4 leading-tight ${darkMode ? "text-white" : "text-slate-900"} ${language === "te" ? "font-telugu" : ""}`}>
+            <h1 className={`text-xl md:text-2xl font-bold mb-4 leading-tight ${darkMode ? "text-white" : "text-slate-900"}`}>
               {title}
             </h1>
-            <p className={`text-base leading-relaxed mb-6 ${darkMode ? "text-slate-300" : "text-slate-700"} ${language === "te" ? "font-telugu" : ""}`}>
+            <p className={`text-base leading-relaxed mb-6 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
               {summary}
             </p>
             {article.seo_keywords?.length > 0 && (

@@ -2,18 +2,17 @@ from fastapi import APIRouter, HTTPException, Query, Depends
 from typing import List, Optional
 from datetime import datetime, timezone, timedelta
 import os
-from database import db, logger, CATEGORIES, EMERGENT_LLM_KEY
+from database import db, logger, CATEGORIES
 from models import NewsArticle, NewsCreate, NewsUpdate, ScrapeRequest, ScrapeResponse, StatusCheck, StatusCheckCreate
-from helpers import prepare_for_mongo, parse_from_mongo, scrape_url, rephrase_with_ai, translate_to_telugu, translate_to_english
+from helpers import prepare_for_mongo, parse_from_mongo, scrape_url, rephrase_with_ai
 from auth_dep import require_admin
-from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 router = APIRouter(prefix="/api")
 
 # Projection for feed — only fields the frontend actually needs
 FEED_PROJECTION = {
-    "_id": 0, "id": 1, "title": 1, "title_te": 1, "summary": 1, "summary_te": 1,
-    "category": 1, "category_label": 1, "category_label_te": 1, "image": 1,
+    "_id": 0, "id": 1, "title": 1, "summary": 1,
+    "category": 1, "category_label": 1, "image": 1,
     "video_url": 1, "content_type": 1, "link": 1, "is_pinned": 1, "source": 1,
     "published_at": 1, "created_at": 1,
 }
@@ -81,8 +80,6 @@ async def search_news(q: str = Query(..., min_length=2, max_length=200), limit: 
         "$or": [
             {"title": {"$regex": safe_q, "$options": "i"}},
             {"summary": {"$regex": safe_q, "$options": "i"}},
-            {"title_te": {"$regex": safe_q, "$options": "i"}},
-            {"summary_te": {"$regex": safe_q, "$options": "i"}},
         ]
     }
     articles = await db.news.find(query, FEED_PROJECTION).sort("published_at", -1).skip(skip).limit(limit).to_list(limit)
@@ -132,39 +129,6 @@ async def get_article(article_id: str):
         raise HTTPException(status_code=404, detail="Article not found")
     return parse_from_mongo(article)
 
-@router.post("/news/translate-batch")
-async def translate_batch(article_ids: List[str]):
-    if not EMERGENT_LLM_KEY:
-        raise HTTPException(status_code=500, detail="Translation service not configured")
-    translated = []
-    for aid in article_ids[:10]:
-        article = await db.news.find_one({"id": aid}, {"_id": 0})
-        if not article:
-            continue
-        if article.get("title_te") and len(article.get("title_te", "")) > 3:
-            translated.append({"id": aid, "title_te": article["title_te"], "summary_te": article.get("summary_te", "")})
-            continue
-        try:
-            chat = LlmChat(api_key=EMERGENT_LLM_KEY, session_id=f"translate-{aid[:8]}",
-                system_message="You are a senior Telugu news editor at a popular Telugu news channel. Rewrite the given English news into natural, everyday Telugu. Use simple spoken Telugu. Avoid literal translation. Use Telugu script. Keep names, places, numbers as-is. Output ONLY Telugu text."
-            ).with_model("gemini", "gemini-2.5-flash")
-            title_resp = await chat.send_message(UserMessage(text=f"Translate to Telugu:\n{article.get('title', '')}"))
-            title_te = title_resp.strip() if title_resp else ""
-            summary_te = ""
-            summary_text = article.get('summary', '')[:500]
-            if summary_text:
-                chat2 = LlmChat(api_key=EMERGENT_LLM_KEY, session_id=f"translate-{aid[:8]}-s",
-                    system_message="You are a senior Telugu news editor at a popular Telugu news channel. Rewrite the given English news into natural, everyday Telugu. Use simple spoken Telugu. Avoid literal translation. Use Telugu script. Keep names, places, numbers as-is. Output ONLY Telugu text."
-                ).with_model("gemini", "gemini-2.5-flash")
-                summary_resp = await chat2.send_message(UserMessage(text=f"Translate to Telugu:\n{summary_text}"))
-                summary_te = summary_resp.strip() if summary_resp else ""
-            await db.news.update_one({"id": aid}, {"$set": {"title_te": title_te, "summary_te": summary_te}})
-            translated.append({"id": aid, "title_te": title_te, "summary_te": summary_te})
-        except Exception as e:
-            logger.error(f"Translation error for {aid}: {e}")
-            translated.append({"id": aid, "title_te": "", "summary_te": ""})
-    return translated
-
 MIN_SUMMARY_LINES = 4
 
 @router.post("/news/admin/push", response_model=NewsArticle)
@@ -172,34 +136,16 @@ async def create_news(news: NewsCreate):
     summary_lines = [l.strip() for l in news.summary.strip().split("\n") if l.strip()]
     if len(summary_lines) < MIN_SUMMARY_LINES:
         raise HTTPException(status_code=400, detail=f"Description must have at least {MIN_SUMMARY_LINES} lines. Currently has {len(summary_lines)} line(s).")
-    cat_info = CATEGORIES.get(news.category, {"en": news.category, "te": news.category})
+    cat_info = CATEGORIES.get(news.category, {"en": news.category})
     create_data = news.model_dump()
     custom_date = create_data.pop("published_at", None)
-    article = NewsArticle(**create_data, category_label=cat_info["en"], category_label_te=cat_info["te"])
+    article = NewsArticle(**create_data, category_label=cat_info["en"])
     doc = prepare_for_mongo(article.model_dump())
     if custom_date:
         doc["published_at"] = custom_date
         doc["created_at"] = custom_date
     await db.news.insert_one(doc)
     doc.pop("_id", None)
-    # Auto-translate if Telugu fields missing
-    try:
-        if doc.get("title") and not doc.get("title_te"):
-            te_title = await translate_to_telugu(doc["title"])
-            te_summary = await translate_to_telugu(doc.get("summary", ""))
-            if te_title:
-                await db.news.update_one({"id": doc["id"]}, {"$set": {"title_te": te_title, "summary_te": te_summary or ""}})
-                doc["title_te"] = te_title
-                doc["summary_te"] = te_summary or ""
-        elif doc.get("title_te") and not doc.get("title"):
-            en_title = await translate_to_english(doc["title_te"])
-            en_summary = await translate_to_english(doc.get("summary_te", ""))
-            if en_title:
-                await db.news.update_one({"id": doc["id"]}, {"$set": {"title": en_title, "summary": en_summary or ""}})
-                doc["title"] = en_title
-                doc["summary"] = en_summary or ""
-    except Exception as e:
-        logger.error(f"Auto-translate failed for admin push {doc['id']}: {e}")
     return doc
 
 @router.get("/news/admin/all")
@@ -213,7 +159,7 @@ async def get_all_admin_news(
     query = {}
     if q and len(q.strip()) >= 2:
         rx = {"$regex": q.strip(), "$options": "i"}
-        query["$or"] = [{"title": rx}, {"title_te": rx}, {"summary": rx}, {"summary_te": rx}, {"source": rx}]
+        query["$or"] = [{"title": rx}, {"summary": rx}, {"source": rx}]
     if category:
         query["category"] = category
     total = await db.news.count_documents(query)
@@ -233,9 +179,8 @@ async def update_news(article_id: str, news: NewsUpdate):
         raise HTTPException(status_code=400, detail="No update data provided")
     update_data["updated_at"] = datetime.now(timezone.utc).isoformat()
     if "category" in update_data:
-        cat_info = CATEGORIES.get(update_data["category"], {"en": update_data["category"], "te": update_data["category"]})
+        cat_info = CATEGORIES.get(update_data["category"], {"en": update_data["category"]})
         update_data["category_label"] = cat_info["en"]
-        update_data["category_label_te"] = cat_info["te"]
     result = await db.news.find_one_and_update({"id": article_id}, {"$set": update_data}, return_document=True)
     if not result:
         raise HTTPException(status_code=404, detail="Article not found")
@@ -266,18 +211,13 @@ async def scrape_and_rephrase(request: ScrapeRequest):
     scraped = await scrape_url(request.url)
     title = scraped['title']
     summary = scraped['summary']
-    title_te = ""
-    summary_te = ""
     if request.rephrase:
         title = await rephrase_with_ai(title, is_title=True)
         summary = await rephrase_with_ai(summary, is_title=False)
     # Enforce 4+ paragraph minimum
     from helpers import ensure_min_paragraphs
     summary = ensure_min_paragraphs(summary, min_paragraphs=MIN_SUMMARY_LINES)
-    if request.translate_to_telugu:
-        title_te = await translate_to_telugu(title)
-        summary_te = await translate_to_telugu(summary)
-    return ScrapeResponse(title=title, title_te=title_te, summary=summary, summary_te=summary_te, image=scraped['image'], source=request.url)
+    return ScrapeResponse(title=title, summary=summary, image=scraped['image'], source=request.url)
 
 
 @router.post("/news/admin/backfill-summaries")
@@ -291,7 +231,7 @@ async def backfill_thin_summaries(limit: int = 200, use_ai: bool = True, _: str 
     # Target only articles whose summary lacks paragraph breaks (no \n\n)
     cursor = db.news.find(
         {"is_active": True, "summary": {"$exists": True, "$ne": "", "$not": {"$regex": "\n\n"}}},
-        {"_id": 0, "id": 1, "summary": 1, "summary_te": 1},
+        {"_id": 0, "id": 1, "summary": 1},
     ).sort("created_at", -1).limit(limit)
     async for art in cursor:
         s = (art.get("summary") or "").strip()
@@ -308,13 +248,6 @@ async def backfill_thin_summaries(limit: int = 200, use_ai: bool = True, _: str 
         if new_s == s:
             continue
         update = {"summary": new_s, "updated_at": datetime.now(timezone.utc).isoformat()}
-        s_te = (art.get("summary_te") or "").strip()
-        if s_te and len([p for p in s_te.split("\n\n") if p.strip()]) < 4:
-            te_new = ensure_min_paragraphs(s_te, min_paragraphs=4)
-            te_paras = [p for p in te_new.split("\n\n") if p.strip()]
-            if len(te_paras) < 4 and use_ai:
-                te_new = await expand_summary_with_ai(s_te, source_full_text="", min_paragraphs=4)
-            update["summary_te"] = te_new
         await db.news.update_one({"id": art["id"]}, {"$set": update})
         fixed += 1
     return {"message": f"Backfilled {fixed} thin summaries (AI-expanded {expanded_count})", "fixed": fixed, "ai_expanded": expanded_count, "scanned_limit": limit}

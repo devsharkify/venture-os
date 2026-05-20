@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 
 export default function SavedArticles() {
-  const { language, darkMode, savedArticles } = useContext(AppContext);
+  const { darkMode, savedArticles } = useContext(AppContext);
   const navigate = useNavigate();
 
   return (
@@ -26,15 +26,13 @@ export default function SavedArticles() {
             </Button>
             <div className="flex items-center gap-2">
               <Bookmark size={22} className="text-orange-500" />
-              <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"} ${language === "te" ? "font-telugu" : ""}`}>
-                {language === "en" ? "Saved Articles" : "సేవ్ చేసిన వార్తలు"}
+              <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
+                Saved Articles
               </h1>
             </div>
           </div>
-          <p className={`text-sm ml-12 ${darkMode ? "text-slate-400" : "text-slate-500"} ${language === "te" ? "font-telugu" : ""}`}>
-            {language === "en" 
-              ? `${savedArticles.length} article${savedArticles.length !== 1 ? "s" : ""} saved`
-              : `${savedArticles.length} వార్తలు సేవ్ చేయబడ్డాయి`}
+          <p className={`text-sm ml-12 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            {`${savedArticles.length} article${savedArticles.length !== 1 ? "s" : ""} saved`}
           </p>
         </div>
       </div>
@@ -46,20 +44,18 @@ export default function SavedArticles() {
             <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`}>
               <Bookmark size={32} className={darkMode ? "text-slate-500" : "text-slate-400"} />
             </div>
-            <h3 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-slate-700"} ${language === "te" ? "font-telugu" : ""}`}>
-              {language === "en" ? "No saved articles" : "సేవ్ చేసిన వార్తలు లేవు"}
+            <h3 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-slate-700"}`}>
+              No saved articles
             </h3>
-            <p className={`text-sm text-center max-w-xs ${darkMode ? "text-slate-400" : "text-slate-500"} ${language === "te" ? "font-telugu" : ""}`}>
-              {language === "en" 
-                ? "Tap the bookmark icon on any article to save it for later" 
-                : "తర్వాత చదవడానికి ఏదైనా వార్తపై బుక్‌మార్క్ చిహ్నాన్ని టాప్ చేయండి"}
+            <p className={`text-sm text-center max-w-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+              Tap the bookmark icon on any article to save it for later
             </p>
             <Button
               data-testid="browse-news-btn"
               onClick={() => navigate("/")}
               className="mt-6 bg-orange-500 hover:bg-orange-600"
             >
-              {language === "en" ? "Browse News" : "వార్తలు చూడండి"}
+              Browse News
             </Button>
           </div>
         )}

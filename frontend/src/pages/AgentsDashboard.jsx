@@ -27,25 +27,6 @@ const T = {
     anomalies: "Anomalies", topEndpoints: "Top Endpoints", copied: "Copied!",
     tweets: "Ready-to-Post Tweets", igCaptions: "Instagram Captions",
   },
-  te: {
-    title: "AI ఏజెంట్లు", editor: "న్యూస్ ఎడిటర్ ఏజెంట్", investigator: "ఇన్వెస్టిగేటివ్ రిపోర్టర్",
-    seo: "సోషల్ మీడియా ఎక్స్‌పర్ట్", tech: "టెక్ పెర్ఫార్మెన్స్",
-    run: "రన్ చేయండి", runAll: "అన్నీ రన్ చేయండి", running: "విశ్లేషిస్తోంది...",
-    editorial: "ఈ రోజు సంపాదకీయం", heroStories: "ప్రధాన వార్తలు", duplicates: "నకిలీలు",
-    mergedFrom: "విలీనం", articles: "ఆర్టికల్స్ విశ్లేషించబడ్డాయి", lastRun: "చివరి రన్",
-    topics: "ట్రాక్ చేయబడిన టాపిక్స్", events: "ఈవెంట్లు", report: "తాజా నివేదిక",
-    timeline: "టైమ్‌లైన్", noReport: "ఇంకా నివేదిక లేదు.",
-    newEvents: "కొత్త ఈవెంట్లు", matched: "సరిపోలాయి", viewReport: "నివేదిక చూడండి",
-    noData: "ఇంకా డేటా లేదు", runEditor: "ఎడిటర్ రన్", runInvestigator: "ఇన్వెస్టిగేషన్ రన్",
-    runSeo: "SEO రన్", runTech: "రిపోర్ట్ రన్",
-    trendingKeywords: "ట్రెండింగ్ కీవర్డ్స్", contentGaps: "కంటెంట్ గ్యాప్స్",
-    socialPosts: "సోషల్ మీడియా పోస్ట్‌లు", seoScore: "SEO స్కోర్",
-    strategy: "వ్యూహ నివేదిక", hashtags: "హ్యాష్‌ట్యాగ్‌లు", postTimes: "పోస్ట్ టైమ్స్",
-    healthScore: "హెల్త్ స్కోర్", avgResponse: "సగటు రెస్పాన్స్", p95: "P95",
-    errors: "ఎర్రర్‌లు", requests: "రిక్వెస్ట్‌లు", slowEndpoints: "స్లో ఎండ్‌పాయింట్‌లు",
-    anomalies: "అనోమలీస్", topEndpoints: "టాప్ ఎండ్‌పాయింట్‌లు", copied: "కాపీ అయింది!",
-    tweets: "ట్వీట్‌లు", igCaptions: "IG క్యాప్షన్‌లు",
-  }
 };
 
 // ─── Score Ring Component ────────────────────────────────────
@@ -158,13 +139,13 @@ function EditorSection({ lang }) {
             </div>
           </div>
 
-          {(report.editorial_en || report.editorial_te) && (
+          {report.editorial_en && (
             <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-lg p-4 border border-orange-100 dark:border-orange-800/30">
               <h3 className="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5" /> {t.editorial}
               </h3>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                {lang === "te" ? (report.editorial_te || report.editorial_en) : report.editorial_en}
+                {report.editorial_en}
               </p>
             </div>
           )}
@@ -230,7 +211,7 @@ function TopicCard({ topic, lang, onViewReport }) {
       <div className="flex items-start justify-between mb-3">
         <div>
           <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">
-            {lang === "te" ? topic.name_te : topic.name_en}
+            {topic.name_en}
           </h3>
           <div className="flex items-center gap-3 mt-1">
             <span className="text-[10px] text-slate-400 flex items-center gap-1">
@@ -296,7 +277,7 @@ function ReportView({ topicId, lang, onBack }) {
         &larr; Back to topics
       </button>
       <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">
-        {lang === "te" ? topic.name_te : topic.name_en}
+        {topic.name_en}
       </h2>
       <p className="text-[10px] text-slate-400 mb-4">{events.length} {t.events} / {t.lastRun}: {new Date(report.created_at).toLocaleString()}</p>
 
@@ -305,7 +286,7 @@ function ReportView({ topicId, lang, onBack }) {
           <Bot className="w-3.5 h-3.5" /> {t.report}
         </h3>
         <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
-          {lang === "te" ? (report.report_te || report.report_en) : report.report_en}
+          {report.report_en}
         </p>
       </div>
 
@@ -667,7 +648,6 @@ function SeoSection({ lang }) {
                   {[
                     { label: "SEO Meta (Title + Desc)", value: seoStats.seo_coverage_percent, count: seoStats.with_seo_meta, color: "#10b981" },
                     { label: "Images", value: Math.min(100, seoStats.image_coverage_percent), count: seoStats.with_images, color: "#3b82f6" },
-                    { label: "Telugu Translation", value: seoStats.telugu_coverage_percent, count: seoStats.with_telugu, color: "#8b5cf6" },
                     { label: "Source Links", value: seoStats.link_coverage_percent, count: seoStats.with_links, color: "#f59e0b" },
                   ].map((item, i) => (
                     <div key={i} className="mb-3">
@@ -692,14 +672,13 @@ function SeoSection({ lang }) {
                 <h3 className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide mb-3">Active SEO Infrastructure</h3>
                 <div className="space-y-2">
                   {[
-                    { label: "Sitemap.xml", desc: `${seoStats?.total_articles || 0} articles + Google News tags + hreflang`, url: "/sitemap.xml", status: true },
+                    { label: "Sitemap.xml", desc: `${seoStats?.total_articles || 0} articles + Google News tags`, url: "/sitemap.xml", status: true },
                     { label: "RSS Feed", desc: "Google News compatible with keywords", url: "/rss.xml", status: true },
                     { label: "robots.txt", desc: "Googlebot-News + crawl-delay rules", url: "/robots.txt", status: true },
                     { label: "IndexNow", desc: "Auto-ping Bing & Yandex on new articles", status: true },
                     { label: "JSON-LD Schema", desc: "NewsArticle + BreadcrumbList + WebSite", status: true },
                     { label: "Open Graph", desc: "Full article:section, article:tag, og:image", status: true },
                     { label: "Twitter Cards", desc: "summary_large_image with category labels", status: true },
-                    { label: "Hreflang Tags", desc: `English + Telugu (${seoStats?.with_telugu || 0} bilingual articles)`, status: true },
                     { label: "Related Articles", desc: "Internal linking via category + keyword match", status: true },
                     { label: "Canonical URLs", desc: "Proper canonical on every article page", status: true },
                   ].map((item, i) => (
@@ -906,8 +885,7 @@ function TechSection({ lang }) {
 // ═══════════════════════════════════════════════════════════
 
 export default function AgentsDashboard() {
-  const { language } = useContext(AppContext);
-  const t = T[language] || T.en;
+  const t = T.en;
   const [activeTab, setActiveTab] = useState("editor");
 
   const agentTabs = [
@@ -949,10 +927,10 @@ export default function AgentsDashboard() {
 
       {/* Active Agent Section */}
       <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4">
-        {activeTab === "editor" && <EditorSection lang={language} />}
-        {activeTab === "investigator" && <InvestigatorSection lang={language} />}
-        {activeTab === "seo" && <SeoSection lang={language} />}
-        {activeTab === "tech" && <TechSection lang={language} />}
+        {activeTab === "editor" && <EditorSection lang="en" />}
+        {activeTab === "investigator" && <InvestigatorSection lang="en" />}
+        {activeTab === "seo" && <SeoSection lang="en" />}
+        {activeTab === "tech" && <TechSection lang="en" />}
       </div>
     </div>
   );

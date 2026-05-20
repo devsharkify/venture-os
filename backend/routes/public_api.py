@@ -17,7 +17,7 @@ DAILY_LIMIT = 1000
 
 # Feed projection — clean, lightweight response
 PUBLIC_FIELDS = {
-    "_id": 0, "id": 1, "title": 1, "title_te": 1, "summary": 1, "summary_te": 1,
+    "_id": 0, "id": 1, "title": 1, "summary": 1,
     "category": 1, "category_label": 1, "image": 1, "source": 1,
     "link": 1, "published_at": 1, "content_type": 1,
 }
@@ -90,8 +90,8 @@ async def public_feed(
     for a in articles:
         item = {
             "id": a.get("id"),
-            "title": a.get("title_te" if lang == "te" else "title", ""),
-            "summary": a.get("summary_te" if lang == "te" else "summary", ""),
+            "title": a.get("title", ""),
+            "summary": a.get("summary", ""),
             "category": a.get("category", ""),
             "category_label": a.get("category_label", ""),
             "image": a.get("image", ""),
@@ -129,8 +129,8 @@ async def public_article(
         "status": "ok",
         "article": {
             "id": article.get("id"),
-            "title": article.get("title_te" if lang == "te" else "title", ""),
-            "summary": article.get("summary_te" if lang == "te" else "summary", ""),
+            "title": article.get("title", ""),
+            "summary": article.get("summary", ""),
             "category": article.get("category", ""),
             "category_label": article.get("category_label", ""),
             "image": article.get("image", ""),
@@ -148,7 +148,7 @@ async def public_categories(
 ):
     """Get available news categories."""
     await _validate_key(x_api_key)
-    cats = [{"id": k, "label_en": v["en"], "label_te": v["te"]} for k, v in CATEGORIES.items()]
+    cats = [{"id": k, "label_en": v["en"]} for k, v in CATEGORIES.items()]
     return {"status": "ok", "categories": cats}
 
 
@@ -168,7 +168,6 @@ async def public_search(
         "is_active": True,
         "$or": [
             {"title": {"$regex": q, "$options": "i"}},
-            {"title_te": {"$regex": q, "$options": "i"}},
             {"summary": {"$regex": q, "$options": "i"}},
         ]
     }
@@ -183,8 +182,8 @@ async def public_search(
     for a in articles:
         result.append({
             "id": a.get("id"),
-            "title": a.get("title_te" if lang == "te" else "title", ""),
-            "summary": a.get("summary_te" if lang == "te" else "summary", ""),
+            "title": a.get("title", ""),
+            "summary": a.get("summary", ""),
             "category": a.get("category", ""),
             "image": a.get("image", ""),
             "source": a.get("source", ""),

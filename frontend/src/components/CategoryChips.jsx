@@ -2,15 +2,14 @@ import { useContext, useRef, useEffect } from "react";
 import { AppContext } from "../App";
 
 export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
-  const { language, categories, darkMode } = useContext(AppContext);
+  const { categories, darkMode } = useContext(AppContext);
   const scrollRef = useRef(null);
 
   const categoryList = [
-    { key: "all", en: "All News", te: "అన్ని వార్తలు" },
+    { key: "all", en: "All News" },
     ...Object.entries(categories).map(([key, value]) => ({
       key,
-      en: value.en,
-      te: value.te
+      en: value.en
     }))
   ];
 
@@ -51,8 +50,7 @@ export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
       >
         {categoryList.map((cat) => {
           const isActive = activeCategory === cat.key;
-          const isTelugu = language === "te";
-          const label = isTelugu ? cat.te : cat.en;
+          const label = cat.en;
 
           return (
             <button
@@ -66,10 +64,7 @@ export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
                 transition-colors duration-150
                 whitespace-nowrap
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F26B1F] focus-visible:ring-offset-1
-                ${isTelugu
-                  ? "font-telugu normal-case text-[13px] font-semibold tracking-normal"
-                  : "text-[12px] font-semibold uppercase tracking-wider"
-                }
+                text-[12px] font-semibold uppercase tracking-wider
                 ${isActive
                   ? "bg-[#F26B1F] text-white border border-[#F26B1F]"
                   : darkMode

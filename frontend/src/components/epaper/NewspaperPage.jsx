@@ -1,30 +1,28 @@
-const Masthead = ({ date, fD, te, slot }) => {
-  const edLabel = slot === "morning"
-    ? (te ? "\u0C09\u0C26\u0C2F\u0C02 \u0C0E\u0C21\u0C3F\u0C37\u0C28\u0C4D" : "Morning Edition")
-    : (te ? "\u0C38\u0C3E\u0C2F\u0C02\u0C24\u0C4D\u0C30\u0C02 \u0C0E\u0C21\u0C3F\u0C37\u0C28\u0C4D" : "Evening Edition");
+const Masthead = ({ date, fD, slot }) => {
+  const edLabel = slot === "morning" ? "Morning Edition" : "Evening Edition";
   return (
     <div style={{ marginBottom: "6px" }}>
-      <div style={{ textAlign: "center", padding: "8px 0 4px", borderBottom: "5px double #c41e1e" }}>
-        <div style={{ fontSize: "48px", fontWeight: 900, letterSpacing: "6px", fontFamily: "'Playfair Display', Georgia, serif", color: "#c41e1e", lineHeight: 1, textTransform: "uppercase" }}>KAIZER NEWS</div>
+      <div style={{ textAlign: "center", padding: "8px 0 4px", borderBottom: "5px double #F26B1F" }}>
+        <div style={{ fontSize: "48px", fontWeight: 900, letterSpacing: "6px", fontFamily: "'Fraunces', Georgia, serif", color: "#F26B1F", lineHeight: 1, textTransform: "uppercase" }}>MINT STREET</div>
         <div style={{ fontSize: "8px", color: "#888", fontFamily: "system-ui", letterSpacing: "3px", textTransform: "uppercase", marginTop: "3px" }}>
-          {te ? "\u0C38\u0C24\u0C4D\u0C2F\u0C02 \u0C35\u0C48\u0C2A\u0C41 | \u0C39\u0C48\u0C26\u0C30\u0C3E\u0C2C\u0C3E\u0C26\u0C4D" : "Towards Truth | Hyderabad"}
+          Where new money meets new ideas
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", color: "#555", fontFamily: "system-ui", padding: "4px 0", borderBottom: "2px solid #1a1a1a" }}>
         <span style={{ fontWeight: 600 }}>{fD(date)}</span>
-        <span style={{ letterSpacing: "2px", textTransform: "uppercase", fontSize: "8px", color: "#c41e1e", fontWeight: 700 }}>{edLabel}</span>
+        <span style={{ letterSpacing: "2px", textTransform: "uppercase", fontSize: "8px", color: "#F26B1F", fontWeight: 700 }}>{edLabel}</span>
         <span>mintstreet.in</span>
       </div>
     </div>
   );
 };
 
-const InnerHeader = ({ title, date, pageNum, fD, te, slot }) => {
-  const edTag = slot === "morning" ? (te ? "\u0C09\u0C26\u0C2F\u0C02" : "Morning") : (te ? "\u0C38\u0C3E\u0C2F\u0C02\u0C24\u0C4D\u0C30\u0C02" : "Evening");
+const InnerHeader = ({ title, date, pageNum, fD, slot }) => {
+  const edTag = slot === "morning" ? "Morning" : "Evening";
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "3px solid #1a1a1a", paddingBottom: "4px", marginBottom: "8px" }}>
-      <span style={{ fontSize: "13px", fontWeight: 900, letterSpacing: "3px", textTransform: "uppercase", color: "#c41e1e" }}>KAIZER NEWS</span>
-      <span style={{ fontSize: "22px", fontWeight: 900, fontFamily: te ? "'Noto Serif Telugu', serif" : "'Playfair Display', Georgia, serif", color: "#111" }}>{title}</span>
+      <span style={{ fontSize: "13px", fontWeight: 900, letterSpacing: "3px", textTransform: "uppercase", color: "#F26B1F" }}>MINT STREET</span>
+      <span style={{ fontSize: "22px", fontWeight: 900, fontFamily: "'Fraunces', Georgia, serif", color: "#111" }}>{title}</span>
       <span style={{ fontSize: "8px", color: "#888", fontFamily: "system-ui" }}>{fD(date)} | {edTag} | Pg {pageNum}</span>
     </div>
   );
@@ -46,10 +44,10 @@ const CmykFooter = ({ pageNum, totalPages, date, fD }) => (
   </div>
 );
 
-export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, te, slot }) => {
-  const hF = te ? "'Noto Serif Telugu', serif" : "'Playfair Display', Georgia, serif";
-  const bF = te ? "'Noto Serif Telugu', serif" : "'PT Serif', Georgia, serif";
-  const fD = (d) => { try { return new Date(d + "T12:00:00").toLocaleDateString(te ? "te-IN" : "en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); } catch { return d; } };
+export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, slot }) => {
+  const hF = "'Fraunces', Georgia, serif";
+  const bF = "'PT Serif', Georgia, serif";
+  const fD = (d) => { try { return new Date(d + "T12:00:00").toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); } catch { return d; } };
 
   if (!articles.length) return null;
 
@@ -66,7 +64,7 @@ export const NewspaperPage = ({ articles, title, date, pageNum, totalPages, te, 
       {/* Newsprint texture */}
       <div style={{ position: "absolute", inset: 0, opacity: 0.025, background: "repeating-linear-gradient(0deg,#000 0px,transparent 1px,transparent 3px)", pointerEvents: "none", zIndex: 1 }} />
       <div style={{ position: "relative", zIndex: 2, padding: "14px 20px 10px", display: "flex", flexDirection: "column", flex: 1 }}>
-        {pageNum === 1 ? <Masthead date={date} fD={fD} te={te} slot={slot} /> : <InnerHeader title={title} date={date} pageNum={pageNum} fD={fD} te={te} slot={slot} />}
+        {pageNum === 1 ? <Masthead date={date} fD={fD} slot={slot} /> : <InnerHeader title={title} date={date} pageNum={pageNum} fD={fD} slot={slot} />}
 
         {/* ROW 1: HERO + SUB — full width */}
         <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "0", borderBottom: "2px solid #1a1a1a", marginBottom: "8px" }}>

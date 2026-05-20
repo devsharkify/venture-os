@@ -25,6 +25,7 @@ from routes.public_api import router as public_api_router, admin_router as apike
 from routes.youtube import router as youtube_router
 from routes.youtube_agents import router as youtube_agents_router
 from routes.startup import router as startup_router
+from routes.sitemap import router as sitemap_router
 
 ROOT_DIR = Path(__file__).parent
 
@@ -50,6 +51,7 @@ app.include_router(apikeys_admin_router)
 app.include_router(youtube_router)
 app.include_router(youtube_agents_router)
 app.include_router(startup_router)
+app.include_router(sitemap_router)
 
 # GZip compression — compress responses > 500 bytes
 app.add_middleware(GZipMiddleware, minimum_size=500)
@@ -82,7 +84,6 @@ async def start_scraper():
         await db.news.create_index("id", unique=True)
         await db.news.create_index("title_hash")
         await db.news.create_index([("is_active", 1), ("seo_title", 1)])
-        await db.news.create_index([("is_active", 1), ("title_te", 1)])
         await db.perf_metrics.create_index("timestamp")
         await db.perf_metrics.create_index([("timestamp", -1), ("endpoint", 1)])
     except Exception as e:

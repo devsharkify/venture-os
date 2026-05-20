@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import { AppContext, API } from "../App";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { API } from "../App";
 import axios from "axios";
 import { Loader2, Sun, Moon, ChevronLeft, ChevronRight, Download, Calendar, ZoomIn, ZoomOut, Share2 } from "lucide-react";
 import { NewspaperPage } from "../components/epaper/NewspaperPage";
 
 const EpaperPage = () => {
-  const { language } = useContext(AppContext);
   const [editions, setEditions] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("evening");
@@ -20,7 +19,7 @@ const EpaperPage = () => {
   const isScrollingTo = useRef(false);
 
   useEffect(() => { fetchEditions(); }, []);
-  useEffect(() => { if (selectedDate && selectedSlot) fetchEpaper(selectedDate, selectedSlot); }, [selectedDate, selectedSlot, language]);
+  useEffect(() => { if (selectedDate && selectedSlot) fetchEpaper(selectedDate, selectedSlot); }, [selectedDate, selectedSlot]);
 
   const fetchEditions = async () => {
     try {
@@ -34,7 +33,7 @@ const EpaperPage = () => {
   const fetchEpaper = async (date, slot) => {
     setLoading(true);
     try {
-      const r = await axios.get(`${API}/epaper/${date}?lang=${language}&slot=${slot}`);
+      const r = await axios.get(`${API}/epaper/${date}?lang=en&slot=${slot}`);
       setEpaperData(r.data);
       setCurrentPage(0);
       pageRefs.current = [];
@@ -46,9 +45,9 @@ const EpaperPage = () => {
   const downloadPdf = async () => {
     setPdfLoading(true);
     try {
-      const r = await axios.get(`${API}/epaper/${selectedDate}/pdf?lang=${language}&slot=${selectedSlot}`, { responseType: "blob", timeout: 60000 });
+      const r = await axios.get(`${API}/epaper/${selectedDate}/pdf?lang=en&slot=${selectedSlot}`, { responseType: "blob", timeout: 60000 });
       const url = window.URL.createObjectURL(new Blob([r.data]));
-      const a = document.createElement("a"); a.href = url; a.download = `tvr_${selectedDate}_${selectedSlot}_${language}.pdf`;
+      const a = document.createElement("a"); a.href = url; a.download = `tvr_${selectedDate}_${selectedSlot}_en.pdf`;
       document.body.appendChild(a); a.click(); a.remove(); window.URL.revokeObjectURL(url);
     } catch (e) { console.error(e); }
     setPdfLoading(false);
@@ -175,7 +174,7 @@ const EpaperPage = () => {
               <div key={i} data-page-index={i} ref={el => { pageRefs.current[i] = el; }}
                 className="w-full px-2 sm:px-4 md:px-0 mb-1" style={{ maxWidth: "820px" }}>
                 <div style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.35)", borderRadius: "2px", overflow: "hidden" }}>
-                  <NewspaperPage articles={pg.articles} title={pg.title} date={selectedDate} pageNum={i + 1} totalPages={pages.length} te={language === "te"} slot={selectedSlot} />
+                  <NewspaperPage articles={pg.articles} title={pg.title} date={selectedDate} pageNum={i + 1} totalPages={pages.length} te={false} slot={selectedSlot} />
                 </div>
               </div>
             ))}

@@ -124,7 +124,7 @@ async def approve_reporter_news(news_id: str, _: str = Depends(require_admin)):
     elif news.get("news_type") == "reporter_video":
         content_type = "video"
         video_url = news.get("reporter_video_url", "")
-    article = NewsArticle(title=news.get("title"), title_te=news.get("title_te", ""), summary=news.get("summary"), summary_te=news.get("summary_te", ""), category=news.get("category"), category_label=cat_info["en"], category_label_te=cat_info["te"], image=news.get("image", ""), video_url=video_url, content_type=content_type, source=f"Reporter: {news.get('reporter_name')} ({news.get('reporter_id')})")
+    article = NewsArticle(title=news.get("title"), summary=news.get("summary"), category=news.get("category"), category_label=cat_info["en"], image=news.get("image", ""), video_url=video_url, content_type=content_type, source=f"Reporter: {news.get('reporter_name')} ({news.get('reporter_id')})")
     doc = prepare_for_mongo(article.model_dump())
     await db.news.insert_one(doc)
     await db.reporters.update_one({"reporter_id": news.get("reporter_id")}, {"$inc": {"news_approved": 1}})

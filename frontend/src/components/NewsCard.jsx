@@ -38,15 +38,13 @@ const DEFAULT_IMAGES = {
 };
 
 export const NewsCard = ({ article, articlesList = [] }) => {
-  const { language, darkMode, saveArticle, isArticleSaved, openArticle, isAdmin } = useContext(AppContext);
+  const { darkMode, saveArticle, isArticleSaved, openArticle, isAdmin } = useContext(AppContext);
   const navigate = useNavigate();
   const isSaved = isArticleSaved(article.id);
 
-  const title = language === "en" ? article.title : (article.title_te || article.title);
-  const summary = language === "en" ? article.summary : (article.summary_te || article.summary);
-  const categoryLabel = language === "en"
-    ? article.category_label
-    : (article.category_label_te || article.category_label);
+  const title = article.title;
+  const summary = article.summary;
+  const categoryLabel = article.category_label;
 
   const readTime = Math.max(1, Math.ceil((article.summary || "").split(/\s+/).filter(Boolean).length / 200));
 
@@ -107,9 +105,7 @@ export const NewsCard = ({ article, articlesList = [] }) => {
             </span>
           ) : categoryLabel ? (
             <span
-              className={`text-[10px] font-bold uppercase tracking-[0.14em] text-mint truncate ${
-                language === "te" ? "font-telugu" : ""
-              }`}
+              className="text-[10px] font-bold uppercase tracking-[0.14em] text-mint truncate"
             >
               {categoryLabel}
             </span>
@@ -158,7 +154,6 @@ export const NewsCard = ({ article, articlesList = [] }) => {
           className={`
             font-display text-[16px] md:text-[17px] font-bold leading-snug line-clamp-3 mb-2 cursor-pointer
             ${darkMode ? "text-[#F2EDE2]" : "text-ink"}
-            ${language === "te" ? "font-telugu" : ""}
           `}
         >
           {title}
@@ -168,7 +163,7 @@ export const NewsCard = ({ article, articlesList = [] }) => {
           <p
             className={`text-[13px] line-clamp-2 mb-3 leading-relaxed ${
               darkMode ? "text-[#9AA8A2]" : "text-ink-muted"
-            } ${language === "te" ? "font-telugu" : ""}`}
+            }`}
           >
             {summary}
           </p>

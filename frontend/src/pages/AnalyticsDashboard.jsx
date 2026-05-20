@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import axios from "axios";
 import { API, AppContext } from "../App";
-import { 
+import {
   BarChart3, TrendingUp, Users, FileText, Eye, Download,
   RefreshCw, Loader2, Calendar, ArrowLeft
 } from "lucide-react";
@@ -18,9 +18,9 @@ import {
 } from "../components/ui/table";
 
 export default function AnalyticsDashboard() {
-  const { language, darkMode } = useContext(AppContext);
+  const { darkMode } = useContext(AppContext);
   const navigate = useNavigate();
-  
+
   const [loading, setLoading] = useState(true);
   const [overview, setOverview] = useState(null);
   const [articles, setArticles] = useState([]);
@@ -52,7 +52,7 @@ export default function AnalyticsDashboard() {
       const response = await axios.get(`${API}/analytics/report/csv`, {
         responseType: 'blob'
       });
-      
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -100,7 +100,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2">
               <BarChart3 size={24} className="text-orange-500" />
               <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
-                {language === "en" ? "Analytics Dashboard" : "అనలిటిక్స్ డాష్‌బోర్డ్"}
+                Analytics Dashboard
               </h1>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function AnalyticsDashboard() {
               className={darkMode ? "border-slate-600" : ""}
             >
               <RefreshCw size={14} className="mr-1" />
-              {language === "en" ? "Refresh" : "రిఫ్రెష్"}
+              Refresh
             </Button>
             <Button
               size="sm"
@@ -125,7 +125,7 @@ export default function AnalyticsDashboard() {
               ) : (
                 <Download size={14} className="mr-1" />
               )}
-              {language === "en" ? "Download CSV" : "CSV డౌన్‌లోడ్"}
+              Download CSV
             </Button>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-2">
               <Eye size={18} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "Views Today" : "నేటి వీక్షణలు"}
+                Views Today
               </span>
             </div>
             <p className={`text-2xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -150,7 +150,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp size={18} className="text-green-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "This Week" : "ఈ వారం"}
+                This Week
               </span>
             </div>
             <p className={`text-2xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -162,7 +162,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-2">
               <Calendar size={18} className="text-purple-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "This Month" : "ఈ నెల"}
+                This Month
               </span>
             </div>
             <p className={`text-2xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -174,7 +174,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-2">
               <Users size={18} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "Total Users" : "మొత్తం యూజర్లు"}
+                Total Users
               </span>
             </div>
             <p className={`text-2xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -189,7 +189,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-1">
               <FileText size={16} className="text-orange-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "Total Articles" : "మొత్తం వార్తలు"}
+                Total Articles
               </span>
             </div>
             <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -201,7 +201,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-1">
               <Users size={16} className="text-green-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "Reporters" : "రిపోర్టర్లు"}
+                Reporters
               </span>
             </div>
             <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -213,7 +213,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center gap-2 mb-1">
               <BarChart3 size={16} className="text-purple-500" />
               <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {language === "en" ? "Avg/Day" : "సగటు/రోజు"}
+                Avg/Day
               </span>
             </div>
             <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
@@ -226,7 +226,7 @@ export default function AnalyticsDashboard() {
         {overview?.daily_trend?.length > 0 && (
           <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
             <h3 className={`font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
-              {language === "en" ? "Views Trend (Last 7 Days)" : "వీక్షణల ట్రెండ్ (గత 7 రోజులు)"}
+              Views Trend (Last 7 Days)
             </h3>
             <div className="flex items-end gap-2 h-32">
               {overview.daily_trend.map((day, index) => {
@@ -237,7 +237,7 @@ export default function AnalyticsDashboard() {
                     <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                       {day.count}
                     </span>
-                    <div 
+                    <div
                       className="w-full bg-orange-500 rounded-t transition-all"
                       style={{ height: `${Math.max(height, 5)}%` }}
                     />
@@ -255,12 +255,12 @@ export default function AnalyticsDashboard() {
         {overview?.views_by_category?.length > 0 && (
           <div className={`p-4 rounded-xl border mb-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
             <h3 className={`font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
-              {language === "en" ? "Views by Category" : "వర్గం వారీగా వీక్షణలు"}
+              Views by Category
             </h3>
             <div className="flex flex-wrap gap-2">
               {overview.views_by_category.map((cat, index) => (
-                <Badge 
-                  key={index} 
+                <Badge
+                  key={index}
                   variant="outline"
                   className={`text-sm py-1 px-3 ${darkMode ? "border-slate-600 text-slate-300" : ""}`}
                 >
@@ -275,23 +275,23 @@ export default function AnalyticsDashboard() {
         <div className={`rounded-xl border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
           <div className="p-4 border-b border-slate-200 dark:border-slate-700">
             <h3 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
-              {language === "en" ? "Top Performing Articles" : "అత్యధిక వీక్షణల వార్తలు"}
+              Top Performing Articles
             </h3>
           </div>
           <Table>
             <TableHeader>
               <TableRow className={darkMode ? "bg-slate-700/50" : "bg-slate-50"}>
                 <TableHead className="w-8">#</TableHead>
-                <TableHead>{language === "en" ? "Title" : "శీర్షిక"}</TableHead>
-                <TableHead>{language === "en" ? "Category" : "వర్గం"}</TableHead>
-                <TableHead className="text-right">{language === "en" ? "Views" : "వీక్షణలు"}</TableHead>
+                <TableHead>Title</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead className="text-right">Views</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {articles.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={4} className="text-center py-8 text-slate-500">
-                    {language === "en" ? "No data yet" : "ఇంకా డేటా లేదు"}
+                    No data yet
                   </TableCell>
                 </TableRow>
               ) : (

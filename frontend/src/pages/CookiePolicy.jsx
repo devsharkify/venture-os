@@ -59,7 +59,6 @@ export default function CookiePolicy() {
 
   const cookieTableRows = [
     { name: "tvr_dark_mode", purpose: "Stores your UI dark/light mode preference", duration: "1 year" },
-    { name: "tvr_language", purpose: "Remembers your selected language (English / Telugu)", duration: "1 year" },
     { name: "tvr_saved", purpose: "Keeps track of articles you have saved for later reading", duration: "1 year" },
     { name: "_ga", purpose: "Google Analytics — distinguishes unique users and sessions", duration: "2 years" },
     { name: "_gid", purpose: "Google Analytics — identifies a session within a 24-hour window", duration: "24 hours" },
@@ -120,8 +119,8 @@ export default function CookiePolicy() {
           <Para>
             Persistent cookies remain on your device for a set period of time after the browser
             session ends &mdash; or until you manually delete them. We use persistent cookies to
-            remember your preferences (such as dark mode and language selection) across multiple
-            visits, so you do not have to reconfigure your settings each time.
+            remember your preferences (such as dark mode) across multiple visits, so you do not
+            have to reconfigure your settings each time.
           </Para>
 
           <SubHeading darkMode={darkMode}>First-Party vs. Third-Party Cookies</SubHeading>
@@ -161,9 +160,8 @@ export default function CookiePolicy() {
           <SubHeading darkMode={darkMode}>Functional Cookies</SubHeading>
           <Para>
             Functional cookies enable enhanced features and personalisation. We use them to
-            remember your preferred language (English or Telugu), your dark mode or light mode
-            preference, and articles you have bookmarked. Disabling functional cookies will result
-            in these settings being reset on each visit.
+            remember your dark mode or light mode preference and articles you have bookmarked.
+            Disabling functional cookies will result in these settings being reset on each visit.
           </Para>
         </Section>
 
@@ -217,8 +215,7 @@ export default function CookiePolicy() {
           <Para>
             You have the right to accept, decline, or delete cookies. Below is guidance on how to
             control cookies in the most commonly used browsers. Note that restricting certain cookies
-            may impact the functionality of features such as dark mode, saved articles, and language
-            preferences.
+            may impact the functionality of features such as dark mode and saved articles.
           </Para>
 
           <SubHeading darkMode={darkMode}>Google Chrome</SubHeading>

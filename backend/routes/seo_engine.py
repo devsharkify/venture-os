@@ -16,7 +16,7 @@ router = APIRouter(prefix="/api/seo-engine")
 SITE_URL = os.environ.get("APP_URL", "")
 SITE_NAME = "Mint Street"
 INDEXNOW_KEY = "kaizernews-indexnow-key-2026"
-LANGUAGES = ["en", "te"]
+LANGUAGES = ["en"]
 
 
 # ============================================================
@@ -29,7 +29,7 @@ async def sitemap_xml():
     articles = await db.news.find(
         {"is_active": True},
         {"_id": 0, "id": 1, "updated_at": 1, "published_at": 1, "category": 1,
-         "title": 1, "title_te": 1, "seo_title": 1}
+         "title": 1, "seo_title": 1}
     ).sort("published_at", -1).limit(5000).to_list(5000)
 
     # Cutoff for Google News sitemap (last 2 days only)
@@ -47,7 +47,6 @@ async def sitemap_xml():
     <changefreq>{freq}</changefreq>
     <priority>{priority}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="{SITE_URL}{page}" />
-    <xhtml:link rel="alternate" hreflang="te" href="{SITE_URL}{page}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="{SITE_URL}{page}" />
   </url>""")
 
@@ -83,13 +82,9 @@ async def sitemap_xml():
       <news:keywords>{cat_label}</news:keywords>
     </news:news>"""
 
-        # Hreflang for bilingual articles
+        # Hreflang
         hreflang_tags = f"""
-    <xhtml:link rel="alternate" hreflang="en" href="{article_url}" />"""
-        if a.get("title_te"):
-            hreflang_tags += f"""
-    <xhtml:link rel="alternate" hreflang="te" href="{article_url}" />"""
-        hreflang_tags += f"""
+    <xhtml:link rel="alternate" hreflang="en" href="{article_url}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="{article_url}" />"""
 
         urls.append(f"""  <url>
@@ -209,8 +204,8 @@ async def article_page(article_id: str, request: Request):
     if not article:
         return HTMLResponse("<html><body><h1>Article not found</h1></body></html>", status_code=404)
 
-    title = article.get("seo_title") or article.get("title") or article.get("title_te", "")
-    description = (article.get("seo_description") or article.get("summary") or article.get("summary_te", ""))[:300]
+    title = article.get("seo_title") or article.get("title", "")
+    description = (article.get("seo_description") or article.get("summary", ""))[:300]
     image = article.get("image", "")
     keywords = ", ".join(article.get("seo_keywords", [])) if article.get("seo_keywords") else article.get("category", "")
     published = article.get("published_at", "")
@@ -218,9 +213,8 @@ async def article_page(article_id: str, request: Request):
     category_key = article.get("category", "")
     article_url = f"https://www.mintstreet.in/news/{article_id}"
     source = article.get("source", "")
-    full_summary = article.get("summary") or article.get("summary_te", "")
+    full_summary = article.get("summary", "")
     updated_at = article.get("updated_at", published)
-    has_telugu = bool(article.get("title_te"))
 
     # Escape for HTML attributes
     safe_title = title.replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;')
@@ -244,7 +238,7 @@ async def article_page(article_id: str, request: Request):
         "mainEntityOfPage": {"@type": "WebPage", "@id": article_url},
         "articleSection": category,
         "keywords": keywords,
-        "inLanguage": ["en", "te"] if has_telugu else ["en"],
+        "inLanguage": ["en"],
         "isAccessibleForFree": True,
     }, ensure_ascii=False)
 
@@ -278,9 +272,6 @@ async def article_page(article_id: str, request: Request):
     hreflang_tags = f'''
   <link rel="alternate" hreflang="en" href="{article_url}" />
   <link rel="alternate" hreflang="x-default" href="{article_url}" />'''
-    if has_telugu:
-        hreflang_tags += f'''
-  <link rel="alternate" hreflang="te" href="{article_url}" />'''
 
     # Get related articles for internal linking
     related = await db.news.find(
@@ -570,10 +561,6 @@ async def seo_stats():
     with_images = await db.news.count_documents({"is_active": True, "image": {"$exists": True, "$ne": ""}})
     image_coverage = round((with_images / total * 100), 1) if total > 0 else 0
 
-    # Count articles with Telugu translations (hreflang coverage)
-    with_telugu = await db.news.count_documents({"is_active": True, "title_te": {"$exists": True, "$ne": ""}})
-    telugu_coverage = round((with_telugu / total * 100), 1) if total > 0 else 0
-
     # Count articles with source links (for canonical/attribution)
     with_links = await db.news.count_documents({"is_active": True, "link": {"$exists": True, "$ne": ""}})
     link_coverage = round((with_links / total * 100), 1) if total > 0 else 0
@@ -585,9 +572,8 @@ async def seo_stats():
 
     # Calculate overall SEO health score (0-100)
     health_score = round(
-        (coverage * 0.35) +
+        (coverage * 0.5) +
         (image_coverage * 0.2) +
-        (telugu_coverage * 0.15) +
         (link_coverage * 0.1) +
         (min(100, recent_count * 5) * 0.2)  # freshness: 20 articles/day = 100%
     )
@@ -599,8 +585,6 @@ async def seo_stats():
         "seo_coverage_percent": coverage,
         "with_images": with_images,
         "image_coverage_percent": image_coverage,
-        "with_telugu": with_telugu,
-        "telugu_coverage_percent": telugu_coverage,
         "with_links": with_links,
         "link_coverage_percent": link_coverage,
         "recent_24h": recent_count,
@@ -636,7 +620,7 @@ async def get_related_articles(article_id: str, limit: int = Query(5, ge=1, le=1
 
     related = await db.news.find(
         query,
-        {"_id": 0, "id": 1, "title": 1, "title_te": 1, "image": 1, "category": 1,
+        {"_id": 0, "id": 1, "title": 1, "image": 1, "category": 1,
          "category_label": 1, "published_at": 1, "seo_keywords": 1, "seo_title": 1}
     ).sort("published_at", -1).limit(limit * 3).to_list(limit * 3)
 
@@ -699,7 +683,7 @@ Sitemap: {SITE_URL}/rss.xml
         articles = await db.news.find(
             {"is_active": True},
             {"_id": 0, "id": 1, "updated_at": 1, "published_at": 1, "category": 1,
-             "title": 1, "title_te": 1, "seo_title": 1}
+             "title": 1, "seo_title": 1}
         ).sort("published_at", -1).limit(5000).to_list(5000)
 
         news_cutoff = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
@@ -726,8 +710,6 @@ Sitemap: {SITE_URL}/rss.xml
                 news_tag = f'\n    <news:news>\n      <news:publication>\n        <news:name>{SITE_NAME}</news:name>\n        <news:language>en</news:language>\n      </news:publication>\n      <news:publication_date>{pub_date}</news:publication_date>\n      <news:title>{safe_title}</news:title>\n      <news:keywords>{cat_label}</news:keywords>\n    </news:news>'
 
             hreflang_tags = f'\n    <xhtml:link rel="alternate" hreflang="en" href="{article_url}" />'
-            if a.get("title_te"):
-                hreflang_tags += f'\n    <xhtml:link rel="alternate" hreflang="te" href="{article_url}" />'
             hreflang_tags += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{article_url}" />'
 
             urls.append(f'  <url>\n    <loc>{article_url}</loc>{lastmod_tag}\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>{news_tag}{hreflang_tags}\n  </url>')

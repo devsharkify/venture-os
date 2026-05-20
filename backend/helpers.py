@@ -88,38 +88,6 @@ async def rephrase_with_ai(text: str, is_title: bool = False) -> str:
         logger.error(f"Error rephrasing with AI: {e}")
         return text
 
-async def translate_to_telugu(text: str) -> str:
-    if not EMERGENT_LLM_KEY or not text or len(text.strip()) < 3:
-        return ""
-    try:
-        chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=f"translate-{uuid.uuid4()}",
-            system_message="You are a professional translator. Translate the given English text to Telugu. Provide only the Telugu translation, nothing else."
-        ).with_model("openai", "gpt-4o-mini")
-        user_message = UserMessage(text=f"Translate to Telugu: {text}")
-        response = await chat.send_message(user_message)
-        return response.strip()
-    except Exception as e:
-        logger.error(f"Error translating to Telugu: {e}")
-        return ""
-
-async def translate_to_english(text: str) -> str:
-    if not EMERGENT_LLM_KEY or not text or len(text.strip()) < 3:
-        return ""
-    try:
-        chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=f"translate-en-{uuid.uuid4()}",
-            system_message="You are a professional translator. Translate the given Telugu text to English. Provide only the English translation, nothing else."
-        ).with_model("openai", "gpt-4o-mini")
-        user_message = UserMessage(text=f"Translate to English: {text}")
-        response = await chat.send_message(user_message)
-        return response.strip()
-    except Exception as e:
-        logger.error(f"Error translating to English: {e}")
-        return ""
-
 async def classify_article_category(title: str, summary: str) -> str:
     if not EMERGENT_LLM_KEY:
         return guess_category_from_content(title, summary)
@@ -308,7 +276,7 @@ async def condense_title_for_epaper(title: str, max_chars: int = 75, lang: str =
     """Use AI to rephrase a long headline into a concise version that fits ~3 lines."""
     if not title or len(title) <= max_chars or not EMERGENT_LLM_KEY:
         return title
-    lang_instruction = "Keep the headline in Telugu language." if lang == "te" else "Keep the headline in English."
+    lang_instruction = "Keep the headline in English."
     try:
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
@@ -374,10 +342,7 @@ async def expand_summary_for_epaper(title: str, summary: str, category: str, lan
     """Expand a short article summary to 400-500 words for ePaper layout filling."""
     if not EMERGENT_LLM_KEY:
         return summary
-    if lang == "te":
-        lang_inst = "Write the expanded summary in Telugu language only. Do NOT use English."
-    else:
-        lang_inst = "Write the expanded summary in English."
+    lang_inst = "Write the expanded summary in English."
     try:
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
