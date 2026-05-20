@@ -656,6 +656,9 @@ FRONTEND_PUBLIC = str(FRONTEND_DIR / "public")
 
 async def generate_static_seo_files():
     """Generate sitemap.xml, robots.txt, rss.xml as static files in frontend public folder."""
+    if not Path(FRONTEND_PUBLIC).exists():
+        logger.info(f"Skipping static SEO files: {FRONTEND_PUBLIC} not found (backend-only container)")
+        return
     try:
         # Generate robots.txt
         robots_content = f"""User-agent: *

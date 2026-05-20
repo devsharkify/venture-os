@@ -140,27 +140,45 @@ function MediumTile({ article }) {
 // ─── MarketsTile (Tile D) ─────────────────────────────────────────────────────
 function MarketsTile({ articles }) {
   const { openArticle } = useContext(AppContext);
+  const navigate = useNavigate();
   const items = (articles || []).slice(0, 3);
   if (items.length === 0) return null;
 
   return (
-    <div className="lg:col-span-1 lg:row-span-1 bg-mint text-white rounded-md p-5 flex flex-col">
-      <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">
-        FUNDING WIRE
+    <div className="lg:col-span-1 lg:row-span-1 bg-mint text-white rounded-md overflow-hidden flex flex-col">
+      {/* Header */}
+      <div className="px-5 pt-5 pb-3 border-b border-white/20 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-white/80 animate-pulse" />
+          <span className="text-[11px] font-bold uppercase tracking-widest opacity-90">
+            Funding Wire
+          </span>
+        </div>
+        <button
+          onClick={() => navigate("/?cat=funding")}
+          className="text-[10px] font-semibold opacity-70 hover:opacity-100 transition underline underline-offset-2"
+        >
+          See all
+        </button>
       </div>
-      <div className="flex flex-col">
-        {items.map((article, idx) => {
-          const title = article.title;
-          return (
-            <button
-              key={article.id}
-              onClick={() => openArticle(article)}
-              className={`text-left text-[13px] font-medium leading-snug py-2.5 cursor-pointer hover:opacity-90 transition ${idx !== items.length - 1 ? "border-b border-white/15" : ""}`}
-            >
-              <span className="line-clamp-2">{title}</span>
-            </button>
-          );
-        })}
+
+      {/* Articles */}
+      <div className="flex flex-col flex-1 divide-y divide-white/15">
+        {items.map((article) => (
+          <button
+            key={article.id}
+            onClick={() => openArticle(article)}
+            className="text-left px-5 py-4 hover:bg-white/10 transition group flex-1 flex flex-col justify-between gap-1.5"
+          >
+            <span className="text-[13px] font-semibold leading-snug line-clamp-2 group-hover:underline underline-offset-2">
+              {article.title}
+            </span>
+            <div className="flex items-center justify-between mt-1">
+              <span className="text-[10px] opacity-60 font-medium">{article.source || "Mint Street"}</span>
+              <span className="text-[18px] opacity-40 group-hover:opacity-90 group-hover:translate-x-0.5 transition-all">→</span>
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   );

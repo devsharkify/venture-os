@@ -81,7 +81,7 @@ export default function LoginPage({ onLoginSuccess }) {
     <div
       data-testid="reporter-login-page"
       className={`min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden ${
-        darkMode ? "bg-slate-950" : "bg-[#FFF8F3]"
+        darkMode ? "bg-slate-950" : "bg-white"
       }`}
     >
       <div className="absolute top-0 left-0 w-72 h-72 bg-orange-400/10 rounded-full -translate-x-1/2 -translate-y-1/2" />

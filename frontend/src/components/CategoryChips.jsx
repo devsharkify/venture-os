@@ -31,7 +31,7 @@ export const CategoryChips = ({ activeCategory, onCategoryChange }) => {
   return (
     <div
       className={`sticky top-[88px] z-40 ${
-        darkMode ? "bg-[#1C1410]" : "bg-[#FAF7F1]"
+        darkMode ? "bg-[#1C1410]" : "bg-white"
       }`}
       data-testid="category-chips"
     >

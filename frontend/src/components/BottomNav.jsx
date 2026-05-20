@@ -20,7 +20,7 @@ export const BottomNav = () => {
       className={`bottom-nav ${
         darkMode
           ? "bg-[#1C1410] border-t border-[#3A2A1F]"
-          : "bg-[#FAF7F1] border-t border-[#E5E0D6]"
+          : "bg-white border-t border-[#E5E0D6]"
       }`}
       data-testid="bottom-nav"
     >

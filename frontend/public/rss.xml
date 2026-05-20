@@ -6,13 +6,23 @@
     <description>Latest news from Mint Street - Hyderabad, Telangana, India and World</description>
     <language>en-in</language>
     <copyright>Copyright 2026 Mint Street</copyright>
-    <lastBuildDate>Wed, 20 May 2026 16:20:22 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2026 17:25:30 +0000</lastBuildDate>
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>/logo192.png</url>
       <title>Mint Street</title>
       <link></link>
     </image>
+    <item>
+      <title><![CDATA[OpenAI preparing to file for IPO in coming days or weeks: Report]]></title>
+      <link>/news/593bf83a-440d-44c1-b94b-605e4528ebd7</link>
+      <guid isPermaLink="true">/news/593bf83a-440d-44c1-b94b-605e4528ebd7</guid>
+      <description><![CDATA[Listen to this article in summarized format (Catch all theTechnology News News, andLatest NewsUpdates onThe Economic Times.)]]></description>
+      <category>ipo</category>
+      <pubDate>2026-05-20T17:25:03.959747+00:00</pubDate>
+      <source url="">Mint Street</source>
+      <enclosure url="https://img.etimg.com/thumb/width-1200,height-900,imgsize-65688,resizemode-75,msid-131231298/tech/technology/openai-preparing-to-file-for-ipo-in-coming-days-or-weeks-wsj.jpg" type="image/jpeg" />
+    </item>
     <item>
       <title><![CDATA[Bain Capital announces final close of Asia Fund VI at $10.5 Bn]]></title>
       <link>/news/08c7e8df-fe7e-4440-99d3-fa1c0d515e7f</link>
@@ -502,16 +512,6 @@
       <pubDate>2026-05-19T22:52:30+00:00</pubDate>
       <source url="">Mint Street</source>
       <enclosure url="https://www.livemint.com/lm-img/img/2024/12/18/1600x900/logo/tech3_1734536499109_1734536513984.jpg" type="image/jpeg" />
-    </item>
-    <item>
-      <title><![CDATA[Zuckerberg reshapes Meta around AI as company moves thousands of employees into AI roles ahead of layoffs]]></title>
-      <link>/news/80c89a4c-c31e-4bc4-a921-0d50bd960e6b</link>
-      <guid isPermaLink="true">/news/80c89a4c-c31e-4bc4-a921-0d50bd960e6b</guid>
-      <description><![CDATA[Meta Platforms is reassigning around 7,000 employees into new artificial intelligence-focused roles as part of a broader restructuring effort tied to the company’sgrowing AI ambitions, according to an internal memo reviewed by Bloomberg. The restructuring comes ahead of planned layoffs later this we]]></description>
-      <category>tech</category>
-      <pubDate>2026-05-19T22:03:54+00:00</pubDate>
-      <source url="">Mint Street</source>
-      <enclosure url="https://www.livemint.com/lm-img/img/2026/05/19/1600x900/logo/FILES-US-INTERNET-AI-EARNINGS-META-2_1774222972352_1774222984355_1779208416094_7e7db14b-1eca-490d-9e1f-df63bbebf3ba.jpg" type="image/jpeg" />
     </item>
   </channel>
 </rss>

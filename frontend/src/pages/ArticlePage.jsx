@@ -198,13 +198,13 @@ export default function ArticlePage() {
   ];
 
   if (loading) return (
-    <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-slate-900" : "bg-[#F8FAFC]"}`}>
+    <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-slate-900" : "bg-white"}`}>
       <div className="animate-spin w-8 h-8 border-2 border-[#F26B1F] border-t-transparent rounded-full" />
     </div>
   );
 
   if (!article) return (
-    <div className={`min-h-screen flex flex-col items-center justify-center gap-4 ${darkMode ? "bg-slate-900 text-white" : "bg-[#F8FAFC]"}`}>
+    <div className={`min-h-screen flex flex-col items-center justify-center gap-4 ${darkMode ? "bg-slate-900 text-white" : "bg-white"}`}>
       <p>Article not found</p>
       <button onClick={() => navigate("/")} className="text-[#F26B1F]">Go Home</button>
     </div>
@@ -213,7 +213,7 @@ export default function ArticlePage() {
   const publishedTime = getPublishedTime(article);
 
   return (
-    <div data-testid="article-page" className={`min-h-screen pb-10 ${darkMode ? "bg-slate-900" : "bg-[#F8FAFC]"}`}>
+    <div data-testid="article-page" className={`min-h-screen pb-10 ${darkMode ? "bg-slate-900" : "bg-white"}`}>
       {/* Sticky top bar */}
       <div className={`sticky top-0 z-10 px-4 py-3 flex items-center gap-3 border-b ${darkMode ? "bg-slate-900/95 border-slate-800" : "bg-white/95 border-slate-100"} backdrop-blur`}>
         <button data-testid="article-back-btn" onClick={() => navigate(-1)} className={`p-1.5 rounded-lg ${darkMode ? "hover:bg-slate-800" : "hover:bg-slate-100"}`}>
