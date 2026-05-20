@@ -1,7 +1,8 @@
 # Stage 1: Build React frontend
-FROM node:18-alpine AS frontend-builder
+FROM node:22-alpine AS frontend-builder
 WORKDIR /frontend
 COPY frontend/package.json frontend/package-lock.json* ./
+COPY frontend/scripts/ ./scripts/
 RUN npm install --legacy-peer-deps
 COPY frontend/ ./
 ENV REACT_APP_BACKEND_URL=
