@@ -9,9 +9,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-noto fonts-noto-cjk fonts-freefont-ttf \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt --extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/
 
-COPY . .
+COPY backend/ .
 
-CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8001"]
