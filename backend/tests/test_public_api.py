@@ -247,7 +247,7 @@ class TestPublicApiEndpoints:
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "ok"
-        # Telugu content test - title should be from title_te field when available
+        # title field test
         print(f"Telugu feed returned {len(data['articles'])} articles")
     
     def test_feed_pagination(self, api_key):

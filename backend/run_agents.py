@@ -72,15 +72,9 @@ Breaking news > political > public impact > sports > entertainment. Return ONLY 
         for i in top_indices if i < len(articles)
     ])
 
-    print("Generating editorial (EN)...")
+    print("Generating editorial...")
     editorial_en = await llm_call(
         "Write a 150-200 word 'Today's Highlights' editorial briefing combining these top stories. English only. Output ONLY the text.",
-        f"Top stories:\n{top_summaries}"
-    )
-
-    print("Generating editorial (TE)...")
-    editorial_te = await llm_call(
-        "Write a 150-200 word 'Today's Highlights' editorial briefing combining these top stories. Telugu only. Output ONLY the text.",
         f"Top stories:\n{top_summaries}"
     )
 
@@ -94,7 +88,6 @@ Breaking news > political > public impact > sports > entertainment. Return ONLY 
         "duplicate_groups": analysis.get("duplicates", []),
         "merged_count": 0,
         "editorial_en": editorial_en,
-        "editorial_te": editorial_te,
         "hero_articles": [
             {"title": articles[i].get("title", ""), "id": articles[i].get("id", ""), "source": articles[i].get("source", "")}
             for i in analysis.get("hero_picks", [])[:5] if i < len(articles)
@@ -149,7 +142,7 @@ async def run_investigator(topic_id=None):
         print(f"\nInvestigating: {topic.get('name_en', '')}")
         keywords = [k.lower() for k in topic.get("keywords", [])]
         matched = [a for a in all_articles if any(
-            kw in f"{a.get('title','')} {a.get('summary','')} {a.get('title_te','')} {a.get('summary_te','')}".lower()
+            kw in f"{a.get('title','')} {a.get('summary','')}".lower()
             for kw in keywords
         )]
         print(f"  Matched {len(matched)} articles")
@@ -169,8 +162,8 @@ async def run_investigator(topic_id=None):
                 "topic_id": topic["id"],
                 "article_id": a.get("id", ""),
                 "article_link": a.get("link", ""),
-                "title": a.get("title", "") or a.get("title_te", ""),
-                "summary": (a.get("summary", "") or a.get("summary_te", ""))[:300],
+                "title": a.get("title", ""),
+                "summary": a.get("summary", "")[:300],
                 "source": a.get("source", ""),
                 "category": a.get("category", ""),
                 "image": a.get("image", ""),
@@ -191,27 +184,18 @@ async def run_investigator(topic_id=None):
             for e in all_events[:15]
         ])
 
-        print("  Generating report (EN)...")
+        print("  Generating report...")
         report_en = await llm_call(
             f"""You are an investigative journalist. Analyze events about "{topic.get('name_en', '')}" and write a 300-500 word investigation report.
 Include: key developments, patterns, key players, implications, what to watch next. English only.""",
             f"Topic: {topic.get('name_en','')}\nEvents ({len(all_events)}):\n{event_text}"
         )
 
-        print("  Generating report (TE)...")
-        report_te = await llm_call(
-            f"""You are an investigative journalist. Analyze events about "{topic.get('name_te', '')}" and write a 300-500 word investigation report.
-Include: key developments, patterns, key players, implications. Telugu only.""",
-            f"Topic: {topic.get('name_te','')}\nEvents ({len(all_events)}):\n{event_text}"
-        )
-
         report_doc = {
             "id": str(uuid.uuid4()),
             "topic_id": topic["id"],
             "topic_name_en": topic.get("name_en", ""),
-            "topic_name_te": topic.get("name_te", ""),
             "report_en": report_en,
-            "report_te": report_te,
             "total_events": len(all_events),
             "new_events": len(new_events),
             "matched_articles": len(matched),

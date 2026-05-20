@@ -73,7 +73,7 @@ class TestEpaperMorningEdition:
         assert response.status_code == 200
         data = response.json()
         assert data["lang"] == "te"
-        assert "ఉదయం ఎడిషన్" in data["edition_title"] or "Morning" in data["edition_title"]
+        assert "Morning" in data["edition_title"]
 
 
 class TestEpaperEveningEdition:

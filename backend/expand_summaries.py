@@ -46,14 +46,14 @@ async def main():
     short_articles = await db.news.find(
         {"summary": {"$exists": True, "$ne": ""},
          "$expr": {"$lt": [{"$strLenCP": "$summary"}, MIN_SUMMARY_CHARS]}},
-        {"_id": 0, "id": 1, "title": 1, "title_te": 1, "summary": 1, "summary_te": 1, "category": 1}
+        {"_id": 0, "id": 1, "title": 1, "summary": 1, "category": 1}
     ).to_list(500)
 
     print(f"Found {len(short_articles)} articles with summary < {MIN_SUMMARY_CHARS} chars")
     ok, fail = 0, 0
 
     for i, a in enumerate(short_articles):
-        title = a.get("title", "") or a.get("title_te", "")
+        title = a.get("title", "")
         summary = a.get("summary", "")
         if not title:
             fail += 1
@@ -62,13 +62,6 @@ async def main():
         expanded = await expand_summary(title, summary, a.get("category", "national"))
         if expanded and len(expanded) > len(summary) and len(expanded) >= MIN_SUMMARY_CHARS:
             update = {"summary": expanded}
-            summary_te = a.get("summary_te", "")
-            if summary_te and len(summary_te) < MIN_SUMMARY_CHARS:
-                title_te = a.get("title_te", "")
-                if title_te:
-                    expanded_te = await expand_summary(title_te, summary_te, a.get("category", "national"))
-                    if expanded_te and len(expanded_te) > len(summary_te):
-                        update["summary_te"] = expanded_te
             await db.news.update_one({"id": a["id"]}, {"$set": update})
             ok += 1
         else:

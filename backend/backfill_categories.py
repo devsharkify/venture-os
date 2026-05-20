@@ -22,16 +22,18 @@ client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
 
 CATEGORIES = {
-    "local": {"en": "Local - Dammaiguda", "te": "స్థానిక - దమ్మాయిగూడ"},
-    "city": {"en": "City - Hyderabad", "te": "నగరం - హైదరాబాద్"},
-    "state": {"en": "State - Telangana", "te": "రాష్ట్రం - తెలంగాణ"},
-    "national": {"en": "National - India", "te": "జాతీయ - భారతదేశం"},
-    "international": {"en": "International", "te": "అంతర్జాతీయ"},
-    "sports": {"en": "Sports", "te": "క్రీడలు"},
-    "entertainment": {"en": "Entertainment", "te": "వినోదం"},
-    "tech": {"en": "Technology", "te": "టెక్నాలజీ"},
-    "health": {"en": "Health", "te": "ఆరోగ్యం"},
-    "business": {"en": "Business", "te": "వ్యాపారం"}
+    "funding": {"en": "Funding"},
+    "startups": {"en": "Startups"},
+    "vc": {"en": "Venture Capital"},
+    "ipo": {"en": "IPO & Markets"},
+    "tech": {"en": "Tech"},
+    "fintech": {"en": "Fintech"},
+    "saas": {"en": "SaaS"},
+    "deeptech": {"en": "Deep Tech"},
+    "d2c": {"en": "D2C"},
+    "climate": {"en": "Climate"},
+    "policy": {"en": "Policy"},
+    "business": {"en": "Business"},
 }
 
 def classify(title, summary):
@@ -91,7 +93,6 @@ async def main():
                 {"$set": {
                     "category": new_cat,
                     "category_label": CATEGORIES.get(new_cat, {}).get("en", new_cat),
-                    "category_label_te": CATEGORIES.get(new_cat, {}).get("te", new_cat),
                 }}
             )
             changed += 1

@@ -263,9 +263,7 @@ class TestNewsCreationWithImageKit:
         # Create news article with the uploaded image
         news_data = {
             "title": "TEST_ImageKit Integration Test Article",
-            "title_te": "TEST_ఇమేజ్‌కిట్ ఇంటిగ్రేషన్ టెస్ట్",
             "summary": "This is a test article for ImageKit integration testing.",
-            "summary_te": "ఇది ఇమేజ్‌కిట్ ఇంటిగ్రేషన్ టెస్టింగ్ కోసం ఒక టెస్ట్ వ్యాసం.",
             "category": "tech",
             "image": image_url,
             "content_type": "text",

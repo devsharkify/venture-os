@@ -87,13 +87,13 @@ async def main():
     # --- TASK 1: Generate missing summaries ---
     no_summary = await coll.find(
         {"$or": [{"summary": {"$in": [None, ""]}}, {"summary": {"$exists": False}}]},
-        {"_id": 0, "id": 1, "title": 1, "title_te": 1, "category": 1}
+        {"_id": 0, "id": 1, "title": 1, "category": 1}
     ).to_list(500)
     
     print(f"\n=== TASK 1: Generate summaries for {len(no_summary)} articles ===")
     sum_ok, sum_fail = 0, 0
     for i, a in enumerate(no_summary):
-        title = a.get("title", "") or a.get("title_te", "")
+        title = a.get("title", "")
         summary = await generate_summary(title, a.get("category", "national"))
         if summary and len(summary) > 50:
             await coll.update_one({"id": a["id"]}, {"$set": {"summary": summary}})
@@ -105,48 +105,9 @@ async def main():
         await asyncio.sleep(0.3)
     print(f"  Done: {sum_ok} generated, {sum_fail} failed")
 
-    # --- TASK 2: Telugu translation ---
-    no_te = await coll.find(
-        {"$or": [{"title_te": {"$in": [None, ""]}}, {"title_te": {"$exists": False}}]},
-        {"_id": 0, "id": 1, "title": 1, "summary": 1}
-    ).sort("created_at", -1).to_list(5000)
-
-    print(f"\n=== TASK 2: Translate {len(no_te)} articles to Telugu ===")
-    te_ok, te_fail = 0, 0
-    for i, a in enumerate(no_te):
-        title = a.get("title", "")
-        summary = a.get("summary", "")
-        
-        update = {}
-        
-        # Translate title
-        title_te = await translate_text(title)
-        if title_te:
-            update["title_te"] = title_te
-        
-        # Translate summary (only if it exists)
-        if summary and len(summary) > 30:
-            summary_te = await translate_text(summary[:1500])
-            if summary_te:
-                update["summary_te"] = summary_te
-        
-        if update:
-            await coll.update_one({"id": a["id"]}, {"$set": update})
-            te_ok += 1
-        else:
-            te_fail += 1
-        
-        if (i + 1) % 20 == 0:
-            print(f"  Translations: {i+1}/{len(no_te)} (ok={te_ok}, fail={te_fail})")
-        await asyncio.sleep(0.3)
-    
-    print(f"  Done: {te_ok} translated, {te_fail} failed")
-
     # --- Summary ---
-    remaining_te = await coll.count_documents({"$or": [{"title_te": {"$in": [None, ""]}}, {"title_te": {"$exists": False}}]})
     remaining_sum = await coll.count_documents({"$or": [{"summary": {"$in": [None, ""]}}, {"summary": {"$exists": False}}]})
     print(f"\n=== FINAL STATUS ===")
-    print(f"  Still missing Telugu: {remaining_te}")
     print(f"  Still missing summary: {remaining_sum}")
 
     client.close()

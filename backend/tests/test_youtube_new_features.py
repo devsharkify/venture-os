@@ -28,7 +28,7 @@ class TestYouTubeChannels:
         channels = data.get("channels", [])
         if channels:
             ch = channels[0]
-            required_fields = ["id", "handle", "name", "name_te"]
+            required_fields = ["id", "handle", "name"]
             for field in required_fields:
                 assert field in ch, f"Channel missing field: {field}"
             print(f"✓ Channels have required fields: {required_fields}")

@@ -153,33 +153,13 @@ class TestEpaperLanguage:
         assert "Evening Edition" in data.get("edition_title", "")
         print(f"SUCCESS: Default language is English - {data['edition_title']}")
     
-    def test_telugu_language_param(self):
-        """lang=te returns Telugu content"""
-        response = requests.get(f"{BASE_URL}/api/epaper/2026-03-05?lang=te")
-        assert response.status_code == 200
-        
-        data = response.json()
-        assert data.get("lang") == "te"
-        # Telugu edition title should contain Telugu text
-        assert "సాయంత్రం ఎడిషన్" in data.get("edition_title", "")
-        print(f"SUCCESS: Telugu language - {data['edition_title']}")
-    
-    def test_front_page_title_by_language(self):
-        """Front page title changes with language"""
-        # English
+    def test_front_page_title_english(self):
+        """Front page title is English-only"""
         response_en = requests.get(f"{BASE_URL}/api/epaper/2026-03-05?lang=en")
         data_en = response_en.json()
         pages_en = data_en.get("pages", [])
-        
-        # Telugu
-        response_te = requests.get(f"{BASE_URL}/api/epaper/2026-03-05?lang=te")
-        data_te = response_te.json()
-        pages_te = data_te.get("pages", [])
-        
-        if pages_en and pages_te:
+        if pages_en:
             assert pages_en[0]["title"] == "Front Page"
-            assert pages_te[0]["title"] == "ముఖ్య పేజీ"
-            print(f"SUCCESS: English front page: '{pages_en[0]['title']}', Telugu: '{pages_te[0]['title']}'")
 
 
 class TestEpaperEdgeCases:

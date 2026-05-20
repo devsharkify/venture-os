@@ -18,21 +18,10 @@ CACHE_TTL = 900  # 15 minutes
 # UC -> UULV (live streams only)
 # UC -> UULP (popular videos)
 
-CHANNELS = [
-    {"id": "UCGFe9hpu2kVJtxL-rgRlvjg", "handle": "KaizerNewsTelugu", "name": "Mint Street Telugu", "name_te": "కైజర్ న్యూస్ తెలుగు"},
-    {"id": "UCTDsrLjZs9otGHBm4YoEK-A", "handle": "KaizerNigha", "name": "Kaizer Nigha", "name_te": "కైజర్ నిఘా"},
-    {"id": "UCngfD9kojupMepKRnUjn0Mg", "handle": "TrinetraNewsTelugu1", "name": "Trinetra News Telugu", "name_te": "త్రినేత్ర న్యూస్ తెలుగు"},
-    {"id": "UCE5RIa7b_JIK0a31Uaq4xRw", "handle": "R-Telugu-Tv", "name": "RTV", "name_te": "ఆర్‌టీవీ"},
-    {"id": "UC-KL0ydDbllxPqCiXoVOHjQ", "handle": "GroundZeroNewsTelugu1", "name": "Ground Zero News Telugu", "name_te": "గ్రౌండ్ జీరో న్యూస్"},
-    {"id": "UCJ52JMAUoU11cISVNDizQCw", "handle": "KaizerNewsPrakasam112", "name": "Mint Street Prakasam", "name_te": "కైజర్ న్యూస్ ప్రకాశం"},
-    {"id": "UCjHVePB5sxS8TddxK-8YIAw", "handle": "Praja-ToliVelugu", "name": "Praja Toli Velugu", "name_te": "ప్రజా తొలి వెలుగు"},
-    {"id": "UC4Wos8GhPr7Ly77uJtjKNKw", "handle": "RaamaraajyamTv", "name": "Raama Raajyam TV", "name_te": "రామ రాజ్యం టీవీ"},
-    {"id": "UCIknINp9dQgkVVZTz8jfSow", "handle": "KaizerNewstelangana", "name": "Mint Street Telangana", "name_te": "కైజర్ న్యూస్ తెలంగాణ"},
-    {"id": "UCc_Zqjf-VKzp3XScA7h_ptQ", "handle": "publiccourtnews", "name": "Public Court News", "name_te": "పబ్లిక్ కోర్ట్ న్యూస్"},
-    {"id": "UCzzu-d2s1Z3mfG0b_vlw03Q", "handle": "KaizerNewsPolitics", "name": "Mint Street Politics", "name_te": "కైజర్ న్యూస్ పాలిటిక్స్"},
-    {"id": "UCPoVT4p5XV8j1l3DySeI7Wg", "handle": "KaizerNewsAndhra", "name": "Mint Street Andhra", "name_te": "కైజర్ న్యూస్ ఆంధ్ర"},
-    {"id": "UCETRKBLk_A7GBK7YTOGaQRQ", "handle": "Kaizer-Court", "name": "Kaizer Court", "name_te": "కైజర్ కోర్ట్"},
-]
+# The pre-populated channel list from the source repo was Telangana/Andhra political
+# Telugu news channels — irrelevant to a startup intelligence platform. Empty by default;
+# admins can populate via the admin UI or an env-loaded list.
+CHANNELS = []
 
 try:
     cache = redis.Redis(host="localhost", port=6379, db=2, decode_responses=True)
@@ -114,7 +103,6 @@ async def get_all_channels():
                     "id": ch["id"],
                     "handle": ch["handle"],
                     "name": ch["name"],
-                    "name_te": ch["name_te"],
                     "thumbnail": snippet["thumbnails"].get("high", snippet["thumbnails"].get("default", {})).get("url", ""),
                     "subscriber_count": int(stats.get("subscriberCount", 0)),
                     "video_count": int(stats.get("videoCount", 0)),
@@ -129,7 +117,7 @@ async def get_all_channels():
     except HttpError as e:
         logger.error(f"YouTube channels API error: {e}")
         return {
-            "channels": [{"id": c["id"], "handle": c["handle"], "name": c["name"], "name_te": c["name_te"],
+            "channels": [{"id": c["id"], "handle": c["handle"], "name": c["name"],
                           "thumbnail": "", "subscriber_count": 0, "video_count": 0, "view_count": 0} for c in CHANNELS],
             "total": len(CHANNELS)
         }
