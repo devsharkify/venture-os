@@ -545,6 +545,21 @@ SEED_ARTICLES = [
 ]
 
 
+# ===================== ADDITIONAL BATCHES (60 articles, 4 topical files) =====================
+from seed.articles_funding import ARTICLES as _funding_batch
+from seed.articles_trending import ARTICLES as _trending_batch
+from seed.articles_newindia import ARTICLES as _newindia_batch
+from seed.articles_global import ARTICLES as _global_batch
+
+SEED_ARTICLES = (
+    SEED_ARTICLES
+    + _funding_batch
+    + _trending_batch
+    + _newindia_batch
+    + _global_batch
+)
+
+
 def get_seed_articles():
     return SEED_ARTICLES
 

@@ -1,0 +1,223 @@
+"""Mint Street — trendy/deeptech seed batch B (15 articles).
+
+Original editorial summaries of publicly-known startup news.
+All prose written for Mint Street; not paraphrased from source publications.
+External source links provided for reader attribution.
+"""
+
+ARTICLES = [
+    # ===================== INDIAN AI / DEEPTECH =====================
+    {
+        "id": "sarvam-ai-sovereign-model-2025",
+        "title": "Sarvam AI's sovereign-model gambit puts an Indian lab inside the IndiaAI tent",
+        "summary": "The Bengaluru-based startup, picked under the IndiaAI Mission to build a homegrown foundation model, has been steadily training on government-allocated GPU capacity. Sarvam's mixed strategy of open-weight Indic releases and hosted enterprise APIs is being closely watched as a template for what a state-sponsored Indian model effort can credibly look like.",
+        "category": "deeptech",
+        "category_label": "Deep Tech",
+        "image": "https://images.pexels.com/photos/8438923/pexels-photo-8438923.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/companies/news/sarvam-ai-indiaai-mission",
+        "source": "Mint",
+        "is_pinned": True,
+        "priority": 9,
+        "published_at": "2025-04-29T08:30:00+00:00",
+    },
+    {
+        "id": "krutrim-ola-foundation-2025",
+        "title": "Krutrim's road to a competitive Indian LLM runs through Ola's compute spend",
+        "summary": "Bhavish Aggarwal's AI venture has continued to layer on training runs and a Bengaluru-housed GPU cluster, even as the broader Ola group navigates listed-EV pressures. Krutrim's pitch remains an Indic-first foundation model with rupee-priced inference, though its public benchmarks suggest it is still some distance behind the frontier labs as of recent disclosures.",
+        "category": "deeptech",
+        "category_label": "Deep Tech",
+        "image": "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.moneycontrol.com/news/business/startup/krutrim-ai-compute",
+        "source": "Moneycontrol",
+        "is_pinned": False,
+        "priority": 7,
+        "published_at": "2025-07-15T09:00:00+00:00",
+    },
+    {
+        "id": "pixxel-firefly-constellation-2025",
+        "title": "Pixxel's first commercial hyperspectral satellites change what climate buyers can ask for",
+        "summary": "The Bengaluru-and-Los Angeles startup has begun moving from prototype demos to its Firefly commercial constellation, with paying customers in mining, agriculture and emissions monitoring. Pixxel's bet is that hyperspectral data — far richer than conventional optical imagery — finally has a price point and resolution that enterprise buyers will pay for.",
+        "category": "deeptech",
+        "category_label": "Deep Tech",
+        "image": "https://images.pexels.com/photos/586063/pexels-photo-586063.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://techcrunch.com/2025/pixxel-firefly-constellation",
+        "source": "TechCrunch",
+        "is_pinned": False,
+        "priority": 8,
+        "published_at": "2025-01-22T07:20:00+00:00",
+    },
+    {
+        "id": "mindgrove-secure-iot-soc-2024",
+        "title": "Mindgrove's first SoC tape-out shows what an IIT-spun Indian chip startup actually looks like",
+        "summary": "The Chennai-based fabless startup, spun out of IIT Madras, taped out its Secure IoT system-on-chip and began sampling to early customers. Mindgrove is part of a small but growing cohort of Indian fabless companies trying to ride the country's design-talent pool while the assembly side of the semiconductor stack catches up.",
+        "category": "deeptech",
+        "category_label": "Deep Tech",
+        "image": "https://images.pexels.com/photos/4316/black-and-white-technology-computer-chip.jpg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/companies/news/mindgrove-iot-soc",
+        "source": "Mint",
+        "is_pinned": False,
+        "priority": 6,
+        "published_at": "2024-09-12T08:45:00+00:00",
+    },
+    {
+        "id": "ideaforge-defence-orders-2025",
+        "title": "ideaForge's defence pipeline cushions a turbulent year for listed Indian drone shares",
+        "summary": "The Mumbai-headquartered drone maker, listed since 2023, has continued to win orders from Indian armed forces and paramilitary buyers even as its share price has whipsawed on global drone-policy news. The company's leaning into surveillance UAVs and tethered systems is shaping how investors think about the listed Indian dronetech story.",
+        "category": "deeptech",
+        "category_label": "Deep Tech",
+        "image": "https://images.pexels.com/photos/336232/pexels-photo-336232.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.moneycontrol.com/news/business/companies/ideaforge-defence-orders",
+        "source": "Moneycontrol",
+        "is_pinned": False,
+        "priority": 6,
+        "published_at": "2025-03-18T09:30:00+00:00",
+    },
+
+    # ===================== INDIAN SEMI / HARDWARE =====================
+    {
+        "id": "tata-electronics-dholera-fab-2026",
+        "title": "Tata Electronics edges towards first silicon as the Dholera fab moves past civil works",
+        "summary": "The Tata-Powerchip joint venture, India's first commercial wafer fabrication facility under the semiconductor mission, has been steadily progressing on equipment installation and process qualification at its Dholera site. First chip output is still some quarters away as of recent disclosures, but the project remains the keystone of New Delhi's semiconductor ambitions.",
+        "category": "deeptech",
+        "category_label": "Semiconductors",
+        "image": "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/industry/manufacturing/tata-electronics-dholera",
+        "source": "Mint",
+        "is_pinned": False,
+        "priority": 8,
+        "published_at": "2026-03-11T07:00:00+00:00",
+    },
+    {
+        "id": "micron-sanand-first-chips-2025",
+        "title": "Micron's Sanand plant ships its first packaged units as ATMP becomes India's foot in the door",
+        "summary": "The Idaho-headquartered memory giant's assembly-and-test facility in Gujarat moved into early-stage output during 2025, becoming one of the first concrete deliverables of India's semiconductor mission. The plant deliberately starts at the back-end of the value chain, where capital intensity is lower and India's existing electronics-manufacturing ecosystem can plug in.",
+        "category": "deeptech",
+        "category_label": "Semiconductors",
+        "image": "https://images.pexels.com/photos/2225617/pexels-photo-2225617.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/industry/manufacturing/micron-sanand-output",
+        "source": "Mint",
+        "is_pinned": False,
+        "priority": 7,
+        "published_at": "2025-11-28T08:15:00+00:00",
+    },
+
+    # ===================== CLIMATE / EV / BATTERIES =====================
+    {
+        "id": "log9-battery-pivot-2025",
+        "title": "Log9 Materials' restructuring is a reality check for India's battery-startup romance",
+        "summary": "The Bengaluru deep-tech firm, once a poster child for Indian lithium-ion innovation, spent 2024 and 2025 trimming staff, narrowing its product focus and renegotiating with backers. Log9's experience underscores how cell chemistry and capital intensity have humbled several early Indian battery startups that pitched themselves as fast-followers to global incumbents.",
+        "category": "climate",
+        "category_label": "Climate",
+        "image": "https://images.pexels.com/photos/4977404/pexels-photo-4977404.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://entrackr.com/2025/log9-restructuring",
+        "source": "Entrackr",
+        "is_pinned": False,
+        "priority": 6,
+        "published_at": "2025-02-26T09:00:00+00:00",
+    },
+    {
+        "id": "hygenco-green-hydrogen-2025",
+        "title": "Hygenco's first take-or-pay green-hydrogen contract is exactly the deal the sector needed",
+        "summary": "The Gurugram-based green-hydrogen player signed a long-tenure offtake agreement with an industrial customer in 2025, the kind of bankable contract that has been conspicuously rare for Indian green-hydrogen ventures. The deal puts Hygenco among a small set of domestic operators with concrete revenue visibility from the National Green Hydrogen Mission's first wave.",
+        "category": "climate",
+        "category_label": "Climate",
+        "image": "https://images.pexels.com/photos/9875415/pexels-photo-9875415.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/industry/energy/hygenco-hydrogen-offtake",
+        "source": "Mint",
+        "is_pinned": False,
+        "priority": 7,
+        "published_at": "2025-06-09T07:45:00+00:00",
+    },
+    {
+        "id": "euler-motors-commercial-ev-2024",
+        "title": "Euler Motors finds product-market fit where two-wheelers can't go",
+        "summary": "The Delhi-based commercial-EV maker has steadily widened its footprint with last-mile cargo three-wheelers and a newer light-commercial-vehicle programme. Euler's bet is that fleet operators, not retail consumers, are the segment where total-cost-of-ownership math actually closes on Indian electric mobility today.",
+        "category": "climate",
+        "category_label": "EV",
+        "image": "https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://entrackr.com/2024/euler-motors-commercial-ev",
+        "source": "Entrackr",
+        "is_pinned": False,
+        "priority": 5,
+        "published_at": "2024-10-22T08:10:00+00:00",
+    },
+
+    # ===================== GLOBAL AI =====================
+    {
+        "id": "xai-grok-data-centre-2025",
+        "title": "xAI's Memphis data centre is the most aggressive single-site compute build of the cycle",
+        "summary": "Elon Musk's AI startup brought a large GPU cluster online in record time at its Memphis facility, with management talking up further expansion through 2025 and 2026. The compute footprint, paired with the Grok consumer product layered onto X, is what xAI is using to justify a private valuation that now sits in the tens of billions as of recent disclosures.",
+        "category": "deeptech",
+        "category_label": "AI",
+        "image": "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.bloomberg.com/news/articles/2025/xai-memphis-cluster",
+        "source": "Bloomberg",
+        "is_pinned": False,
+        "priority": 8,
+        "published_at": "2025-09-04T10:00:00+00:00",
+    },
+    {
+        "id": "cursor-anysphere-valuation-2025",
+        "title": "Cursor's run rate makes Anysphere the breakout AI-coding story of the cycle",
+        "summary": "Anysphere, the maker of the AI-first IDE Cursor, raised at a sharply higher mark on the back of a fast-growing annualised revenue line and meaningful enterprise traction. The startup has become the canonical case study for how AI-native developer tools can compress what used to be years of GTM work into a handful of quarters.",
+        "category": "funding",
+        "category_label": "AI",
+        "image": "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://techcrunch.com/2025/anysphere-cursor-funding",
+        "source": "TechCrunch",
+        "is_pinned": False,
+        "priority": 8,
+        "published_at": "2025-08-13T09:15:00+00:00",
+    },
+    {
+        "id": "runway-sora-video-race-2024",
+        "title": "Runway and Sora turn AI video from a demo reel into a workflow battle",
+        "summary": "OpenAI's Sora and Runway's Gen-series releases through 2024 pushed AI-video generation from viral clips to something studios and ad agencies began wiring into actual pipelines. The race is now less about who has the longest clip and more about controllability, rights frameworks and how cleanly the output drops into existing post-production work.",
+        "category": "tech",
+        "category_label": "AI",
+        "image": "https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://techcrunch.com/2024/runway-sora-ai-video",
+        "source": "TechCrunch",
+        "is_pinned": False,
+        "priority": 7,
+        "published_at": "2024-12-19T07:30:00+00:00",
+    },
+    {
+        "id": "hippocratic-ai-clinical-agents-2025",
+        "title": "Hippocratic AI's clinical-agent rollout is the most concrete test of healthcare LLMs yet",
+        "summary": "The Bay Area startup has been onboarding US hospital systems for voice-based clinical agents focused on non-diagnostic patient touchpoints, from pre-op calls to chronic-care follow-ups. Hippocratic's safety-evaluation harness, designed alongside physician partners, is becoming a reference point for how regulated buyers want LLMs scoped in healthcare settings.",
+        "category": "deeptech",
+        "category_label": "AI",
+        "image": "https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.bloomberg.com/news/articles/2025/hippocratic-ai-hospitals",
+        "source": "Bloomberg",
+        "is_pinned": False,
+        "priority": 7,
+        "published_at": "2025-05-21T08:00:00+00:00",
+    },
+
+    # ===================== HEALTH / BIOTECH =====================
+    {
+        "id": "niramai-thermal-screening-2025",
+        "title": "Niramai's thermal-AI screening grows into a quiet diagnostics export from India",
+        "summary": "The Bengaluru-based startup's radiation-free breast-cancer screening device, which pairs thermal imaging with machine learning, has been steadily deployed across hospitals and camp-based screening drives in India and select overseas markets. Niramai's progress is a useful counterpoint to the assumption that meaningful Indian healthtech IP can only be built on top of foreign foundation models.",
+        "category": "deeptech",
+        "category_label": "Biotech",
+        "image": "https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "link": "https://www.livemint.com/companies/news/niramai-thermal-screening",
+        "source": "Mint",
+        "is_pinned": False,
+        "priority": 6,
+        "published_at": "2025-10-07T08:20:00+00:00",
+    },
+]
+
+
+def get_articles():
+    return ARTICLES
+
+
+if __name__ == "__main__":
+    print(f"Loaded {len(ARTICLES)} trending seed articles")
+    for a in ARTICLES[:3]:
+        print(f"- [{a['category_label']}] {a['title']}")
