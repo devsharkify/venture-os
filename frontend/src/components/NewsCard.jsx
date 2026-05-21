@@ -38,7 +38,15 @@ const DEFAULT_IMAGES = {
 };
 
 export const NewsCard = ({ article, articlesList = [] }) => {
-  const { darkMode, saveArticle, isArticleSaved, openArticle, isAdmin } = useContext(AppContext);
+  const { darkMode = false, saveArticle, isArticleSaved, openArticle, isAdmin } = useContext(AppContext);
+
+  const cardBg      = darkMode ? "#0D1321"  : "#FFFFFF";
+  const cardBorder  = darkMode ? "#1C2840"  : "#E2E8F4";
+  const cardBorderH = "#2D7AFF";
+  const stripBorder = darkMode ? "#131B2A"  : "#F0F4FF";
+  const titleColor  = darkMode ? "#D0DDF0"  : "#0D1321";
+  const summaryColor= darkMode ? "#5A7090"  : "#4A6280";
+  const metaColor   = darkMode ? "#4A6280"  : "#94A3B8";
   const navigate = useNavigate();
   const isSaved = isArticleSaved(article.id);
 
@@ -85,21 +93,14 @@ export const NewsCard = ({ article, articlesList = [] }) => {
     <article
       data-testid={`news-card-${article.id}`}
       className="group news-card rounded-xl overflow-hidden border transition-all duration-200"
-      style={{
-        background: "#0D1321",
-        borderColor: "#1C2840",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "#2D7AFF";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "#1C2840";
-      }}
+      style={{ background: cardBg, borderColor: cardBorder }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = cardBorderH; e.currentTarget.style.boxShadow = darkMode ? "0 4px 20px rgba(45,122,255,0.10)" : "0 4px 20px rgba(45,122,255,0.08)"; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = cardBorder; e.currentTarget.style.boxShadow = "none"; }}
     >
       {/* Top stripe - category (left) + source (right) */}
       <div
         className="flex items-center justify-between px-3 py-2 border-b"
-        style={{ borderColor: "#131B2A" }}
+        style={{ borderColor: stripBorder }}
       >
         <div className="min-w-0 flex-1">
           {article.is_pinned ? (
@@ -152,8 +153,8 @@ export const NewsCard = ({ article, articlesList = [] }) => {
       <div className="p-4">
         <h3
           onClick={() => openArticle(article, articlesList)}
-          className="font-display text-[16px] md:text-[17px] font-bold leading-snug line-clamp-3 mb-2 cursor-pointer transition-colors group-hover:text-white"
-          style={{ color: "#D0DDF0" }}
+          className="font-display text-[16px] md:text-[17px] font-bold leading-snug line-clamp-3 mb-2 cursor-pointer transition-colors group-hover:text-mint"
+          style={{ color: titleColor }}
         >
           {title}
         </h3>
@@ -161,14 +162,14 @@ export const NewsCard = ({ article, articlesList = [] }) => {
         {summary && (
           <p
             className="text-[13px] line-clamp-2 mb-3 leading-relaxed"
-            style={{ color: "#5A7090" }}
+            style={{ color: summaryColor }}
           >
             {summary}
           </p>
         )}
 
         {/* Footer meta */}
-        <div className="flex items-center justify-between text-[11px]" style={{ color: "#4A6280" }}>
+        <div className="flex items-center justify-between text-[11px]" style={{ color: metaColor }}>
           <div className="flex items-center gap-1 min-w-0">
             <span className="truncate">{getShortDate(article)}</span>
             <span className="opacity-50"> · </span>

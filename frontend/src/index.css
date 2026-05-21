@@ -4,41 +4,99 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Light mode (default) ─────────────────────────────────── */
 :root {
-  --vos-bg: #070B12;
-  --vos-surface: #0D1321;
-  --vos-surface-2: #131B2A;
-  --vos-border: #1C2840;
-  --vos-blue: #2D7AFF;
-  --vos-blue-dark: #1A5FCC;
-  --vos-blue-glow: rgba(45, 122, 255, 0.15);
-  --vos-cyan: #00D9C8;
-  --vos-amber: #F59E0B;
-  --vos-red: #EF4444;
-  --vos-text: #E2EAF6;
-  --vos-text-muted: #7A90A8;
-  --vos-text-dim: #3A4E66;
+  --vos-bg:           #FAFBFF;
+  --vos-surface:      #FFFFFF;
+  --vos-surface-2:    #F4F7FF;
+  --vos-border:       #E2E8F4;
+  --vos-border-2:     #CBD5E8;
+  --vos-blue:         #2D7AFF;
+  --vos-blue-dark:    #1A5FCC;
+  --vos-blue-glow:    rgba(45, 122, 255, 0.12);
+  --vos-cyan:         #00D9C8;
+  --vos-amber:        #F59E0B;
+  --vos-red:          #EF4444;
+  --vos-text:         #0D1321;
+  --vos-text-muted:   #4A6280;
+  --vos-text-dim:     #94A3B8;
 
-  /* Legacy token aliases — keep existing components working */
-  --primary-mint: #2D7AFF;
-  --primary-mint-dark: #1A5FCC;
-  --primary-mint-light: #E8F1FF;
-  --accent-saffron: #00D9C8;
-  --accent-saffron-dark: #00A89A;
-  --bg-paper: #070B12;
-  --bg-surface: #0D1321;
-  --bg-dark: #040609;
-  --bg-dark-surface: #0A0E18;
-  --text-primary: #E2EAF6;
-  --text-secondary: #A0B4CC;
-  --text-muted: #7A90A8;
-  --border-light: #1C2840;
-  --border-subtle: #151F30;
+  /* Legacy aliases */
+  --primary-mint:       #2D7AFF;
+  --primary-mint-dark:  #1A5FCC;
+  --primary-mint-light: #EBF2FF;
+  --accent-saffron:     #00D9C8;
+  --bg-paper:           #FAFBFF;
+  --bg-surface:         #FFFFFF;
+  --text-primary:       #0D1321;
+  --text-secondary:     #1E3A5F;
+  --text-muted:         #4A6280;
+  --border-light:       #E2E8F4;
+  --border-subtle:      #EDF2F9;
+
+  /* shadcn/ui tokens — light */
+  --background:         0 0% 99%;
+  --foreground:         220 50% 9%;
+  --card:               0 0% 100%;
+  --card-foreground:    220 50% 9%;
+  --popover:            0 0% 100%;
+  --popover-foreground: 220 50% 9%;
+  --primary:            219 100% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary:          214 32% 95%;
+  --secondary-foreground: 220 50% 9%;
+  --muted:              214 32% 95%;
+  --muted-foreground:   215 20% 45%;
+  --accent:             174 100% 43%;
+  --accent-foreground:  220 50% 9%;
+  --destructive:        0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border:             214 32% 91%;
+  --input:              214 32% 91%;
+  --ring:               219 100% 58%;
+  --radius:             0.5rem;
+  --chart-1: 219 100% 58%;
+  --chart-2: 174 100% 43%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 0 84% 60%;
 }
 
-* {
-  box-sizing: border-box;
+/* ── Dark mode override ───────────────────────────────────── */
+.dark {
+  --vos-bg:           #070B12;
+  --vos-surface:      #0D1321;
+  --vos-surface-2:    #131B2A;
+  --vos-border:       #1C2840;
+  --vos-border-2:     #243350;
+  --vos-text:         #E2EAF6;
+  --vos-text-muted:   #7A90A8;
+  --vos-text-dim:     #3A4E66;
+
+  --bg-paper:         #070B12;
+  --bg-surface:       #0D1321;
+  --text-primary:     #E2EAF6;
+  --text-secondary:   #A0B4CC;
+  --text-muted:       #7A90A8;
+  --border-light:     #1C2840;
+  --border-subtle:    #151F30;
+
+  --background:         220 50% 4%;
+  --foreground:         214 45% 93%;
+  --card:               220 45% 8%;
+  --card-foreground:    214 45% 93%;
+  --popover:            220 45% 8%;
+  --popover-foreground: 214 45% 93%;
+  --secondary:          220 40% 12%;
+  --secondary-foreground: 214 45% 93%;
+  --muted:              220 40% 12%;
+  --muted-foreground:   213 22% 60%;
+  --accent-foreground:  220 50% 4%;
+  --border:             220 38% 16%;
+  --input:              220 38% 16%;
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -47,63 +105,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--vos-bg);
   color: var(--vos-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.font-display {
-  font-family: 'Syne', sans-serif;
-}
+.font-display { font-family: 'Syne', sans-serif; }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--vos-surface); }
+::-webkit-scrollbar-thumb { background: var(--vos-blue); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--vos-blue-dark); }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: var(--vos-surface);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--vos-blue);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--vos-blue-dark);
-}
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-@layer base {
-  :root {
-    --background: 220 50% 4%;
-    --foreground: 214 45% 93%;
-    --card: 220 45% 8%;
-    --card-foreground: 214 45% 93%;
-    --popover: 220 45% 8%;
-    --popover-foreground: 214 45% 93%;
-    --primary: 219 100% 58%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 40% 12%;
-    --secondary-foreground: 214 45% 93%;
-    --muted: 220 40% 12%;
-    --muted-foreground: 213 22% 60%;
-    --accent: 174 100% 43%;
-    --accent-foreground: 220 50% 4%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 38% 16%;
-    --input: 220 38% 16%;
-    --ring: 219 100% 58%;
-    --radius: 0.5rem;
-    --chart-1: 219 100% 58%;
-    --chart-2: 174 100% 43%;
-    --chart-3: 38 92% 50%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 0 84% 60%;
-  }
+.chip-scroll-container {
+  mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent);
 }

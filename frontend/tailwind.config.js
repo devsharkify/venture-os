@@ -61,21 +61,25 @@ module.exports = {
   			mint: {
   				DEFAULT: '#2D7AFF',
   				dark: '#1A5FCC',
-  				light: '#E8F1FF'
+  				light: '#EBF2FF'
   			},
   			saffron: {
   				DEFAULT: '#00D9C8',
   				dark: '#00A89A'
   			},
-  			paper: '#070B12',
+  			paper: '#FAFBFF',
   			ink: {
-  				DEFAULT: '#E2EAF6',
-  				muted: '#7A90A8'
+  				DEFAULT: '#0D1321',
+  				muted: '#4A6280'
   			},
-  			'vos-surface': '#0D1321',
-  			'vos-surface-2': '#131B2A',
-  			'vos-border': '#1C2840',
-  			'vos-amber': '#F59E0B'
+  			'vos-surface': '#FFFFFF',
+  			'vos-surface-2': '#F4F7FF',
+  			'vos-border': '#E2E8F4',
+  			'vos-amber': '#F59E0B',
+  			/* dark mode overrides via CSS vars */
+  			'dark-bg': '#070B12',
+  			'dark-surface': '#0D1321',
+  			'dark-border': '#1C2840'
   		},
   		keyframes: {
   			'accordion-down': {

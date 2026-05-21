@@ -84,10 +84,10 @@ function LeadTile({ article }) {
       </div>
 
       <div className="pt-4">
-        <h2 className="font-display text-[28px] md:text-[36px] font-bold leading-tight text-ink line-clamp-3 mb-3">
+        <h2 className="font-display text-[28px] md:text-[36px] font-bold leading-tight line-clamp-3 mb-3" style={{ color: "var(--vos-text)" }}>
           {title}
         </h2>
-        <p className="text-[15px] text-ink-muted line-clamp-3 mb-3">
+        <p className="text-[15px] line-clamp-3 mb-3" style={{ color: "var(--vos-text-muted)" }}>
           {summary}
         </p>
         <div className="flex items-center gap-2 text-[12px] text-ink-muted">
@@ -125,7 +125,7 @@ function MediumTile({ article }) {
         />
       </div>
       <div className="flex-1 min-w-0 flex flex-col justify-between">
-        <h3 className="font-display text-[15px] font-bold line-clamp-3 text-ink leading-snug">
+        <h3 className="font-display text-[15px] font-bold line-clamp-3 leading-snug" style={{ color: "var(--vos-text)" }}>
           {title}
         </h3>
         <div className="flex items-center gap-1.5 text-[11px] text-ink-muted">
@@ -324,11 +324,11 @@ export default function NewsFeed() {
     : activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1);
 
   return (
-    <div data-testid="news-feed-page" className="min-h-screen pb-20 bg-paper">
+    <div data-testid="news-feed-page" className="min-h-screen pb-20" style={{ background: "var(--vos-bg)" }}>
       {/* ── Section A: Combined Search + Filter pill bar ── */}
       <div
         className="flex items-center gap-2 py-3 px-4 sticky z-30"
-        style={{ top: "100px", background: "rgba(7,11,18,0.95)", borderBottom: "1px solid #1C2840", backdropFilter: "blur(12px)" }}
+        style={{ top: "100px", background: "var(--vos-bg)", borderBottom: "1px solid var(--vos-border)", backdropFilter: "blur(12px)" }}
       >
         <div className="relative flex-1 flex items-center">
           <Search size={15} className="absolute left-4 pointer-events-none" style={{ color: "#3A4E66" }} />
@@ -340,9 +340,9 @@ export default function NewsFeed() {
             placeholder="Search articles..."
             className="w-full pl-10 pr-28 py-2 text-sm rounded-lg outline-none transition-all"
             style={{
-              background: "#0D1321",
-              border: "1px solid #1C2840",
-              color: "#E2EAF6",
+              background: "var(--vos-surface)",
+              border: "1px solid var(--vos-border)",
+              color: "var(--vos-text)",
             }}
             onFocus={(e) => { e.target.style.borderColor = "#2D7AFF"; }}
             onBlur={(e) => { e.target.style.borderColor = "#1C2840"; }}
@@ -368,7 +368,7 @@ export default function NewsFeed() {
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
           className="text-[12px] font-semibold rounded-lg px-3 py-2 outline-none cursor-pointer transition"
-          style={{ background: "#0D1321", border: "1px solid #1C2840", color: "#7A90A8" }}
+          style={{ background: "var(--vos-surface)", border: "1px solid var(--vos-border)", color: "var(--vos-text-muted)" }}
         >
           {SORT_OPTIONS.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -379,7 +379,7 @@ export default function NewsFeed() {
           value={timeFilter}
           onChange={(e) => setTimeFilter(e.target.value)}
           className="text-[12px] font-semibold rounded-lg px-3 py-2 outline-none cursor-pointer transition"
-          style={{ background: "#0D1321", border: "1px solid #1C2840", color: "#7A90A8" }}
+          style={{ background: "var(--vos-surface)", border: "1px solid var(--vos-border)", color: "var(--vos-text-muted)" }}
         >
           {TIME_FILTERS.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>

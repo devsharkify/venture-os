@@ -226,7 +226,7 @@ function AppContent() {
 
   return (
     <AppContext.Provider value={contextValue}>
-      <div className={`min-h-screen ${darkMode ? "dark bg-[#070B12]" : "bg-[#0A0E18]"}`}>
+      <div className={`min-h-screen ${darkMode ? "dark" : ""}`} style={{ background: "var(--vos-bg)", color: "var(--vos-text)" }}>
         <ScrollToTop />
         {!isSwipeMode && !isReporterPage && !isLoginPage && <Header />}
         <main className={`${isAdminPage || isSwipeMode || isReporterPage ? "" : "safe-area-bottom"}`}>

@@ -8,6 +8,10 @@ export const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const navBg     = darkMode ? "rgba(7,11,18,0.96)"   : "rgba(255,255,255,0.97)";
+  const navBorder = darkMode ? "#1C2840"               : "#E2E8F4";
+  const inactiveC = darkMode ? "#3A4E66"               : "#94A3B8";
+
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
     { path: "/swipe", icon: Layers, label: "Shorts" },
@@ -16,36 +20,20 @@ export const BottomNav = () => {
   ];
 
   return (
-    <nav
-      className="bottom-nav"
-      style={{
-        background: "rgba(7, 11, 18, 0.95)",
-        borderColor: "#1C2840",
-      }}
-      data-testid="bottom-nav"
-    >
+    <nav className="bottom-nav" style={{ background: navBg, borderColor: navBorder }} data-testid="bottom-nav">
       <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = location.pathname === item.path;
-
+        {navItems.map(({ path, icon: Icon, label }) => {
+          const isActive = location.pathname === path;
           return (
-            <button
-              key={item.label}
-              data-testid={`nav-${item.path === "/" ? "home" : item.label.toLowerCase()}`}
-              onClick={() => navigate(item.path)}
+            <button key={label} onClick={() => navigate(path)}
+              data-testid={`nav-${path === "/" ? "home" : label.toLowerCase()}`}
               className="flex flex-col items-center justify-center w-16 h-full transition-all duration-200"
-              style={{ color: isActive ? "#2D7AFF" : "#3A4E66" }}
-            >
+              style={{ color: isActive ? "#2D7AFF" : inactiveC }}>
               <Icon size={20} strokeWidth={isActive ? 2.5 : 1.8} className="mb-0.5" />
-              <span className={`text-[10px] tracking-wide uppercase ${isActive ? "font-bold" : "font-medium"}`}>
-                {item.label}
-              </span>
+              <span className={`text-[10px] tracking-wide uppercase ${isActive ? "font-bold" : "font-medium"}`}>{label}</span>
               {isActive && (
-                <div
-                  className="w-4 h-0.5 rounded-full mt-0.5"
-                  style={{ background: "linear-gradient(90deg, #2D7AFF, #00D9C8)" }}
-                />
+                <div className="w-4 h-0.5 rounded-full mt-0.5"
+                  style={{ background: "linear-gradient(90deg,#2D7AFF,#00D9C8)" }} />
               )}
             </button>
           );
