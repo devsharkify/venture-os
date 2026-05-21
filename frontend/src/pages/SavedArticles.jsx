@@ -10,9 +10,9 @@ export default function SavedArticles() {
   const navigate = useNavigate();
 
   return (
-    <div data-testid="saved-articles-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+    <div data-testid="saved-articles-page" className={`min-h-screen ${darkMode ? "bg-[#070B12]" : "bg-[#0A0E18]"}`}>
       {/* Header Section */}
-      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-100"}`}>
+      <div className={`border-b py-4 px-4 ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#131B2A]"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-2">
             <Button
@@ -20,18 +20,18 @@ export default function SavedArticles() {
               size="icon"
               data-testid="back-btn"
               onClick={() => navigate("/")}
-              className={`h-9 w-9 ${darkMode ? "text-slate-300 hover:text-white" : ""}`}
+              className={`h-9 w-9 ${darkMode ? "text-[#A0B4CC] hover:text-white" : ""}`}
             >
               <ArrowLeft size={20} />
             </Button>
             <div className="flex items-center gap-2">
-              <Bookmark size={22} className="text-orange-500" />
-              <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
+              <Bookmark size={22} className="text-[#2D7AFF]" />
+              <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                 Saved Articles
               </h1>
             </div>
           </div>
-          <p className={`text-sm ml-12 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+          <p className={`text-sm ml-12 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
             {`${savedArticles.length} article${savedArticles.length !== 1 ? "s" : ""} saved`}
           </p>
         </div>
@@ -41,19 +41,19 @@ export default function SavedArticles() {
         {/* Empty State */}
         {savedArticles.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`}>
-              <Bookmark size={32} className={darkMode ? "text-slate-500" : "text-slate-400"} />
+            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 ${darkMode ? "bg-[#0D1321]" : "bg-[#131B2A]"}`}>
+              <Bookmark size={32} className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"} />
             </div>
-            <h3 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-slate-700"}`}>
+            <h3 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-[#A0B4CC]"}`}>
               No saved articles
             </h3>
-            <p className={`text-sm text-center max-w-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-sm text-center max-w-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
               Tap the bookmark icon on any article to save it for later
             </p>
             <Button
               data-testid="browse-news-btn"
               onClick={() => navigate("/")}
-              className="mt-6 bg-orange-500 hover:bg-orange-600"
+              className="mt-6 bg-[#2D7AFF] hover:bg-[#1A5FCC]"
             >
               Browse News
             </Button>

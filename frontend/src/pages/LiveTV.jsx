@@ -17,7 +17,7 @@ export default function LiveTV() {
   }, []);
 
   return (
-    <div data-testid="live-tv-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+    <div data-testid="live-tv-page" className={`min-h-screen ${darkMode ? "bg-[#070B12]" : "bg-[#0A0E18]"}`}>
       {/* Live Banner */}
       <div className="bg-gradient-to-r from-red-600 to-orange-600 py-3 px-4 sticky top-14 z-20">
         <div className="max-w-7xl mx-auto flex items-center gap-3">
@@ -43,12 +43,12 @@ export default function LiveTV() {
               allowFullScreen
             />
           </div>
-          <div className={`px-4 py-3 border-b ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+          <div className={`px-4 py-3 border-b ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 px-2 py-1 bg-red-600 rounded text-white text-xs font-bold">
                 <Radio size={12} /> LIVE
               </div>
-              <h2 className={`font-semibold text-lg ${darkMode ? "text-white" : "text-slate-900"}`}>
+              <h2 className={`font-semibold text-lg ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                 {activeChannel.name}
               </h2>
             </div>
@@ -56,8 +56,8 @@ export default function LiveTV() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-20">
-          <Tv size={48} className={darkMode ? "text-slate-600" : "text-slate-400"} />
-          <p className={`mt-4 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+          <Tv size={48} className={darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"} />
+          <p className={`mt-4 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
             No live channels available
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function LiveTV() {
       {/* Channel List */}
       {channels.length > 1 && (
         <div className="max-w-5xl mx-auto px-4 py-4">
-          <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+          <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
             OTHER CHANNELS
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -76,7 +76,7 @@ export default function LiveTV() {
                 data-testid={`channel-${ch.id}`}
                 onClick={() => setActiveChannel(ch)}
                 className={`rounded-xl overflow-hidden border transition-all hover:scale-[1.02] ${
-                  darkMode ? "bg-slate-800 border-slate-700 hover:border-orange-500" : "bg-[#070B12] border-slate-200 hover:border-orange-400"
+                  darkMode ? "bg-[#0D1321] border-[#1C2840] hover:border-[#2D7AFF]" : "bg-[#070B12] border-[#1C2840] hover:border-orange-400"
                 }`}
               >
                 <div className="relative aspect-video">
@@ -90,7 +90,7 @@ export default function LiveTV() {
                   </div>
                 </div>
                 <div className="p-2">
-                  <p className={`text-sm font-medium truncate ${darkMode ? "text-white" : "text-slate-800"}`}>
+                  <p className={`text-sm font-medium truncate ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                     {ch.name}
                   </p>
                 </div>

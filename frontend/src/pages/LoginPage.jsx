@@ -81,16 +81,16 @@ export default function LoginPage({ onLoginSuccess }) {
     <div
       data-testid="reporter-login-page"
       className={`min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden ${
-        darkMode ? "bg-slate-950" : "bg-[#070B12]"
+        darkMode ? "bg-[#040609]" : "bg-[#070B12]"
       }`}
     >
-      <div className="absolute top-0 left-0 w-72 h-72 bg-orange-400/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-300/10 rounded-full translate-x-1/3 translate-y-1/3" />
+      <div className="absolute top-0 left-0 w-72 h-72 bg-[#2D7AFF]/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#2D7AFF]/5 rounded-full translate-x-1/3 translate-y-1/3" />
 
       {/* Logo */}
       <div className="mb-10 text-center relative z-10">
-        <img src="/tvr-logo.png" alt="Venture OS" className="h-24 w-auto mx-auto mb-3 drop-shadow-sm" data-testid="login-logo" />
-        <p className={`text-sm tracking-wide ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+        <img src="/logo.svg" alt="Venture OS" className="h-16 w-16 mx-auto mb-3 rounded-xl drop-shadow-lg" data-testid="login-logo" />
+        <p className={`text-sm tracking-wide ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
           Reporter & Admin Login
         </p>
       </div>
@@ -100,25 +100,25 @@ export default function LoginPage({ onLoginSuccess }) {
         <div
           data-testid="phone-step"
           className={`w-full max-w-sm p-8 rounded-3xl shadow-lg relative z-10 border ${
-            darkMode ? "bg-slate-900 border-slate-700" : "bg-[#070B12] border-orange-100"
+            darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"
           }`}
         >
           <button
             data-testid="back-to-home"
             onClick={() => navigate("/")}
-            className={`flex items-center gap-1 text-sm mb-4 ${darkMode ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-800"} transition-colors`}
+            className={`flex items-center gap-1 text-sm mb-4 ${darkMode ? "text-[#7A90A8] hover:text-white" : "text-[#5A7090] hover:text-[#E2EAF6]"} transition-colors`}
           >
             <ChevronLeft size={16} /> Back to News
           </button>
 
           <div className="text-center mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mx-auto mb-3">
-              <UserPlus size={24} className="text-orange-500" />
+            <div className="w-14 h-14 rounded-2xl bg-[#131B2A] flex items-center justify-center mx-auto mb-3">
+              <UserPlus size={24} className="text-[#2D7AFF]" />
             </div>
-            <h2 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-slate-800"}`}>
+            <h2 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               Login as Reporter
             </h2>
-            <p className={`text-sm mt-1 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-sm mt-1 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
               Enter your mobile number to continue
             </p>
           </div>
@@ -126,7 +126,7 @@ export default function LoginPage({ onLoginSuccess }) {
           <div className="space-y-4">
             <div className="flex gap-2">
               <div className={`flex items-center justify-center px-4 rounded-xl font-medium text-sm ${
-                darkMode ? "bg-slate-800 text-slate-300 border border-slate-700" : "bg-orange-50 text-orange-600 border border-orange-200"
+                darkMode ? "bg-[#0D1321] text-[#A0B4CC] border border-[#1C2840]" : "bg-[#0D1321] text-[#2D7AFF] border border-[#1C2840]"
               }`}>
                 +91
               </div>
@@ -137,7 +137,7 @@ export default function LoginPage({ onLoginSuccess }) {
                 onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
                 placeholder="9876543210"
                 maxLength={10}
-                className={`text-lg tracking-wider h-12 rounded-xl ${darkMode ? "bg-slate-800 border-slate-700 text-white" : "border-slate-200"}`}
+                className={`text-lg tracking-wider h-12 rounded-xl ${darkMode ? "bg-[#0D1321] border-[#1C2840] text-white" : "border-[#1C2840]"}`}
               />
             </div>
 
@@ -145,7 +145,7 @@ export default function LoginPage({ onLoginSuccess }) {
               data-testid="send-otp-btn"
               onClick={handleSendOtp}
               disabled={loading || phone.length !== 10}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white h-12 rounded-xl text-base font-medium shadow-lg shadow-orange-500/20 disabled:opacity-40"
+              className="w-full bg-[#2D7AFF] hover:bg-[#1A5FCC] text-white h-12 rounded-xl text-base font-medium shadow-lg shadow-[#2D7AFF]/20 disabled:opacity-40"
             >
               {loading ? <Loader2 size={20} className="animate-spin" /> : (
                 <><Phone size={18} className="mr-2" /> Send OTP</>
@@ -160,23 +160,23 @@ export default function LoginPage({ onLoginSuccess }) {
         <div
           data-testid="otp-step"
           className={`w-full max-w-sm p-8 rounded-3xl shadow-lg relative z-10 border ${
-            darkMode ? "bg-slate-900 border-slate-700" : "bg-[#070B12] border-orange-100"
+            darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"
           }`}
         >
           <button
             data-testid="back-to-phone"
             onClick={() => { setStep("phone"); setOtp(""); }}
-            className={`flex items-center gap-1 text-sm mb-4 ${darkMode ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-800"} transition-colors`}
+            className={`flex items-center gap-1 text-sm mb-4 ${darkMode ? "text-[#7A90A8] hover:text-white" : "text-[#5A7090] hover:text-[#E2EAF6]"} transition-colors`}
           >
             <ChevronLeft size={16} /> Change Number
           </button>
 
           <div className="text-center mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mx-auto mb-3">
-              <Shield size={24} className="text-orange-500" />
+            <div className="w-14 h-14 rounded-2xl bg-[#131B2A] flex items-center justify-center mx-auto mb-3">
+              <Shield size={24} className="text-[#2D7AFF]" />
             </div>
-            <h2 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-slate-800"}`}>Verify OTP</h2>
-            <p className={`text-sm mt-1 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <h2 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>Verify OTP</h2>
+            <p className={`text-sm mt-1 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
               Code sent to +91 {phone}
             </p>
           </div>
@@ -189,14 +189,14 @@ export default function LoginPage({ onLoginSuccess }) {
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
               placeholder="● ● ● ● ● ●"
               maxLength={6}
-              className={`text-2xl text-center tracking-[0.5em] h-14 rounded-xl ${darkMode ? "bg-slate-800 border-slate-700 text-white" : "border-slate-200"}`}
+              className={`text-2xl text-center tracking-[0.5em] h-14 rounded-xl ${darkMode ? "bg-[#0D1321] border-[#1C2840] text-white" : "border-[#1C2840]"}`}
             />
 
             <Button
               data-testid="verify-otp-btn"
               onClick={handleVerifyOtp}
               disabled={loading || otp.length !== 6}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white h-12 rounded-xl text-base font-medium shadow-lg shadow-orange-500/20 disabled:opacity-40"
+              className="w-full bg-[#2D7AFF] hover:bg-[#1A5FCC] text-white h-12 rounded-xl text-base font-medium shadow-lg shadow-[#2D7AFF]/20 disabled:opacity-40"
             >
               {loading ? <Loader2 size={20} className="animate-spin" /> : (
                 <><Shield size={18} className="mr-2" /> Verify & Login</>
@@ -208,7 +208,7 @@ export default function LoginPage({ onLoginSuccess }) {
               onClick={handleResendOtp}
               disabled={resendCooldown > 0 || loading}
               className={`w-full text-sm font-medium py-2 transition-colors ${
-                resendCooldown > 0 ? (darkMode ? "text-slate-600" : "text-slate-400") : "text-orange-500 hover:text-orange-600"
+                resendCooldown > 0 ? (darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]") : "text-[#2D7AFF] hover:text-[#2D7AFF]"
               }`}
             >
               {resendCooldown > 0 ? `Resend OTP in ${resendCooldown}s` : "Resend OTP"}
@@ -217,7 +217,7 @@ export default function LoginPage({ onLoginSuccess }) {
         </div>
       )}
 
-      <p className={`mt-8 text-xs relative z-10 ${darkMode ? "text-slate-600" : "text-slate-400"}`}>
+      <p className={`mt-8 text-xs relative z-10 ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
         Secure login powered by SMS verification
       </p>
     </div>

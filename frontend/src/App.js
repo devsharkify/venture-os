@@ -212,11 +212,11 @@ function AppContent() {
   if (isAdminPage && !isAdmin) {
     return (
       <AppContext.Provider value={contextValue}>
-        <div className={`min-h-screen flex items-center justify-center ${darkMode ? "dark bg-slate-900" : "bg-slate-50"}`}>
+        <div className={`min-h-screen flex items-center justify-center ${darkMode ? "dark bg-[#070B12]" : "bg-[#0A0E18]"}`}>
           <div className="text-center p-8">
-            <p className="text-lg font-semibold text-slate-700 mb-2">Admin Access Required</p>
-            <p className="text-sm text-slate-500 mb-4">Only authorized users can access the admin panel.</p>
-            <button onClick={() => navigate("/")} className="text-orange-500 font-medium">Go to Home</button>
+            <p className="text-lg font-semibold text-[#A0B4CC] mb-2">Admin Access Required</p>
+            <p className="text-sm text-[#5A7090] mb-4">Only authorized users can access the admin panel.</p>
+            <button onClick={() => navigate("/")} className="text-[#2D7AFF] font-medium">Go to Home</button>
           </div>
           <Toaster position="top-center" richColors theme={darkMode ? "dark" : "light"} />
         </div>
@@ -226,7 +226,7 @@ function AppContent() {
 
   return (
     <AppContext.Provider value={contextValue}>
-      <div className={`min-h-screen ${darkMode ? "dark bg-slate-900" : "bg-slate-50"}`}>
+      <div className={`min-h-screen ${darkMode ? "dark bg-[#070B12]" : "bg-[#0A0E18]"}`}>
         <ScrollToTop />
         {!isSwipeMode && !isReporterPage && !isLoginPage && <Header />}
         <main className={`${isAdminPage || isSwipeMode || isReporterPage ? "" : "safe-area-bottom"}`}>

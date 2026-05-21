@@ -382,9 +382,9 @@ export default function AdminPanel() {
   };
 
   return (
-    <div data-testid="admin-panel-page" className="min-h-screen bg-slate-50 pb-8">
+    <div data-testid="admin-panel-page" className="min-h-screen bg-[#0A0E18] pb-8">
       {/* Header */}
-      <div className="bg-[#070B12] border-b border-slate-200 py-4 px-4 sticky top-14 z-20">
+      <div className="bg-[#070B12] border-b border-[#1C2840] py-4 px-4 sticky top-14 z-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
@@ -396,7 +396,7 @@ export default function AdminPanel() {
             >
               <ArrowLeft size={20} />
             </Button>
-            <h1 className="text-xl font-bold text-slate-900">
+            <h1 className="text-xl font-bold text-[#E2EAF6]">
               Admin Panel
             </h1>
           </div>
@@ -436,7 +436,7 @@ export default function AdminPanel() {
                 resetForm();
                 setShowCreateModal(true);
               }}
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
             >
               <Plus size={16} className="mr-1" />
               Push News
@@ -484,14 +484,14 @@ export default function AdminPanel() {
 
           {/* Live TV Management */}
           <TabsContent value="livetv">
-            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-              <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <div className={`rounded-lg border p-6 ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+              <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                 <Tv size={20} className="inline mr-2" /> Live TV Channels
               </h2>
 
               {/* Add New Channel */}
-              <div className={`mb-6 p-4 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-orange-50 border-orange-200"}`}>
-                <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
+              <div className={`mb-6 p-4 rounded-lg border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
+                <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-[#D0DDF0]" : "text-[#A0B4CC]"}`}>
                   Add YouTube Live Channel
                 </h3>
                 <div className="flex gap-2 flex-wrap">
@@ -500,20 +500,20 @@ export default function AdminPanel() {
                     value={newChannel.name}
                     onChange={(e) => setNewChannel(p => ({ ...p, name: e.target.value }))}
                     placeholder="Channel Name (e.g. CNBC TV18)"
-                    className={`flex-1 min-w-[200px] ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
+                    className={`flex-1 min-w-[200px] ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}`}
                   />
                   <Input
                     data-testid="channel-url-input"
                     value={newChannel.youtube_url}
                     onChange={(e) => setNewChannel(p => ({ ...p, youtube_url: e.target.value }))}
                     placeholder="YouTube Live URL"
-                    className={`flex-[2] min-w-[250px] ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
+                    className={`flex-[2] min-w-[250px] ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}`}
                   />
                   <Button
                     data-testid="add-channel-btn"
                     onClick={handleAddChannel}
                     disabled={addingChannel}
-                    className="bg-orange-500 hover:bg-orange-600"
+                    className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
                   >
                     {addingChannel ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} className="mr-1" />}
                     Add
@@ -524,21 +524,21 @@ export default function AdminPanel() {
               {/* Channels List */}
               {liveChannels.length === 0 ? (
                 <div className="text-center py-10">
-                  <Radio size={40} className={darkMode ? "text-slate-600 mx-auto mb-3" : "text-slate-400 mx-auto mb-3"} />
-                  <p className={darkMode ? "text-slate-400" : "text-slate-500"}>No live channels added yet</p>
+                  <Radio size={40} className={darkMode ? "text-[#7A90A8] mx-auto mb-3" : "text-[#7A90A8] mx-auto mb-3"} />
+                  <p className={darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}>No live channels added yet</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {liveChannels.map((ch) => (
-                    <div key={ch.id} className={`flex items-center gap-4 p-3 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-[#070B12] border-slate-200"}`}>
+                    <div key={ch.id} className={`flex items-center gap-4 p-3 rounded-lg border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
                       <img
                         src={ch.youtube_id ? `https://img.youtube.com/vi/${ch.youtube_id}/default.jpg` : ""}
                         alt=""
                         className="w-16 h-12 object-cover rounded"
                       />
                       <div className="flex-1 min-w-0">
-                        <p className={`font-medium truncate ${darkMode ? "text-white" : "text-slate-900"}`}>{ch.name}</p>
-                        <p className={`text-xs truncate ${darkMode ? "text-slate-400" : "text-slate-500"}`}>{ch.youtube_url}</p>
+                        <p className={`font-medium truncate ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>{ch.name}</p>
+                        <p className={`text-xs truncate ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>{ch.youtube_url}</p>
                       </div>
                       <div className="flex items-center gap-1 px-2 py-0.5 bg-red-600 rounded text-white text-xs font-bold">
                         <div className="w-1.5 h-1.5 bg-[#070B12] rounded-full animate-pulse" /> LIVE
@@ -561,13 +561,13 @@ export default function AdminPanel() {
 
           {/* Shorts Management */}
           <TabsContent value="shorts">
-            <div className={`rounded-lg border p-6 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-              <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <div className={`rounded-lg border p-6 ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+              <h2 className={`text-lg font-semibold mb-4 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                 <Video size={20} className="inline mr-2" /> YouTube Shorts ({shortsList.length})
               </h2>
 
-              <div className={`mb-6 p-4 rounded-lg border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-orange-50 border-orange-200"}`}>
-                <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
+              <div className={`mb-6 p-4 rounded-lg border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
+                <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-[#D0DDF0]" : "text-[#A0B4CC]"}`}>
                   Add Venture OS Short
                 </h3>
                 <div className="flex gap-2 flex-wrap">
@@ -576,16 +576,16 @@ export default function AdminPanel() {
                     value={newShort.title}
                     onChange={(e) => setNewShort(p => ({ ...p, title: e.target.value }))}
                     placeholder="Title (optional)"
-                    className={`flex-1 min-w-[150px] ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
+                    className={`flex-1 min-w-[150px] ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}`}
                   />
                   <Input
                     data-testid="short-url-input"
                     value={newShort.youtube_url}
                     onChange={(e) => setNewShort(p => ({ ...p, youtube_url: e.target.value }))}
                     placeholder="YouTube Shorts URL"
-                    className={`flex-[2] min-w-[250px] ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
+                    className={`flex-[2] min-w-[250px] ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}`}
                   />
-                  <Button data-testid="add-short-btn" onClick={handleAddShort} disabled={addingShort} className="bg-orange-500 hover:bg-orange-600">
+                  <Button data-testid="add-short-btn" onClick={handleAddShort} disabled={addingShort} className="bg-[#2D7AFF] hover:bg-[#1A5FCC]">
                     {addingShort ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} className="mr-1" />}
                     Add
                   </Button>
@@ -594,13 +594,13 @@ export default function AdminPanel() {
 
               {shortsList.length === 0 ? (
                 <div className="text-center py-10">
-                  <Video size={40} className={darkMode ? "text-slate-600 mx-auto mb-3" : "text-slate-400 mx-auto mb-3"} />
-                  <p className={darkMode ? "text-slate-400" : "text-slate-500"}>No shorts added yet</p>
+                  <Video size={40} className={darkMode ? "text-[#7A90A8] mx-auto mb-3" : "text-[#7A90A8] mx-auto mb-3"} />
+                  <p className={darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}>No shorts added yet</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                   {shortsList.map((s) => (
-                    <div key={s.id} className={`rounded-xl overflow-hidden border ${darkMode ? "bg-slate-900 border-slate-600" : "bg-[#070B12] border-slate-200"}`}>
+                    <div key={s.id} className={`rounded-xl overflow-hidden border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
                       <div className="relative aspect-[9/16]">
                         <img
                           src={`https://img.youtube.com/vi/${s.youtube_id}/hqdefault.jpg`}
@@ -609,7 +609,7 @@ export default function AdminPanel() {
                         />
                       </div>
                       <div className="p-2 flex items-center justify-between">
-                        <p className={`text-xs font-medium truncate flex-1 ${darkMode ? "text-white" : "text-slate-800"}`}>{s.title}</p>
+                        <p className={`text-xs font-medium truncate flex-1 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>{s.title}</p>
                         <button onClick={() => handleDeleteShort(s.id)} className="text-red-500 hover:text-red-600 ml-2 shrink-0">
                           <Trash2 size={14} />
                         </button>
@@ -631,14 +631,14 @@ export default function AdminPanel() {
               value={adminSearch}
               onChange={(e) => { setAdminSearch(e.target.value); setPage(0); }}
               placeholder="Search articles by title, summary, source..."
-              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500" : "bg-[#070B12] border-slate-300 placeholder-slate-400"}`}
+              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#0D1321] border-[#1C2840] text-white placeholder-slate-500" : "bg-[#070B12] border-slate-300 placeholder-slate-400"}`}
             />
           </div>
           <div className="flex items-center gap-2 text-sm">
             <Button data-testid="admin-news-prev-btn" variant="outline" size="sm" disabled={page === 0 || loading} onClick={() => setPage((p) => Math.max(0, p - 1))}>
               Prev
             </Button>
-            <span className={darkMode ? "text-slate-300" : "text-slate-700"}>
+            <span className={darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}>
               <span className="font-bold">{page * PAGE_SIZE + 1}</span>
               –<span className="font-bold">{Math.min((page + 1) * PAGE_SIZE, totalArticles)}</span>
               {" "}of <span className="font-bold">{totalArticles}</span>
@@ -651,45 +651,45 @@ export default function AdminPanel() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-            <p className="text-2xl font-bold text-orange-500">{totalArticles}</p>
-            <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+            <p className="text-2xl font-bold text-[#2D7AFF]">{totalArticles}</p>
+            <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
               Total Articles
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
             <p className="text-2xl font-bold text-green-600">
               {articles.filter(a => a.is_active).length}
             </p>
-            <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
               Active
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
             <p className="text-2xl font-bold text-amber-600">
               {articles.filter(a => a.is_pinned).length}
             </p>
-            <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
               Pinned
             </p>
           </div>
-          <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+          <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
             <p className="text-2xl font-bold text-violet-600">
               {articles.filter(a => a.content_type === "video").length}
             </p>
-            <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
               Videos
             </p>
           </div>
         </div>
 
         {/* Siasat.com Auto-Scraper Control */}
-        <div className={`mb-6 p-4 rounded-lg border flex items-center justify-between ${darkMode ? "bg-slate-800 border-slate-700" : "bg-orange-50 border-orange-200"}`}>
+        <div className={`mb-6 p-4 rounded-lg border flex items-center justify-between ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
           <div>
-            <p className={`font-semibold ${darkMode ? "text-white" : "text-slate-800"}`}>
+            <p className={`font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               Siasat.com Auto-Scraper
             </p>
-            <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
               {scraperStatus?.last_run
                 ? `Last run: ${new Date(scraperStatus.last_run).toLocaleString()} | Added: ${scraperStatus.articles_added} articles`
                 : "Not run yet"}
@@ -701,7 +701,7 @@ export default function AdminPanel() {
             size="sm"
             disabled={triggeringScraper}
             onClick={handleTriggerScraper}
-            className="bg-orange-500 hover:bg-orange-600"
+            className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
           >
             {triggeringScraper ? <Loader2 size={16} className="animate-spin mr-1" /> : <RefreshCw size={16} className="mr-1" />}
             {triggeringScraper ? "Scraping..." : "Scrape Now"}
@@ -709,10 +709,10 @@ export default function AdminPanel() {
         </div>
 
         {/* Articles Table */}
-        <div className="bg-[#070B12] rounded-lg border border-slate-200 overflow-hidden">
+        <div className="bg-[#070B12] rounded-lg border border-[#1C2840] overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-slate-50">
+              <TableRow className="bg-[#0A0E18]">
                 <TableHead className="w-[40%]">Title</TableHead>
                 <TableHead>Category</TableHead>
                 <TableHead>Status</TableHead>
@@ -725,13 +725,13 @@ export default function AdminPanel() {
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-10">
                     <Loader2 className="animate-spin mx-auto mb-2" />
-                    <p className="text-slate-500">Loading...</p>
+                    <p className="text-[#5A7090]">Loading...</p>
                   </TableCell>
                 </TableRow>
               ) : articles.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-10">
-                    <p className="text-slate-500">No articles yet. Push your first news!</p>
+                    <p className="text-[#5A7090]">No articles yet. Push your first news!</p>
                   </TableCell>
                 </TableRow>
               ) : (
@@ -747,7 +747,7 @@ export default function AdminPanel() {
                           />
                         )}
                         <div className="min-w-0 flex-1">
-                          <p className="font-medium text-slate-900 line-clamp-2 text-sm">
+                          <p className="font-medium text-[#E2EAF6] line-clamp-2 text-sm">
                             {article.title}
                           </p>
                           {article.content_type === "video" && (
@@ -756,7 +756,7 @@ export default function AdminPanel() {
                             </Badge>
                           )}
                           {article.source === "siasat.com" && (
-                            <Badge variant="outline" className="mt-1 text-orange-600 border-orange-300">
+                            <Badge variant="outline" className="mt-1 text-[#2D7AFF] border-[#2D7AFF]/40">
                               siasat.com
                             </Badge>
                           )}
@@ -780,7 +780,7 @@ export default function AdminPanel() {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-sm text-slate-500">
+                    <TableCell className="text-sm text-[#5A7090]">
                       {getTimeAgo(article.created_at)}
                     </TableCell>
                     <TableCell>
@@ -852,7 +852,7 @@ export default function AdminPanel() {
             </TabsList>
 
             <TabsContent value="scrape" className="space-y-4 mt-4">
-              <div className="p-4 bg-slate-50 rounded-lg space-y-4">
+              <div className="p-4 bg-[#0A0E18] rounded-lg space-y-4">
                 <div className="space-y-2">
                   <Label>URL to Scrape</Label>
                   <Input
@@ -1027,7 +1027,7 @@ export default function AdminPanel() {
                 value={formData.published_at}
                 onChange={(e) => setFormData(prev => ({ ...prev, published_at: e.target.value }))}
               />
-              <p className="text-xs text-slate-400">Set a past date to backdate, future date to schedule, or leave empty to publish now.</p>
+              <p className="text-xs text-[#7A90A8]">Set a past date to backdate, future date to schedule, or leave empty to publish now.</p>
             </div>
 
             <div className="flex items-center gap-2">
@@ -1048,7 +1048,7 @@ export default function AdminPanel() {
               data-testid="save-article-btn"
               onClick={handleCreateArticle}
               disabled={saving || !formData.title || !formData.summary}
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
             >
               {saving ? (
                 <>
@@ -1175,7 +1175,7 @@ export default function AdminPanel() {
             <div className="space-y-2">
               <Label htmlFor="edit-published-at">
                 Publish Date & Time
-                <span className="text-xs font-normal text-slate-500 ml-2">(override the displayed timestamp)</span>
+                <span className="text-xs font-normal text-[#5A7090] ml-2">(override the displayed timestamp)</span>
               </Label>
               <div className="flex items-center gap-2">
                 <Input
@@ -1227,7 +1227,7 @@ export default function AdminPanel() {
               data-testid="update-article-btn"
               onClick={handleUpdateArticle}
               disabled={saving || !formData.title || !formData.summary}
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
             >
               {saving ? (
                 <>

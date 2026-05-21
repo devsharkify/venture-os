@@ -20,7 +20,7 @@ function Section({ title, children, darkMode }) {
 
 function Para({ children }) {
   return (
-    <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mb-3">
+    <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC] mb-3">
       {children}
     </p>
   );
@@ -41,7 +41,7 @@ function BulletList({ items }) {
   return (
     <ul className="space-y-1 mb-3 pl-1">
       {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+        <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]">
           <span
             className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[7px]"
             style={{ backgroundColor: BRAND }}
@@ -65,7 +65,7 @@ export default function CookiePolicy() {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? "bg-[#070B12] text-slate-100" : "bg-[#070B12] text-[#E2EAF6]"}`}>
+    <div className={`min-h-screen ${darkMode ? "bg-[#070B12] text-[#E2EAF6]" : "bg-[#070B12] text-[#E2EAF6]"}`}>
       <div className="max-w-3xl mx-auto px-4 py-10">
 
         {/* Breadcrumb */}
@@ -73,8 +73,8 @@ export default function CookiePolicy() {
           <Link to="/" className={`hover:underline ${darkMode ? "text-blue-400" : "text-[#2D7AFF]"}`}>
             Home
           </Link>
-          <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
-          <span className={darkMode ? "text-slate-300" : "text-slate-600"}>Cookie Policy</span>
+          <span className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}>/</span>
+          <span className={darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}>Cookie Policy</span>
         </nav>
 
         {/* Header */}
@@ -86,7 +86,7 @@ export default function CookiePolicy() {
             Cookie Policy
           </h1>
           <div className="w-16 h-[3px] rounded mb-5" style={{ backgroundColor: BRAND }} />
-          <p className="text-[13px] text-slate-400 dark:text-slate-500 font-medium uppercase tracking-widest">
+          <p className="text-[13px] text-[#7A90A8] dark:text-[#5A7090] font-medium uppercase tracking-widest">
             Last Updated: May 2026
           </p>
         </header>
@@ -262,17 +262,17 @@ export default function CookiePolicy() {
             The following table lists the primary cookies used on theventureos.in, their
             purpose, and how long they are retained on your device.
           </Para>
-          <div className="overflow-x-auto mt-4 mb-4 rounded-lg border border-slate-200 dark:border-slate-700">
+          <div className="overflow-x-auto mt-4 mb-4 rounded-lg border border-[#1C2840] dark:border-[#1C2840]">
             <table className="w-full text-[14px] border-collapse">
               <thead>
-                <tr className={darkMode ? "bg-slate-800" : "bg-slate-100"}>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                <tr className={darkMode ? "bg-[#0D1321]" : "bg-[#131B2A]"}>
+                  <th className="px-4 py-3 text-left font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] border-b border-[#1C2840] dark:border-[#1C2840] whitespace-nowrap">
                     Cookie Name
                   </th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700">
+                  <th className="px-4 py-3 text-left font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] border-b border-[#1C2840] dark:border-[#1C2840]">
                     Purpose
                   </th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                  <th className="px-4 py-3 text-left font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] border-b border-[#1C2840] dark:border-[#1C2840] whitespace-nowrap">
                     Duration
                   </th>
                 </tr>
@@ -281,17 +281,17 @@ export default function CookiePolicy() {
                 {cookieTableRows.map((row, i) => (
                   <tr
                     key={i}
-                    className={`border-b last:border-0 border-slate-200 dark:border-slate-700 ${
+                    className={`border-b last:border-0 border-[#1C2840] dark:border-[#1C2840] ${
                       i % 2 === 0
                         ? darkMode ? "bg-[#070B12]" : "bg-[#070B12]"
-                        : darkMode ? "bg-slate-800/50" : "bg-slate-50"
+                        : darkMode ? "bg-[#0D1321]/50" : "bg-[#0A0E18]"
                     }`}
                   >
-                    <td className="px-4 py-3 font-mono text-[13px] text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                    <td className="px-4 py-3 font-mono text-[13px] text-[#A0B4CC] dark:text-[#A0B4CC] whitespace-nowrap">
                       {row.name}
                     </td>
-                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{row.purpose}</td>
-                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300 whitespace-nowrap">{row.duration}</td>
+                    <td className="px-4 py-3 text-[#7A90A8] dark:text-[#A0B4CC]">{row.purpose}</td>
+                    <td className="px-4 py-3 text-[#7A90A8] dark:text-[#A0B4CC] whitespace-nowrap">{row.duration}</td>
                   </tr>
                 ))}
               </tbody>
@@ -312,7 +312,7 @@ export default function CookiePolicy() {
         {/* Contact */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
           }`}
         >
           <h2
@@ -321,11 +321,11 @@ export default function CookiePolicy() {
           >
             Questions About Cookies?
           </h2>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-2">
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mb-2">
             If you have any questions about our use of cookies or this Cookie Policy, please
             contact our privacy team:
           </p>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mb-1">
             Venture OS, Hyderabad, Telangana, India
           </p>
           <a

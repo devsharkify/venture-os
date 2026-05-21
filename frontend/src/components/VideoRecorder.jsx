@@ -89,13 +89,13 @@ export const VideoRecorder = ({ onUpload }) => {
   const formatTime = (s) => `${Math.floor(s / 60).toString().padStart(2, "0")}:${(s % 60).toString().padStart(2, "0")}`;
 
   return (
-    <div data-testid="video-recorder" className={`rounded-xl border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
+    <div data-testid="video-recorder" className={`rounded-xl border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0A0E18] border-[#1C2840]"}`}>
       {/* Video Preview / Playback */}
       <div className="relative aspect-video bg-black">
         {status === "idle" && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <Camera size={40} className="text-slate-500 mb-3" />
-            <Button onClick={startCamera} className="bg-orange-500 hover:bg-orange-600" data-testid="start-camera-btn">
+            <Camera size={40} className="text-[#5A7090] mb-3" />
+            <Button onClick={startCamera} className="bg-[#2D7AFF] hover:bg-[#1A5FCC]" data-testid="start-camera-btn">
               <Camera size={16} className="mr-2" /> Open Camera
             </Button>
           </div>
@@ -132,13 +132,13 @@ export const VideoRecorder = ({ onUpload }) => {
             <Button onClick={resetRecording} variant="outline" data-testid="retake-btn">
               <RotateCcw size={16} className="mr-2" /> Retake
             </Button>
-            <Button onClick={uploadRecording} className="bg-orange-500 hover:bg-orange-600" data-testid="upload-recording-btn">
+            <Button onClick={uploadRecording} className="bg-[#2D7AFF] hover:bg-[#1A5FCC]" data-testid="upload-recording-btn">
               <Upload size={16} className="mr-2" /> Upload Video
             </Button>
           </>
         )}
         {status === "uploading" && (
-          <Button disabled className="bg-orange-500">
+          <Button disabled className="bg-[#2D7AFF]">
             <Loader2 size={16} className="animate-spin mr-2" /> Uploading...
           </Button>
         )}

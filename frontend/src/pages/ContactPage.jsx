@@ -23,8 +23,8 @@ export default function ContactPage() {
 
   const inputBase = `w-full rounded-lg px-3 py-2 text-[14px] border focus:outline-none focus:ring-2 focus:ring-mint/40 ${
     darkMode
-      ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-500"
-      : "bg-[#070B12] border-slate-200 text-slate-800 placeholder-slate-400"
+      ? "bg-[#0D1321] border-[#1C2840] text-[#E2EAF6] placeholder-slate-500"
+      : "bg-[#070B12] border-[#1C2840] text-[#E2EAF6] placeholder-slate-400"
   }`;
 
   return (
@@ -36,8 +36,8 @@ export default function ContactPage() {
           <Link to="/" className="hover:underline text-mint">
             Home
           </Link>
-          <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
-          <span className={darkMode ? "text-slate-300" : "text-slate-600"}>Contact</span>
+          <span className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}>/</span>
+          <span className={darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}>Contact</span>
         </nav>
 
         {/* Heading */}
@@ -46,7 +46,7 @@ export default function ContactPage() {
             Contact Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-5 bg-mint" />
-          <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]">
             Tip, pitch, complaint or compliment &mdash; we read everything. The fastest route is
             email, but the form below lands in the same inbox.
           </p>
@@ -56,16 +56,16 @@ export default function ContactPage() {
           {/* Left: contact details */}
           <section
             className={`rounded-xl p-6 border ${
-              darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+              darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
             }`}
           >
             <h2 className="font-display text-[16px] font-bold mb-4 text-ink dark:text-cream">
               Reach us
             </h2>
 
-            <div className="space-y-3 text-[14px] text-slate-600 dark:text-slate-300">
+            <div className="space-y-3 text-[14px] text-[#7A90A8] dark:text-[#A0B4CC]">
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Newsroom
                 </span>
                 <a href="mailto:editor@ventureos.in" className="hover:underline text-mint">
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Advertising
                 </span>
                 <a href="mailto:advertise@ventureos.in" className="hover:underline text-mint">
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Careers
                 </span>
                 <a href="mailto:careers@ventureos.in" className="hover:underline text-mint">
@@ -89,7 +89,7 @@ export default function ContactPage() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Legal
                 </span>
                 <a href="mailto:legal@ventureos.in" className="hover:underline text-mint">
@@ -97,13 +97,13 @@ export default function ContactPage() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Phone
                 </span>
                 +91 40 4242 0000
               </p>
               <p>
-                <span className="font-semibold text-slate-700 dark:text-slate-200 block">
+                <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0] block">
                   Office
                 </span>
                
@@ -116,8 +116,8 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="mt-5 pt-5 border-t border-slate-200 dark:border-slate-700">
-              <h3 className="text-[13px] font-bold mb-2 text-slate-700 dark:text-slate-200 uppercase tracking-wider">
+            <div className="mt-5 pt-5 border-t border-[#1C2840] dark:border-[#1C2840]">
+              <h3 className="text-[13px] font-bold mb-2 text-[#A0B4CC] dark:text-[#D0DDF0] uppercase tracking-wider">
                 Follow
               </h3>
               <div className="flex flex-wrap gap-3 text-[13px]">
@@ -152,7 +152,7 @@ export default function ContactPage() {
           {/* Right: form */}
           <section
             className={`rounded-xl p-6 border ${
-              darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+              darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
             }`}
           >
             <h2 className="font-display text-[16px] font-bold mb-4 text-ink dark:text-cream">
@@ -160,7 +160,7 @@ export default function ContactPage() {
             </h2>
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="block text-[13px] font-medium mb-1 text-slate-700 dark:text-slate-200">
+                <label className="block text-[13px] font-medium mb-1 text-[#A0B4CC] dark:text-[#D0DDF0]">
                   Name
                 </label>
                 <input
@@ -174,7 +174,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-[13px] font-medium mb-1 text-slate-700 dark:text-slate-200">
+                <label className="block text-[13px] font-medium mb-1 text-[#A0B4CC] dark:text-[#D0DDF0]">
                   Email
                 </label>
                 <input
@@ -188,7 +188,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-[13px] font-medium mb-1 text-slate-700 dark:text-slate-200">
+                <label className="block text-[13px] font-medium mb-1 text-[#A0B4CC] dark:text-[#D0DDF0]">
                   Subject
                 </label>
                 <input
@@ -202,7 +202,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-[13px] font-medium mb-1 text-slate-700 dark:text-slate-200">
+                <label className="block text-[13px] font-medium mb-1 text-[#A0B4CC] dark:text-[#D0DDF0]">
                   Message
                 </label>
                 <textarea

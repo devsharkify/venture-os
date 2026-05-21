@@ -31,13 +31,13 @@ function ChannelPill({ ch, active, onClick }) {
       className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap border transition-all shrink-0 ${
         active
           ? "bg-red-600 text-white border-red-600 shadow-sm"
-          : "bg-[#070B12] dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-red-300"
+          : "bg-[#070B12] dark:bg-[#0D1321] text-[#7A90A8] dark:text-[#A0B4CC] border-[#1C2840] dark:border-[#1C2840] hover:border-red-300"
       }`}
     >
       {ch.thumbnail && <img src={ch.thumbnail} alt="" className="w-5 h-5 rounded-full" />}
       <span>{ch.name}</span>
       {ch.subscriber_count > 0 && (
-        <span className={`text-[10px] ${active ? "text-white/70" : "text-slate-400"}`}>{formatCount(ch.subscriber_count)}</span>
+        <span className={`text-[10px] ${active ? "text-white/70" : "text-[#7A90A8]"}`}>{formatCount(ch.subscriber_count)}</span>
       )}
     </button>
   );
@@ -78,7 +78,7 @@ export default function VideoNews() {
   const totalVideos = channels.reduce((a, c) => a + (c.video_count || 0), 0);
 
   return (
-    <div data-testid="video-news-page" className="min-h-screen bg-slate-50 dark:bg-slate-900 pb-24">
+    <div data-testid="video-news-page" className="min-h-screen bg-[#0A0E18] dark:bg-[#070B12] pb-24">
       {/* Network Banner */}
       <div className="bg-gradient-to-br from-red-700 via-red-600 to-rose-500 pt-5 pb-4 px-4 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)", backgroundSize: "30px 30px"}} />
@@ -116,7 +116,7 @@ export default function VideoNews() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-[#070B12] dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-14 z-20">
+      <div className="bg-[#070B12] dark:bg-[#0D1321] border-b border-[#1C2840] dark:border-[#1C2840] sticky top-14 z-20">
         <div className="max-w-5xl mx-auto flex items-center px-4">
           {[
             { id: "videos", label: "Long Videos", icon: Play },
@@ -127,7 +127,7 @@ export default function VideoNews() {
               data-testid={`tab-${t.id}`}
               onClick={() => setTab(t.id)}
               className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                tab === t.id ? "border-red-600 text-red-600" : "border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                tab === t.id ? "border-red-600 text-red-600" : "border-transparent text-[#5A7090] hover:text-[#A0B4CC] dark:text-[#7A90A8]"
               }`}
             >
               <t.icon size={15} /> {t.label}
@@ -146,7 +146,7 @@ export default function VideoNews() {
         {loading && tab !== "channels" ? (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <div className="w-10 h-10 border-3 border-red-600 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-slate-500">Loading...</p>
+            <p className="text-sm text-[#5A7090]">Loading...</p>
           </div>
         ) : (
           <>
@@ -154,13 +154,13 @@ export default function VideoNews() {
             {tab === "videos" && (
               <div data-testid="videos-section">
                 {activeChannel && selectedChannel !== "all" && (
-                  <div className="flex items-center gap-3 mb-4 p-3 bg-[#070B12] dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <div className="flex items-center gap-3 mb-4 p-3 bg-[#070B12] dark:bg-[#0D1321] rounded-xl border border-[#131B2A] dark:border-[#1C2840]">
                     {activeChannel.thumbnail && <img src={activeChannel.thumbnail} alt="" className="w-10 h-10 rounded-full" />}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-sm text-slate-900 dark:text-white truncate">
+                      <h3 className="font-semibold text-sm text-[#E2EAF6] dark:text-white truncate">
                         {activeChannel.name}
                       </h3>
-                      <p className="text-[11px] text-slate-500">{formatCount(activeChannel.subscriber_count)} subscribers</p>
+                      <p className="text-[11px] text-[#5A7090]">{formatCount(activeChannel.subscriber_count)} subscribers</p>
                     </div>
                     <a href={`https://www.youtube.com/@${activeChannel.handle}`} target="_blank" rel="noopener noreferrer">
                       <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white text-xs h-7 px-3">
@@ -175,7 +175,7 @@ export default function VideoNews() {
                     <div
                       key={video.id}
                       data-testid={`video-card-${video.id}`}
-                      className="bg-[#070B12] dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer group hover:shadow-md transition-all"
+                      className="bg-[#070B12] dark:bg-[#0D1321] rounded-xl overflow-hidden shadow-sm border border-[#131B2A] dark:border-[#1C2840]/50 cursor-pointer group hover:shadow-md transition-all"
                       onClick={() => setSelectedVideo(video)}
                     >
                       <div className="relative aspect-video">
@@ -187,8 +187,8 @@ export default function VideoNews() {
                         </div>
                       </div>
                       <div className="p-3">
-                        <h4 className="font-medium text-sm text-slate-900 dark:text-white line-clamp-2 leading-snug">{video.title}</h4>
-                        <div className="flex items-center gap-2 mt-2 text-[11px] text-slate-500">
+                        <h4 className="font-medium text-sm text-[#E2EAF6] dark:text-white line-clamp-2 leading-snug">{video.title}</h4>
+                        <div className="flex items-center gap-2 mt-2 text-[11px] text-[#5A7090]">
                           <span>{video.channel_title}</span>
                           <span className="flex items-center gap-0.5"><Clock size={10} />{timeAgo(video.published_at)}</span>
                         </div>
@@ -199,8 +199,8 @@ export default function VideoNews() {
 
                 {videos.length === 0 && !loading && (
                   <div className="text-center py-16">
-                    <Youtube size={40} className="text-slate-300 mx-auto mb-3" />
-                    <p className="text-slate-500">No videos found</p>
+                    <Youtube size={40} className="text-[#A0B4CC] mx-auto mb-3" />
+                    <p className="text-[#5A7090]">No videos found</p>
                   </div>
                 )}
               </div>
@@ -209,23 +209,23 @@ export default function VideoNews() {
             {/* CHANNELS LIST */}
             {tab === "channels" && (
               <div data-testid="channels-section" className="space-y-3">
-                <p className="text-sm text-slate-500 mb-4">
+                <p className="text-sm text-[#5A7090] mb-4">
                   {channels.length} channels &middot; {formatCount(totalSubs)} total subscribers
                 </p>
                 {channels.map((ch, i) => (
                   <div
                     key={ch.id}
                     data-testid={`channel-row-${ch.id}`}
-                    className="flex items-center gap-3 p-3 bg-[#070B12] dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-sm transition-shadow cursor-pointer"
+                    className="flex items-center gap-3 p-3 bg-[#070B12] dark:bg-[#0D1321] rounded-xl border border-[#131B2A] dark:border-[#1C2840] hover:shadow-sm transition-shadow cursor-pointer"
                     onClick={() => { setSelectedChannel(ch.id); setTab("videos"); }}
                   >
-                    <span className="text-xs font-bold text-slate-400 w-5 text-right">{i + 1}</span>
-                    <img src={ch.thumbnail} alt={ch.name} className="w-11 h-11 rounded-full border border-slate-200 dark:border-slate-600" onError={(e) => { e.target.src = "https://via.placeholder.com/44?text=CH"; }} />
+                    <span className="text-xs font-bold text-[#7A90A8] w-5 text-right">{i + 1}</span>
+                    <img src={ch.thumbnail} alt={ch.name} className="w-11 h-11 rounded-full border border-[#1C2840] dark:border-[#1C2840]" onError={(e) => { e.target.src = "https://via.placeholder.com/44?text=CH"; }} />
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-sm text-slate-900 dark:text-white truncate">
+                      <h3 className="font-semibold text-sm text-[#E2EAF6] dark:text-white truncate">
                         {ch.name}
                       </h3>
-                      <div className="flex items-center gap-3 text-[11px] text-slate-500 mt-0.5">
+                      <div className="flex items-center gap-3 text-[11px] text-[#5A7090] mt-0.5">
                         <span>{formatCount(ch.subscriber_count)} subs</span>
                         <span>{formatCount(ch.video_count)} videos</span>
                         <span>{formatCount(ch.view_count)} views</span>
@@ -237,7 +237,7 @@ export default function VideoNews() {
                           <Youtube size={12} className="mr-1" /> Subscribe
                         </Button>
                       </a>
-                      <ChevronRight size={16} className="text-slate-400" />
+                      <ChevronRight size={16} className="text-[#7A90A8]" />
                     </div>
                   </div>
                 ))}

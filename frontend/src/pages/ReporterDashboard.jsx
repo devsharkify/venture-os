@@ -158,14 +158,14 @@ export default function ReporterDashboard() {
       case "reporter_video":
         return <Mic size={14} className="text-purple-500" />;
       default:
-        return <FileText size={14} className="text-orange-500" />;
+        return <FileText size={14} className="text-[#2D7AFF]" />;
     }
   };
 
   if (loading) {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
-        <Loader2 size={40} className="animate-spin text-orange-500" />
+      <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-[#070B12]" : "bg-[#0A0E18]"}`}>
+        <Loader2 size={40} className="animate-spin text-[#2D7AFF]" />
       </div>
     );
   }
@@ -173,16 +173,16 @@ export default function ReporterDashboard() {
   if (!reporter) return null;
 
   return (
-    <div data-testid="reporter-dashboard-page" className={`min-h-screen ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+    <div data-testid="reporter-dashboard-page" className={`min-h-screen ${darkMode ? "bg-[#070B12]" : "bg-[#0A0E18]"}`}>
       {/* Header */}
-      <div className={`border-b py-4 px-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+      <div className={`border-b py-4 px-4 ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate("/")}
-              className={darkMode ? "text-slate-300" : ""}
+              className={darkMode ? "text-[#A0B4CC]" : ""}
             >
               <ArrowLeft size={20} />
             </Button>
@@ -190,16 +190,16 @@ export default function ReporterDashboard() {
               {reporter.photo ? (
                 <img src={reporter.photo} alt={reporter.name} className="w-12 h-12 rounded-full object-cover" />
               ) : (
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-slate-700" : "bg-slate-200"}`}>
-                  <User size={24} className={darkMode ? "text-slate-400" : "text-slate-500"} />
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-[#131B2A]" : "bg-[#1C2840]"}`}>
+                  <User size={24} className={darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"} />
                 </div>
               )}
               <div>
-                <h1 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
+                <h1 className={`text-lg font-bold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                   {reporter.name}
                 </h1>
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                  <span className={`text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                     {reporter.reporter_id}
                   </span>
                   {getStatusBadge(reporter.status)}
@@ -250,23 +250,23 @@ export default function ReporterDashboard() {
         {/* Stats */}
         {reporter.status === "approved" && (
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-              <p className="text-2xl font-bold text-orange-500">{reporter.news_submitted}</p>
-              <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+              <p className="text-2xl font-bold text-[#2D7AFF]">{reporter.news_submitted}</p>
+              <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
                 Submitted
               </p>
             </div>
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
               <p className="text-2xl font-bold text-green-600">{reporter.news_approved}</p>
-              <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+              <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
                 Approved
               </p>
             </div>
-            <div className={`p-4 rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
+            <div className={`p-4 rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
               <p className="text-2xl font-bold text-purple-600">
                 {reporter.news_submitted > 0 ? Math.round((reporter.news_approved / reporter.news_submitted) * 100) : 0}%
               </p>
-              <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+              <p className={`text-sm ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
                 Success Rate
               </p>
             </div>
@@ -279,7 +279,7 @@ export default function ReporterDashboard() {
             <Button
               data-testid="submit-news-btn"
               onClick={() => setShowSubmitModal(true)}
-              className="bg-orange-500 hover:bg-orange-600 flex-1"
+              className="bg-[#2D7AFF] hover:bg-[#1A5FCC] flex-1"
             >
               <Plus size={18} className="mr-2" />
               Submit News
@@ -288,7 +288,7 @@ export default function ReporterDashboard() {
               data-testid="download-id-btn"
               onClick={fetchIdCard}
               variant="outline"
-              className={darkMode ? "border-slate-600 text-slate-200" : ""}
+              className={darkMode ? "border-[#1C2840] text-[#D0DDF0]" : ""}
             >
               <Download size={18} className="mr-2" />
               ID Card
@@ -297,17 +297,17 @@ export default function ReporterDashboard() {
         )}
 
         {/* News List */}
-        <div className={`rounded-lg border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-          <div className="p-4 border-b border-slate-200 dark:border-slate-700">
-            <h2 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
+        <div className={`rounded-lg border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+          <div className="p-4 border-b border-[#1C2840] dark:border-[#1C2840]">
+            <h2 className={`font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               Your Submissions
             </h2>
           </div>
 
           {news.length === 0 ? (
             <div className="p-8 text-center">
-              <FileText size={40} className={`mx-auto mb-3 ${darkMode ? "text-slate-600" : "text-slate-400"}`} />
-              <p className={darkMode ? "text-slate-400" : "text-slate-500"}>
+              <FileText size={40} className={`mx-auto mb-3 ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`} />
+              <p className={darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}>
                 No news submitted yet
               </p>
             </div>
@@ -319,17 +319,17 @@ export default function ReporterDashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         {getNewsTypeIcon(item.news_type)}
-                        <span className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                        <span className={`text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                           {item.news_type === "text" ? "Text" : item.news_type === "video_url" ? "Video URL" : "Reporter Video"}
                         </span>
-                        <span className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+                        <span className={`text-xs ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>
                           &bull; {getTimeAgo(item.created_at)}
                         </span>
                       </div>
-                      <h3 className={`font-medium line-clamp-1 ${darkMode ? "text-white" : "text-slate-900"}`}>
+                      <h3 className={`font-medium line-clamp-1 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
                         {item.title}
                       </h3>
-                      <p className={`text-sm line-clamp-2 mt-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+                      <p className={`text-sm line-clamp-2 mt-1 ${darkMode ? "text-[#7A90A8]" : "text-[#7A90A8]"}`}>
                         {item.summary}
                       </p>
                     </div>
@@ -347,7 +347,7 @@ export default function ReporterDashboard() {
 
       {/* Submit News Modal */}
       <Dialog open={showSubmitModal} onOpenChange={setShowSubmitModal}>
-        <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto ${darkMode ? "bg-slate-800 border-slate-700" : ""}`}>
+        <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : ""}`}>
           <DialogHeader>
             <DialogTitle className={darkMode ? "text-white" : ""}>
               Submit News
@@ -377,38 +377,38 @@ export default function ReporterDashboard() {
             <div className="mt-4 space-y-4">
               {/* Title */}
               <div className="space-y-2">
-                <Label className={darkMode ? "text-slate-200" : ""}>Title *</Label>
+                <Label className={darkMode ? "text-[#D0DDF0]" : ""}>Title *</Label>
                 <Input
                   data-testid="news-title-input"
                   value={newsForm.title}
                   onChange={(e) => setNewsForm(prev => ({ ...prev, title: e.target.value }))}
                   placeholder="News headline"
-                  className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                  className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
                 />
               </div>
 
               {/* Summary */}
               <div className="space-y-2">
-                <Label className={darkMode ? "text-slate-200" : ""}>Summary *</Label>
+                <Label className={darkMode ? "text-[#D0DDF0]" : ""}>Summary *</Label>
                 <Textarea
                   data-testid="news-summary-input"
                   value={newsForm.summary}
                   onChange={(e) => setNewsForm(prev => ({ ...prev, summary: e.target.value }))}
                   placeholder="News details"
                   rows={4}
-                  className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                  className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
                 />
               </div>
 
               {/* Category & Location */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Category</Label>
+                  <Label className={darkMode ? "text-[#D0DDF0]" : ""}>Category</Label>
                   <Select
                     value={newsForm.category}
                     onValueChange={(v) => setNewsForm(prev => ({ ...prev, category: v }))}
                   >
-                    <SelectTrigger className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}>
+                    <SelectTrigger className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -419,20 +419,20 @@ export default function ReporterDashboard() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>Location</Label>
+                  <Label className={darkMode ? "text-[#D0DDF0]" : ""}>Location</Label>
                   <Input
                     data-testid="news-location-input"
                     value={newsForm.location}
                     onChange={(e) => setNewsForm(prev => ({ ...prev, location: e.target.value }))}
                     placeholder="Where this news happened"
-                    className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                    className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
                   />
                 </div>
               </div>
 
               {/* Image Upload */}
               <div className="space-y-2">
-                <Label className={darkMode ? "text-slate-200" : ""}>
+                <Label className={darkMode ? "text-[#D0DDF0]" : ""}>
                   News Image
                 </Label>
                 <FileUpload
@@ -445,13 +445,13 @@ export default function ReporterDashboard() {
               {/* Video URL (for video_url type) */}
               <TabsContent value="video_url" className="mt-0">
                 <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>YouTube Video URL *</Label>
+                  <Label className={darkMode ? "text-[#D0DDF0]" : ""}>YouTube Video URL *</Label>
                   <Input
                     data-testid="news-video-url-input"
                     value={newsForm.video_url}
                     onChange={(e) => setNewsForm(prev => ({ ...prev, video_url: e.target.value }))}
                     placeholder="https://youtube.com/watch?v=..."
-                    className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                    className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
                   />
                 </div>
               </TabsContent>
@@ -459,7 +459,7 @@ export default function ReporterDashboard() {
               {/* Reporter Video Upload */}
               <TabsContent value="reporter_video" className="mt-0">
                 <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>
+                  <Label className={darkMode ? "text-[#D0DDF0]" : ""}>
                     Upload Your Video *
                   </Label>
                   <FileUpload
@@ -467,7 +467,7 @@ export default function ReporterDashboard() {
                     currentUrl={newsForm.reporter_video_url}
                     onUpload={(url) => setNewsForm(prev => ({ ...prev, reporter_video_url: url }))}
                   />
-                  <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                  <p className={`text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                     Record yourself reporting the news (like a news anchor)
                   </p>
                 </div>
@@ -476,7 +476,7 @@ export default function ReporterDashboard() {
               {/* Record Video (in-app) */}
               <TabsContent value="record_video" className="mt-0">
                 <div className="space-y-2">
-                  <Label className={darkMode ? "text-slate-200" : ""}>
+                  <Label className={darkMode ? "text-[#D0DDF0]" : ""}>
                     Record Video from Camera
                   </Label>
                   <VideoRecorder onUpload={(url) => setNewsForm(prev => ({ ...prev, reporter_video_url: url }))} />
@@ -493,7 +493,7 @@ export default function ReporterDashboard() {
               data-testid="submit-news-confirm-btn"
               onClick={handleSubmitNews}
               disabled={submitting || !newsForm.title || !newsForm.summary}
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-[#2D7AFF] hover:bg-[#1A5FCC]"
             >
               {submitting ? (
                 <>
@@ -521,12 +521,12 @@ export default function ReporterDashboard() {
           {idCardData && (
             <div
               data-testid="reporter-id-card"
-              className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl p-6 text-white"
+              className="bg-gradient-to-br from-[#2D7AFF] to-[#1A5FCC] rounded-xl p-6 text-white"
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-lg font-bold">Venture OS</h3>
-                  <p className="text-xs text-orange-200">Citizen Reporter</p>
+                  <p className="text-xs text-[#A0C4FF]">Citizen Reporter</p>
                 </div>
                 <div className="w-10 h-10 bg-[#070B12]/20 rounded-lg flex items-center justify-center">
                   <img src="/tvr-logo.png" alt="Venture OS" className="w-8 h-8 object-contain" />
@@ -547,19 +547,19 @@ export default function ReporterDashboard() {
                 )}
                 <div>
                   <h2 className="text-xl font-bold">{idCardData.name}</h2>
-                  <p className="text-sm text-orange-200">{idCardData.designation}</p>
+                  <p className="text-sm text-[#A0C4FF]">{idCardData.designation}</p>
                   <p className="text-2xl font-mono font-bold mt-1">{idCardData.reporter_id}</p>
                 </div>
               </div>
 
               <div className="space-y-1 text-sm">
-                <p><span className="text-orange-200">Location:</span> {idCardData.location || "N/A"}</p>
-                <p><span className="text-orange-200">Phone:</span> {idCardData.phone}</p>
-                <p><span className="text-orange-200">Valid Until:</span> {idCardData.valid_until}</p>
+                <p><span className="text-[#A0C4FF]">Location:</span> {idCardData.location || "N/A"}</p>
+                <p><span className="text-[#A0C4FF]">Phone:</span> {idCardData.phone}</p>
+                <p><span className="text-[#A0C4FF]">Valid Until:</span> {idCardData.valid_until}</p>
               </div>
 
               <div className="mt-4 pt-4 border-t border-white/20 text-center">
-                <p className="text-xs text-orange-200">This is a digital ID for Venture OS citizen reporters</p>
+                <p className="text-xs text-[#A0C4FF]">This is a digital ID for Venture OS citizen reporters</p>
               </div>
             </div>
           )}

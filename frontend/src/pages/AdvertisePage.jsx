@@ -4,7 +4,7 @@ import { AppContext } from "../App";
 
 function Para({ children }) {
   return (
-    <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mb-3">
+    <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC] mb-3">
       {children}
     </p>
   );
@@ -25,14 +25,14 @@ function AdCard({ title, description, icon, darkMode }) {
   return (
     <div
       className={`rounded-xl p-5 border ${
-        darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+        darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
       }`}
     >
       <div className="text-[24px] mb-3">{icon}</div>
       <h3 className="font-display text-[16px] font-bold mb-2 text-ink dark:text-cream">
         {title}
       </h3>
-      <p className="text-[14px] leading-relaxed text-slate-500 dark:text-slate-400">
+      <p className="text-[14px] leading-relaxed text-[#5A7090] dark:text-[#7A90A8]">
         {description}
       </p>
     </div>
@@ -45,7 +45,7 @@ function BulletList({ items }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex items-start gap-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300"
+          className="flex items-start gap-3 text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]"
         >
           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[7px] bg-mint" />
           {item}
@@ -89,8 +89,8 @@ export default function AdvertisePage() {
           <Link to="/" className="hover:underline text-mint">
             Home
           </Link>
-          <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
-          <span className={darkMode ? "text-slate-300" : "text-slate-600"}>Advertise</span>
+          <span className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}>/</span>
+          <span className={darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}>Advertise</span>
         </nav>
 
         {/* Hero */}
@@ -138,19 +138,19 @@ export default function AdvertisePage() {
         {/* CTA */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
           }`}
         >
           <h2 className="font-display text-[18px] font-bold mb-3 text-ink dark:text-cream">
             Get in touch
           </h2>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-4">
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mb-4">
             Send us a short note with the campaign, the timing and what you&rsquo;d like the
             audience to walk away with. Our partnerships desk replies inside two working days with
             a rate card and recommended formats.
           </p>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400">
-            <span className="font-semibold text-slate-700 dark:text-slate-200">Email:</span>{" "}
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8]">
+            <span className="font-semibold text-[#A0B4CC] dark:text-[#D0DDF0]">Email:</span>{" "}
             <a
               href="mailto:advertise@ventureos.in"
               className="hover:underline font-medium text-mint"

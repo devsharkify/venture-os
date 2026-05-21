@@ -128,19 +128,19 @@ export default function StartupApply() {
 
   if (submitted) {
     return (
-      <div data-testid="startup-success-page" className={`min-h-screen flex items-center justify-center px-4 ${darkMode ? "bg-slate-900" : "bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50"}`}>
-        <div className={`max-w-md w-full rounded-3xl p-8 text-center border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-orange-200 shadow-xl"}`}>
+      <div data-testid="startup-success-page" className={`min-h-screen flex items-center justify-center px-4 ${darkMode ? "bg-[#070B12]" : "bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50"}`}>
+        <div className={`max-w-md w-full rounded-3xl p-8 text-center border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-xl"}`}>
           <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-emerald-500/30">
             <CheckCircle size={40} className="text-white" />
           </div>
-          <h1 className={`text-2xl font-bold mb-3 ${darkMode ? "text-white" : "text-slate-900"}`}>Application Received!</h1>
-          <p className={`text-sm leading-relaxed mb-6 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+          <h1 className={`text-2xl font-bold mb-3 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>Application Received!</h1>
+          <p className={`text-sm leading-relaxed mb-6 ${darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}`}>
             Thank you, <strong>{form.name}</strong>. Your startup application is in. Our team will review your idea and reach out within <strong>7-10 days</strong> on <strong>+91 {form.mobile}</strong>.
           </p>
           <Button
             data-testid="back-to-home-btn"
             onClick={() => navigate("/")}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+            className="w-full bg-[#2D7AFF] hover:bg-[#1A5FCC] text-white"
           >
             Back to Home
           </Button>
@@ -154,7 +154,7 @@ export default function StartupApply() {
       {/* ===== Compact Hero Card ===== */}
       <section className={`px-4 pt-5 pb-2 ${darkMode ? "bg-slate-950" : "bg-[#070B12]"}`}>
         <div className="max-w-2xl mx-auto">
-          <div className={`relative overflow-hidden rounded-2xl border ${darkMode ? "bg-slate-900 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
+          <div className={`relative overflow-hidden rounded-2xl border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#0A0E18] border-[#1C2840]"}`}>
             {/* Top orange accent line */}
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-500 via-orange-400 to-amber-400" />
             {/* Side dot pattern */}
@@ -171,30 +171,30 @@ export default function StartupApply() {
             <div className="relative px-5 py-5 sm:px-6 sm:py-6">
               {/* Partners badge */}
               <div className="flex items-center gap-2 mb-3">
-                <span className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                <span className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                   Venture OS
-                  <span className="text-orange-500 font-black">×</span>
+                  <span className="text-[#2D7AFF] font-black">×</span>
                   B The Change
                 </span>
               </div>
 
               {/* Headline - compact */}
-              <h1 className={`font-black tracking-tight leading-[1.05] ${darkMode ? "text-white" : "text-slate-900"}`}>
-                <span className={`block text-base sm:text-lg font-medium mb-0.5 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+              <h1 className={`font-black tracking-tight leading-[1.05] ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
+                <span className={`block text-base sm:text-lg font-medium mb-0.5 ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                   Hyderabad's Next
                 </span>
                 <span className="block text-3xl sm:text-4xl">
                   <span className="relative inline-block">
                     <span className="relative z-10">100</span>
-                    <span className="absolute left-0 right-0 bottom-0.5 h-2 bg-orange-400/45 -z-0" aria-hidden />
+                    <span className="absolute left-0 right-0 bottom-0.5 h-2 bg-[#2D7AFF]/45 -z-0" aria-hidden />
                   </span>{" "}
                   Startups
                 </span>
               </h1>
 
               {/* Compact lede + stats inline */}
-              <p className={`mt-3 text-xs sm:text-sm leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                Selecting 100 young Hyderabad founders. Up to <strong className={darkMode ? "text-white" : "text-slate-900"}>₹10 lakh</strong> of product development support per founder.
+              <p className={`mt-3 text-xs sm:text-sm leading-relaxed ${darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}`}>
+                Selecting 100 young Hyderabad founders. Up to <strong className={darkMode ? "text-white" : "text-[#E2EAF6]"}>₹10 lakh</strong> of product development support per founder.
               </p>
 
               {/* Inline stat row - compact pills */}
@@ -214,8 +214,8 @@ export default function StartupApply() {
                   <span className={`text-[11px] font-semibold ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
                     Applications open
                   </span>
-                  <span className={`text-[11px] ${darkMode ? "text-slate-500" : "text-slate-400"}`}>·</span>
-                  <span className={`text-[11px] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                  <span className={`text-[11px] ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>·</span>
+                  <span className={`text-[11px] ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                     Limited to 100 seats
                   </span>
                 </div>
@@ -224,8 +224,8 @@ export default function StartupApply() {
                   onClick={handleShareProgram}
                   className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-colors ${
                     darkMode
-                      ? "bg-slate-800 text-orange-400 hover:bg-slate-700 border border-slate-700"
-                      : "bg-[#070B12] text-orange-600 hover:bg-orange-50 border border-orange-200"
+                      ? "bg-[#0D1321] text-[#2D7AFF] hover:bg-[#131B2A] border border-[#1C2840]"
+                      : "bg-[#070B12] text-[#2D7AFF] hover:bg-[#0D1321] border border-[#1C2840]"
                   }`}
                 >
                   <Share2 size={11} />
@@ -239,14 +239,14 @@ export default function StartupApply() {
 
       <div className="max-w-2xl mx-auto px-4 pt-6">
         {/* Pitch Card */}
-        <div className={`rounded-2xl p-5 mb-5 border shadow-sm ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200"}`}>
-          <p className={`text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-slate-900"}`}>
+        <div className={`rounded-2xl p-5 mb-5 border shadow-sm ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840]"}`}>
+          <p className={`text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
             Have a startup idea but don't know how to build it?
           </p>
-          <p className={`text-sm leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+          <p className={`text-sm leading-relaxed ${darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}`}>
             We're selecting <strong>100 young founders</strong> from Hyderabad and turning their ideas into real, technology-ready startups, with <strong>up to ₹10 lakh worth of product development support</strong> per startup.
           </p>
-          <p className={`mt-3 text-sm font-bold ${darkMode ? "text-orange-400" : "text-orange-600"}`}>
+          <p className={`mt-3 text-sm font-bold ${darkMode ? "text-[#2D7AFF]" : "text-[#2D7AFF]"}`}>
             You bring the idea. We build the product.
           </p>
         </div>
@@ -284,15 +284,15 @@ export default function StartupApply() {
             <Bullet darkMode={darkMode}>Commitment to build</Bullet>
             <Bullet darkMode={darkMode}>Willingness to execute</Bullet>
           </ul>
-          <p className={`mt-2 text-xs italic ${darkMode ? "text-slate-400" : "text-slate-500"}`}>(No need for funding, team, or coding skills)</p>
+          <p className={`mt-2 text-xs italic ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>(No need for funding, team, or coding skills)</p>
         </SectionCard>
 
         {/* How It Works */}
-        <SectionCard darkMode={darkMode} icon={<Zap size={18} />} title="How It Works" iconBg="bg-orange-500">
+        <SectionCard darkMode={darkMode} icon={<Zap size={18} />} title="How It Works" iconBg="bg-[#2D7AFF]">
           <ol className="space-y-2 text-sm">
             {["Apply with your idea", "Get shortlisted & interviewed", "Selected founders enter the accelerator", "We build your product with you", "You launch, scale, or raise funding"].map((step, i) => (
-              <li key={i} className={`flex items-start gap-2.5 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+              <li key={i} className={`flex items-start gap-2.5 ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#2D7AFF] text-white text-[10px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
                 <span>{step}</span>
               </li>
             ))}
@@ -300,20 +300,20 @@ export default function StartupApply() {
         </SectionCard>
 
         {/* Application Form */}
-        <div id="apply-form" className={`rounded-2xl p-5 mb-6 border-2 ${darkMode ? "bg-slate-800 border-orange-500/40" : "bg-[#070B12] border-orange-300 shadow-lg"}`}>
+        <div id="apply-form" className={`rounded-2xl p-5 mb-6 border-2 ${darkMode ? "bg-[#0D1321] border-[#2D7AFF]/40" : "bg-[#070B12] border-[#2D7AFF]/40 shadow-lg"}`}>
           <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2D7AFF] to-[#1A5FCC] flex items-center justify-center text-white">
               <Rocket size={18} />
             </div>
             <div>
-              <h2 className={`font-bold text-lg ${darkMode ? "text-white" : "text-slate-900"}`}>Apply Now</h2>
-              <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Limited to 100 founders. Slots fill fast.</p>
+              <h2 className={`font-bold text-lg ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>Apply Now</h2>
+              <p className={`text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>Limited to 100 founders. Slots fill fast.</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <FieldRow icon={<User size={14} />} label="Full Name *" darkMode={darkMode}>
-              <Input data-testid="startup-name-input" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder="Your name" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+              <Input data-testid="startup-name-input" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder="Your name" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
             </FieldRow>
 
             <FieldRow icon={<Phone size={14} />} label="Mobile Number *" darkMode={darkMode}>
@@ -323,33 +323,33 @@ export default function StartupApply() {
                 onChange={(e) => setForm((p) => ({ ...p, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
                 placeholder="9876543210"
                 maxLength={10}
-                className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
               />
             </FieldRow>
 
             <FieldRow icon={<Mail size={14} />} label="Email *" darkMode={darkMode}>
-              <Input data-testid="startup-email-input" type="email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} placeholder="you@example.com" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+              <Input data-testid="startup-email-input" type="email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} placeholder="you@example.com" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
             </FieldRow>
 
             <div className="grid grid-cols-2 gap-3">
               <FieldRow icon={<User size={14} />} label="Age" darkMode={darkMode}>
-                <Input data-testid="startup-age-input" type="number" min="16" max="35" value={form.age} onChange={(e) => setForm((p) => ({ ...p, age: e.target.value }))} placeholder="24" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+                <Input data-testid="startup-age-input" type="number" min="16" max="35" value={form.age} onChange={(e) => setForm((p) => ({ ...p, age: e.target.value }))} placeholder="24" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
               </FieldRow>
               <FieldRow icon={<MapPin size={14} />} label="City" darkMode={darkMode}>
-                <Input data-testid="startup-city-input" value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} placeholder="Hyderabad" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+                <Input data-testid="startup-city-input" value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} placeholder="Hyderabad" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
               </FieldRow>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <FieldRow icon={<MapPin size={14} />} label="Colony / Locality" darkMode={darkMode}>
-                <Input data-testid="startup-colony-input" value={form.colony} onChange={(e) => setForm((p) => ({ ...p, colony: e.target.value }))} placeholder="e.g. Banjara Hills" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+                <Input data-testid="startup-colony-input" value={form.colony} onChange={(e) => setForm((p) => ({ ...p, colony: e.target.value }))} placeholder="e.g. Banjara Hills" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
               </FieldRow>
               <FieldRow icon={<MapPin size={14} />} label="Area / Zone" darkMode={darkMode}>
-                <Input data-testid="startup-area-input" value={form.area} onChange={(e) => setForm((p) => ({ ...p, area: e.target.value }))} placeholder="e.g. Jubilee Hills" className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""} />
+                <Input data-testid="startup-area-input" value={form.area} onChange={(e) => setForm((p) => ({ ...p, area: e.target.value }))} placeholder="e.g. Jubilee Hills" className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""} />
               </FieldRow>
             </div>
 
-            <label className={`flex items-center gap-2 text-sm cursor-pointer ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+            <label className={`flex items-center gap-2 text-sm cursor-pointer ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>
               <input
                 data-testid="startup-woman-checkbox"
                 type="checkbox"
@@ -367,14 +367,14 @@ export default function StartupApply() {
                 onChange={(e) => setForm((p) => ({ ...p, idea: e.target.value }))}
                 placeholder="My startup idea is..."
                 rows={5}
-                className={darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}
+                className={darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}
               />
-              <p className={`text-[11px] mt-1 text-right ${form.idea.length >= 30 ? "text-emerald-500" : darkMode ? "text-slate-500" : "text-slate-400"}`}>{form.idea.length}/30 min</p>
+              <p className={`text-[11px] mt-1 text-right ${form.idea.length >= 30 ? "text-emerald-500" : darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>{form.idea.length}/30 min</p>
             </FieldRow>
 
             {/* PDF Upload */}
             <div>
-              <Label className={`text-sm ${darkMode ? "text-slate-200" : ""}`}><FileText size={14} className="inline mr-1.5" />Pitch Deck (PDF, optional)</Label>
+              <Label className={`text-sm ${darkMode ? "text-[#D0DDF0]" : ""}`}><FileText size={14} className="inline mr-1.5" />Pitch Deck (PDF, optional)</Label>
               <input ref={pdfInputRef} type="file" accept=".pdf,.doc,.docx" onChange={handlePdfUpload} className="hidden" data-testid="startup-pdf-input" />
               <button
                 type="button"
@@ -383,7 +383,7 @@ export default function StartupApply() {
                 className={`mt-1.5 w-full px-4 py-3 rounded-lg border-2 border-dashed text-sm font-medium flex items-center justify-center gap-2 transition-all ${
                   form.pitch_pdf_url
                     ? darkMode ? "border-emerald-500 bg-emerald-500/10 text-emerald-300" : "border-emerald-400 bg-emerald-50 text-emerald-700"
-                    : darkMode ? "border-slate-600 text-slate-300 hover:border-orange-500" : "border-slate-300 text-slate-600 hover:border-orange-400"
+                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-slate-300 text-[#7A90A8] hover:border-orange-400"
                 }`}
               >
                 {pdfUploading ? <><Loader2 size={16} className="animate-spin" /> Uploading...</> : form.pitch_pdf_url ? <><CheckCircle size={16} /> Pitch deck uploaded. Click to replace</> : <><Upload size={16} /> Upload Pitch Deck (PDF, max 15MB)</>}
@@ -392,7 +392,7 @@ export default function StartupApply() {
 
             {/* Video Upload */}
             <div>
-              <Label className={`text-sm ${darkMode ? "text-slate-200" : ""}`}><Video size={14} className="inline mr-1.5" />1-Minute Pitch Video (optional)</Label>
+              <Label className={`text-sm ${darkMode ? "text-[#D0DDF0]" : ""}`}><Video size={14} className="inline mr-1.5" />1-Minute Pitch Video (optional)</Label>
               <input ref={videoInputRef} type="file" accept="video/*" onChange={handleVideoUpload} className="hidden" data-testid="startup-video-input" />
               <button
                 type="button"
@@ -401,7 +401,7 @@ export default function StartupApply() {
                 className={`mt-1.5 w-full px-4 py-3 rounded-lg border-2 border-dashed text-sm font-medium flex items-center justify-center gap-2 transition-all ${
                   form.pitch_video_url
                     ? darkMode ? "border-emerald-500 bg-emerald-500/10 text-emerald-300" : "border-emerald-400 bg-emerald-50 text-emerald-700"
-                    : darkMode ? "border-slate-600 text-slate-300 hover:border-orange-500" : "border-slate-300 text-slate-600 hover:border-orange-400"
+                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-slate-300 text-[#7A90A8] hover:border-orange-400"
                 }`}
               >
                 {videoUploading ? <><Loader2 size={16} className="animate-spin" /> Uploading...</> : form.pitch_video_url ? <><CheckCircle size={16} /> Video uploaded. Click to replace</> : <><Upload size={16} /> Upload 1-min Video Pitch (max 50MB)</>}
@@ -412,7 +412,7 @@ export default function StartupApply() {
               type="submit"
               data-testid="startup-submit-btn"
               disabled={submitting || pdfUploading || videoUploading}
-              className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-6 text-base font-bold shadow-lg shadow-orange-500/30"
+              className="w-full bg-gradient-to-r from-[#2D7AFF] to-[#1A5FCC] hover:from-orange-600 hover:to-amber-600 text-white py-6 text-base font-bold shadow-lg shadow-orange-500/30"
             >
               {submitting ? (
                 <><Loader2 size={18} className="animate-spin mr-2" /> Submitting...</>
@@ -421,7 +421,7 @@ export default function StartupApply() {
               )}
             </Button>
 
-            <p className={`text-[11px] text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+            <p className={`text-[11px] text-center ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>
               By applying, you consent to be contacted by Venture OS &amp; B The Change regarding your application.
             </p>
           </form>
@@ -441,37 +441,37 @@ export default function StartupApply() {
 const Pill = ({ darkMode, label }) => (
   <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold border ${
     darkMode
-      ? "bg-slate-800 border-slate-700 text-orange-300"
-      : "bg-[#070B12] border-orange-200 text-orange-700"
+      ? "bg-[#0D1321] border-[#1C2840] text-[#60A5FA]"
+      : "bg-[#070B12] border-[#1C2840] text-[#2D7AFF]"
   }`}>
     {label}
   </span>
 );
 
 const SectionCard = ({ darkMode, icon, title, iconBg, children }) => (
-  <div className={`rounded-2xl p-5 mb-4 border ${darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"}`}>
+  <div className={`rounded-2xl p-5 mb-4 border ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"}`}>
     <div className="flex items-center gap-2.5 mb-3">
       <div className={`w-8 h-8 rounded-lg ${iconBg} text-white flex items-center justify-center flex-shrink-0`}>{icon}</div>
-      <h3 className={`font-bold text-base ${darkMode ? "text-white" : "text-slate-900"}`}>{title}</h3>
+      <h3 className={`font-bold text-base ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>{title}</h3>
     </div>
-    <div className={darkMode ? "text-slate-300" : "text-slate-700"}>{children}</div>
+    <div className={darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}>{children}</div>
   </div>
 );
 
 const Bullet = ({ children, darkMode }) => (
   <li className="flex items-start gap-2">
-    <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 ${darkMode ? "bg-orange-400" : "bg-orange-500"}`} />
+    <span className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 ${darkMode ? "bg-[#2D7AFF]" : "bg-[#2D7AFF]"}`} />
     <span>{children}</span>
   </li>
 );
 
 const FieldRow = ({ icon, label, darkMode, hint, children }) => (
   <div className="space-y-1.5">
-    <Label className={`text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
+    <Label className={`text-sm ${darkMode ? "text-[#D0DDF0]" : "text-[#A0B4CC]"}`}>
       <span className="inline-flex items-center gap-1.5">{icon} {label}</span>
     </Label>
     {children}
-    {hint && <p className={`text-[11px] ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{hint}</p>}
+    {hint && <p className={`text-[11px] ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>{hint}</p>}
   </div>
 );
 

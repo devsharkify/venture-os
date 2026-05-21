@@ -48,8 +48,8 @@ export default function AboutPage() {
           <Link to="/" className={`hover:underline ${darkMode ? "text-mint" : "text-mint"}`}>
             Home
           </Link>
-          <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
-          <span className={darkMode ? "text-slate-300" : "text-slate-600"}>About</span>
+          <span className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}>/</span>
+          <span className={darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}>About</span>
         </nav>
 
         {/* Hero */}
@@ -58,17 +58,17 @@ export default function AboutPage() {
             About Venture OS
           </h1>
           <div className="w-16 h-[3px] rounded mb-6 bg-mint" />
-          <p className="text-[17px] leading-relaxed font-medium text-slate-600 dark:text-slate-300 max-w-2xl italic">
+          <p className="text-[17px] leading-relaxed font-medium text-[#7A90A8] dark:text-[#A0B4CC] max-w-2xl italic">
             Where new money meets new ideas.
           </p>
-          <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mt-5">
+          <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC] mt-5">
             We started Venture OS because Indian startup journalism deserves better than recycled
             press releases and breathless valuation theatre. A generation of founders, operators and
             allocators are quietly remaking the country&rsquo;s balance sheet &mdash; from climate
             hardware in Bengaluru to fintech rails out of Hyderabad &mdash; and they need a publication
             that takes the work seriously without losing its sense of humour about it.
           </p>
-          <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mt-3">
+          <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC] mt-3">
             Venture OS is independent, India-first and obsessively interested in primary sources.
             We cover the deals, the policy and the people, but we try hardest on the stories you
             cannot find anywhere else.
@@ -84,7 +84,7 @@ export default function AboutPage() {
             {coverage.map((cat) => (
               <li key={cat} className="flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full flex-shrink-0 bg-mint" />
-                <span className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+                <span className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]">
                   {cat}
                 </span>
               </li>
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <p className="text-[15px] font-semibold text-ink dark:text-cream mb-1">
                   {p.title}
                 </p>
-                <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]">
                   {p.body}
                 </p>
               </li>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 <span className="text-[15px] font-semibold text-ink dark:text-cream">
                   {member.name}
                 </span>
-                <span className="text-[14px] text-slate-500 dark:text-slate-400">
+                <span className="text-[14px] text-[#5A7090] dark:text-[#7A90A8]">
                   {member.role}
                 </span>
               </li>
@@ -137,20 +137,20 @@ export default function AboutPage() {
         <section
           className={`rounded-xl p-6 mb-10 border ${
             darkMode
-              ? "bg-slate-800 border-slate-700"
-              : "bg-[#070B12] border-slate-200 shadow-sm"
+              ? "bg-[#0D1321] border-[#1C2840]"
+              : "bg-[#070B12] border-[#1C2840] shadow-sm"
           }`}
         >
           <h2 className="font-display text-[16px] font-bold mb-3 text-ink dark:text-cream">
             Get in touch
           </h2>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-1">
-            <span className="font-medium text-slate-700 dark:text-slate-200">Venture OS</span>
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mb-1">
+            <span className="font-medium text-[#A0B4CC] dark:text-[#D0DDF0]">Venture OS</span>
             <br />
             Hyderabad &middot; Bengaluru &middot; India
           </p>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mt-2">
-            <span className="font-medium text-slate-700 dark:text-slate-200">Email:</span>{" "}
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mt-2">
+            <span className="font-medium text-[#A0B4CC] dark:text-[#D0DDF0]">Email:</span>{" "}
             <a
               href="mailto:editor@ventureos.in"
               className="hover:underline text-mint"

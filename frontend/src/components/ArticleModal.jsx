@@ -126,13 +126,13 @@ export const ArticleModal = () => {
       {/* Nav arrows */}
       {hasPrev && (
         <button data-testid="swipe-prev-btn" onClick={() => { setDirection(-1); goPrevArticle(); }}
-          className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 z-[60] text-black hover:text-orange-600 transition-colors p-1">
+          className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 z-[60] text-[#7A90A8] hover:text-[#2D7AFF] transition-colors p-1">
           <ChevronLeft size={32} strokeWidth={2.5} />
         </button>
       )}
       {hasNext && (
         <button data-testid="swipe-next-btn" onClick={() => { setDirection(1); goNextArticle(); }}
-          className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 z-[60] text-black hover:text-orange-600 transition-colors p-1">
+          className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 z-[60] text-[#7A90A8] hover:text-[#2D7AFF] transition-colors p-1">
           <ChevronRight size={32} strokeWidth={2.5} />
         </button>
       )}
@@ -147,7 +147,7 @@ export const ArticleModal = () => {
               return <div key={a.id} className="rounded-full transition-all" style={{
                 width: realIdx === articleIndex ? "16px" : "5px",
                 height: "5px",
-                background: realIdx === articleIndex ? "#f97316" : "rgba(255,255,255,0.3)",
+                background: realIdx === articleIndex ? "#2D7AFF" : "rgba(255,255,255,0.2)",
               }} />;
             })}
           </div>
@@ -180,7 +180,7 @@ export const ArticleModal = () => {
           {/* Swipe hint overlays */}
           {dragX < -30 && (
             <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none rounded-2xl" style={{ background: "rgba(34,197,94,0.15)" }}>
-              <span className="text-green-400 text-lg font-bold tracking-wider">NEXT</span>
+              <span className="text-[#00D9C8] text-lg font-bold tracking-wider">NEXT</span>
             </div>
           )}
           {dragX > 30 && (
@@ -191,26 +191,26 @@ export const ArticleModal = () => {
 
           {/* Header */}
           <div className={`sticky top-0 z-20 border-b px-4 py-3 flex items-center justify-between ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-100"
+            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#131B2A]"
           }`}>
             <div className="flex items-center gap-1.5">
               {articlesList.length > 1 && (
-                <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${darkMode ? "bg-slate-700 text-slate-400" : "bg-slate-100 text-slate-500"}`}>
+                <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${darkMode ? "bg-[#131B2A] text-[#7A90A8]" : "bg-[#131B2A] text-[#5A7090]"}`}>
                   {articleIndex + 1}/{articlesList.length}
                 </span>
               )}
             </div>
             <div className="flex items-center gap-1.5">
               <button data-testid="modal-share-btn" onClick={handleShare}
-                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${darkMode ? "text-green-400 hover:bg-green-900/30" : "text-slate-500 hover:bg-slate-100"}`}>
+                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${darkMode ? "text-[#00D9C8] hover:bg-[#00D9C8]/10" : "text-[#5A7090] hover:bg-[#131B2A]"}`}>
                 <Share2 size={17} />
               </button>
               <button data-testid="modal-save-btn" onClick={() => saveArticle(article)}
-                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${isSaved ? "bg-orange-500 text-white" : darkMode ? "text-slate-300 hover:bg-slate-700" : "text-slate-500 hover:bg-slate-100"}`}>
+                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${isSaved ? "bg-[#2D7AFF] text-white" : darkMode ? "text-[#A0B4CC] hover:bg-[#131B2A]" : "text-[#5A7090] hover:bg-[#131B2A]"}`}>
                 {isSaved ? <BookmarkCheck size={17} /> : <Bookmark size={17} />}
               </button>
               <button data-testid="modal-close-btn" onClick={closeArticle}
-                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${darkMode ? "text-slate-300 hover:bg-slate-700" : "text-slate-500 hover:bg-slate-100"}`}>
+                className={`h-9 w-9 rounded-full flex items-center justify-center transition-colors ${darkMode ? "text-[#A0B4CC] hover:bg-[#131B2A]" : "text-[#5A7090] hover:bg-[#131B2A]"}`}>
                 <X size={17} />
               </button>
             </div>
@@ -249,7 +249,7 @@ export const ArticleModal = () => {
           {/* Content */}
           <div className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <span className="px-2 py-1 rounded text-xs font-semibold text-white bg-orange-500">
+              <span className="px-2 py-1 rounded text-xs font-semibold text-white bg-[#2D7AFF]">
                 {categoryLabel}
               </span>
               {article.is_pinned && (
@@ -257,20 +257,20 @@ export const ArticleModal = () => {
                   BREAKING
                 </span>
               )}
-              <span className={`flex items-center gap-1 text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+              <span className={`flex items-center gap-1 text-xs ${darkMode ? "text-[#7A90A8]" : "text-[#5A7090]"}`}>
                 <Clock size={12} />{getExactTime(article.published_at)} · {getTimeAgo(article.published_at)}
               </span>
             </div>
-            <h1 className={`text-xl md:text-2xl font-bold mb-4 leading-tight ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <h1 className={`text-xl md:text-2xl font-bold mb-4 leading-tight ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               {title}
             </h1>
-            <p className={`text-base leading-relaxed mb-6 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+            <p className={`text-base leading-relaxed mb-6 ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>
               {summary}
             </p>
             {article.seo_keywords?.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-4" data-testid="article-seo-tags">
                 {article.seo_keywords.map((tag, i) => (
-                  <span key={i} className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${darkMode ? "bg-slate-700 text-slate-300" : "bg-slate-100 text-slate-600"}`}>
+                  <span key={i} className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${darkMode ? "bg-[#131B2A] text-[#A0B4CC]" : "bg-[#131B2A] text-[#7A90A8]"}`}>
                     #{tag}
                   </span>
                 ))}
@@ -278,12 +278,12 @@ export const ArticleModal = () => {
             )}
             {/* Gesture hints */}
             {articlesList.length > 1 && (
-              <div className={`text-center text-[11px] mt-2 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+              <div className={`text-center text-[11px] mt-2 ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>
                 Swipe left/right to navigate &bull; Double-tap image to save
               </div>
             )}
             {articlesList.length <= 1 && (
-              <div className={`text-center text-[11px] mt-2 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+              <div className={`text-center text-[11px] mt-2 ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>
                 Double-tap image to save
               </div>
             )}

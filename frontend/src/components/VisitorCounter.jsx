@@ -70,8 +70,8 @@ export const VisitorCounter = () => {
       data-testid="visitor-counter"
       className={`fixed left-3 bottom-20 z-40 flex items-center gap-2 px-3 py-2 rounded-lg border backdrop-blur-md transition-all ${
         darkMode
-          ? "bg-slate-900/80 border-slate-700/60 text-slate-300"
-          : "bg-white/80 border-slate-200/80 text-slate-700 shadow-sm"
+          ? "bg-[#070B12]/80 border-[#1C2840]/60 text-[#A0B4CC]"
+          : "bg-white/80 border-[#1C2840]/80 text-[#A0B4CC] shadow-sm"
       }`}
     >
       <div className="relative">
@@ -80,7 +80,7 @@ export const VisitorCounter = () => {
       </div>
       <div className="flex flex-col">
         <span className="text-xs font-bold tabular-nums leading-none">{formatCount(count)}</span>
-        <span className={`text-[9px] leading-tight ${darkMode ? "text-slate-500" : "text-slate-400"}`}>visitors</span>
+        <span className={`text-[9px] leading-tight ${darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}`}>visitors</span>
       </div>
     </div>
   );

@@ -108,12 +108,12 @@ const EpaperPage = () => {
       {/* COMPACT TOOLBAR */}
       <div className="flex items-center justify-center gap-1.5 px-2 py-1 flex-shrink-0 flex-wrap" style={{ background: "#222", borderBottom: "1px solid #444" }}>
         {/* Page nav */}
-        <button onClick={() => goToPage(Math.max(0, currentPage - 1))} disabled={currentPage === 0} className="p-0.5 text-gray-400 disabled:opacity-30 hover:text-white" data-testid="epaper-prev-page"><ChevronLeft size={14} /></button>
-        <span className="text-[11px] text-gray-300 font-mono">{currentPage + 1}/{pages.length}</span>
-        <button onClick={() => goToPage(Math.min(pages.length - 1, currentPage + 1))} disabled={currentPage >= pages.length - 1} className="p-0.5 text-gray-400 disabled:opacity-30 hover:text-white" data-testid="epaper-next-page"><ChevronRight size={14} /></button>
-        <div className="w-px h-4 bg-gray-600" />
+        <button onClick={() => goToPage(Math.max(0, currentPage - 1))} disabled={currentPage === 0} className="p-0.5 text-[#5A7090] disabled:opacity-30 hover:text-white" data-testid="epaper-prev-page"><ChevronLeft size={14} /></button>
+        <span className="text-[11px] text-[#7A90A8] font-mono">{currentPage + 1}/{pages.length}</span>
+        <button onClick={() => goToPage(Math.min(pages.length - 1, currentPage + 1))} disabled={currentPage >= pages.length - 1} className="p-0.5 text-[#5A7090] disabled:opacity-30 hover:text-white" data-testid="epaper-next-page"><ChevronRight size={14} /></button>
+        <div className="w-px h-4 bg-[#1C2840]" />
         {/* AM/PM */}
-        <div className="flex items-center rounded overflow-hidden border border-gray-600" data-testid="epaper-slot-toggle">
+        <div className="flex items-center rounded overflow-hidden border border-[#1C2840]" data-testid="epaper-slot-toggle">
           {["morning", "evening"].map(s => {
             const avail = slotsForDate(selectedDate).includes(s);
             const active = selectedSlot === s;
@@ -127,34 +127,34 @@ const EpaperPage = () => {
             );
           })}
         </div>
-        <div className="w-px h-4 bg-gray-600" />
+        <div className="w-px h-4 bg-[#1C2840]" />
         {/* Date picker */}
         <div className="relative">
           <button data-testid="epaper-date-picker" onClick={() => setShowDatePicker(!showDatePicker)}
-            className="flex items-center gap-1 px-1.5 py-0.5 text-[11px] text-gray-300 rounded hover:bg-gray-700 border border-gray-600">
+            className="flex items-center gap-1 px-1.5 py-0.5 text-[11px] text-[#7A90A8] rounded hover:bg-[#131B2A] border border-[#1C2840]">
             <Calendar size={10} />{fmtDateFull(selectedDate)}
           </button>
           {showDatePicker && (
-            <div className="absolute right-0 top-full mt-1 z-50 max-h-56 overflow-y-auto w-56 shadow-xl rounded bg-gray-900 border border-gray-700">
+            <div className="absolute right-0 top-full mt-1 z-50 max-h-56 overflow-y-auto w-56 shadow-xl rounded bg-[#040609] border border-[#1C2840]">
               {editions.map(e => {
                 const isActive = e.date === selectedDate && e.slot === selectedSlot;
                 return (
                   <button key={`${e.date}_${e.slot}`} onClick={() => { selectEdition(e.date, e.slot); setShowDatePicker(false); }}
-                    className="w-full text-left px-3 py-1.5 text-[11px] flex justify-between items-center hover:bg-gray-800 border-b border-gray-800"
+                    className="w-full text-left px-3 py-1.5 text-[11px] flex justify-between items-center hover:bg-[#0D1321] border-b border-[#131B2A]"
                     style={{ color: isActive ? "#c41e1e" : "#ccc", fontWeight: isActive ? 700 : 400 }}>
                     <span className="flex items-center gap-1">
                       {e.slot === "morning" ? <Sun size={9} className="text-yellow-400" /> : <Moon size={9} className="text-blue-400" />}
                       {fmtDateFull(e.date)}
                     </span>
-                    <span className="text-gray-500 text-[10px]">{e.article_count}</span>
+                    <span className="text-[#4A6280] text-[10px]">{e.article_count}</span>
                   </button>
                 );
               })}
             </div>
           )}
         </div>
-        <div className="w-px h-4 bg-gray-600" />
-        <button data-testid="epaper-share" onClick={shareEpaper} className="p-1 text-gray-400 hover:text-white"><Share2 size={13} /></button>
+        <div className="w-px h-4 bg-[#1C2840]" />
+        <button data-testid="epaper-share" onClick={shareEpaper} className="p-1 text-[#5A7090] hover:text-white"><Share2 size={13} /></button>
         <button data-testid="epaper-download-pdf" onClick={downloadPdf} disabled={pdfLoading}
           className="flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-bold text-white rounded"
           style={{ background: pdfLoading ? "#555" : "#c41e1e" }}>
@@ -167,7 +167,7 @@ const EpaperPage = () => {
         {loading ? (
           <div className="flex items-center justify-center h-full"><Loader2 size={28} className="animate-spin text-red-600" /></div>
         ) : pages.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-gray-500 text-sm">No edition available</div>
+          <div className="flex items-center justify-center h-full text-[#4A6280] text-sm">No edition available</div>
         ) : (
           <div className="flex flex-col items-center py-2">
             {pages.map((pg, i) => (
@@ -185,7 +185,7 @@ const EpaperPage = () => {
       {/* COMPACT ARCHIVE - single line of small buttons */}
       <div className="flex-shrink-0 border-t" style={{ background: "#1a1a1a", borderColor: "#c41e1e" }}>
         <div className="flex items-center gap-1.5 px-3 py-1.5 overflow-x-auto" data-testid="epaper-archive">
-          <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wide whitespace-nowrap flex-shrink-0">Editions:</span>
+          <span className="text-[10px] text-[#4A6280] font-semibold uppercase tracking-wide whitespace-nowrap flex-shrink-0">Editions:</span>
           {uniqueDates.slice(0, 14).map(date => {
             const slots = editions.filter(e => e.date === date);
             return slots.map(e => {

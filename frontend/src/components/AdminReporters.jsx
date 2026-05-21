@@ -162,7 +162,7 @@ export const AdminReporters = () => {
       case "reporter_video":
         return <Mic size={14} className="text-purple-500" />;
       default:
-        return <FileText size={14} className="text-orange-500" />;
+        return <FileText size={14} className="text-[#2D7AFF]" />;
     }
   };
 
@@ -194,7 +194,7 @@ export const AdminReporters = () => {
         {/* Reporters Tab */}
         <TabsContent value="reporters">
           <div className="flex justify-between items-center mb-4">
-            <h3 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <h3 className={`font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               Reporter Applications ({reporters.length})
             </h3>
             <Button variant="ghost" size="sm" onClick={fetchReporters}>
@@ -202,10 +202,10 @@ export const AdminReporters = () => {
             </Button>
           </div>
 
-          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]"}`}>
             <Table>
               <TableHeader>
-                <TableRow className={darkMode ? "bg-slate-700" : "bg-slate-50"}>
+                <TableRow className={darkMode ? "bg-[#131B2A]" : "bg-[#0A0E18]"}>
                   <TableHead>Reporter</TableHead>
                   <TableHead>Contact</TableHead>
                   <TableHead>Status</TableHead>
@@ -231,7 +231,7 @@ export const AdminReporters = () => {
                           variant="outline"
                           data-testid="reporters-retry-btn"
                           onClick={fetchReporters}
-                          className="text-orange-600 border-orange-300 hover:bg-orange-50"
+                          className="text-[#2D7AFF] border-[#2D7AFF]/40 hover:bg-[#0D1321]"
                         >
                           <RefreshCw size={14} className="mr-1.5" />
                           Retry
@@ -241,7 +241,7 @@ export const AdminReporters = () => {
                   </TableRow>
                 ) : reporters.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center py-8 text-slate-500">
+                    <TableCell colSpan={5} className="text-center py-8 text-[#5A7090]">
                       No reporter applications yet
                     </TableCell>
                   </TableRow>
@@ -253,22 +253,22 @@ export const AdminReporters = () => {
                           {reporter.photo ? (
                             <img src={reporter.photo} alt="" className="w-10 h-10 rounded-full object-cover" />
                           ) : (
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${darkMode ? "bg-slate-600" : "bg-slate-200"}`}>
-                              <User size={18} className="text-slate-500" />
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${darkMode ? "bg-[#1C2840]" : "bg-[#1C2840]"}`}>
+                              <User size={18} className="text-[#5A7090]" />
                             </div>
                           )}
                           <div>
-                            <p className={`font-medium ${darkMode ? "text-white" : "text-slate-900"}`}>{reporter.name}</p>
-                            <p className="text-xs text-slate-500">{reporter.reporter_id}</p>
+                            <p className={`font-medium ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>{reporter.name}</p>
+                            <p className="text-xs text-[#5A7090]">{reporter.reporter_id}</p>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{reporter.phone}</p>
-                        <p className="text-xs text-slate-500">{reporter.location || "N/A"}</p>
+                        <p className={`text-sm ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>{reporter.phone}</p>
+                        <p className="text-xs text-[#5A7090]">{reporter.location || "N/A"}</p>
                       </TableCell>
                       <TableCell>{getStatusBadge(reporter.status)}</TableCell>
-                      <TableCell className="text-sm text-slate-500">{getTimeAgo(reporter.created_at)}</TableCell>
+                      <TableCell className="text-sm text-[#5A7090]">{getTimeAgo(reporter.created_at)}</TableCell>
                       <TableCell>
                         <div className="flex justify-end gap-2">
                           {reporter.status === "pending" && (
@@ -315,7 +315,7 @@ export const AdminReporters = () => {
         {/* Reporter News Tab */}
         <TabsContent value="news">
           <div className="flex justify-between items-center mb-4">
-            <h3 className={`font-semibold ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <h3 className={`font-semibold ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>
               Reporter Submissions ({reporterNews.length})
             </h3>
             <Button variant="ghost" size="sm" onClick={fetchReporterNews}>
@@ -323,10 +323,10 @@ export const AdminReporters = () => {
             </Button>
           </div>
 
-          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]"}`}>
             <Table>
               <TableHeader>
-                <TableRow className={darkMode ? "bg-slate-700" : "bg-slate-50"}>
+                <TableRow className={darkMode ? "bg-[#131B2A]" : "bg-[#0A0E18]"}>
                   <TableHead>News</TableHead>
                   <TableHead>Reporter</TableHead>
                   <TableHead>Type</TableHead>
@@ -337,7 +337,7 @@ export const AdminReporters = () => {
               <TableBody>
                 {reporterNews.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center py-8 text-slate-500">
+                    <TableCell colSpan={5} className="text-center py-8 text-[#5A7090]">
                       No reporter news submissions yet
                     </TableCell>
                   </TableRow>
@@ -346,18 +346,18 @@ export const AdminReporters = () => {
                     <TableRow key={news.id} data-testid={`reporter-news-row-${news.id}`}>
                       <TableCell>
                         <div className="max-w-xs">
-                          <p className={`font-medium line-clamp-1 ${darkMode ? "text-white" : "text-slate-900"}`}>{news.title}</p>
-                          <p className="text-xs text-slate-500 line-clamp-1">{news.summary}</p>
+                          <p className={`font-medium line-clamp-1 ${darkMode ? "text-white" : "text-[#E2EAF6]"}`}>{news.title}</p>
+                          <p className="text-xs text-[#5A7090] line-clamp-1">{news.summary}</p>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{news.reporter_name}</p>
-                        <p className="text-xs text-slate-500">{news.reporter_id}</p>
+                        <p className={`text-sm ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>{news.reporter_name}</p>
+                        <p className="text-xs text-[#5A7090]">{news.reporter_id}</p>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1">
                           {getNewsTypeIcon(news.news_type)}
-                          <span className="text-xs text-slate-500 capitalize">{news.news_type.replace("_", " ")}</span>
+                          <span className="text-xs text-[#5A7090] capitalize">{news.news_type.replace("_", " ")}</span>
                         </div>
                       </TableCell>
                       <TableCell>{getStatusBadge(news.status)}</TableCell>
@@ -406,7 +406,7 @@ export const AdminReporters = () => {
 
       {/* Reject Dialog */}
       <Dialog open={showRejectDialog} onOpenChange={setShowRejectDialog}>
-        <DialogContent className={darkMode ? "bg-slate-800 border-slate-700" : ""}>
+        <DialogContent className={darkMode ? "bg-[#0D1321] border-[#1C2840]" : ""}>
           <DialogHeader>
             <DialogTitle className={darkMode ? "text-white" : ""}>
               Reject {rejectType === "reporter" ? "Reporter" : "News"}
@@ -414,14 +414,14 @@ export const AdminReporters = () => {
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <label className={`text-sm font-medium ${darkMode ? "text-slate-200" : ""}`}>
+              <label className={`text-sm font-medium ${darkMode ? "text-[#D0DDF0]" : ""}`}>
                 Rejection Reason (Optional)
               </label>
               <Input
                 value={rejectReason}
                 onChange={(e) => setRejectReason(e.target.value)}
                 placeholder="Enter reason for rejection..."
-                className={`mt-1 ${darkMode ? "bg-slate-700 border-slate-600 text-white" : ""}`}
+                className={`mt-1 ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : ""}`}
               />
             </div>
           </div>
@@ -436,7 +436,7 @@ export const AdminReporters = () => {
 
       {/* Reporter Details Dialog */}
       <Dialog open={!!selectedReporter} onOpenChange={() => setSelectedReporter(null)}>
-        <DialogContent className={darkMode ? "bg-slate-800 border-slate-700" : ""}>
+        <DialogContent className={darkMode ? "bg-[#0D1321] border-[#1C2840]" : ""}>
           <DialogHeader>
             <DialogTitle className={darkMode ? "text-white" : ""}>Reporter Details</DialogTitle>
           </DialogHeader>
@@ -446,38 +446,38 @@ export const AdminReporters = () => {
                 {selectedReporter.photo ? (
                   <img src={selectedReporter.photo} alt="" className="w-16 h-16 rounded-full object-cover" />
                 ) : (
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center ${darkMode ? "bg-slate-600" : "bg-slate-200"}`}>
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center ${darkMode ? "bg-[#1C2840]" : "bg-[#1C2840]"}`}>
                     <User size={24} />
                   </div>
                 )}
                 <div>
                   <h3 className={`text-lg font-semibold ${darkMode ? "text-white" : ""}`}>{selectedReporter.name}</h3>
-                  <p className="text-sm text-slate-500">{selectedReporter.reporter_id}</p>
+                  <p className="text-sm text-[#5A7090]">{selectedReporter.reporter_id}</p>
                   {getStatusBadge(selectedReporter.status)}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-slate-500">Phone</p>
+                  <p className="text-[#5A7090]">Phone</p>
                   <p className={darkMode ? "text-white" : ""}>{selectedReporter.phone}</p>
                 </div>
                 <div>
-                  <p className="text-slate-500">Email</p>
+                  <p className="text-[#5A7090]">Email</p>
                   <p className={darkMode ? "text-white" : ""}>{selectedReporter.email || "N/A"}</p>
                 </div>
                 <div>
-                  <p className="text-slate-500">Location</p>
+                  <p className="text-[#5A7090]">Location</p>
                   <p className={darkMode ? "text-white" : ""}>{selectedReporter.location || "N/A"}</p>
                 </div>
                 <div>
-                  <p className="text-slate-500">News Submitted</p>
+                  <p className="text-[#5A7090]">News Submitted</p>
                   <p className={darkMode ? "text-white" : ""}>{selectedReporter.news_submitted}</p>
                 </div>
               </div>
               {selectedReporter.bio && (
                 <div>
-                  <p className="text-slate-500 text-sm">Bio</p>
-                  <p className={`text-sm ${darkMode ? "text-slate-300" : ""}`}>{selectedReporter.bio}</p>
+                  <p className="text-[#5A7090] text-sm">Bio</p>
+                  <p className={`text-sm ${darkMode ? "text-[#A0B4CC]" : ""}`}>{selectedReporter.bio}</p>
                 </div>
               )}
             </div>
@@ -487,7 +487,7 @@ export const AdminReporters = () => {
 
       {/* News Details Dialog */}
       <Dialog open={!!selectedNews} onOpenChange={() => setSelectedNews(null)}>
-        <DialogContent className={`max-w-2xl ${darkMode ? "bg-slate-800 border-slate-700" : ""}`}>
+        <DialogContent className={`max-w-2xl ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : ""}`}>
           <DialogHeader>
             <DialogTitle className={darkMode ? "text-white" : ""}>News Submission Details</DialogTitle>
           </DialogHeader>
@@ -495,7 +495,7 @@ export const AdminReporters = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 {getNewsTypeIcon(selectedNews.news_type)}
-                <span className="text-sm text-slate-500 capitalize">{selectedNews.news_type.replace("_", " ")}</span>
+                <span className="text-sm text-[#5A7090] capitalize">{selectedNews.news_type.replace("_", " ")}</span>
                 {getStatusBadge(selectedNews.status)}
               </div>
               
@@ -504,7 +504,7 @@ export const AdminReporters = () => {
               </div>
 
               <div>
-                <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{selectedNews.summary}</p>
+                <p className={`text-sm ${darkMode ? "text-[#A0B4CC]" : "text-[#A0B4CC]"}`}>{selectedNews.summary}</p>
               </div>
 
               {selectedNews.image && (
@@ -513,8 +513,8 @@ export const AdminReporters = () => {
 
               {selectedNews.video_url && (
                 <div>
-                  <p className="text-sm text-slate-500 mb-1">Video URL:</p>
-                  <a href={selectedNews.video_url} target="_blank" rel="noopener noreferrer" className="text-orange-500 text-sm break-all">
+                  <p className="text-sm text-[#5A7090] mb-1">Video URL:</p>
+                  <a href={selectedNews.video_url} target="_blank" rel="noopener noreferrer" className="text-[#2D7AFF] text-sm break-all">
                     {selectedNews.video_url}
                   </a>
                 </div>
@@ -522,14 +522,14 @@ export const AdminReporters = () => {
 
               {selectedNews.reporter_video_url && (
                 <div>
-                  <p className="text-sm text-slate-500 mb-1">Reporter Video URL:</p>
-                  <a href={selectedNews.reporter_video_url} target="_blank" rel="noopener noreferrer" className="text-orange-500 text-sm break-all">
+                  <p className="text-sm text-[#5A7090] mb-1">Reporter Video URL:</p>
+                  <a href={selectedNews.reporter_video_url} target="_blank" rel="noopener noreferrer" className="text-[#2D7AFF] text-sm break-all">
                     {selectedNews.reporter_video_url}
                   </a>
                 </div>
               )}
 
-              <div className="flex items-center gap-4 text-sm text-slate-500">
+              <div className="flex items-center gap-4 text-sm text-[#5A7090]">
                 <span>By: {selectedNews.reporter_name} ({selectedNews.reporter_id})</span>
                 <span>•</span>
                 <span>{getTimeAgo(selectedNews.created_at)}</span>

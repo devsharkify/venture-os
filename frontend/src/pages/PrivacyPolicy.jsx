@@ -15,7 +15,7 @@ function Section({ title, children }) {
 
 function Para({ children }) {
   return (
-    <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 mb-3">
+    <p className="text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC] mb-3">
       {children}
     </p>
   );
@@ -27,7 +27,7 @@ function BulletList({ items }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex items-start gap-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300"
+          className="flex items-start gap-3 text-[15px] leading-relaxed text-[#7A90A8] dark:text-[#A0B4CC]"
         >
           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[7px] bg-mint" />
           {item}
@@ -50,8 +50,8 @@ export default function PrivacyPolicy() {
           <Link to="/" className="hover:underline text-mint">
             Home
           </Link>
-          <span className={darkMode ? "text-slate-500" : "text-slate-400"}>/</span>
-          <span className={darkMode ? "text-slate-300" : "text-slate-600"}>Privacy</span>
+          <span className={darkMode ? "text-[#5A7090]" : "text-[#7A90A8]"}>/</span>
+          <span className={darkMode ? "text-[#A0B4CC]" : "text-[#7A90A8]"}>Privacy</span>
         </nav>
 
         {/* Header */}
@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <div className="w-16 h-[3px] rounded mb-5 bg-mint" />
-          <p className="text-[13px] text-slate-400 dark:text-slate-500 font-medium uppercase tracking-widest">
+          <p className="text-[13px] text-[#7A90A8] dark:text-[#5A7090] font-medium uppercase tracking-widest">
             Last updated: May 2026
           </p>
         </header>
@@ -187,13 +187,13 @@ export default function PrivacyPolicy() {
         {/* Contact card */}
         <section
           className={`rounded-xl p-6 mb-10 border ${
-            darkMode ? "bg-slate-800 border-slate-700" : "bg-[#070B12] border-slate-200 shadow-sm"
+            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#070B12] border-[#1C2840] shadow-sm"
           }`}
         >
           <h2 className="font-display text-[16px] font-bold mb-3 text-ink dark:text-cream">
             Contact us about privacy
           </h2>
-          <p className="text-[14px] text-slate-500 dark:text-slate-400 mb-2">
+          <p className="text-[14px] text-[#5A7090] dark:text-[#7A90A8] mb-2">
            
             <br />
             Plot 14, HUDA Tech Park, Madhapur
