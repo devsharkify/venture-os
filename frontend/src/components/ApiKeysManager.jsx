@@ -55,7 +55,7 @@ export default function ApiKeysManager({ darkMode }) {
     setTimeout(() => setCopied(""), 2000);
   };
 
-  const bg = darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]";
+  const bg = darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]";
   const txt = darkMode ? "text-[#D0DDF0]" : "text-[#E2EAF6]";
   const sub = darkMode ? "text-[#7A90A8]" : "text-[#5A7090]";
 
@@ -86,7 +86,7 @@ fetch("${baseUrl}/api/public/v1/feed?lang=en&limit=10", {
               value={newKeyName}
               onChange={e => setNewKeyName(e.target.value)}
               placeholder="e.g., MyNewsApp, PartnerSite"
-              className={`w-full mt-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : "bg-white border-slate-300"}`}
+              className={`w-full mt-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : "bg-[#0D1321] border-[#1C2840]"}`}
             />
           </div>
           <div className="w-32">
@@ -96,7 +96,7 @@ fetch("${baseUrl}/api/public/v1/feed?lang=en&limit=10", {
               type="number"
               value={newKeyLimit}
               onChange={e => setNewKeyLimit(Number(e.target.value))}
-              className={`w-full mt-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : "bg-white border-slate-300"}`}
+              className={`w-full mt-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#131B2A] border-[#1C2840] text-white" : "bg-[#0D1321] border-[#1C2840]"}`}
             />
           </div>
           <button

@@ -224,7 +224,7 @@ function TopicCard({ topic, lang, onViewReport }) {
             )}
           </div>
         </div>
-        <span className={`w-2 h-2 rounded-full ${topic.active ? "bg-green-500" : "bg-slate-300"}`} />
+        <span className={`w-2 h-2 rounded-full ${topic.active ? "bg-[#00D9C8]" : "bg-[#1C2840]"}`} />
       </div>
       <div className="flex gap-2">
         <button data-testid={`run-topic-${topic.id}`} onClick={runInvestigation} disabled={loading}
@@ -296,7 +296,7 @@ function ReportView({ topicId, lang, onBack }) {
       <div className="relative pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 space-y-3">
         {events.map((e, i) => (
           <div key={e.id || i} className="relative">
-            <div className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-indigo-400 border-2 border-white dark:border-slate-900" />
+            <div className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-[#2D7AFF] border-2 border-[#2D7AFF]" />
             <div className="bg-[#070B12] dark:bg-[#0D1321] rounded-lg p-3 border border-[#131B2A] dark:border-[#1C2840] shadow-sm">
               <div className="flex items-start gap-2">
                 {e.image && <img src={e.image} alt="" className="w-12 h-12 rounded-md object-cover flex-shrink-0" />}
@@ -682,9 +682,9 @@ function SeoSection({ lang }) {
                     { label: "Related Articles", desc: "Internal linking via category + keyword match", status: true },
                     { label: "Canonical URLs", desc: "Proper canonical on every article page", status: true },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between py-2 border-b border-slate-50 dark:border-[#1C2840] last:border-0">
+                    <div key={i} className="flex items-center justify-between py-2 border-b border-[#131B2A] dark:border-[#1C2840] last:border-0">
                       <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-green-500" />
+                        <span className="w-2 h-2 rounded-full bg-[#00D9C8]" />
                         <div>
                           <p className="text-xs font-semibold text-[#A0B4CC] dark:text-[#A0B4CC]">{item.label}</p>
                           <p className="text-[10px] text-[#7A90A8]">{item.desc}</p>
@@ -916,7 +916,7 @@ export default function AgentsDashboard() {
                   ? `bg-${tab.color}-500 text-white shadow-sm`
                   : `bg-[#131B2A] dark:bg-[#0D1321] text-[#7A90A8] dark:text-[#7A90A8] hover:bg-[#1C2840] dark:hover:bg-[#131B2A]`
               }`}
-              style={isActive ? { backgroundColor: tab.color === "orange" ? "#f97316" : tab.color === "indigo" ? "#6366f1" : tab.color === "emerald" ? "#10b981" : "#06b6d4" } : {}}
+              style={isActive ? { backgroundColor: tab.color === "orange" ? "#2D7AFF" : tab.color === "indigo" ? "#2D7AFF" : tab.color === "emerald" ? "#00D9C8" : "#00D9C8" } : {}}
             >
               <Icon className="w-3.5 h-3.5" />
               {tab.label}

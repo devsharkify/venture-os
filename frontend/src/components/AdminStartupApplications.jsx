@@ -146,7 +146,7 @@ export const AdminStartupApplications = () => {
         <div className="flex flex-wrap gap-2 mt-4">
           <button
             onClick={() => setStatusFilter("all")}
-            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${statusFilter === "all" ? "bg-[#2D7AFF] text-white" : darkMode ? "bg-[#131B2A] text-[#A0B4CC]" : "bg-white border border-[#1C2840] text-[#7A90A8]"}`}
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${statusFilter === "all" ? "bg-[#2D7AFF] text-white" : darkMode ? "bg-[#131B2A] text-[#A0B4CC]" : "bg-[#131B2A] border border-[#1C2840] text-[#7A90A8]"}`}
           >
             All ({applications.length})
           </button>
@@ -154,7 +154,7 @@ export const AdminStartupApplications = () => {
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all ${statusFilter === s ? "bg-[#2D7AFF] text-white" : darkMode ? "bg-[#131B2A] text-[#A0B4CC]" : "bg-white border border-[#1C2840] text-[#7A90A8]"}`}
+              className={`px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all ${statusFilter === s ? "bg-[#2D7AFF] text-white" : darkMode ? "bg-[#131B2A] text-[#A0B4CC]" : "bg-[#131B2A] border border-[#1C2840] text-[#7A90A8]"}`}
             >
               {s} ({counts[s] || 0})
             </button>
@@ -172,7 +172,7 @@ export const AdminStartupApplications = () => {
       />
 
       {/* Table */}
-      <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]"}`}>
+      <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
         <Table>
           <TableHeader>
             <TableRow className={darkMode ? "bg-[#131B2A]" : "bg-[#0A0E18]"}>

@@ -76,7 +76,7 @@ export const VisitorCounter = () => {
     >
       <div className="relative">
         <Eye size={14} className="text-green-500" />
-        <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+        <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#00D9C8] rounded-full animate-pulse" />
       </div>
       <div className="flex flex-col">
         <span className="text-xs font-bold tabular-nums leading-none">{formatCount(count)}</span>

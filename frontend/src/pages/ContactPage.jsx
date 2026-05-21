@@ -23,8 +23,8 @@ export default function ContactPage() {
 
   const inputBase = `w-full rounded-lg px-3 py-2 text-[14px] border focus:outline-none focus:ring-2 focus:ring-mint/40 ${
     darkMode
-      ? "bg-[#0D1321] border-[#1C2840] text-[#E2EAF6] placeholder-slate-500"
-      : "bg-[#070B12] border-[#1C2840] text-[#E2EAF6] placeholder-slate-400"
+      ? "bg-[#0D1321] border-[#1C2840] text-[#E2EAF6] placeholder-[#3A4E66]"
+      : "bg-[#070B12] border-[#1C2840] text-[#E2EAF6] placeholder-[#3A4E66]"
   }`;
 
   return (

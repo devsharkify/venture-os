@@ -57,7 +57,7 @@ export default function ProfilePage() {
                 {darkMode ? "Dark Mode" : "Light Mode"}
               </span>
             </div>
-            <div className={`w-10 h-6 rounded-full flex items-center px-0.5 transition-colors ${darkMode ? "bg-[#2D7AFF]" : "bg-slate-300"}`}>
+            <div className={`w-10 h-6 rounded-full flex items-center px-0.5 transition-colors ${darkMode ? "bg-[#2D7AFF]" : "bg-[#1C2840]"}`}>
               <div className={`w-5 h-5 rounded-full bg-[#070B12] shadow transition-transform ${darkMode ? "translate-x-4" : ""}`} />
             </div>
           </button>

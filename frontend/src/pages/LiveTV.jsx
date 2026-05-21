@@ -76,7 +76,7 @@ export default function LiveTV() {
                 data-testid={`channel-${ch.id}`}
                 onClick={() => setActiveChannel(ch)}
                 className={`rounded-xl overflow-hidden border transition-all hover:scale-[1.02] ${
-                  darkMode ? "bg-[#0D1321] border-[#1C2840] hover:border-[#2D7AFF]" : "bg-[#070B12] border-[#1C2840] hover:border-orange-400"
+                  darkMode ? "bg-[#0D1321] border-[#1C2840] hover:border-[#2D7AFF]" : "bg-[#070B12] border-[#1C2840] hover:border-[#2D7AFF]"
                 }`}
               >
                 <div className="relative aspect-video">

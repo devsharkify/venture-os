@@ -150,9 +150,9 @@ export default function StartupApply() {
   }
 
   return (
-    <div data-testid="startup-apply-page" className={`min-h-screen pb-24 ${darkMode ? "bg-slate-950" : "bg-[#070B12]"}`}>
+    <div data-testid="startup-apply-page" className={`min-h-screen pb-24 ${darkMode ? "bg-[#040609]" : "bg-[#070B12]"}`}>
       {/* ===== Compact Hero Card ===== */}
-      <section className={`px-4 pt-5 pb-2 ${darkMode ? "bg-slate-950" : "bg-[#070B12]"}`}>
+      <section className={`px-4 pt-5 pb-2 ${darkMode ? "bg-[#040609]" : "bg-[#070B12]"}`}>
         <div className="max-w-2xl mx-auto">
           <div className={`relative overflow-hidden rounded-2xl border ${darkMode ? "bg-[#070B12] border-[#1C2840]" : "bg-[#0A0E18] border-[#1C2840]"}`}>
             {/* Top orange accent line */}
@@ -383,7 +383,7 @@ export default function StartupApply() {
                 className={`mt-1.5 w-full px-4 py-3 rounded-lg border-2 border-dashed text-sm font-medium flex items-center justify-center gap-2 transition-all ${
                   form.pitch_pdf_url
                     ? darkMode ? "border-emerald-500 bg-emerald-500/10 text-emerald-300" : "border-emerald-400 bg-emerald-50 text-emerald-700"
-                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-slate-300 text-[#7A90A8] hover:border-orange-400"
+                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-[#1C2840] text-[#7A90A8] hover:border-[#2D7AFF]"
                 }`}
               >
                 {pdfUploading ? <><Loader2 size={16} className="animate-spin" /> Uploading...</> : form.pitch_pdf_url ? <><CheckCircle size={16} /> Pitch deck uploaded. Click to replace</> : <><Upload size={16} /> Upload Pitch Deck (PDF, max 15MB)</>}
@@ -401,7 +401,7 @@ export default function StartupApply() {
                 className={`mt-1.5 w-full px-4 py-3 rounded-lg border-2 border-dashed text-sm font-medium flex items-center justify-center gap-2 transition-all ${
                   form.pitch_video_url
                     ? darkMode ? "border-emerald-500 bg-emerald-500/10 text-emerald-300" : "border-emerald-400 bg-emerald-50 text-emerald-700"
-                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-slate-300 text-[#7A90A8] hover:border-orange-400"
+                    : darkMode ? "border-[#1C2840] text-[#A0B4CC] hover:border-[#2D7AFF]" : "border-[#1C2840] text-[#7A90A8] hover:border-[#2D7AFF]"
                 }`}
               >
                 {videoUploading ? <><Loader2 size={16} className="animate-spin" /> Uploading...</> : form.pitch_video_url ? <><CheckCircle size={16} /> Video uploaded. Click to replace</> : <><Upload size={16} /> Upload 1-min Video Pitch (max 50MB)</>}

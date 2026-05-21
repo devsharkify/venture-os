@@ -202,7 +202,7 @@ export const AdminReporters = () => {
             </Button>
           </div>
 
-          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]"}`}>
+          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
             <Table>
               <TableHeader>
                 <TableRow className={darkMode ? "bg-[#131B2A]" : "bg-[#0A0E18]"}>
@@ -323,7 +323,7 @@ export const AdminReporters = () => {
             </Button>
           </div>
 
-          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#1C2840]"}`}>
+          <div className={`rounded-lg border overflow-hidden ${darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#1C2840]"}`}>
             <Table>
               <TableHeader>
                 <TableRow className={darkMode ? "bg-[#131B2A]" : "bg-[#0A0E18]"}>

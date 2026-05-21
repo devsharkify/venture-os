@@ -191,7 +191,7 @@ export const ArticleModal = () => {
 
           {/* Header */}
           <div className={`sticky top-0 z-20 border-b px-4 py-3 flex items-center justify-between ${
-            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-white border-[#131B2A]"
+            darkMode ? "bg-[#0D1321] border-[#1C2840]" : "bg-[#0D1321] border-[#131B2A]"
           }`}>
             <div className="flex items-center gap-1.5">
               {articlesList.length > 1 && (

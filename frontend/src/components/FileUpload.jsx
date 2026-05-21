@@ -81,7 +81,7 @@ export const FileUpload = ({ type = "image", onUpload, currentUrl = "" }) => {
             transition-colors
             ${darkMode 
               ? "border-[#1C2840] hover:border-[#2D7AFF] bg-[#131B2A]/50" 
-              : "border-slate-300 hover:border-[#2D7AFF] bg-[#0A0E18]"
+              : "border-[#1C2840] hover:border-[#2D7AFF] bg-[#0A0E18]"
             }
             ${uploading ? "pointer-events-none opacity-60" : ""}
           `}
@@ -120,7 +120,7 @@ export const FileUpload = ({ type = "image", onUpload, currentUrl = "" }) => {
             <Button
               size="icon"
               variant="secondary"
-              className="h-7 w-7 bg-green-500 text-white hover:bg-green-600"
+              className="h-7 w-7 bg-[#00D9C8] text-white hover:bg-green-600"
             >
               <Check size={14} />
             </Button>

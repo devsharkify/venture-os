@@ -631,7 +631,7 @@ export default function AdminPanel() {
               value={adminSearch}
               onChange={(e) => { setAdminSearch(e.target.value); setPage(0); }}
               placeholder="Search articles by title, summary, source..."
-              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#0D1321] border-[#1C2840] text-white placeholder-slate-500" : "bg-[#070B12] border-slate-300 placeholder-slate-400"}`}
+              className={`w-full px-4 py-2 rounded-lg border text-sm ${darkMode ? "bg-[#0D1321] border-[#1C2840] text-white placeholder-[#3A4E66]" : "bg-[#070B12] border-[#1C2840] placeholder-[#3A4E66]"}`}
             />
           </div>
           <div className="flex items-center gap-2 text-sm">

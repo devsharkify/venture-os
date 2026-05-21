@@ -322,7 +322,7 @@ export default function ArticlePage() {
               title="Copy link"
               className={`flex items-center gap-1.5 px-3 h-8 rounded-full text-[11px] font-semibold transition-all ${
                 copied
-                  ? "bg-green-500 text-white"
+                  ? "bg-[#00D9C8] text-white"
                   : darkMode
                   ? "bg-[#131B2A] text-[#A0B4CC] hover:bg-[#1C2840]"
                   : "bg-[#131B2A] text-[#7A90A8] hover:bg-[#1C2840]"
